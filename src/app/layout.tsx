@@ -5,11 +5,5 @@ export default async function NotFoundLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html>
-      <body className="flex min-h-screen items-center justify-center">
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }
