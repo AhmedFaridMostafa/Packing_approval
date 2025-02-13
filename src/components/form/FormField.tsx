@@ -16,7 +16,6 @@ const FormField = (props: FormFieldComponentProps) => {
           {...props}
           options={props.options || []}
           value={props.value as SingleValue<SelectOption> | undefined}
-          isClearable={props.isClearable ?? false}
         />
       );
     case "textarea":

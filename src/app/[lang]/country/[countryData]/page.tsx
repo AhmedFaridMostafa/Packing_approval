@@ -13,13 +13,17 @@ interface Params {
   countryData: string;
 }
 
-export async function generateMetadata({ params }: { params: Params }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const { countryData } = await params;
   const [, countryName] = countryData.trim().split("-");
   return { title: countryName };
 }
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { countryData } = await params;
   const [account, , countryId] = countryData.trim().split("-");
   const PackingWay: Packing[] = (await getPackingWay(Number(countryId))) || [];

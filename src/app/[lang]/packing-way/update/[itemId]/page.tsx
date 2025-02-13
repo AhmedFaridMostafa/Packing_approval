@@ -16,7 +16,7 @@ interface Params {
   itemId: string;
 }
 
-async function Page({ params }: { params: Params }) {
+async function Page({ params }: { params: Promise<Params> }) {
   const { itemId } = await params;
   const user = (await getCurrentUser()) as User | null;
   if (!user) redirect("/");

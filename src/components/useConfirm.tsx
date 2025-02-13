@@ -3,16 +3,25 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { ImSpinner8 } from "react-icons/im";
+interface ConfirmOptions {
+  title?: string;
+  message?: string;
+  onConfirm: () => Promise<void> | void;
+  onCancel?: () => void;
+  confirmText?: string;
+  cancelText?: string;
+}
+
+interface ToastProps {
+  t: {
+    id: string;
+  };
+}
 
 export function useConfirm() {
-  const confirm = (options: {
-    title?: string;
-    message?: string;
-    onConfirm: () => Promise<void> | void;
-    onCancel?: () => void;
-    confirmText?: string;
-    cancelText?: string;
-  }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const confirm = (options: ConfirmOptions) => {
     const {
       title = "Confirm Action",
       message = "Are you sure you want to proceed?",
@@ -22,9 +31,8 @@ export function useConfirm() {
       cancelText = "Cancel",
     } = options;
 
-    toast(
-      (t) => {
-        const [isLoading, setIsLoading] = useState<boolean>(false);
+    return toast(
+      (t: ToastProps["t"]) => {
         return (
           <div className="flex flex-col space-y-4">
             {title && <h3 className="text-lg font-bold">{title}</h3>}

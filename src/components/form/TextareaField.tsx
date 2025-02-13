@@ -14,7 +14,7 @@ const TextareaField = ({
   rows = 4,
 }: TextareaFieldProps) => (
   <div className="space-y-2">
-    {label && <LabelForm labelText={label} id={name || id} />}
+    {label && <LabelForm labelText={label} id={name || id || ""} />}
     <textarea
       id={id}
       name={name || id}

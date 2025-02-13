@@ -9,7 +9,7 @@ import { SearchParams } from "next/dist/server/request/search-params";
 export default async function page({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
   const { sort = "new", ...filter } = await searchParams;
   const validSort = sort !== "new";
