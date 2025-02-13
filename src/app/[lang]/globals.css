@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Custom Components */
+@layer components {
+  .header {
+    @apply relative mx-auto mb-4 w-fit text-nowrap pb-3 text-lg font-semibold uppercase leading-none tracking-tight sm:mx-0 md:text-2xl lg:text-4xl;
+
+    /* Header Line */
+    &::before {
+      @apply absolute -left-[15px] bottom-0 h-1 w-[calc(100%+30px)] bg-blue-600 dark:bg-blue-900;
+      content: "";
+    }
+
+    /* Header Dot */
+    &::after {
+      @apply absolute bottom-0 left-2/4 block h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-blue-600 bg-white dark:border-blue-900 dark:bg-gray-900;
+      content: "";
+    }
+  }
+}

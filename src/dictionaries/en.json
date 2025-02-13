@@ -1,0 +1,278 @@
+{
+  "home": {
+    "title": "Welcome to the Packing Guide",
+    "introduction": "Packing is more than just putting items in boxes—it’s about ensuring products are delivered in perfect condition, meeting quality standards, and exceeding customer expectations. This website is designed to guide you step-by-step through the approved packing methods used in our factory.",
+    "why_packing_matters": {
+      "title": "Why Proper Packing Matters",
+      "points": [
+        "Protect Products: Prevent damage during storage and transportation.",
+        "Ensure Accuracy: Pack according to customer and company specifications.",
+        "Maintain Quality: Meet the high standards expected by our clients.",
+        "Save Time and Effort: Reduce errors and rework by following clear instructions."
+      ]
+    },
+    "how_this_helps": {
+      "title": "How This Website Helps You",
+      "points": [
+        "Visual Guidance: See approved packing techniques with detailed images.",
+        "Clear Instructions: Follow step-by-step guidelines tailored to different packing options.",
+        "Bilingual Support: Access content in two languages for better understanding.",
+        "Ease of Use: Simple and user-friendly design to help you find what you need quickly."
+      ]
+    },
+    "conclusion": "By using this platform, you’ll gain the knowledge and confidence to pack items the right way, every time. Together, we can ensure quality, efficiency, and customer satisfaction at every stage of the packing process."
+  },
+
+  "navbar": {
+    "home": "Home",
+    "Add packing way": "Add packing way",
+    "App Settings": "App Settings",
+    "Add country": "Add country",
+    "login": "Login",
+    "register": "Register",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "User": "User",
+    "add category": "Add Category",
+    "history": "History",
+    "Creating user": "Creating user",
+    "All users": "All users",
+    "Countries": "Countries"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "email": {
+        "label": "Your email",
+        "placeholder": "name@company.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      },
+      "submit": "Login"
+    },
+    "register": {
+      "title": "Create account",
+      "full_name": {
+        "label": "Full Name",
+        "placeholder": "Ahmed Fared"
+      },
+      "email": {
+        "label": "Your email",
+        "placeholder": "name@company.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "••••••••"
+      },
+      "role": {
+        "label": "Role",
+        "placeholder": "Select your role"
+      },
+      "submit": "Register"
+    }
+  },
+
+  "userSetting": {
+    "profile": {
+      "title": "Profile",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role"
+    },
+    "appSetting": {
+      "title": "App Settings",
+      "theme": {
+        "title": "Theme",
+        "light": "Light",
+        "dark": "Dark"
+      }
+    },
+    "profileInformation": {
+      "title": "Profile Information",
+      "fullName": "Full Name",
+      "profilePicture": "Profile Picture",
+      "updateButton": "Update Profile"
+    },
+    "changePassword": {
+      "title": "Change Password",
+      "currentPassword": {
+        "label": "Current Password",
+        "placeholder": "Enter your current password"
+      },
+      "newPassword": {
+        "label": "New Password",
+        "placeholder": "Enter a new password"
+      },
+      "confirmNewPassword": {
+        "label": "Confirm New Password",
+        "placeholder": "Re-enter your new password"
+      },
+      "updateButton": "Update Password"
+    }
+  },
+
+  "categories": {
+    "title": "Add Category",
+    "form": {
+      "category": { "label": "Category:", "placeholder": "Carton" },
+      "category_ar": { "label": "Category (Arabic):", "placeholder": "كرتون" }
+    }
+  },
+
+  "cardOption": {
+    "delete_packing_way": "Delete Packing Way",
+    "delete_confirmation": "Are you sure you want to delete"
+  },
+
+  "packingHistory": {
+    "title": "Packing History",
+    "label": {
+      "country": "Country",
+      "action": "action",
+      "category": "category",
+      "action_by": "Action By",
+      "date": "Date",
+      "labels": "Labels",
+      "label_name": "Label Name",
+      "title": "Title",
+      "description": "Description",
+      "sort": "Ordering",
+      "sortOptions": {
+        "new": "New to Old",
+        "old": "Old to New"
+      }
+    }
+  },
+
+  "packingWay": {
+    "addTitle": "Add Pacing way",
+    "editTitle": "Edit Packing Way",
+    "form": {
+      "title": {
+        "label": "Title:",
+        "placeholder": "title"
+      },
+      "description": {
+        "label": "Description:",
+        "placeholder": "Enter description..."
+      },
+      "title_ar": {
+        "label": "Title (Arabic):",
+        "placeholder": "title"
+      },
+      "description_ar": {
+        "label": "Description (Arabic):",
+        "placeholder": "Enter description..."
+      },
+      "country": {
+        "label": "Country:",
+        "placeholder": "select Country"
+      },
+      "category": {
+        "label": "Category:",
+        "placeholder": "select Category"
+      },
+      "image": {
+        "label": "Picture:"
+      },
+      "addSubmit": "Add Packing Way",
+      "editSubmit": "Edit Packing Way"
+    }
+  },
+
+  "country": {
+    "addTitle": "Add Country",
+    "form": {
+      "label_name": {
+        "label": "Label Name:",
+        "placeholder": "Enter label name (e.g., HBE EUROPE LEVIS)"
+      },
+      "account": {
+        "label": "Account:",
+        "placeholder": "Enter account ID (e.g., H494M)"
+      },
+      "labels": {
+        "label": "Labels:",
+        "placeholder": "Enter label codes (e.g., IP-NH-WH)"
+      },
+      "country": {
+        "label": "Country:",
+        "placeholder": "Select a country"
+      },
+      "country_name": {
+        "label": "Country Name (Optional):",
+        "placeholder": "Enter country name (e.g., United States)"
+      },
+      "country_name_ar": {
+        "label": "Country Name (Arabic) (Optional):",
+        "placeholder": "Enter Arabic country name (e.g., الولايات المتحدة)"
+      },
+      "image": {
+        "label": "Country Image:"
+      },
+      "addSubmit": "Add Country"
+    }
+  },
+
+  "role": {
+    "user": "User",
+    "moderator": "Moderator",
+    "admin": "Admin"
+  },
+
+  "usersPage": {
+    "title": "Users List",
+
+    "userTable": {
+      "headers": {
+        "user": "User",
+        "role": "Role",
+        "email": "Email",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteConfirmTitle": "Delete User",
+        "deleteConfirmMessage": "Are you sure you want to delete User:"
+      }
+    },
+    "form": {
+      "email": {
+        "label": "Email"
+      },
+      "role": {
+        "label": "Role",
+        "placeholder": "Select role"
+      },
+      "updateButton": "Update"
+    }
+  },
+
+  "packingMethods": {
+    "noMethodsAuth": {
+      "title": "No packing methods added yet.",
+      "message": "Start by adding a new packing method to guide others.",
+      "button": "Add Packing Way"
+    },
+    "noMethodsNotAuth": {
+      "title": "No packing methods available yet.",
+      "message": "Please check back later for updates."
+    }
+  },
+
+  "save": "Save",
+  "edit": "Edit",
+  "delete": "Delete",
+  "add": "Add",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "create": "Create"
+}

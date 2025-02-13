@@ -1,38 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Packing Guide Web Application
 
-## Getting Started
+A bilingual (English/Arabic) web application designed to guide users through standardized packing methods used in factory operations. This application helps ensure consistent quality, efficiency, and proper handling of products during the packing process.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Bilingual Support**: Full English and Arabic language support throughout the application
+- **User Authentication**: Secure login and registration system with role-based access control
+- **Role Management**: Three user roles (User, Moderator, Admin) with different permissions
+- **Packing Methods**:
+  - Add, edit, and delete packing instructions
+  - Visual guidance with image support
+  - Categorization by country and packing type
+- **History Tracking**: Complete audit trail of all packing method changes
+- **Country Management**: Add and manage country-specific packing requirements
+- **Category System**: Organize packing methods by categories
+- **Profile Management**: User profile customization with avatar support
+- **Theme Support**: Light and dark mode options
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technology Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: Next.js with TypeScript
+- **Backend**: Supabase (Authentication, Database)
+- **Image Storage**: Cloudinary
+- **Styling**: Tailwind CSS
+- **Internationalization**: Built-in i18n support
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## User Roles and Permissions
 
-## Learn More
+### User
 
-To learn more about Next.js, take a look at the following resources:
+- View packing history
+- Create packing methods
+- Update packing methods
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Moderator
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All User permissions plus:
 
-## Deploy on Vercel
+- Create countries
+- Create categories
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Admin
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# Packing_approval" 
-"# Packing_approval"  git init git add README.md git commit -m "first commit" git branch -M main git remote add origin https://github.com/AhmedFaridMostafa/Packing_approval.git git push -u origin main
+All Moderator permissions plus:
+
+- Manage users
+- Update user roles
+- Delete users
