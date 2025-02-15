@@ -27,14 +27,12 @@ interface PackingPDFProps {
   lang: Lang;
 }
 
-// Cloudinary URL builder
 const getCloudinaryUrl = (publicId: string) => {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  // Remove the 'v1/' part and use proper transformations
   return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto/${publicId}`;
 };
 
-// Register Cairo (Arabic)
+// Register fonts (unchanged)
 Font.register({
   family: "Cairo",
   fonts: [
@@ -49,7 +47,6 @@ Font.register({
   ],
 });
 
-// Register Roboto (English)
 Font.register({
   family: "Roboto",
   fonts: [
@@ -64,7 +61,6 @@ Font.register({
   ],
 });
 
-// Create dynamic styles based on language
 const getStyles = (lang: Lang) => {
   const isRTL = lang === "ar";
   const fontFamily = isRTL ? "Cairo" : "Roboto";
@@ -109,11 +105,17 @@ const getStyles = (lang: Lang) => {
       marginBottom: 20,
       justifyContent: isRTL ? "flex-end" : "flex-start",
     },
+    cardsRow: {
+      flexDirection: "row",
+      gap: 10,
+      marginBottom: 10,
+      justifyContent: isRTL ? "flex-end" : "flex-start",
+    },
     cardContent: {
       width: "30%",
-      minHeight: 150,
       backgroundColor: "#f9fafb",
       borderRadius: 4,
+      break: "inside",
     },
     image: {
       width: "100%",
@@ -159,6 +161,15 @@ const PackingDocument = ({
 }: PackingPDFProps) => {
   const styles = getStyles(lang);
 
+  // Helper function to chunk array into groups of 3
+  const chunkArray = <T,>(array: T[], size: number) => {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunks.push(array.slice(i, i + size));
+    }
+    return chunks;
+  };
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -172,25 +183,27 @@ const PackingDocument = ({
         </View>
 
         {Object.entries(groupedData).map(([category, items]) => (
-          <View key={category} wrap={false}>
+          <View key={category}>
             <Text style={styles.categoryTitle}>{category}</Text>
-            <View style={styles.cardContainer} wrap={true}>
-              {items.map((item) => (
-                <View key={item.id} style={styles.cardContent}>
-                  <Image
-                    style={styles.image}
-                    src={getCloudinaryUrl(item.image_url)}
-                  />
-                  <View style={styles.textContainer}>
-                    <Text style={styles.cardTitle}>{item.title[lang]}</Text>
-                    <View style={styles.divider} />
-                    <Text style={styles.cardDescription}>
-                      {item.description[lang]}
-                    </Text>
+            {chunkArray(items, 3).map((chunk, index) => (
+              <View key={index} style={styles.cardsRow} wrap={false}>
+                {chunk.map((item) => (
+                  <View key={item.id} style={styles.cardContent}>
+                    <Image
+                      style={styles.image}
+                      src={getCloudinaryUrl(item.image_url)}
+                    />
+                    <View style={styles.textContainer}>
+                      <Text style={styles.cardTitle}>{item.title[lang]}</Text>
+                      <View style={styles.divider} />
+                      <Text style={styles.cardDescription}>
+                        {item.description[lang]}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              ))}
-            </View>
+                ))}
+              </View>
+            ))}
           </View>
         ))}
       </Page>
@@ -198,7 +211,7 @@ const PackingDocument = ({
   );
 };
 
-// Create Download Component
+// PackingPDFRenderer component remains unchanged
 const PackingPDFRenderer = (props: PackingPDFProps) => {
   const massage = useMemo(
     () => ({
