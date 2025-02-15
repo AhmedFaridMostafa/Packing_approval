@@ -133,7 +133,7 @@ export const descriptionSchema = (lang: Lang) =>
     .string({ required_error: getMessage(lang, "descriptionRequired") })
     .trim()
     .min(10, getMessage(lang, "descriptionTooShort"))
-    .max(200, getMessage(lang, "descriptionTooLong"));
+    .max(2000, getMessage(lang, "descriptionTooLong"));
 
 // Composed schemas
 export const confirmPasswordSchema = (lang: Lang) =>
