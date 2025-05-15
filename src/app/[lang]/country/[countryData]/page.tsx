@@ -78,6 +78,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       </div>
       <div className="flex justify-center">
         <PackingPDF
+          key={country.country_name[lang].replaceAll("_", " ")}
           countryName={country.country_name[lang].replaceAll("_", " ")}
           account={account}
           labelName={country.label_name}

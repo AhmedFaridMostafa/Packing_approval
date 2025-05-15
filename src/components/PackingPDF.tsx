@@ -2,6 +2,7 @@
 "use client";
 import { Lang } from "@/i18n.config";
 import { GroupedPacking } from "@/type/interfaces";
+import { Packing } from "@/type/interfaces";
 
 import {
   Document,
@@ -25,6 +26,19 @@ interface PackingPDFProps {
   labels: string;
   groupedData: GroupedPacking;
   lang: Lang;
+}
+
+type PDFStyles = ReturnType<typeof StyleSheet.create>;
+
+// Add proper type for the message object
+interface Messages {
+  generating: Record<Lang, string>;
+  download: Record<Lang, string>;
+}
+
+interface PackingImageProps {
+  src: string | null;
+  style: PDFStyles;
 }
 
 const getCloudinaryUrl = (publicId: string) => {
@@ -61,7 +75,7 @@ Font.register({
   ],
 });
 
-const getStyles = (lang: Lang) => {
+const getStyles = (lang: Lang): PDFStyles => {
   const isRTL = lang === "ar";
   const fontFamily = isRTL ? "Cairo" : "Roboto";
 
@@ -73,7 +87,7 @@ const getStyles = (lang: Lang) => {
       fontFamily,
     },
     header: {
-      marginBottom: 30,
+      marginBottom: 20,
       alignItems: isRTL ? "flex-end" : "flex-start",
     },
     title: {
@@ -85,7 +99,7 @@ const getStyles = (lang: Lang) => {
     },
     subtitle: {
       fontSize: 12,
-      marginBottom: 20,
+      marginBottom: 15,
       color: "#4b5563",
       fontFamily,
       textAlign: isRTL ? "right" : "left",
@@ -98,56 +112,96 @@ const getStyles = (lang: Lang) => {
       fontFamily,
       textAlign: isRTL ? "right" : "left",
     },
-    cardContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      gap: 10,
-      marginBottom: 20,
-      justifyContent: isRTL ? "flex-end" : "flex-start",
-    },
     cardsRow: {
       flexDirection: "row",
+      flexWrap: "wrap",
       gap: 10,
       marginBottom: 10,
       justifyContent: isRTL ? "flex-end" : "flex-start",
     },
     cardContent: {
-      width: "30%",
+      width: "31%", // Slightly reduced to ensure 3 fit with gap
+      height: "auto",
       backgroundColor: "#f9fafb",
       borderRadius: 4,
-      break: "inside",
+      marginBottom: 10,
     },
     image: {
       width: "100%",
-      objectFit: "cover",
-      borderRadius: 4,
-      marginBottom: 8,
+      height: 180, // Fixed height for images
+      objectFit: "contain", // Maintain aspect ratio
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4,
     },
     textContainer: {
       flexDirection: "column",
-      gap: 4,
       padding: 8,
     },
     cardTitle: {
-      fontSize: 14,
+      fontSize: 12,
       marginBottom: 4,
       fontFamily,
       textAlign: isRTL ? "right" : "left",
       fontWeight: "bold",
     },
     cardDescription: {
-      fontSize: 10,
+      fontSize: 9,
       color: "#4b5563",
-      lineHeight: 1.5,
+      lineHeight: 1.4,
       fontFamily,
       textAlign: isRTL ? "right" : "left",
     },
     divider: {
       borderBottomWidth: 1,
       borderBottomColor: "#e5e7eb",
-      marginVertical: 8,
+      marginVertical: 6,
+    },
+    pageNumber: {
+      position: "absolute",
+      fontSize: 10,
+      bottom: 20,
+      left: 0,
+      right: 0,
+      textAlign: "center",
+      color: "#6b7280",
+    },
+    noImage: {
+      height: 180,
+      backgroundColor: "#f3f4f6",
+      alignItems: "center",
+      justifyContent: "center",
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4,
+    },
+    noImageText: {
+      fontSize: 10,
+      color: "#6b7280",
     },
   });
+};
+
+// Add a fallback image component
+const PackingImage = ({ src, style }: PackingImageProps) => {
+  // Since @react-pdf/renderer's Image doesn't support onError,
+  // we'll just show the fallback if src is null
+  if (!src) {
+    return (
+      <View style={style.noImage}>
+        <Text style={style.noImageText}>Image not available</Text>
+      </View>
+    );
+  }
+
+  return <Image style={style.image} src={src} cache={false} />;
+};
+
+// Function to split items into chunks per page
+const splitItemsByPage = (items: Packing[], itemsPerPage = 6): Packing[][] => {
+  const pages: Packing[][] = [];
+  for (let i = 0; i < items.length; i += itemsPerPage) {
+    pages.push(items.slice(i, i + itemsPerPage));
+  }
+  return pages;
 };
 
 // Create Document Component
@@ -159,88 +213,143 @@ const PackingDocument = ({
   groupedData,
   lang,
 }: PackingPDFProps) => {
-  const styles = getStyles(lang);
+  const styles = useMemo(() => getStyles(lang), [lang]);
 
-  // Helper function to chunk array into groups of 3
-  const chunkArray = <T,>(array: T[], size: number) => {
-    const chunks = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunks.push(array.slice(i, i + size));
-    }
-    return chunks;
+  // Filter out invalid items
+  const validItems = (items: GroupedPacking[keyof GroupedPacking]) => {
+    return (
+      items?.filter(
+        (item) =>
+          item &&
+          typeof item === "object" &&
+          item.id &&
+          item.title &&
+          item.description &&
+          typeof item.title === "object" &&
+          typeof item.description === "object",
+      ) || []
+    );
   };
+
+  // Process categories into pages
+  const categoryPages = useMemo(() => {
+    const result: Record<string, Packing[][]> = {};
+
+    Object.entries(groupedData).forEach(([category, items]) => {
+      const valid = validItems(items);
+      if (valid.length > 0) {
+        // Split items into pages with 6 items per page
+        result[category] = splitItemsByPage(valid, 6);
+      }
+    });
+
+    return result;
+  }, [groupedData]);
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{countryName}</Text>
-          <Text style={styles.subtitle}>
-            {lang === "ar" ? "حساب" : "Account"}: {account} |{" "}
-            {lang === "ar" ? "ملصق" : "Label"}: {labelName} |{" "}
-            {lang === "ar" ? "ملصقات" : "Labels"}: {labels}
-          </Text>
-        </View>
-
-        {Object.entries(groupedData).map(([category, items]) => (
-          <View key={category}>
-            <Text style={styles.categoryTitle}>{category}</Text>
-            {chunkArray(items, 3).map((chunk, index) => (
-              <View key={index} style={styles.cardsRow} wrap={false}>
-                {chunk.map((item) => (
-                  <View key={item.id} style={styles.cardContent}>
-                    <Image
-                      style={styles.image}
-                      src={getCloudinaryUrl(item.image_url)}
-                    />
-                    <View style={styles.textContainer}>
-                      <Text style={styles.cardTitle}>{item.title[lang]}</Text>
-                      <View style={styles.divider} />
-                      <Text style={styles.cardDescription}>
-                        {item.description[lang]}
-                      </Text>
-                    </View>
-                  </View>
-                ))}
+      {Object.entries(categoryPages).map(([category, pageGroups]) =>
+        pageGroups.map((pageItems, pageIndex) => (
+          <Page
+            key={`${category}-page-${pageIndex}`}
+            size="A4"
+            style={styles.page}
+          >
+            {/* Header only on first page of each category */}
+            {pageIndex === 0 && (
+              <View style={styles.header}>
+                <Text style={styles.title}>{countryName}</Text>
+                <Text style={styles.subtitle}>
+                  {lang === "ar" ? "حساب" : "Account"}: {account} |{" "}
+                  {lang === "ar" ? "ملصق" : "Label"}: {labelName} |{" "}
+                  {lang === "ar" ? "ملصقات" : "Labels"}: {labels}
+                </Text>
               </View>
-            ))}
-          </View>
-        ))}
-      </Page>
+            )}
+
+            {/* Category title */}
+            <Text style={styles.categoryTitle}>
+              {category}{" "}
+              {pageGroups.length > 1 &&
+                `(${pageIndex + 1}/${pageGroups.length})`}
+            </Text>
+
+            {/* Items in grid layout - 3 per row, 2 rows max per page */}
+            <View style={styles.cardsRow}>
+              {pageItems.map((item) => (
+                <View key={item.id} style={styles.cardContent}>
+                  <PackingImage
+                    style={styles}
+                    src={
+                      item.image_url ? getCloudinaryUrl(item.image_url) : null
+                    }
+                  />
+                  <View style={styles.textContainer}>
+                    <Text style={styles.cardTitle}>{item.title[lang]}</Text>
+                    <View style={styles.divider} />
+                    <Text style={styles.cardDescription}>
+                      {item.description[lang]}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+
+            {/* Page number */}
+            <Text
+              style={styles.pageNumber}
+              render={({ pageNumber, totalPages }) =>
+                `${pageNumber} / ${totalPages}`
+              }
+              fixed
+            />
+          </Page>
+        )),
+      )}
     </Document>
   );
 };
 
-// PackingPDFRenderer component remains unchanged
+// PackingPDFRenderer component
 const PackingPDFRenderer = (props: PackingPDFProps) => {
-  const massage = useMemo(
+  const [isClient, setIsClient] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const messages: Messages = useMemo(
     () => ({
       generating: { en: "Generating PDF...", ar: "جاري إنشاء ملف PDF..." },
       download: { en: "Download PDF", ar: "تنزيل ملف PDF" },
     }),
     [],
   );
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    try {
+      setIsClient(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    }
   }, []);
 
+  if (error) return <Button status={true}>Error: {error}</Button>;
   if (!isClient) return <Button status={true}>Loading...</Button>;
 
   return (
     <PDFDownloadLink
+      key={`${props.countryName}-${Date.now()}`} // Add timestamp to force refresh
       document={<PackingDocument {...props} />}
-      fileName={props.countryName}
+      fileName={`${props.countryName}-packing-list.pdf`}
     >
-      {({ loading }) => (
-        <Button type="button">
+      {({ loading, error: pdfError }) => (
+        <Button type="button" status={loading}>
           {loading ? (
-            massage.generating[props.lang]
+            messages.generating[props.lang]
+          ) : pdfError ? (
+            `Error: ${pdfError}`
           ) : (
-            <div className="flex items-center justify-center">
-              <FaRegFilePdf className="h-10 w-10" />
-              {massage.download[props.lang]}
+            <div className="flex items-center justify-center gap-2">
+              <FaRegFilePdf className="h-6 w-6" />
+              {messages.download[props.lang]}
             </div>
           )}
         </Button>
