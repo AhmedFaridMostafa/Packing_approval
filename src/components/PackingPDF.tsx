@@ -331,8 +331,8 @@ const PackingPDFRenderer = (props: PackingPDFProps) => {
     }
   }, []);
 
-  if (error) return <Button status={true}>Error: {error}</Button>;
-  if (!isClient) return <Button status={true}>Loading...</Button>;
+  if (error) return <Button disabled={true}>Error: {error}</Button>;
+  if (!isClient) return <Button disabled={true}>Loading...</Button>;
 
   return (
     <PDFDownloadLink
@@ -341,7 +341,7 @@ const PackingPDFRenderer = (props: PackingPDFProps) => {
       fileName={`${props.countryName}-packing-list.pdf`}
     >
       {({ loading, error: pdfError }) => (
-        <Button type="button" status={loading}>
+        <Button type="button" disabled={loading}>
           {loading ? (
             messages.generating[props.lang]
           ) : pdfError ? (

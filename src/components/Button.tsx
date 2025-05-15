@@ -3,7 +3,7 @@
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  status?: boolean;
+  disabled?: boolean;
   type?: "button" | "submit" | "reset";
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -29,7 +29,7 @@ const THEMES = {
 function Button({
   children,
   onClick,
-  status = false,
+  disabled = false,
   type = "button",
   className = "",
   size = "sm",
@@ -44,8 +44,8 @@ function Button({
       type={type}
       className={`${baseClass} ${sizeClass} ${themeClass} ${className}`}
       onClick={onClick}
-      disabled={status}
-      aria-disabled={status}
+      disabled={disabled}
+      aria-disabled={disabled}
     >
       {children}
     </button>

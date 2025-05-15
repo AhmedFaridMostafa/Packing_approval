@@ -78,7 +78,9 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     return (
       <Button
         onClick={() => switchLanguage(nextLanguage.value)}
-        status={isPending}
+        type="button"
+        theme="light"
+        disabled={isPending}
         className={className}
       >
         {isPending ? <SpinnerMini /> : nextLanguage.value.toUpperCase()}

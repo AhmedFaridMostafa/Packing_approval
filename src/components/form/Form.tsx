@@ -44,7 +44,7 @@ export default function Form({
 
       <Button
         type="submit"
-        status={isPending}
+        disabled={isPending}
         theme="default"
         className={buttonData.className}
       >
