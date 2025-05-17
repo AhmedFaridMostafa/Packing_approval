@@ -3,7 +3,13 @@ import { CardInfo } from "@/type/interfaces";
 import Box from "./Box";
 import CloudImage from "./CloudImage";
 
-const Card = ({ title, description, image, children }: CardInfo) => {
+const Card = ({
+  title,
+  description,
+  image,
+  updated_at,
+  children,
+}: CardInfo) => {
   return (
     <Box className="relative !px-0 !pt-0">
       {/* Menu container */}
@@ -16,6 +22,10 @@ const Card = ({ title, description, image, children }: CardInfo) => {
         alt={title}
         width={400}
         height={300}
+        version={
+          updated_at ? new Date(updated_at).getTime().toString() : undefined
+        }
+        loading="eager"
       />
       <div className="px-4 py-2">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -10,6 +10,7 @@ interface OptimizedImageProps {
   quality?: number;
   format?: "auto" | "png" | "jpg" | "webp";
   loading?: "lazy" | "eager";
+  version?: string;
 }
 
 export default function CloudImage({
@@ -18,6 +19,7 @@ export default function CloudImage({
   height,
   src,
   alt,
+  version,
   ...props
 }: OptimizedImageProps) {
   return (
@@ -28,6 +30,8 @@ export default function CloudImage({
       src={src}
       sizes="100vw"
       alt={alt}
+      priority={props.loading === "eager"}
+      version={version}
       {...props}
     />
   );

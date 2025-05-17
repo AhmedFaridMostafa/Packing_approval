@@ -58,7 +58,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
     {},
   );
-
   return (
     <>
       <div className="my-8 flex flex-wrap items-center justify-center gap-2 text-center text-3xl font-bold text-blue-600 dark:text-blue-400">
@@ -78,7 +77,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       </div>
       <div className="flex justify-center">
         <PackingPDF
-          key={country.country_name[lang].replaceAll("_", " ")}
+          key={`${country.country_name[lang].replaceAll("_", " ")}-${Date.now()}`}
           countryName={country.country_name[lang].replaceAll("_", " ")}
           account={account}
           labelName={country.label_name}

@@ -50,7 +50,7 @@ export async function getPackingWay(id: number) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("packing")
-    .select("* , categories(*) , country(*)")
+    .select("*, categories(*), country(*), updated_at")
     .eq("region_id", id)
     .order("category_id", { ascending: true });
   if (error) {
@@ -64,7 +64,7 @@ export async function thePackingWay(id: number) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("packing")
-    .select("id, title, description, image_url")
+    .select("id, title, description, image_url, updated_at")
     .eq("id", id)
     .single();
   if (error) {

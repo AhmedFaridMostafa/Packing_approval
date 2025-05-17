@@ -473,7 +473,6 @@ export async function addCountry(
       errors: {},
     };
   } catch (error) {
-    console.log(error);
     return handleActionError(error, "Country creation failed");
   }
 }
@@ -549,6 +548,7 @@ export async function addPackingWay(
             ar: validatedData.data.description_ar,
           },
           image_url: imageUploadResult.public_id,
+          updated_at: new Date().toISOString(),
         },
       ])
       .select()
@@ -723,6 +723,7 @@ export async function updatePackingWay(
           ar: validatedData.data.description_ar,
         },
         image_url: imageUploadResult.public_id,
+        updated_at: new Date().toISOString(),
       })
       .eq("id", validatedData.data.id);
     if (updateError) throw new Error(updateError.message);

@@ -39,11 +39,24 @@ interface Messages {
 interface PackingImageProps {
   src: string | null;
   style: PDFStyles;
+  uniqueKey: string;
 }
 
-const getCloudinaryUrl = (publicId: string) => {
+// This function disables the browser cache for all images in the PDF
+const getCloudinaryUrl = (publicId: string, updated_at?: string) => {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto/${publicId}`;
+
+  // Force transformation parameters to ensure fresh image
+  const transformations = "f_auto,q_auto,fl_force_strip,fl_progressive";
+
+  // Use a consistent version based on updated_at
+  const version = updated_at ? new Date(updated_at).getTime() : Date.now();
+
+  // Build the base URL with version
+  const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${transformations}/${publicId}`;
+  console.log(`${baseUrl}?v=${version}`);
+  // Add version as a query parameter
+  return `${baseUrl}?v=${version}`;
 };
 
 // Register fonts (unchanged)
@@ -181,7 +194,7 @@ const getStyles = (lang: Lang): PDFStyles => {
 };
 
 // Add a fallback image component
-const PackingImage = ({ src, style }: PackingImageProps) => {
+const PackingImage = ({ src, style, uniqueKey }: PackingImageProps) => {
   // Since @react-pdf/renderer's Image doesn't support onError,
   // we'll just show the fallback if src is null
   if (!src) {
@@ -192,7 +205,8 @@ const PackingImage = ({ src, style }: PackingImageProps) => {
     );
   }
 
-  return <Image style={style.image} src={src} cache={false} />;
+  // We add uniqueKey to create a completely new Image component when src changes
+  return <Image style={style.image} src={src} cache={false} key={uniqueKey} />;
 };
 
 // Function to split items into chunks per page
@@ -214,6 +228,12 @@ const PackingDocument = ({
   lang,
 }: PackingPDFProps) => {
   const styles = useMemo(() => getStyles(lang), [lang]);
+
+  // Use a stable render key based on the data
+  const renderKey = useMemo(() => {
+    const dataString = JSON.stringify(groupedData);
+    return `${Date.now()}-${dataString}`;
+  }, [groupedData]);
 
   // Filter out invalid items
   const validItems = (items: GroupedPacking[keyof GroupedPacking]) => {
@@ -238,7 +258,6 @@ const PackingDocument = ({
     Object.entries(groupedData).forEach(([category, items]) => {
       const valid = validItems(items);
       if (valid.length > 0) {
-        // Split items into pages with 6 items per page
         result[category] = splitItemsByPage(valid, 6);
       }
     });
@@ -251,14 +270,25 @@ const PackingDocument = ({
       {Object.entries(categoryPages).map(([category, pageGroups]) =>
         pageGroups.map((pageItems, pageIndex) => (
           <Page
-            key={`${category}-page-${pageIndex}`}
+            key={`${category}-page-${pageIndex}-${renderKey}`}
             size="A4"
             style={styles.page}
           >
             {/* Header only on first page of each category */}
             {pageIndex === 0 && (
               <View style={styles.header}>
-                <Text style={styles.title}>{countryName}</Text>
+                <Text style={styles.title}>
+                  {countryName} (
+                  {new Date().toLocaleDateString(
+                    lang === "en" ? "en-US" : "ar-EG",
+                    {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    },
+                  )}
+                  )
+                </Text>
                 <Text style={styles.subtitle}>
                   {lang === "ar" ? "حساب" : "Account"}: {account} |{" "}
                   {lang === "ar" ? "ملصق" : "Label"}: {labelName} |{" "}
@@ -276,23 +306,31 @@ const PackingDocument = ({
 
             {/* Items in grid layout - 3 per row, 2 rows max per page */}
             <View style={styles.cardsRow}>
-              {pageItems.map((item) => (
-                <View key={item.id} style={styles.cardContent}>
-                  <PackingImage
-                    style={styles}
-                    src={
-                      item.image_url ? getCloudinaryUrl(item.image_url) : null
-                    }
-                  />
-                  <View style={styles.textContainer}>
-                    <Text style={styles.cardTitle}>{item.title[lang]}</Text>
-                    <View style={styles.divider} />
-                    <Text style={styles.cardDescription}>
-                      {item.description[lang]}
-                    </Text>
+              {pageItems.map((item) => {
+                // Create a stable key based on the item's data
+                const itemKey = `${item.id}-${item.updated_at || ""}-${renderKey}`;
+
+                return (
+                  <View key={itemKey} style={styles.cardContent}>
+                    <PackingImage
+                      style={styles}
+                      src={
+                        item.image_url
+                          ? getCloudinaryUrl(item.image_url, item.updated_at)
+                          : null
+                      }
+                      uniqueKey={itemKey}
+                    />
+                    <View style={styles.textContainer}>
+                      <Text style={styles.cardTitle}>{item.title[lang]}</Text>
+                      <View style={styles.divider} />
+                      <Text style={styles.cardDescription}>
+                        {item.description[lang]}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              ))}
+                );
+              })}
             </View>
 
             {/* Page number */}
@@ -313,7 +351,12 @@ const PackingDocument = ({
 // PackingPDFRenderer component
 const PackingPDFRenderer = (props: PackingPDFProps) => {
   const [isClient, setIsClient] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
+  // Create a stable key based on the props
+  const documentKey = useMemo(() => {
+    const propsString = JSON.stringify(props);
+    return `${Date.now()}-${propsString}`;
+  }, [props]);
 
   const messages: Messages = useMemo(
     () => ({
@@ -324,21 +367,22 @@ const PackingPDFRenderer = (props: PackingPDFProps) => {
   );
 
   useEffect(() => {
-    try {
+    if (typeof window !== "undefined") {
       setIsClient(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
     }
   }, []);
 
-  if (error) return <Button disabled={true}>Error: {error}</Button>;
   if (!isClient) return <Button disabled={true}>Loading...</Button>;
+
+  // Generate a filename with the current date
+  const filename = `${props.countryName}-${new Date().toISOString().split("T")[0]}.pdf`;
 
   return (
     <PDFDownloadLink
-      key={`${props.countryName}-${Date.now()}`} // Add timestamp to force refresh
+      key={documentKey}
       document={<PackingDocument {...props} />}
-      fileName={`${props.countryName}-packing-list.pdf`}
+      fileName={filename}
+      className="no-cache"
     >
       {({ loading, error: pdfError }) => (
         <Button type="button" disabled={loading}>

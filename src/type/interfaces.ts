@@ -46,6 +46,7 @@ export interface CardInfo {
   title: string;
   description: string;
   image: string;
+  updated_at?: string;
   children?: React.ReactNode;
 }
 
@@ -65,6 +66,7 @@ export interface Packing {
   country: Country;
   description: Lang;
   image_url: string;
+  updated_at?: string;
 }
 
 export interface GroupedPacking {

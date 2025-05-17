@@ -59,6 +59,7 @@ export default function CardsGrid({ items, user, options }: CardsGridProps) {
                 image={item.image_url}
                 title={item.title[lang]}
                 description={item.description[lang]}
+                updated_at={item.updated_at}
               >
                 <Menus.Toggle id={item.id.toString()} />
                 <Menus.List id={item.id.toString()}>
