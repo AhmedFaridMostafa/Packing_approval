@@ -37,7 +37,7 @@ export default async function Header() {
             {user ? (
               <Link
                 href={`/${lang}/user/profile`}
-                className="flex cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-gray-200 pr-3 text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                className={`flex cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-gray-200 ${lang === "en" ? "pr-3" : "pl-3"} text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700`}
               >
                 <Avatar user={user} />
               </Link>

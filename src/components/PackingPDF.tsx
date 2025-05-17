@@ -54,7 +54,6 @@ const getCloudinaryUrl = (publicId: string, updated_at?: string) => {
 
   // Build the base URL with version
   const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${transformations}/${publicId}`;
-  console.log(`${baseUrl}?v=${version}`);
   // Add version as a query parameter
   return `${baseUrl}?v=${version}`;
 };

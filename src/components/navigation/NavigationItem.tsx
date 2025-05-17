@@ -1,12 +1,17 @@
 import { NavigationItemProps } from "@/type/interfaces";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/link";
 import CloudImage from "../CloudImage";
+import { useSlider } from "@/context/SliderContext";
 
 function NavigationItem({ item }: NavigationItemProps) {
+  const { toggleSlider } = useSlider();
   return (
     <li>
       <Link
+        onClick={() => {
+          toggleSlider();
+        }}
         href={item.link}
         className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
       >
@@ -15,7 +20,7 @@ function NavigationItem({ item }: NavigationItemProps) {
         ) : item.icon.startsWith("http://") ||
           item.icon.startsWith("https://") ? (
           <Image
-            width={20}
+            width={30}
             height={20}
             src={item.icon}
             alt={item.text}
@@ -23,7 +28,7 @@ function NavigationItem({ item }: NavigationItemProps) {
           />
         ) : (
           <CloudImage
-            width={20}
+            width={30}
             height={20}
             src={item.icon}
             alt={item.text}
