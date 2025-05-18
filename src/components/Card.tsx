@@ -10,6 +10,9 @@ const Card = ({
   updated_at,
   children,
 }: CardInfo) => {
+  const version = updated_at
+    ? new Date(updated_at).getTime().toString()
+    : Date.now().toString();
   return (
     <Box className="relative !px-0 !pt-0">
       {/* Menu container */}
@@ -22,9 +25,7 @@ const Card = ({
         alt={title}
         width={400}
         height={300}
-        version={
-          updated_at ? new Date(updated_at).getTime().toString() : undefined
-        }
+        version={version}
         loading="eager"
       />
       <div className="px-4 py-2">
