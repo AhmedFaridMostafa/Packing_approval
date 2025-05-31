@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import {
   deleteImage,
+  moveImageToNewFolder,
   renameImage,
   updateImage,
   uploadImage,
@@ -756,16 +757,30 @@ export async function updatePackingWay(
   try {
     const user = (await checkAuth()) as User;
     checkPermission(user, "update:packing_way");
-    const image = formData.get("image") as File;
 
+    const image = formData.get("image") as File;
     const lang = (await getLanguageCookie()) as Lang;
+
+    // Parse and validate the ID first to catch conversion issues early
+    const idValue = formData.get("id");
+    const parsedId = Number(idValue);
+
+    if (!idValue || isNaN(parsedId) || parsedId <= 0) {
+      return {
+        success: false,
+        message: "Invalid packing ID provided",
+        errors: { id: ["Valid packing ID is required"] },
+      };
+    }
+
     const validatedData = updatePackingSchema(lang).safeParse({
-      id: Number(formData.get("id")),
+      id: parsedId,
       title: formData.get("title"),
       title_ar: formData.get("title_ar"),
       description: formData.get("description"),
       description_ar: formData.get("description_ar"),
-      Image: image.size > 0 ? image : undefined,
+      category: formData.get("category"),
+      Image: image && image.size > 0 ? image : undefined,
     });
 
     if (!validatedData.success) {
@@ -775,8 +790,31 @@ export async function updatePackingWay(
         errors: validatedData.error.flatten().fieldErrors,
       };
     }
+
+    // Parse category data and validate
+    const categoryValue = validatedData.data.category;
+    if (!categoryValue || !categoryValue.includes("%")) {
+      return {
+        success: false,
+        message: "Invalid category format",
+        errors: { category: ["Valid category selection is required"] },
+      };
+    }
+
+    const [categoryIdStr, newCategoryName] = categoryValue.split("%");
+    const categoryId = Number(categoryIdStr);
+
+    if (isNaN(categoryId) || categoryId <= 0) {
+      return {
+        success: false,
+        message: "Invalid category ID",
+        errors: { category: ["Valid category is required"] },
+      };
+    }
+
     const supabase = await createClient();
 
+    // Fetch existing packing data
     const { data: packingData, error: packingError } = (await supabase
       .from("packing")
       .select(
@@ -786,35 +824,72 @@ export async function updatePackingWay(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .single()) as { data: Packing; error: any };
 
-    if (packingError || !packingData) throw new Error(packingError.message);
+    if (packingError || !packingData) {
+      throw new Error(packingError?.message || "Packing Way not found");
+    }
+
+    // Generate filename
     const fileName =
-      `${packingData.country.country_name.en}-${packingData.categories.name.en}-${validatedData.data.title}`.replace(
+      `${packingData.country.country_name.en}-${newCategoryName}-${validatedData.data.title}`.replace(
         /[^a-zA-Z0-9]/g,
         "_",
       );
+
+    // Check if category has changed
+    const categoryChanged = packingData.category_id !== categoryId;
+
     let imageUploadResult;
     try {
       if (validatedData.data.Image) {
+        // New image uploaded - delete old and upload new
+
         imageUploadResult = await updateImage(
           validatedData.data.Image,
-          packingData.categories.name.en,
+          newCategoryName,
           fileName,
           packingData.image_url,
         );
-        if (!imageUploadResult) throw new Error("Failed to upload image");
+      } else if (categoryChanged) {
+        // Category changed but no new image - move existing image to new folder
+
+        imageUploadResult = await moveImageToNewFolder(
+          packingData.image_url,
+          newCategoryName,
+          fileName,
+        );
+      } else if (packingData.image_url !== fileName) {
+        // No category change and no new image - just rename if filename changed
+
+        try {
+          imageUploadResult = await renameImage(
+            packingData.image_url,
+            fileName,
+          );
+        } catch (renameError) {
+          console.warn(
+            "Rename failed, keeping original image_url:",
+            renameError,
+          );
+          // If rename fails, keep the original image_url
+          imageUploadResult = { public_id: packingData.image_url };
+        }
       } else {
-        imageUploadResult =
-          packingData.image_url === fileName
-            ? { public_id: packingData.image_url }
-            : await renameImage(packingData.image_url, fileName);
+        // No changes needed to image
+        imageUploadResult = { public_id: packingData.image_url };
+      }
+
+      if (!imageUploadResult?.public_id) {
+        throw new Error("Failed to process image - no public_id returned");
       }
     } catch (imageError) {
-      return handleActionError(imageError, "Failed to upload image");
+      return handleActionError(imageError, "Failed to process image");
     }
 
+    // Update database record
     const { error: updateError } = await supabase
       .from("packing")
       .update({
+        category_id: categoryId,
         title: {
           en: validatedData.data.title,
           ar: validatedData.data.title_ar,
@@ -827,12 +902,16 @@ export async function updatePackingWay(
         updated_at: new Date().toISOString(),
       })
       .eq("id", validatedData.data.id);
-    if (updateError) throw new Error(updateError.message);
 
+    if (updateError) {
+      throw new Error(`Database update failed: ${updateError.message}`);
+    }
+
+    // Add history record
     await addPackingHistory([
       {
         country_id: packingData.region_id,
-        category_id: packingData.category_id,
+        category_id: categoryId,
         change_timestamp: new Date(),
         changed_by: user.email as string,
         change_title: {
@@ -847,16 +926,22 @@ export async function updatePackingWay(
       },
     ]);
 
+    // Revalidate the page
     revalidatePath(
       `/country/${packingData.country.account}-${packingData.country.country_name.en}-${packingData.country.id}`,
     );
+
     return {
       success: true,
       message: "Packing Way updated successfully",
       errors: {},
     };
   } catch (error) {
-    return handleActionError(error, "An unexpected error occurred");
+    console.error("updatePackingWay error:", error);
+    return handleActionError(
+      error,
+      "An unexpected error occurred while updating",
+    );
   }
 }
 

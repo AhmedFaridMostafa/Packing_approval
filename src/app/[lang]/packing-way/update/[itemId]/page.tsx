@@ -2,8 +2,12 @@ import { Metadata } from "next";
 import SpinnerMini from "@/components/SpinnerMini";
 import { updatePackingWay } from "@/server/actions";
 import Form from "@/components/form/Form";
-import { User } from "@/type/interfaces";
-import { getCurrentUser, thePackingWay } from "@/server/data-service";
+import { Categories, FormFieldComponentProps, User } from "@/type/interfaces";
+import {
+  getCategories,
+  getCurrentUser,
+  thePackingWay,
+} from "@/server/data-service";
 import { redirect } from "next/navigation";
 import { getCurrentLang } from "@/lib/getCurrentLang";
 import getTrans from "@/lib/translation";
@@ -20,12 +24,18 @@ async function Page({ params }: { params: Promise<Params> }) {
   const { itemId } = await params;
   const user = (await getCurrentUser()) as User | null;
   if (!user) redirect("/");
-  const packingWay = await thePackingWay(Number(itemId));
+  const [packingWay, category] = await Promise.all([
+    await thePackingWay(Number(itemId)),
+    await getCategories(),
+  ]);
+  const defaultCategory = category.filter(
+    (item) => item.id === packingWay.category_id,
+  )[0] as Categories;
   const lang = await getCurrentLang();
   const {
     packingWay: { editTitle, form },
   } = await getTrans(lang);
-  const formFields = [
+  const formFields: FormFieldComponentProps[] = [
     { id: "id", type: "hidden", value: itemId },
     {
       id: "title",
@@ -33,7 +43,6 @@ async function Page({ params }: { params: Promise<Params> }) {
       type: "text",
       placeholder: form.title.placeholder,
       required: true,
-      autoFocus: true,
       defaultValue: packingWay.title.en,
     },
     {
@@ -50,7 +59,6 @@ async function Page({ params }: { params: Promise<Params> }) {
       type: "text",
       placeholder: form.title_ar.placeholder,
       required: true,
-      autoFocus: true,
       defaultValue: packingWay.title.ar,
     },
     {
@@ -60,6 +68,18 @@ async function Page({ params }: { params: Promise<Params> }) {
       rows: 4,
       placeholder: form.description_ar.placeholder,
       defaultValue: packingWay.description.ar,
+    },
+    {
+      name: "category",
+      type: "select",
+      label: form.category.label,
+      placeholder: form.category.placeholder,
+      options: category.map((item) => ({
+        value: `${item.id}%${item.name.en}%${item.name.ar}`,
+        label: item.name[lang],
+      })),
+      defaultValue: `${defaultCategory.id}%${defaultCategory.name.en}%${defaultCategory.name.ar}`,
+      required: true,
     },
     {
       id: "image",

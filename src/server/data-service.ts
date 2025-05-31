@@ -64,7 +64,7 @@ export async function thePackingWay(id: number) {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("packing")
-    .select("id, title, description, image_url, updated_at")
+    .select("id, category_id, title, description, image_url, updated_at")
     .eq("id", id)
     .single();
   if (error) {

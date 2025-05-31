@@ -224,6 +224,9 @@ export const updatePackingSchema = (lang: Lang) =>
     description: descriptionSchema(lang),
     description_ar: descriptionSchema(lang),
     Image: z.union([z.undefined(), ImageSchema(lang)]),
+    category: z.string({
+      required_error: getMessage(lang, "categoryRequired"),
+    }),
   });
 
 export const countrySchema = (lang: Lang) =>
