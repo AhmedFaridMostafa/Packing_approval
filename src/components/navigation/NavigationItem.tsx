@@ -15,26 +15,27 @@ function NavigationItem({ item }: NavigationItemProps) {
         href={item.link}
         className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
       >
-        {typeof item.icon !== "string" ? (
-          item.icon
-        ) : item.icon.startsWith("http://") ||
-          item.icon.startsWith("https://") ? (
-          <Image
-            width={30}
-            height={20}
-            src={item.icon}
-            alt={item.text}
-            className="h-5 w-auto"
-          />
-        ) : (
-          <CloudImage
-            width={30}
-            height={20}
-            src={item.icon}
-            alt={item.text}
-            className="h-5 w-auto"
-          />
-        )}
+        <div className="relative h-7 w-8">
+          {typeof item.icon !== "string" ? (
+            item.icon
+          ) : item.icon.startsWith("http://") ||
+            item.icon.startsWith("https://") ? (
+            <Image
+              className="h-5 w-auto object-contain"
+              src={item.icon}
+              alt={item.text}
+              fill
+            />
+          ) : (
+            <CloudImage
+              width={30}
+              height={20}
+              src={item.icon}
+              alt={item.text}
+              className="h-5 w-auto object-contain"
+            />
+          )}
+        </div>
         <span className="ms-3">{item.text}</span>
       </Link>
     </li>

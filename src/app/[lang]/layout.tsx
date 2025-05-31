@@ -48,7 +48,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  manifest: "site.webmanifest",
 };
 
 export default async function RootLayout({
