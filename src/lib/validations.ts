@@ -37,6 +37,14 @@ const massages = {
     accountRequired: "الحساب مطلوب",
     labelsRequired: "العلامات مطلوبة",
     countryNameRequired: "اسم الدولة مطلوب",
+    resetEmailSent:
+      "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني",
+    resetTokenInvalid:
+      "رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية",
+    passwordResetSuccess: "تم إعادة تعيين كلمة المرور بنجاح",
+    passwordResetFailed: "فشل في إعادة تعيين كلمة المرور",
+    checkYourEmail: "يرجى التحقق من بريدك الإلكتروني",
+    tokenRequired: "رابط إعادة التعيين غير صالح أو منتهي الصلاحية",
   },
   en: {
     nameRequired: "Name is required",
@@ -74,6 +82,12 @@ const massages = {
     accountRequired: "Account is required",
     labelsRequired: "Labels are required",
     countryNameRequired: "Country name is required",
+    resetEmailSent: "Password reset link has been sent to your email",
+    resetTokenInvalid: "Invalid or expired password reset link",
+    passwordResetSuccess: "Password reset successfully",
+    passwordResetFailed: "Failed to reset password",
+    checkYourEmail: "Please check your email",
+    tokenRequired: "Invalid or expired reset link",
   },
 };
 
@@ -254,3 +268,20 @@ export const categorySchema = (lang: Lang) =>
       required_error: getMessage(lang, "categoryRequired"),
     }),
   });
+
+export const forgotPasswordSchema = (lang: Lang) =>
+  z.object({
+    email: emailSchema(lang),
+  });
+
+export const resetPasswordSchema = (lang: Lang) =>
+  z
+    .object({
+      password: passwordSchema(lang),
+      confirmPassword: passwordSchema(lang),
+      token: z.string().min(1, getMessage(lang, "tokenRequired")),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: getMessage(lang, "passwordMismatch"),
+      path: ["confirmPassword"],
+    });

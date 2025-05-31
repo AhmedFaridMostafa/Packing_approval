@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { getCurrentLang } from "@/lib/getCurrentLang";
 import { Lang } from "@/i18n.config";
 import getTrans from "@/lib/translation";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: { absolute: "Login" },
@@ -51,6 +52,14 @@ async function Page() {
         formFields={formFields}
         buttonData={buttonData}
       />
+      <div className="text-center">
+        <Link
+          href={`/${lang}/user/forgot-password`}
+          className="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline"
+        >
+          {login.forgotPassword}
+        </Link>
+      </div>
     </div>
   );
 }

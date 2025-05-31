@@ -23,6 +23,8 @@ import {
   roleUpdateSchema,
   signupSchema,
   updatePackingSchema,
+  resetPasswordSchema,
+  forgotPasswordSchema,
 } from "@/lib/validations";
 
 import { cookies } from "next/headers";
@@ -218,6 +220,105 @@ export async function updateProfile(
     };
   } catch (error) {
     return handleActionError(error, "Profile update failed");
+  }
+}
+
+export async function forgotPassword(
+  _prevState: unknown,
+  formData: FormData,
+): Promise<ActionResponse> {
+  try {
+    const lang = (await getLanguageCookie()) as Lang;
+
+    const validatedData = forgotPasswordSchema(lang).safeParse({
+      email: formData.get("email"),
+    });
+
+    if (!validatedData.success) {
+      return {
+        success: false,
+        message: "Please fix the errors in the form",
+        errors: validatedData.error.flatten().fieldErrors,
+      };
+    }
+
+    const supabase = await createClient();
+
+    const { error } = await supabase.auth.resetPasswordForEmail(
+      validatedData.data.email,
+      {
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/user/reset-password`,
+      },
+    );
+
+    if (error) throw new Error(error.message);
+
+    return {
+      success: true,
+      message:
+        "Password reset email sent successfully. Please check your inbox.",
+      errors: {},
+    };
+  } catch (error) {
+    return handleActionError(error, "Failed to send reset email");
+  }
+}
+
+export async function resetPassword(
+  _prevState: unknown,
+  formData: FormData,
+): Promise<ActionResponse> {
+  try {
+    const lang = (await getLanguageCookie()) as Lang;
+    const validatedData = resetPasswordSchema(lang).safeParse({
+      password: formData.get("password"),
+      confirmPassword: formData.get("confirmPassword"),
+      token: formData.get("token"),
+    });
+
+    if (!validatedData.success) {
+      return {
+        success: false,
+        message: "Please fix the validation errors",
+        errors: validatedData.error.flatten().fieldErrors,
+      };
+    }
+
+    // Use admin client for password reset
+    const supabaseAdmin = await createAdminClient();
+
+    // First verify the reset token
+    const { data: verifyData, error: verifyError } =
+      await supabaseAdmin.auth.verifyOtp({
+        token_hash: validatedData.data.token,
+        type: "recovery",
+      });
+
+    if (verifyError) {
+      console.log(verifyError);
+      throw new Error("Invalid or expired reset token");
+    }
+
+    if (!verifyData?.user) {
+      throw new Error("User not found");
+    }
+
+    // Update password using admin privileges
+    const { error: updateError } =
+      await supabaseAdmin.auth.admin.updateUserById(verifyData.user.id, {
+        password: validatedData.data.password,
+      });
+
+    if (updateError) throw new Error(updateError.message);
+
+    revalidatePath("/", "layout");
+    return {
+      success: true,
+      message: "Password reset successfully",
+      errors: {},
+    };
+  } catch (error) {
+    return handleActionError(error, "Password reset failed");
   }
 }
 

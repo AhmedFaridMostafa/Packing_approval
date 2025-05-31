@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Welcome to the Packing Guide",
-    "introduction": "Packing is more than just putting items in boxes—it’s about ensuring products are delivered in perfect condition, meeting quality standards, and exceeding customer expectations. This website is designed to guide you step-by-step through the approved packing methods used in our factory.",
+    "introduction": "Packing is more than just putting items in boxes—it's about ensuring products are delivered in perfect condition, meeting quality standards, and exceeding customer expectations. This website is designed to guide you step-by-step through the approved packing methods used in our factory.",
     "why_packing_matters": {
       "title": "Why Proper Packing Matters",
       "points": [
@@ -20,7 +20,7 @@
         "Ease of Use: Simple and user-friendly design to help you find what you need quickly."
       ]
     },
-    "conclusion": "By using this platform, you’ll gain the knowledge and confidence to pack items the right way, every time. Together, we can ensure quality, efficiency, and customer satisfaction at every stage of the packing process."
+    "conclusion": "By using this platform, you'll gain the knowledge and confidence to pack items the right way, every time. Together, we can ensure quality, efficiency, and customer satisfaction at every stage of the packing process."
   },
 
   "navbar": {
@@ -51,7 +51,8 @@
         "label": "Password",
         "placeholder": "••••••••"
       },
-      "submit": "Login"
+      "submit": "Login",
+      "forgotPassword": "Forgot password?"
     },
     "register": {
       "title": "Create account",
@@ -76,6 +77,33 @@
         "placeholder": "Select your role"
       },
       "submit": "Register"
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": {
+        "label": "Email Address",
+        "placeholder": "your@email.com"
+      },
+      "submit": "Send Reset Email",
+      "backToLogin": "Back to Login"
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "password": {
+        "newPassword": {
+          "label": "New Password",
+          "placeholder": "Enter new password"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "placeholder": "Re-enter new password"
+        }
+      },
+      "submit": "Reset Password"
+    },
+    "errors": {
+      "missingToken": "Invalid or expired reset link"
     }
   },
 
