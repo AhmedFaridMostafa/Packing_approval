@@ -27,7 +27,7 @@ function getLocale(request: NextRequest): string | undefined {
   return locale;
 }
 
-export async function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   await updateSession(request);
   // update user's auth session
   const requestHeaders = new Headers(request.headers);

@@ -14,7 +14,9 @@ export async function getCurrentUser() {
 
 export async function getAllCountries() {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all");
+    const response = await fetch(
+      "https://restcountries.com/v3.1/all?fields=name,flags,translations",
+    );
     const data = await response.json();
 
     const filteredData = data.map(
