@@ -6,7 +6,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { ThemeProvider } from "@/context/ThemeProviders";
 import { SliderProvider } from "@/context/SliderContext";
 import { Toaster } from "react-hot-toast";
-import { Lang } from "@/i18n.config";
+import { LanguageType, i18n } from "@/i18n.config";
 
 export async function generateStaticParams() {
   return [{ lang: "ar" }, { lang: "en" }];
@@ -55,19 +55,23 @@ export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Lang }>;
+  params: Promise<{ lang: string }>;
 }>) {
-  const lang = (await params).lang as Lang;
+  const { lang } = await params;
+  // Validate that lang is a valid language type
+  const validLang: LanguageType = i18n.locales.includes(lang as LanguageType)
+    ? (lang as LanguageType)
+    : i18n.defaultLocale;
   return (
     <html
-      lang={lang}
-      dir={lang === "ar" ? "rtl" : "ltr"}
+      lang={validLang}
+      dir={validLang === "ar" ? "rtl" : "ltr"}
       suppressHydrationWarning={true}
     >
       <body
-        className={`${lang === "ar" ? cairo.className : roboto.className} bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white`}
+        className={`${validLang === "ar" ? cairo.className : roboto.className} bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white`}
         suppressHydrationWarning={true}
-        lang={lang}
+        lang={validLang}
       >
         <ThemeProvider>
           <SliderProvider>

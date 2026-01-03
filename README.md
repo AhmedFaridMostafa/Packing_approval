@@ -1,6 +1,6 @@
 # Packing Approval System
 
-A comprehensive multilingual web application built with Next.js 15 for managing packing guidelines and approvals across different countries and categories. The system provides role-based access control, internationalization support, and dynamic PDF generation capabilities.
+A comprehensive multilingual web application built with Next.js 16 for managing packing guidelines and approvals across different countries and categories. The system provides role-based access control, internationalization support, and dynamic PDF generation capabilities.
 
 ## 🚀 Features
 
@@ -34,14 +34,14 @@ A comprehensive multilingual web application built with Next.js 15 for managing 
 
 ### Frontend
 
-- **Next.js 15.3.3**: React framework with App Router and Turbopack
-- **React 19.1.0**: Latest React with concurrent features
-- **TypeScript 5**: Type-safe development
-- **Tailwind CSS 3.4**: Utility-first CSS framework
-- **React Hot Toast**: Toast notification system
-- **React Icons 5.4**: Comprehensive icon library
-- **React Select 5.9**: Advanced select components
-- **Next Themes**: Dark/light mode management
+- **Next.js 16.1.1**: React framework with App Router and Turbopack
+- **React 19.2.3**: Latest React with concurrent features
+- **TypeScript 5.9.3**: Type-safe development
+- **Tailwind CSS 4.1.18**: Utility-first CSS framework
+- **React Hot Toast 2.6.0**: Toast notification system
+- **React Icons 5.5.0**: Comprehensive icon library
+- **React Select 5.10.2**: Advanced select components
+- **Next Themes 0.4.6**: Dark/light mode management
 
 ### Backend & Database
 
@@ -49,7 +49,7 @@ A comprehensive multilingual web application built with Next.js 15 for managing 
 - **Server Actions**: Next.js server-side form handling
 - **Server Components**: Server-side rendering capabilities
 - **Cloudinary**: Image upload and optimization service
-- **Zod 3.24**: Runtime type validation
+- **Zod 4.3.2**: Runtime type validation
 
 ### PDF & File Handling
 
@@ -66,11 +66,11 @@ A comprehensive multilingual web application built with Next.js 15 for managing 
 
 ### Development Tools
 
-- **ESLint 9**: Code linting with Next.js config
-- **Prettier 3.4**: Code formatting with Tailwind plugin
-- **TypeScript 5**: Static type checking
+- **ESLint 9.39.2**: Code linting with Next.js config
+- **Prettier 3.7.4**: Code formatting with Tailwind plugin
+- **TypeScript 5.9.3**: Static type checking
 - **Turbopack**: Fast bundler for development
-- **Date-fns 4.1**: Modern date utility library
+- **Date-fns 4.1.0**: Modern date utility library
 
 ## 📋 Prerequisites
 
@@ -278,4 +278,4 @@ For support and questions:
 
 ---
 
-Built with ❤️ using Next.js 15 and TypeScript
+Built with ❤️ using Next.js 16 and TypeScript

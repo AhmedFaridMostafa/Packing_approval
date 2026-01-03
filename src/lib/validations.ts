@@ -99,7 +99,7 @@ const getMessage = (lang: Lang, key: MessageKeys): string => {
 
 export const nameSchema = (lang: Lang) =>
   z
-    .string({ required_error: getMessage(lang, "nameRequired") })
+    .string({ message: getMessage(lang, "nameRequired") })
     .trim()
     .min(3, getMessage(lang, "nameTooShort"))
     .max(50, getMessage(lang, "nameTooLong"))
@@ -107,7 +107,7 @@ export const nameSchema = (lang: Lang) =>
 
 export const passwordSchema = (lang: Lang) =>
   z
-    .string({ required_error: getMessage(lang, "passwordRequired") })
+    .string({ message: getMessage(lang, "passwordRequired") })
     .min(8, getMessage(lang, "passwordTooShort"))
     .max(64, getMessage(lang, "passwordTooLong"))
     .regex(/[A-Z]/, getMessage(lang, "passwordUppercase"))
@@ -116,7 +116,7 @@ export const passwordSchema = (lang: Lang) =>
 
 export const emailSchema = (lang: Lang) =>
   z
-    .string({ required_error: getMessage(lang, "emailRequired") })
+    .string({ message: getMessage(lang, "emailRequired") })
     .trim()
     .email(getMessage(lang, "emailInvalid"))
     .min(5, getMessage(lang, "emailTooShort"))
@@ -137,14 +137,14 @@ export const ImageSchema = (lang: Lang) =>
 
 export const titleSchema = (lang: Lang) =>
   z
-    .string({ required_error: getMessage(lang, "titleRequired") })
+    .string({ message: getMessage(lang, "titleRequired") })
     .trim()
     .min(5, getMessage(lang, "titleTooShort"))
     .max(50, getMessage(lang, "titleTooLong"));
 
 export const descriptionSchema = (lang: Lang) =>
   z
-    .string({ required_error: getMessage(lang, "descriptionRequired") })
+    .string({ message: getMessage(lang, "descriptionRequired") })
     .trim()
     .min(10, getMessage(lang, "descriptionTooShort"))
     .max(2000, getMessage(lang, "descriptionTooLong"));
@@ -209,66 +209,66 @@ export const packingWaySchema = (lang: Lang) =>
     title_ar: titleSchema(lang),
     description: descriptionSchema(lang),
     description_ar: descriptionSchema(lang),
-    country: z.string({ required_error: getMessage(lang, "countryRequired") }),
+    country: z.string({ message: getMessage(lang, "countryRequired") }),
     category: z.string({
-      required_error: getMessage(lang, "categoryRequired"),
+      message: getMessage(lang, "categoryRequired"),
     }),
     Image: ImageSchema(lang),
   });
 
 export const updatePackingSchema = (lang: Lang) =>
   z.object({
-    id: z.number({ required_error: "ID is required" }),
+    id: z.number({ message: "ID is required" }),
     title: titleSchema(lang),
     title_ar: titleSchema(lang),
     description: descriptionSchema(lang),
     description_ar: descriptionSchema(lang),
     Image: z.union([z.undefined(), ImageSchema(lang)]),
     category: z.string({
-      required_error: getMessage(lang, "categoryRequired"),
+      message: getMessage(lang, "categoryRequired"),
     }),
   });
 
 export const countrySchema = (lang: Lang) =>
   z.object({
     label_name: z
-      .string({ required_error: getMessage(lang, "labelNameRequired") })
+      .string({ message: getMessage(lang, "labelNameRequired") })
       .trim()
       .min(3, getMessage(lang, "nameTooShort"))
       .max(100, getMessage(lang, "nameTooLong")),
     account: z
-      .string({ required_error: getMessage(lang, "accountRequired") })
+      .string({ message: getMessage(lang, "accountRequired") })
       .trim()
       .min(3, getMessage(lang, "nameTooShort"))
       .max(100, getMessage(lang, "nameTooLong")),
     labels: z
-      .string({ required_error: getMessage(lang, "labelsRequired") })
+      .string({ message: getMessage(lang, "labelsRequired") })
       .trim()
       .min(2, getMessage(lang, "nameTooShort"))
       .max(120, getMessage(lang, "nameTooLong")),
     country_name: z
-      .string({ required_error: getMessage(lang, "countryNameRequired") })
+      .string({ message: getMessage(lang, "countryNameRequired") })
       .trim()
       .min(3, getMessage(lang, "nameTooShort"))
       .max(50, getMessage(lang, "nameTooLong")),
     country_name_ar: z
-      .string({ required_error: getMessage(lang, "countryNameRequired") })
+      .string({ message: getMessage(lang, "countryNameRequired") })
       .trim()
       .min(3, getMessage(lang, "nameTooShort"))
       .max(50, getMessage(lang, "nameTooLong")),
     flag_url: z.union([
       ImageSchema(lang),
-      z.string({ required_error: getMessage(lang, "imageRequired") }),
+      z.string({ message: getMessage(lang, "imageRequired") }),
     ]),
   });
 
 export const categorySchema = (lang: Lang) =>
   z.object({
     category: z.string({
-      required_error: getMessage(lang, "categoryRequired"),
+      message: getMessage(lang, "categoryRequired"),
     }),
     category_ar: z.string({
-      required_error: getMessage(lang, "categoryRequired"),
+      message: getMessage(lang, "categoryRequired"),
     }),
   });
 
