@@ -51,11 +51,11 @@ export default function ProfileData({ user, profile, role }: ProfileDataProps) {
           </div>
           <div className="flex flex-wrap font-medium dark:text-white">
             <div className="mr-1">{profile.email}:</div>
-            <div className="break-words">{user.email}</div>
+            <div className="wrap-break-word">{user.email}</div>
           </div>
           <div className="flex flex-wrap font-medium dark:text-white">
             <div className="mr-1">{profile.name}:</div>
-            <div className="break-words">{user.full_name}</div>
+            <div className="wrap-break-word">{user.full_name}</div>
           </div>
         </div>
       </div>

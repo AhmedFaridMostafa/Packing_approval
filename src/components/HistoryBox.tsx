@@ -31,7 +31,7 @@ export default async function HistoryBox({
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {packingHistory.map((item: PackingHistory, index: number) => (
-        <Box key={index} className="!space-y-5">
+        <Box key={index} className="space-y-5!">
           <div className="flex flex-wrap items-center gap-2">
             <Image
               width={20}

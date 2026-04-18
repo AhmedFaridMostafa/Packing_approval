@@ -7,7 +7,7 @@
 
     /* Header Line */
     &::before {
-      @apply absolute bottom-0 -left-[15px] h-1 w-[calc(100%+30px)] bg-blue-600 dark:bg-blue-900;
+      @apply absolute bottom-0 -left-3.75 h-1 w-[calc(100%+30px)] bg-blue-600 dark:bg-blue-900;
       content: "";
     }
 

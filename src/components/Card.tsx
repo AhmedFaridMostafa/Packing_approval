@@ -14,13 +14,13 @@ const Card = ({
     ? new Date(updated_at).getTime().toString()
     : Date.now().toString();
   return (
-    <Box className="relative !px-0 !pt-0">
+    <Box className="relative px-0! pt-0!">
       {/* Menu container */}
       {children && (
         <div className="absolute right-2 top-2 z-10">{children}</div>
       )}
       <CloudImage
-        className="!mt-0 rounded-t-lg"
+        className="mt-0! rounded-t-lg"
         src={image}
         alt={title}
         width={400}

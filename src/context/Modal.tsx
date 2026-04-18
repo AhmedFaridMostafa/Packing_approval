@@ -53,7 +53,7 @@ function Window({
   const { close, openName } = context;
   if (name !== openName) return null;
   return (
-    <div className="fixed left-0 right-0 top-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-gray-300/[0.6] dark:bg-gray-900/[0.6] md:inset-0">
+    <div className="fixed left-0 right-0 top-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-gray-300/60 dark:bg-gray-900/60 md:inset-0">
       <div className="relative max-h-full w-full max-w-2xl p-4">
         <div className="relative rounded-lg bg-white shadow-sm dark:bg-gray-700">
           <div className="flex items-center justify-between rounded-t border-b border-gray-200 p-4 dark:border-gray-600 md:p-5">
