@@ -1,4 +1,4 @@
-import { User } from "@/type/interfaces";
+import { User } from "@/types/interfaces";
 import Badges from "../Badges";
 import Box from "../Box";
 import CloudImage from "../CloudImage";

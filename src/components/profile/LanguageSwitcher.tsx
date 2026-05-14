@@ -1,75 +1,61 @@
 "use client";
-import React from "react";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { useTransition } from "react";
 
-import toast from "react-hot-toast";
-import { setLanguageCookie } from "@/server/actions";
-import Button from "../Button";
-import SelectField from "../form/SelectField";
-import { Lang } from "@/i18n.config";
-import SpinnerMini from "../SpinnerMini";
+import React, { useTransition } from "react";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
+
+import { toast } from "sonner";
+
+import type { Locale } from "@/i18n/routing";
+
+import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface LanguageOption {
-  value: Lang;
+  value: Locale;
   label: string;
 }
 
 interface LanguageSwitcherProps {
   variant: "button" | "select";
-  className?: string;
 }
 
-const languageOptions: LanguageOption[] = [
-  { value: "en", label: "English" },
-  { value: "ar", label: "العربية" },
-];
-
-const massage = {
-  switchLanguage: {
-    en: "Language switched to",
-    ar: "تم تبديل اللغة إلى",
-  },
-  Failed: {
-    en: "Failed to switch language",
-    ar: "فشل في تبديل اللغة",
-  },
-  label: {
-    en: "language",
-    ar: "اللغة",
-  },
-};
-
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
-  variant,
-  className,
-}) => {
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ variant }) => {
+  const t = useTranslations("languageSwitcher");
   const router = useRouter();
   const pathname = usePathname();
-  const { lang } = useParams() as { lang: Lang };
+  const locale = useLocale() as Locale;
   const [isPending, startTransition] = useTransition();
+
+  const languageOptions: LanguageOption[] = [
+    { value: "en", label: t("languageOptions.en") },
+    { value: "ar", label: t("languageOptions.ar") },
+  ];
+
   const currentLanguage =
-    languageOptions.find((opt) => opt.value === lang) || languageOptions[0];
+    languageOptions.find((opt) => opt.value === locale) || languageOptions[0];
   const nextLanguage =
-    languageOptions.find((opt) => opt.value !== currentLanguage.value) ||
-    languageOptions[0];
+    languageOptions.find((opt) => opt.value !== locale) || languageOptions[0];
 
-  const switchLanguage = async (newLang: Lang) => {
-    if (isPending || newLang === lang) return;
-
+  const switchLanguage = (newLang: Locale) => {
+    if (isPending || newLang === locale) return;
     startTransition(async () => {
       try {
-        await setLanguageCookie(newLang);
-        const newPath =
-          pathname?.replace(`/${lang}`, `/${newLang}`) ?? `/${newLang}`;
-        router.push(newPath);
+        router.replace(pathname, { locale: newLang });
         toast.success(
-          `${lang !== "en" ? massage.switchLanguage.en : massage.switchLanguage.ar} ${languageOptions.find((opt) => opt.value === newLang)?.label}`,
+          `${t("switchedTo")} ${languageOptions.find((opt) => opt.value === newLang)?.label}`,
         );
-      } catch (error) {
-        toast.error(
-          error instanceof Error ? error.message : massage.Failed[lang],
-        );
+      } catch {
+        toast.error(t("failed"));
       }
     });
   };
@@ -79,31 +65,35 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       <Button
         onClick={() => switchLanguage(nextLanguage.value)}
         type="button"
-        theme="light"
+        variant="outline"
         disabled={isPending}
-        className={className}
+        size="icon"
+        className="cursor-pointer"
       >
-        {isPending ? <SpinnerMini /> : nextLanguage.value.toUpperCase()}
+        {isPending ? <Spinner /> : nextLanguage.value.toUpperCase()}
       </Button>
     );
   }
 
   return (
-    <div className={`relative ${className}`}>
-      <SelectField
-        name="language"
-        label={massage.label[lang]}
-        options={languageOptions}
-        value={currentLanguage}
-        onChange={(option) => {
-          if (option) {
-            switchLanguage(option.value as Lang);
-          }
-        }}
-        isClearable={false}
-        isLoading={isPending}
-      />
-    </div>
+    <Select
+      value={currentLanguage.value}
+      onValueChange={(val) => switchLanguage(val as Locale)}
+      disabled={isPending}
+    >
+      <SelectTrigger className="w-full max-w-48">
+        <SelectValue placeholder="Language" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          {languageOptions.map((lang) => (
+            <SelectItem key={lang.value} value={lang.value}>
+              {lang.label}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 };
 

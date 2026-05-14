@@ -7,7 +7,7 @@ import {
   TableRow,
   TableCell,
 } from "@/context/Table";
-import { User } from "@/type/interfaces";
+import { User } from "@/types/interfaces";
 import Avatar from "../header/Avatar";
 import Badges from "../Badges";
 import Menus from "@/context/Menu";
@@ -17,7 +17,7 @@ import { useConfirm } from "../useConfirm";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import Modal from "@/context/Modal";
-import Form from "../form/Form";
+import Form from "../forms/Form";
 import SpinnerMini from "../SpinnerMini";
 import { deleteUser, updateUserRole } from "@/server/actions";
 

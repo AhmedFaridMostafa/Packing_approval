@@ -1,6 +1,6 @@
 "use client";
 
-import { SliderContextType } from "@/type/interfaces";
+import { SliderContextType } from "@/types/interfaces";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 const SliderContext = createContext<SliderContextType | undefined>(undefined);

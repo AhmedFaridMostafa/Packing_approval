@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 "use client";
 import { Lang } from "@/i18n.config";
-import { GroupedPacking } from "@/type/interfaces";
-import { Packing } from "@/type/interfaces";
+import { GroupedPacking } from "@/types/interfaces";
+import { Packing } from "@/types/interfaces";
 
 import {
   Document,

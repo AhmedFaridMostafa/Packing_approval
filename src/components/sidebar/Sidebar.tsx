@@ -1,5 +1,5 @@
 // types
-import { NavigationSectionData, User } from "@/type/interfaces";
+import { NavigationSectionData, User } from "@/types/interfaces";
 // api
 import { getCountries, getCurrentUser } from "@/server/data-service";
 // components
@@ -14,79 +14,77 @@ import hasPermission from "@/server/handlePermissions";
 import { LuWaypoints } from "react-icons/lu";
 import { TbCategoryPlus, TbWorldPlus } from "react-icons/tb";
 import { ImProfile } from "react-icons/im";
-import { getCurrentLang } from "@/lib/getCurrentLang";
-import { Lang } from "@/i18n.config";
-import getTrans from "@/lib/translation";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function Sidebar() {
   const countries = (await getCountries()) || [];
   const user = (await getCurrentUser()) as User | null;
-  const lang = (await getCurrentLang()) as Lang;
-  const { navbar } = await getTrans(lang);
+  const locale = await getLocale();
+  const navbar = await getTranslations("Navbar");
   // Define navigation items with their required permissions
   const getSettingsItems = (userRole?: "admin" | "moderator" | "user") => {
     const sections: { [key: string]: NavigationSectionData } = {
       settings: {
-        name: navbar["App Settings"],
+        name: navbar("App Settings"),
         items: [],
         icon: <IoMdSettings />,
       },
-      user: { name: navbar.User, items: [], icon: <FaBuildingUser /> },
+      user: { name: navbar("User"), items: [], icon: <FaBuildingUser /> },
     };
 
     if (!userRole) return {};
 
     sections.user.items.push({
       icon: <ImProfile />,
-      link: `/${lang}/user/profile`,
-      text: navbar.profile,
+      link: "/user/profile",
+      text: navbar("profile"),
     });
 
     if (hasPermission(userRole, "create:packing_way")) {
       sections.settings.items.push({
         icon: <LuWaypoints />,
-        link: `/${lang}/packing-way/add`,
-        text: navbar["Add packing way"],
+        link: "/packing-way/add",
+        text: navbar("Add packing way"),
       });
     }
 
     if (hasPermission(userRole, "create:country")) {
       sections.settings.items.push({
         icon: <TbWorldPlus />,
-        link: `/${lang}/country/add`,
-        text: navbar["Add country"],
+        link: "/country/add",
+        text: navbar("Add country"),
       });
     }
 
     if (hasPermission(userRole, "create:category")) {
       sections.settings.items.push({
         icon: <TbCategoryPlus />,
-        link: `/${lang}/category/add`,
-        text: navbar["add category"],
+        link: "/category/add",
+        text: navbar("add category"),
       });
     }
 
     if (hasPermission(userRole, "view:packing_history")) {
       sections.settings.items.push({
         icon: <FaHistory />,
-        link: `/${lang}/country/history`,
-        text: navbar.history,
+        link: "/country/history",
+        text: navbar("history"),
       });
     }
 
     if (hasPermission(userRole, "create:user")) {
       sections.user.items.push({
         icon: <FaUserPlus />,
-        link: `/${lang}/user/signup`,
-        text: navbar["Creating user"],
+        link: "/user/signup",
+        text: navbar("Creating user"),
       });
     }
 
     if (hasPermission(userRole, "view:usersList")) {
       sections.user.items.push({
         icon: <FaUsers />,
-        link: `/${lang}/user/list`,
-        text: navbar["All users"],
+        link: "/user/list",
+        text: navbar("All users"),
       });
     }
 
@@ -103,17 +101,17 @@ export default async function Sidebar() {
   // Base navigation sections
   const navigationData: NavigationSectionData[] = [
     {
-      name: navbar.Countries,
+      name: navbar("Countries"),
       items: countries.map((country) => ({
         icon: country.flag_url.trim(),
-        link: `/${lang}/country/${
+        link: `/country/${
           country.account +
           "-" +
           country.country_name.en.replaceAll(" ", "_") +
           "-" +
           country.id
         }`,
-        text: `${country.country_name[lang]} (${country.account})`,
+        text: `${country.country_name[locale]} (${country.account})`,
       })),
       icon: <GiWorld />,
     },

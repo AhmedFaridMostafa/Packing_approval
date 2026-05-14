@@ -1,5 +1,5 @@
 import { updatePassword } from "@/server/actions";
-import Form from "../form/Form";
+import Form from "../forms/Form";
 import SpinnerMini from "../SpinnerMini";
 import Box from "../Box";
 interface ChangePassword {

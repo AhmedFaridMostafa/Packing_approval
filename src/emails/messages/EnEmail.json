@@ -1,0 +1,28 @@
+{
+  "VerificationEmail": {
+    "project_title": "Packing Approval",
+    "subject": "Verify your email address for Packing Approval",
+    "previewText": "Verify your email address for Packing Approval",
+    "title": "Verify your email address",
+    "greeting": "Hello {name},",
+    "greetingFallback": "Hello there,",
+    "welcome": "Welcome to <strong>Packing Approval</strong>! We're excited to have you on board. Please click the button below to verify your email address and complete your registration securely.",
+    "buttonText": "Verify Email Address",
+    "fallbackText": "Or copy and paste this URL into your browser:",
+    "ignoreText": "If you didn't request this email, you can safely ignore it. Your account will remain unverified.",
+    "copyright": "© {year} Packing Approval. All rights reserved."
+  },
+  "ResetPasswordEmail": {
+    "project_title": "Packing Approval",
+    "subject": "Reset your password for Packing Approval",
+    "previewText": "Reset your password for Packing Approval",
+    "title": "Reset your password",
+    "greeting": "Hello {name},",
+    "greetingFallback": "Hello there,",
+    "message": "You recently requested to reset your password for your <strong>Packing Approval</strong> account. Click the button below to reset it.",
+    "buttonText": "Reset Password",
+    "fallbackText": "Or copy and paste this URL into your browser:",
+    "ignoreText": "If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.",
+    "copyright": "© {year} Packing Approval. All rights reserved."
+  }
+}
