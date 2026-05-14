@@ -1,4 +1,4 @@
-import { FileInputProps } from "@/type/interfaces";
+import { FileInputProps } from "@/types/interfaces";
 import LabelForm from "./LabelForm";
 import ErrorForm from "./ErrorForm";
 

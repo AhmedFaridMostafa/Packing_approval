@@ -3,7 +3,7 @@ import FileInput from "./FileInput";
 import PasswordInput from "./PasswordInput";
 import SelectField from "./SelectField";
 import TextareaField from "./TextareaField";
-import { FormFieldComponentProps, SelectOption } from "@/type/interfaces";
+import { FormFieldComponentProps, SelectOption } from "@/types/interfaces";
 import { SingleValue } from "react-select";
 
 const FormField = (props: FormFieldComponentProps) => {

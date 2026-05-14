@@ -1,4 +1,4 @@
-import { PackingHistory } from "@/type/interfaces";
+import { PackingHistory } from "@/types/interfaces";
 import Box from "./Box";
 import Image from "next/image";
 import { format } from "date-fns";
@@ -40,15 +40,15 @@ export default async function HistoryBox({
               src={item?.country?.flag_url.trim() || ""}
               alt={item?.country?.country_name[lang] || ""}
             />
-            <span className="text-nowrap font-semibold">
+            <span className="font-semibold text-nowrap">
               {item?.country?.country_name[lang]}
             </span>
-            <span className="text-nowrap font-semibold">
+            <span className="font-semibold text-nowrap">
               ({item?.country?.account})
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="flex gap-2 text-nowrap font-semibold">
+            <span className="flex gap-2 font-semibold text-nowrap">
               <VscGithubAction className="h-5 w-5" />
               {label.action}:
             </span>
@@ -58,52 +58,52 @@ export default async function HistoryBox({
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="flex gap-2 text-nowrap font-semibold">
+            <span className="flex gap-2 font-semibold text-nowrap">
               <TbCategory2 className="h-5 w-5" />
               {label.category}:
             </span>
             <span>{item.categories?.name[lang]}</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="flex gap-2 text-nowrap font-semibold">
+            <span className="flex gap-2 font-semibold text-nowrap">
               <MdEmail className="h-5 w-5" />
               {label.action_by}:
             </span>
             <span>{item.changed_by}</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="flex gap-2 text-nowrap font-semibold">
+            <span className="flex gap-2 font-semibold text-nowrap">
               <FaCalendarAlt className="h-5 w-5" />
               {label.date}:
             </span>
             <span>({format(item?.change_timestamp, "MM/dd/yyyy")})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">{label.labels}: </span>
+            <span className="font-semibold text-nowrap">{label.labels}: </span>
             <span>({item?.country?.labels})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">
+            <span className="font-semibold text-nowrap">
               {label.label_name}:
             </span>
             <span>({item?.country?.label_name})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">{label.title}: </span>
+            <span className="font-semibold text-nowrap">{label.title}: </span>
             <span>({item.change_title.en})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">
+            <span className="font-semibold text-nowrap">
               {label.description}:
             </span>
             <span>({item.change_description.en})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">{label.title}: </span>
+            <span className="font-semibold text-nowrap">{label.title}: </span>
             <span>({item.change_title.ar})</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-nowrap font-semibold">
+            <span className="font-semibold text-nowrap">
               {label.description}:
             </span>
             <span>({item.change_description.ar})</span>

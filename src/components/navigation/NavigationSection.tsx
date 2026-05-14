@@ -1,6 +1,6 @@
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import NavigationItem from "./NavigationItem";
-import { NavigationSectionProps } from "@/type/interfaces";
+import { NavigationSectionProps } from "@/types/interfaces";
 
 function NavigationSection({
   section,
@@ -15,7 +15,7 @@ function NavigationSection({
         onClick={onToggle}
       >
         {section.icon}
-        <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
+        <span className="ms-3 flex-1 text-left whitespace-nowrap rtl:text-right">
           {section.name}
         </span>
         {isOpen ? <FaAngleUp /> : <FaAngleDown />}

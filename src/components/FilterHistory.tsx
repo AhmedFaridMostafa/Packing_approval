@@ -1,8 +1,8 @@
 "use client";
-import { PackingHistory, SelectOption } from "@/type/interfaces";
+import { PackingHistory, SelectOption } from "@/types/interfaces";
 import Image from "next/image";
 import { useCallback, useMemo } from "react";
-import SelectField from "./form/SelectField";
+import SelectField from "./forms/SelectField";
 import {
   useParams,
   usePathname,

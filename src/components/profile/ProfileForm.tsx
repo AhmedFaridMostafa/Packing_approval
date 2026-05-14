@@ -1,7 +1,7 @@
 import { updateProfile } from "@/server/actions";
-import Form from "../form/Form";
+import Form from "../forms/Form";
 import SpinnerMini from "../SpinnerMini";
-import { User } from "@/type/interfaces";
+import { User } from "@/types/interfaces";
 import Box from "../Box";
 
 interface ProfileFormProps {

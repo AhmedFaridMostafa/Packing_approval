@@ -1,7 +1,7 @@
 "use client";
 import Menus from "@/context/Menu";
 import Card from "./Card";
-import { User, type Packing } from "@/type/interfaces";
+import { User, type Packing } from "@/types/interfaces";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { deletePackingWay } from "@/server/actions";

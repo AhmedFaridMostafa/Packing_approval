@@ -1,8 +1,9 @@
-import { NavigationItemProps } from "@/type/interfaces";
+import { NavigationItemProps } from "@/types/interfaces";
 import Image from "next/image";
-import Link from "@/components/link";
+
 import CloudImage from "../CloudImage";
 import { useSlider } from "@/context/SliderContext";
+import { Link } from "@/i18n/navigation";
 
 function NavigationItem({ item }: NavigationItemProps) {
   const { toggleSlider } = useSlider();

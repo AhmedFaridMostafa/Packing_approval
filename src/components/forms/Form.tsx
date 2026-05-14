@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import Button from "../Button";
 import Alert from "../Alert";
 import FormField from "./FormField";
-import { FormProps } from "@/type/interfaces";
+import { FormProps } from "@/types/interfaces";
 
 export default function Form({
   formAction,

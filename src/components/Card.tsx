@@ -1,5 +1,5 @@
 // Card.tsx
-import { CardInfo } from "@/type/interfaces";
+import { CardInfo } from "@/types/interfaces";
 import Box from "./Box";
 import CloudImage from "./CloudImage";
 
@@ -17,7 +17,7 @@ const Card = ({
     <Box className="relative px-0! pt-0!">
       {/* Menu container */}
       {children && (
-        <div className="absolute right-2 top-2 z-10">{children}</div>
+        <div className="absolute top-2 right-2 z-10">{children}</div>
       )}
       <CloudImage
         className="mt-0! rounded-t-lg"

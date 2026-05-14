@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import NavigationSection from "./NavigationSection";
-import { NavigationProps } from "@/type/interfaces";
+import { NavigationProps } from "@/types/interfaces";
 
 function Navigation({ data }: NavigationProps) {
   const [openSection, setOpenSection] = useState<string>("");

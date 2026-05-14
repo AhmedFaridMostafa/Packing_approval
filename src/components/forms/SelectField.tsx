@@ -1,4 +1,4 @@
-import { SelectFieldProps, SelectOption } from "@/type/interfaces";
+import { SelectFieldProps, SelectOption } from "@/types/interfaces";
 import Select from "react-select";
 import type { ClassNamesConfig } from "react-select";
 import ErrorForm from "./ErrorForm";

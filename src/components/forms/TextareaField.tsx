@@ -1,4 +1,4 @@
-import { TextareaFieldProps } from "@/type/interfaces";
+import { TextareaFieldProps } from "@/types/interfaces";
 import LabelForm from "./LabelForm";
 import ErrorForm from "./ErrorForm";
 

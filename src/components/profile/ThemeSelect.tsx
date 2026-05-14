@@ -1,8 +1,8 @@
 "use client";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
-import { SelectOption } from "@/type/interfaces";
-import SelectField from "../form/SelectField";
+import { SelectOption } from "@/types/interfaces";
+import SelectField from "../forms/SelectField";
 
 export function ThemeSelect({
   themeLang,
