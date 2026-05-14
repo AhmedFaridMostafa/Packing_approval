@@ -1,290 +1,187 @@
-import { Lang } from "@/i18n.config";
 import { z } from "zod";
-const massages = {
-  ar: {
-    nameRequired: "الاسم مطلوب",
-    nameTooShort: "يجب أن يكون الاسم 3 أحرف على الأقل",
-    nameTooLong: "يجب ألا يتجاوز الاسم 50 حرفًا",
-    nameFormat:
-      "يمكن أن يحتوي الاسم على أحرف ومسافات وشرطات وعلامات اقتباس فقط",
-    passwordRequired: "كلمة المرور مطلوبة",
-    passwordTooShort: "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
-    passwordTooLong: "يجب ألا تتجاوز كلمة المرور 64 حرفًا",
-    passwordUppercase: "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
-    passwordLowercase: "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
-    passwordNumber: "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
-    emailRequired: "البريد الإلكتروني مطلوب",
-    emailInvalid: "يرجى إدخال عنوان بريد إلكتروني صالح",
-    emailTooShort: "يجب أن يكون البريد الإلكتروني 5 أحرف على الأقل",
-    emailTooLong: "يجب ألا يتجاوز البريد الإلكتروني 254 حرفًا",
-    imageRequired: "يرجى تحميل صورة",
-    imageTooLarge: "يجب أن يكون حجم الملف أقل من 5 ميجابايت",
-    imageFormat: "يجب أن يكون الملف بتنسيق JPEG أو PNG أو WEBP",
-    titleRequired: "العنوان مطلوب",
-    titleTooShort: "يجب أن يكون العنوان 5 أحرف على الأقل",
-    titleTooLong: "يجب ألا يتجاوز العنوان 50 حرفًا",
-    descriptionRequired: "الوصف مطلوب",
-    descriptionTooShort: "يجب أن يكون الوصف 10 أحرف على الأقل",
-    descriptionTooLong: "يجب ألا يتجاوز الوصف 2000 حرف",
-    passwordMismatch: "كلمات المرور غير متطابقة",
-    currentPasswordRequired: "كلمة المرور الحالية مطلوبة",
-    newPasswordDifferent:
-      "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية",
-    formErrors: "يرجى تصحيح الأخطاء في النموذج",
-    countryRequired: "الدولة مطلوبة",
-    categoryRequired: "الفئة مطلوبة",
-    labelNameRequired: "اسم التصنيف مطلوب",
-    accountRequired: "الحساب مطلوب",
-    labelsRequired: "العلامات مطلوبة",
-    countryNameRequired: "اسم الدولة مطلوب",
-    resetEmailSent:
-      "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني",
-    resetTokenInvalid:
-      "رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية",
-    passwordResetSuccess: "تم إعادة تعيين كلمة المرور بنجاح",
-    passwordResetFailed: "فشل في إعادة تعيين كلمة المرور",
-    checkYourEmail: "يرجى التحقق من بريدك الإلكتروني",
-    tokenRequired: "رابط إعادة التعيين غير صالح أو منتهي الصلاحية",
-  },
-  en: {
-    nameRequired: "Name is required",
-    nameTooShort: "Name must be at least 3 characters",
-    nameTooLong: "Name must not exceed 50 characters",
-    nameFormat:
-      "Name can only contain letters, spaces, hyphens, and apostrophes",
-    passwordRequired: "Password is required",
-    passwordTooShort: "Password must be at least 8 characters long",
-    passwordTooLong: "Password must not exceed 64 characters",
-    passwordUppercase: "Password must contain at least one uppercase letter",
-    passwordLowercase: "Password must contain at least one lowercase letter",
-    passwordNumber: "Password must contain at least one number",
-    emailRequired: "Email is required",
-    emailInvalid: "Please enter a valid email address",
-    emailTooShort: "Email must be at least 5 characters",
-    emailTooLong: "Email must not exceed 254 characters",
-    imageRequired: "Please upload an image",
-    imageTooLarge: "File size must be less than 5MB",
-    imageFormat: "File must be JPEG, PNG, or WEBP format",
-    titleRequired: "Title is required",
-    titleTooShort: "Title must be at least 5 characters",
-    titleTooLong: "Title must not exceed 50 characters",
-    descriptionRequired: "Description is required",
-    descriptionTooShort: "Description must be at least 10 characters",
-    descriptionTooLong: "Description must not exceed 2000 characters",
-    passwordMismatch: "Passwords don't match",
-    currentPasswordRequired: "Current password is required",
-    newPasswordDifferent:
-      "New password must be different from current password",
-    formErrors: "Please fix the errors in the form",
-    countryRequired: "Country is required",
-    categoryRequired: "Category is required",
-    labelNameRequired: "Label name is required",
-    accountRequired: "Account is required",
-    labelsRequired: "Labels are required",
-    countryNameRequired: "Country name is required",
-    resetEmailSent: "Password reset link has been sent to your email",
-    resetTokenInvalid: "Invalid or expired password reset link",
-    passwordResetSuccess: "Password reset successfully",
-    passwordResetFailed: "Failed to reset password",
-    checkYourEmail: "Please check your email",
-    tokenRequired: "Invalid or expired reset link",
-  },
-};
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE, USER_ROLES } from "@/constants";
 
-type MessageKeys = keyof (typeof massages)["en"];
+// --- Base Schemas ---
 
-const getMessage = (lang: Lang, key: MessageKeys): string => {
-  return massages[lang]?.[key];
-};
-
-export const nameSchema = (lang: Lang) =>
+export const nameSchema = (t: TranslateFn) =>
   z
-    .string({ message: getMessage(lang, "nameRequired") })
+    .string({ error: t("name_required") })
     .trim()
-    .min(3, getMessage(lang, "nameTooShort"))
-    .max(50, getMessage(lang, "nameTooLong"))
-    .regex(/^[a-zA-Z\s-']+$/, getMessage(lang, "nameFormat"));
+    .min(3, { error: t("name_too_short") })
+    .max(50, { error: t("name_too_long") })
+    .regex(/^[a-zA-Z\s-']+$/, { error: t("name_format") });
 
-export const passwordSchema = (lang: Lang) =>
+export const passwordSchema = (t: TranslateFn) =>
   z
-    .string({ message: getMessage(lang, "passwordRequired") })
-    .min(8, getMessage(lang, "passwordTooShort"))
-    .max(64, getMessage(lang, "passwordTooLong"))
-    .regex(/[A-Z]/, getMessage(lang, "passwordUppercase"))
-    .regex(/[a-z]/, getMessage(lang, "passwordLowercase"))
-    .regex(/[0-9]/, getMessage(lang, "passwordNumber"));
+    .string({ error: t("password_required") })
+    .min(8, { error: t("password_too_short") })
+    .max(64, { error: t("password_too_long") })
+    .regex(/[A-Z]/, { error: t("password_uppercase") })
+    .regex(/[a-z]/, { error: t("password_lowercase") })
+    .regex(/[0-9]/, { error: t("password_number") });
 
-export const emailSchema = (lang: Lang) =>
+export const emailSchema = (t: TranslateFn) =>
   z
-    .string({ message: getMessage(lang, "emailRequired") })
+    .email({ error: t("email_invalid") })
+    .min(5, { error: t("email_too_short") })
+    .max(254, { error: t("email_too_long") });
+
+export const ImageSchema = (t: TranslateFn) =>
+  z
+    .instanceof(File, { error: t("image_required") })
+    .refine((file) => file.size !== 0, {
+      error: t("image_required"),
+    })
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      error: t("too_large"),
+    })
+    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+      error: t("wrong_type"),
+    });
+
+export const titleSchema = (t: TranslateFn) =>
+  z
+    .string({ error: t("title_required") })
     .trim()
-    .email(getMessage(lang, "emailInvalid"))
-    .min(5, getMessage(lang, "emailTooShort"))
-    .max(254, getMessage(lang, "emailTooLong"));
+    .min(5, { error: t("title_too_short") })
+    .max(50, { error: t("title_too_long") });
 
-export const ImageSchema = (lang: Lang) =>
+export const descriptionSchema = (t: TranslateFn) =>
   z
-    .instanceof(File, { message: "Must be a valid file" })
-    .refine((file) => file.size !== 0, getMessage(lang, "imageRequired"))
-    .refine(
-      (file) => file.size <= 5 * 1024 * 1024,
-      getMessage(lang, "imageTooLarge"),
-    )
-    .refine(
-      (file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type),
-      getMessage(lang, "imageFormat"),
-    );
-
-export const titleSchema = (lang: Lang) =>
-  z
-    .string({ message: getMessage(lang, "titleRequired") })
+    .string({ error: t("description_required") })
     .trim()
-    .min(5, getMessage(lang, "titleTooShort"))
-    .max(50, getMessage(lang, "titleTooLong"));
+    .min(10, { error: t("description_too_short") })
+    .max(2000, { error: t("description_too_long") });
 
-export const descriptionSchema = (lang: Lang) =>
-  z
-    .string({ message: getMessage(lang, "descriptionRequired") })
-    .trim()
-    .min(10, getMessage(lang, "descriptionTooShort"))
-    .max(2000, getMessage(lang, "descriptionTooLong"));
+// --- Composed Schemas ---
 
-// Composed schemas
-export const confirmPasswordSchema = (lang: Lang) =>
+export const signinSchema = (t: TranslateFn) =>
+  z.object({
+    email: emailSchema(t),
+    password: passwordSchema(t),
+  });
+
+export const signupSchema = (t: TranslateFn) =>
+  z.object({
+    name: nameSchema(t),
+    email: emailSchema(t),
+    password: passwordSchema(t),
+  });
+
+export const signupAdminSchema = (t: TranslateFn) =>
+  signupSchema(t).extend({
+    confirmPassword: passwordSchema(t),
+    role: z.enum(Object.values(USER_ROLES)).default("user"),
+  });
+
+export const profileSchema = (t: TranslateFn) =>
+  z.object({
+    name: nameSchema(t),
+    avatar: z.union([z.undefined(), ImageSchema(t)]),
+  });
+
+export const confirmPasswordSchema = (t: TranslateFn) =>
   z
     .object({
       currentPassword: z
         .string()
-        .min(1, getMessage(lang, "currentPasswordRequired")),
-      newPassword: passwordSchema(lang),
-      confirmPassword: passwordSchema(lang),
+        .min(1, { error: t("current_password_required") }),
+      newPassword: passwordSchema(t),
+      confirmPassword: passwordSchema(t),
     })
     .refine((data) => data.newPassword === data.confirmPassword, {
-      message: getMessage(lang, "passwordMismatch"),
+      error: t("password_mismatch"),
       path: ["confirmPassword"],
     })
     .refine((data) => data.currentPassword !== data.newPassword, {
-      message: getMessage(lang, "newPasswordDifferent"),
-      path: ["newPassword"],
+      error: t("new_password_different"),
+      path: ["new_password"],
     });
 
-export const profileSchema = (lang: Lang) =>
+export const packingWaySchema = (t: TranslateFn) =>
   z.object({
-    name: nameSchema(lang),
-    avatar: z.union([z.undefined(), ImageSchema(lang)]),
+    title: titleSchema(t),
+    title_ar: titleSchema(t),
+    description: descriptionSchema(t),
+    description_ar: descriptionSchema(t),
+    country: z.string({ error: t("country_required") }),
+    category: z.string({ error: t("category_required") }),
+    Image: ImageSchema(t),
   });
 
-export const loginSchema = (lang: Lang) =>
+export const updatePackingSchema = (t: TranslateFn) =>
   z.object({
-    email: emailSchema(lang),
-    password: passwordSchema(lang),
+    id: z.number({ error: "ID is required" }),
+    title: titleSchema(t),
+    title_ar: titleSchema(t),
+    description: descriptionSchema(t),
+    description_ar: descriptionSchema(t),
+    Image: z.union([z.undefined(), ImageSchema(t)]),
+    category: z.string({ error: t("category_required") }),
   });
 
-export const signupSchema = (lang: Lang) =>
-  z
-    .object({
-      full_name: nameSchema(lang),
-      email: emailSchema(lang),
-      password: passwordSchema(lang),
-      confirmPassword: passwordSchema(lang),
-      role: z.enum(["admin", "user", "moderator"]),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      message: getMessage(lang, "passwordMismatch"),
-      path: ["confirmPassword"],
-    });
-
-export const roleUpdateSchema = z.object({
-  userId: z.string().uuid(),
-  newRole: z.enum(["admin", "moderator", "user"]),
-});
-
-export const deleteUserSchema = z.object({
-  userId: z.string().uuid(),
-});
-
-export const packingWaySchema = (lang: Lang) =>
-  z.object({
-    title: titleSchema(lang),
-    title_ar: titleSchema(lang),
-    description: descriptionSchema(lang),
-    description_ar: descriptionSchema(lang),
-    country: z.string({ message: getMessage(lang, "countryRequired") }),
-    category: z.string({
-      message: getMessage(lang, "categoryRequired"),
-    }),
-    Image: ImageSchema(lang),
-  });
-
-export const updatePackingSchema = (lang: Lang) =>
-  z.object({
-    id: z.number({ message: "ID is required" }),
-    title: titleSchema(lang),
-    title_ar: titleSchema(lang),
-    description: descriptionSchema(lang),
-    description_ar: descriptionSchema(lang),
-    Image: z.union([z.undefined(), ImageSchema(lang)]),
-    category: z.string({
-      message: getMessage(lang, "categoryRequired"),
-    }),
-  });
-
-export const countrySchema = (lang: Lang) =>
+export const countrySchema = (t: TranslateFn) =>
   z.object({
     label_name: z
-      .string({ message: getMessage(lang, "labelNameRequired") })
+      .string({ error: t("label_name_required") })
       .trim()
-      .min(3, getMessage(lang, "nameTooShort"))
-      .max(100, getMessage(lang, "nameTooLong")),
+      .min(3, { error: t("name_too_short") })
+      .max(100, { error: t("name_too_long") }),
     account: z
-      .string({ message: getMessage(lang, "accountRequired") })
+      .string({ error: t("account_required") })
       .trim()
-      .min(3, getMessage(lang, "nameTooShort"))
-      .max(100, getMessage(lang, "nameTooLong")),
+      .min(3, { error: t("name_too_short") })
+      .max(100, { error: t("name_too_long") }),
     labels: z
-      .string({ message: getMessage(lang, "labelsRequired") })
+      .string({ error: t("labels_required") })
       .trim()
-      .min(2, getMessage(lang, "nameTooShort"))
-      .max(120, getMessage(lang, "nameTooLong")),
+      .min(2, { error: t("name_too_short") })
+      .max(120, { error: t("name_too_long") }),
     country_name: z
-      .string({ message: getMessage(lang, "countryNameRequired") })
+      .string({ error: t("country_name_required") })
       .trim()
-      .min(3, getMessage(lang, "nameTooShort"))
-      .max(50, getMessage(lang, "nameTooLong")),
+      .min(3, { error: t("name_too_short") })
+      .max(50, { error: t("name_too_long") }),
     country_name_ar: z
-      .string({ message: getMessage(lang, "countryNameRequired") })
+      .string({ error: t("country_name_required") })
       .trim()
-      .min(3, getMessage(lang, "nameTooShort"))
-      .max(50, getMessage(lang, "nameTooLong")),
+      .min(3, { error: t("name_too_short") })
+      .max(50, { error: t("name_too_long") }),
     flag_url: z.union([
-      ImageSchema(lang),
-      z.string({ message: getMessage(lang, "imageRequired") }),
+      ImageSchema(t),
+      z.string({ error: t("image_required") }),
     ]),
   });
 
-export const categorySchema = (lang: Lang) =>
+export const categorySchema = (t: TranslateFn) =>
   z.object({
-    category: z.string({
-      message: getMessage(lang, "categoryRequired"),
-    }),
-    category_ar: z.string({
-      message: getMessage(lang, "categoryRequired"),
-    }),
+    category: z.string({ error: t("category_required") }),
+    category_ar: z.string({ error: t("category_required") }),
   });
 
-export const forgotPasswordSchema = (lang: Lang) =>
+export const forgotPasswordSchema = (t: TranslateFn) =>
   z.object({
-    email: emailSchema(lang),
+    email: emailSchema(t),
   });
 
-export const resetPasswordSchema = (lang: Lang) =>
+export const resetPasswordSchema = (t: TranslateFn) =>
   z
     .object({
-      password: passwordSchema(lang),
-      confirmPassword: passwordSchema(lang),
-      token: z.string().min(1, getMessage(lang, "tokenRequired")),
+      password: passwordSchema(t),
+      confirmPassword: passwordSchema(t),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: getMessage(lang, "passwordMismatch"),
+      error: t("password_mismatch"),
       path: ["confirmPassword"],
     });
+
+// --- Admin Only (Static - No Translation needed usually) ---
+
+export const roleUpdateSchema = z.object({
+  userId: z.uuid(),
+  newRole: z.enum(Object.values(USER_ROLES)),
+});
+
+export const deleteUserSchema = z.object({
+  userId: z.uuid(),
+});

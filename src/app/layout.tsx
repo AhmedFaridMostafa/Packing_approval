@@ -1,13 +1,7 @@
-import "./[lang]/globals.css";
-import { Geist } from "next/font/google";
+import "./globals.css";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-
-export default async function NotFoundLayout({
+export default async function MainLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return children;
 }

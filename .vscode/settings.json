@@ -1,12 +1,17 @@
 {
   "cSpell.words": [
+    "arcjet",
     "flagcdn",
     "formatjs",
+    "googleusercontent",
     "localematcher",
     "NEXTAUTH",
     "supabase",
     "turbopack",
+    "WEBP",
     "العربية",
     "كرتون"
-  ]
+  ],
+  "i18n-ally.localesPaths": ["src/messages"],
+  "i18n-ally.keystyle": "nested"
 }
