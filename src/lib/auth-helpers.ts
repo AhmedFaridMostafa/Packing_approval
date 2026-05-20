@@ -29,3 +29,21 @@ export const requireAdmin = async (locale: string) => {
 
   return session;
 };
+
+export const getApiAuthSession = async (request: Request) => {
+  return await auth.api.getSession({ headers: request.headers });
+};
+
+export const checkApiAuth = async (request: Request) => {
+  const session = await getApiAuthSession(request);
+  if (!session?.user) return { authorized: false, session: null };
+  return { authorized: true, session };
+};
+
+export const checkApiAdmin = async (request: Request) => {
+  const authCheck = await checkApiAuth(request);
+  if (!authCheck.authorized) return { authorized: false, session: null };
+  if (authCheck?.session?.user.role !== "admin")
+    return { authorized: false, session: authCheck.session };
+  return { authorized: true, session: authCheck.session };
+};

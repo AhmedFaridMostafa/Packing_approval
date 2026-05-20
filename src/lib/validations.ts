@@ -185,3 +185,46 @@ export const roleUpdateSchema = z.object({
 export const deleteUserSchema = z.object({
   userId: z.uuid(),
 });
+
+// --- API Entity Schemas ---
+
+export const apiCountrySchema = (t: TranslateFn) =>
+  z.object({
+    name_en: z.string().min(1, t("name_en_required")),
+    name_ar: z.string().min(1, t("name_ar_required")),
+    flag_url: z.url(t("invalid_url")),
+  });
+
+export const apiRegionSchema = (t: TranslateFn) =>
+  z.object({
+    country_id: z.number().positive(t("country_id_required")),
+    label_name_en: z.string().min(1, t("label_name_en_required")),
+    label_name_ar: z.string().min(1, t("label_name_ar_required")),
+    account: z.string().min(1, t("account_required")),
+    labels: z.array(z.string()).min(1, t("labels_required")),
+  });
+
+export const apiCategorySchema = (t: TranslateFn) =>
+  z.object({
+    name_en: z.string().min(1, t("name_en_required")),
+    name_ar: z.string().min(1, t("name_ar_required")),
+  });
+
+export const apiCategoryReorderSchema = (t: TranslateFn) =>
+  z.array(
+    z.object({
+      id: z.number().positive(),
+      sort_order: z.number().int(),
+    }),
+  );
+
+export const apiPackingSchema = (t: TranslateFn) =>
+  z.object({
+    region_id: z.number().positive(t("region_id_required")),
+    category_id: z.number().positive(t("category_id_required")),
+    title_en: z.string().min(1, t("title_en_required")),
+    title_ar: z.string().min(1, t("title_ar_required")),
+    description_en: z.string().min(1, t("description_en_required")),
+    description_ar: z.string().min(1, t("description_ar_required")),
+    image_url: z.url(t("invalid_url")).optional().nullable(),
+  });
