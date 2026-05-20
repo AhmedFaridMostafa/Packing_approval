@@ -1,7 +1,7 @@
 "use client";
 
 // UI
-import AuthForm from "../../../../components/auth/AuthForm";
+import AuthForm from "@/components/auth/AuthForm";
 
 // Schema
 import { signinSchema } from "@/lib/validations";
