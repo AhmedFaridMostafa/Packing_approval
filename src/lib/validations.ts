@@ -177,10 +177,11 @@ export const resetPasswordSchema = (t: TranslateFn) =>
 
 // --- Admin Only (Static - No Translation needed usually) ---
 
-export const roleUpdateSchema = z.object({
-  userId: z.uuid(),
-  newRole: z.enum(Object.values(USER_ROLES)),
-});
+export const roleUpdateSchema = (t: TranslateFn) =>
+  z.object({
+    userId: z.uuid(),
+    newRole: z.enum(Object.values(USER_ROLES), { error: t("invalid_role") }),
+  });
 
 export const deleteUserSchema = z.object({
   userId: z.uuid(),
@@ -228,3 +229,16 @@ export const apiPackingSchema = (t: TranslateFn) =>
     description_ar: z.string().min(1, t("description_ar_required")),
     image_url: z.url(t("invalid_url")).optional().nullable(),
   });
+
+export const apiProfileSchema = (t: TranslateFn) =>
+  z.object({
+    name: z.string().min(1, t("name_required")).optional(),
+    image: z.url().optional().nullable(),
+  });
+
+export const apiBanUserSchema = (t: TranslateFn) =>
+  z.object({
+    reason: z.string().optional(),
+    expiresIn: z.number().int().positive().optional(),
+  });
+

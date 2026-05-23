@@ -378,7 +378,10 @@
     "internal_error": "خطأ داخلي في الخادم",
     "unauthorized": "غير مصرح لك",
     "not_found": "غير موجود",
-    "invalid_id": "معرف غير صالح"
+    "invalid_id": "معرف غير صالح",
+    "cannot_delete_self": "لا يمكنك حذف نفسك",
+    "cannot_ban_self": "لا يمكنك حظر نفسك",
+    "cannot_unban_self": "لا يمكنك إلغاء حظر نفسك"
   },
   "NotFound": {
     "title": "404 - الصفحة غير موجودة",
