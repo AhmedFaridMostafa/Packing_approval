@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { getCategories, createCategory } from "@/server/services/category.service";
+import {
+  getCategories,
+  createCategory,
+} from "@/server/services/category.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
 import { apiCategorySchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
@@ -18,7 +21,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const t = await getTranslations("Validation");
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },

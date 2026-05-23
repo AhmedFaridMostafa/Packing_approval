@@ -8,7 +8,7 @@ import { getTranslations } from "next-intl/server";
 export async function PUT(request: Request) {
   const t = await getTranslations("Validation");
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },

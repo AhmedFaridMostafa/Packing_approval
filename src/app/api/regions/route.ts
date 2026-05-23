@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const t = await getTranslations("Validation");
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },
