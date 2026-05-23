@@ -15,7 +15,7 @@ export async function PUT(
 ) {
   const t = await getTranslations("Validation");
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },
@@ -54,7 +54,7 @@ export async function DELETE(
   const t = await getTranslations("Validation");
 
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },

@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { getPackingWays, createPackingWay } from "@/server/services/packing.service";
+import {
+  getPackingWays,
+  createPackingWay,
+} from "@/server/services/packing.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
 import { apiPackingSchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
@@ -15,7 +18,10 @@ export async function GET(request: Request) {
     const region_id = regionIdStr ? parseInt(regionIdStr) : undefined;
     const category_id = categoryIdStr ? parseInt(categoryIdStr) : undefined;
 
-    if ((regionIdStr && isNaN(region_id!)) || (categoryIdStr && isNaN(category_id!))) {
+    if (
+      (regionIdStr && isNaN(region_id!)) ||
+      (categoryIdStr && isNaN(category_id!))
+    ) {
       return NextResponse.json(
         { success: false, data: null, error: t("invalid_id") },
         { status: 400 },
@@ -32,7 +38,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const t = await getTranslations("Validation");
   try {
-    const auth = await checkApiAdmin(request);
+    const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized || !auth.session?.user) {
       return NextResponse.json(
         { success: false, data: null, error: t("unauthorized") },
