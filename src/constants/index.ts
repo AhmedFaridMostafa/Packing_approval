@@ -14,6 +14,14 @@ export const USER_ROLES = {
   user: "user",
 } as const;
 
+export const MAX_PAGINATION_LIMIT = 100;
+
+export const DEFAULT_LANGUAGE = "ar";
+
+export const DEFAULT_LANGUAGES = ["en", "ar"] as const;
+
+export type Language = (typeof DEFAULT_LANGUAGES)[number];
+
 export const SOCIAL_OAUTH_PROVIDERS = [
   {
     name: "google",
