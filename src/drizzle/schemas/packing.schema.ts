@@ -179,7 +179,7 @@ export const packing = pgTable(
 // ─────────────────────────────────────────────────────────────────────────────
 // PACKING HISTORY (AUDIT LOG)
 // ─────────────────────────────────────────────────────────────────────────────
-
+export type PackingRow = typeof packing.$inferSelect;
 export const packingHistory = pgTable(
   "packing_history",
   {
@@ -217,8 +217,8 @@ export const packingHistory = pgTable(
       .notNull()
       .defaultNow(),
 
-    snapshot_before: jsonb("snapshot_before"),
-    snapshot_after: jsonb("snapshot_after"),
+    snapshot_before: jsonb("snapshot_before").$type<PackingRow>(),
+    snapshot_after: jsonb("snapshot_after").$type<PackingRow>(),
   },
   (table) => [
     index("history_packing_id_idx").on(table.packing_id),

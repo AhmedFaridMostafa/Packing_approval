@@ -1,5 +1,8 @@
 import { db } from "@/drizzle/db";
-import { packingHistory } from "@/drizzle/schemas/packing.schema";
+import {
+  packingHistory,
+  type PackingRow,
+} from "@/drizzle/schemas/packing.schema";
 import { eq, desc, and, SQL } from "drizzle-orm";
 import { MAX_PAGINATION_LIMIT } from "@/constants";
 
@@ -16,8 +19,8 @@ export const logPackingHistory = async (
     changed_by_id: string | null;
     changed_by_name: string;
     changed_by_email: string;
-    snapshot_before: any | null;
-    snapshot_after: any | null;
+    snapshot_before: PackingRow | null;
+    snapshot_after: PackingRow | null;
   },
   tx: DbOrTx = db, // ← defaults to db, callers pass their tx
 ) => {
