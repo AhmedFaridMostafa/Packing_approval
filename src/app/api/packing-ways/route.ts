@@ -4,9 +4,10 @@ import {
   createPackingWay,
 } from "@/server/services/packing.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
-import { apiPackingSchema } from "@/lib/validations";
+import { apiPackingSchema, ImageSchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
+import { uploadImage } from "@/server/services/upload.service";
 
 export async function GET(request: Request) {
   const t = await getTranslations("Validation");
@@ -45,8 +46,28 @@ export async function POST(request: Request) {
         { status: 401 },
       );
     }
-    const body = await request.json();
-    const validatedData = apiPackingSchema(t).parse(body);
+    const formData = await request.formData();
+    const imageFile = ImageSchema(t).parse(formData.get("image"));
+    const imageUrl = imageFile ? await uploadImage(imageFile) : null;
+
+    const body = Object.fromEntries(
+      [
+        "region_id",
+        "category_id",
+        "title_en",
+        "title_ar",
+        "description_en",
+        "description_ar",
+      ].map((key) => [key, formData.get(key)]),
+    );
+
+    const validatedData = apiPackingSchema(t).parse({
+      ...body,
+      region_id: Number(body.region_id),
+      category_id: Number(body.category_id),
+      image_url: imageUrl,
+    });
+
     const data = await createPackingWay(validatedData, {
       id: auth.session.user.id,
       name: auth.session.user.name,
