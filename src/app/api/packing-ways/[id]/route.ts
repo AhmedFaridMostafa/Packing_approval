@@ -5,9 +5,10 @@ import {
   deletePackingWay,
 } from "@/server/services/packing.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
-import { apiPackingSchema } from "@/lib/validations";
+import { apiPackingSchema, ImageSchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
+import { updateImage, uploadImage } from "@/server/services/upload.service";
 
 export async function GET(
   request: Request,
@@ -42,7 +43,6 @@ export async function PUT(
         { status: 401 },
       );
     }
-
     const id = (await params).id;
     const existing = await getPackingWayById(id);
     if (!existing) {
@@ -51,9 +51,29 @@ export async function PUT(
         { status: 404 },
       );
     }
+    const formData = await request.formData();
+    const imageFile = ImageSchema(t).parse(formData.get("image"));
+    const imageUrl = imageFile ? await uploadImage(imageFile) : null;
 
-    const body = await request.json();
-    const validatedData = apiPackingSchema(t).partial().parse(body);
+    const body = Object.fromEntries(
+      [
+        "region_id",
+        "category_id",
+        "title_en",
+        "title_ar",
+        "description_en",
+        "description_ar",
+      ].map((key) => [key, formData.get(key)]),
+    );
+
+    const validatedData = apiPackingSchema(t)
+      .partial()
+      .parse({
+        ...body,
+        region_id: Number(body.region_id),
+        category_id: Number(body.category_id),
+        image_url: imageUrl,
+      });
 
     const data = await updatePackingWay(id, validatedData, {
       id: auth.session.user.id,
