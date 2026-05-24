@@ -375,7 +375,8 @@
     "invalid_id": "Invalid ID",
     "cannot_delete_self": "You cannot delete yourself",
     "cannot_ban_self": "You cannot ban yourself",
-    "cannot_unban_self": "You cannot unban yourself"
+    "cannot_unban_self": "You cannot unban yourself",
+    "no_file_provided": "No file provided"
   },
   "NotFound": {
     "title": "404 Not Found",

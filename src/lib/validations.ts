@@ -28,16 +28,13 @@ export const emailSchema = (t: TranslateFn) =>
 
 export const ImageSchema = (t: TranslateFn) =>
   z
-    .instanceof(File, { error: t("image_required") })
-    .refine((file) => file.size !== 0, {
+    .file({
       error: t("image_required"),
     })
-    .refine((file) => file.size <= MAX_FILE_SIZE, {
-      error: t("too_large"),
-    })
-    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-      error: t("wrong_type"),
-    });
+    .min(1, { error: t("image_required") })
+    .max(MAX_FILE_SIZE, { error: t("too_large") })
+    .mime(ACCEPTED_IMAGE_TYPES, { error: t("wrong_type") })
+    .optional();
 
 export const titleSchema = (t: TranslateFn) =>
   z
@@ -95,7 +92,7 @@ export const confirmPasswordSchema = (t: TranslateFn) =>
     })
     .refine((data) => data.currentPassword !== data.newPassword, {
       error: t("new_password_different"),
-      path: ["new_password"],
+      path: ["newPassword"],
     });
 
 export const packingWaySchema = (t: TranslateFn) =>
@@ -241,4 +238,3 @@ export const apiBanUserSchema = (t: TranslateFn) =>
     reason: z.string().optional(),
     expiresIn: z.number().int().positive().optional(),
   });
-

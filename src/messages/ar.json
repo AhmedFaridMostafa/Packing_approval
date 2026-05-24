@@ -381,7 +381,8 @@
     "invalid_id": "معرف غير صالح",
     "cannot_delete_self": "لا يمكنك حذف نفسك",
     "cannot_ban_self": "لا يمكنك حظر نفسك",
-    "cannot_unban_self": "لا يمكنك إلغاء حظر نفسك"
+    "cannot_unban_self": "لا يمكنك إلغاء حظر نفسك",
+    "no_file_provided": "لم يتم تقديم ملف"
   },
   "NotFound": {
     "title": "404 - الصفحة غير موجودة",
