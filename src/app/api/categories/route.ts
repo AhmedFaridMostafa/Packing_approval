@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import {
   getCategories,
   createCategory,
@@ -22,13 +21,7 @@ export async function POST(request: Request) {
   const t = await getTranslations("Validation");
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("unauthorized") },
-        { status: 401 },
-      );
-    }
-
+    if (!auth.authorized) throw new Error(t("unauthorized"));
     const body = await request.json();
     const validatedData = apiCategorySchema(t).parse(body);
 
