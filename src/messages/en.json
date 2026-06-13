@@ -1,26 +1,56 @@
 {
+  "Header": {
+    "title": "Packing Way",
+    "description": "Your gateway to standardized packing solutions worldwide",
+    "NavigationLinks": [
+      { "href": "/countries", "text": "Countries" },
+      { "href": "/regions", "text": "Regions" },
+      { "href": "/contact", "text": "Contact" }
+    ]
+  },
   "HomePage": {
-    "title": "Welcome to the Packing Guide",
-    "introduction": "Packing is more than just putting items in boxes—it's about ensuring products are delivered in perfect condition, meeting quality standards, and exceeding customer expectations. This website is designed to guide you step-by-step through the approved packing methods used in our factory.",
-    "why_packing_matters": {
-      "title": "Why Proper Packing Matters",
-      "points": [
-        "Protect Products: Prevent damage during storage and transportation.",
-        "Ensure Accuracy: Pack according to customer and company specifications.",
-        "Maintain Quality: Meet the high standards expected by our clients.",
-        "Save Time and Effort: Reduce errors and rework by following clear instructions."
-      ]
+    "hero": {
+      "tagline": "Packing Management Portal",
+      "title": "Standardize Your <br>Packing Excellence</br>",
+      "description": "The central portal for global packing guidelines and operational consistency. Ensure compliance and quality across every region.",
+      "browse_cta": "Browse Countries",
+      "signin_cta": "Sign In"
     },
-    "how_this_helps": {
-      "title": "How This Website Helps You",
-      "points": [
-        "Visual Guidance: See approved packing techniques with detailed images.",
-        "Clear Instructions: Follow step-by-step guidelines tailored to different packing options.",
-        "Bilingual Support: Access content in two languages for better understanding.",
-        "Ease of Use: Simple and user-friendly design to help you find what you need quickly."
-      ]
+    "stats": {
+      "countries": "Countries",
+      "regions": "Regions",
+      "categories": "Categories",
+      "guidelines": "Guidelines"
     },
-    "conclusion": "By using this platform, you'll gain the knowledge and confidence to pack items the right way, every time. Together, we can ensure quality, efficiency, and customer satisfaction at every stage of the packing process."
+    "how_it_works": {
+      "title": "How It Works",
+      "subtitle": "Access compliance guidelines in three simple steps.",
+      "step1_title": "Find Region",
+      "step1_desc": "Select your operational country and specific region.",
+      "step2_title": "View Guidelines",
+      "step2_desc": "Browse categorized packing standards visually.",
+      "step3_title": "Download PDF",
+      "step3_desc": "Export localized guidelines for field teams offline."
+    },
+    "featured": {
+      "title": "Featured Countries",
+      "subtitle": "Quick access to high-volume operational regions.",
+      "view_all": "View All",
+      "regions_count": "{count} Regions",
+      "guidelines_count": "{count} Guidelines"
+    },
+    "capabilities": {
+      "title": "Enterprise Capabilities",
+      "subtitle": "Built for global operations teams requiring precision and compliance.",
+      "bilingual_title": "Bilingual Support",
+      "bilingual_desc": "Native RTL (Arabic) and LTR (English) layouts with complete UI mirroring.",
+      "pdf_title": "PDF Export",
+      "pdf_desc": "Generate localized, print-ready PDF guidelines for offline field teams.",
+      "audit_title": "Audit Trail",
+      "audit_desc": "Complete traceability with snapshot diffs for every content change.",
+      "role_title": "Role Access",
+      "role_desc": "Granular permissions separating public viewing from admin content management."
+    }
   },
   "Navbar": {
     "home": "Home",
@@ -376,7 +406,28 @@
     "cannot_delete_self": "You cannot delete yourself",
     "cannot_ban_self": "You cannot ban yourself",
     "cannot_unban_self": "You cannot unban yourself",
-    "no_file_provided": "No file provided"
+    "no_file_provided": "No file provided",
+    "http_400": "Bad request. Please check your input.",
+    "http_403": "You do not have permission to view this.",
+    "http_429": "Too many requests. Please try again later."
+  },
+  "Footer": {
+    "title": "PackingWays",
+    "tagline": "Precision in every package.",
+    "copyright": "© 2024 PackingWays International.",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "compliance": "Compliance",
+    "resources": "Resources",
+    "support": "Global Support",
+    "api": "API Documentation"
+  },
+  "ModeToggle": {
+    "title": "Theme",
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System Mode"
   },
   "NotFound": {
     "title": "404 Not Found",
