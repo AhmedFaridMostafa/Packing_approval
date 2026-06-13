@@ -13,11 +13,11 @@ type ErrorResponse = {
   };
 };
 
-type ActionResponse<T = null> = SuccessResponse<T> | ErrorResponse;
-
 type APIErrorResponse = NextResponse<ErrorResponse>;
+type APISuccessResponse<T = null> = NextResponse<SuccessResponse<T>>;
 
 type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
+type ActionResponse<T = null> = SuccessResponse<T> | ErrorResponse;
 
 interface RouteParams {
   params: Promise<Record<string, string>>;
@@ -25,3 +25,30 @@ interface RouteParams {
 }
 
 type TranslateFn = (key: string, values?: any) => string;
+
+interface LinkItem {
+  href: string;
+  text: string;
+}
+
+interface HomeStats {
+  countries: number;
+  regions: number;
+  categories: number;
+  guidelines: number;
+}
+
+interface FeaturedCountry {
+  id: number;
+  slug: string;
+  name_en: string;
+  name_ar: string;
+  flag_url: string | null;
+  region_count: number;
+  guidelines_count: number;
+}
+
+interface getHomeDataResponse {
+  stats: HomeStats;
+  featuredCountries: FeaturedCountry[];
+}

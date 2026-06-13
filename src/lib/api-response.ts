@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { flattenError, ZodError } from "zod";
 
-export function handleApiError(error: unknown, t?: TranslateFn) {
+export function handleApiError(
+  error: unknown,
+  t?: TranslateFn,
+): APIErrorResponse {
   if (error instanceof ZodError) {
     return NextResponse.json(
       {
@@ -58,6 +61,6 @@ export function handleApiError(error: unknown, t?: TranslateFn) {
   );
 }
 
-export function apiSuccess<T>(data: T, status = 200) {
+export function apiSuccess<T>(data: T, status = 200): APISuccessResponse<T> {
   return NextResponse.json({ success: true, data, error: null }, { status });
 }
