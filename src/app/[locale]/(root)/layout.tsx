@@ -1,6 +1,5 @@
-import Header from "@/components/header/Header";
-// import Sidebar from "@/components/sidebar/Sidebar";
-// import { SliderProvider } from "@/context/SliderContext";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 
 export default function RootLayout({
   children,
@@ -8,15 +7,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="p-4 sm:ml-64">
-        <div className="mt-14 rounded-lg p-4">
-          <main className="relative mx-auto mt-4 max-w-4xl rounded-lg bg-gray-50 p-6 shadow-lg dark:bg-gray-800">
-            {children}
-          </main>
-        </div>
-      </div>
-    </>
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
   );
 }
