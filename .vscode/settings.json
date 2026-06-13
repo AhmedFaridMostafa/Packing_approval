@@ -1,4 +1,8 @@
 {
+  "tailwindCSS.experimental.configFile": "src/app/globals.css",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "cSpell.words": [
     "arcjet",
     "flagcdn",
@@ -6,6 +10,7 @@
     "googleusercontent",
     "localematcher",
     "NEXTAUTH",
+    "nowrap",
     "supabase",
     "turbopack",
     "unban",
