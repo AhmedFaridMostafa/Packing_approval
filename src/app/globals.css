@@ -4,145 +4,580 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Custom Components */
+/* ============================================================
+   Stitch Design System — Packing Approval
+   Source: Stitch project "Design System Implementation"
+   Color model: Material 3 dynamic color scheme
+   Typography: Sora (headings) · DM Sans (body) · Cairo (Arabic) · JetBrains Mono (code)
+   Spacing: 8px base grid
+   ============================================================ */
+
+/* ------------------------------------------------------------------
+   1. Tailwind v4 Theme Tokens (consumed via utility classes)
+   ------------------------------------------------------------------ */
+@theme inline {
+  /* --- Font families --- */
+  --font-heading: "Sora", var(--font-sans);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Cairo", "DM Sans", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Stitch semantic font families */
+  --font-hero-h1: "Sora", var(--font-sans);
+  --font-hero-h1-mobile: "Sora", var(--font-sans);
+  --font-section-title: "Sora", var(--font-sans);
+  --font-card-title: "DM Sans", var(--font-sans);
+  --font-body-base: "DM Sans", var(--font-sans);
+  --font-table-cell: "DM Sans", var(--font-sans);
+  --font-caption: "DM Sans", var(--font-sans);
+  --font-arabic-base: "Cairo", var(--font-sans);
+  --font-technical-code: "JetBrains Mono", var(--font-mono);
+
+  /* --- Font sizes with line-height composites --- */
+  --text-hero-h1: 48px;
+  --text-hero-h1--line-height: 1.1;
+  --text-hero-h1-mobile: 32px;
+  --text-hero-h1-mobile--line-height: 1.2;
+  --text-section-title: 24px;
+  --text-section-title--line-height: 1.3;
+  --text-card-title: 18px;
+  --text-card-title--line-height: 1.4;
+  --text-body-base: 16px;
+  --text-body-base--line-height: 1.6;
+  --text-table-cell: 14px;
+  --text-table-cell--line-height: 1.5;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-arabic-base: 16px;
+  --text-arabic-base--line-height: 1.7;
+  --text-technical-code: 13px;
+  --text-technical-code--line-height: 1.5;
+
+  /* --- Spacing (8px base grid) --- */
+  --spacing-base: 8px;
+  --spacing-gap-xs: 4px;
+  --spacing-gap-sm: 8px;
+  --spacing-gap-md: 16px;
+  --spacing-gap-lg: 24px;
+  --spacing-section-v: 48px;
+  --spacing-section-v-lg: 96px;
+  --spacing-container-max: 1280px;
+  --spacing-admin-sidebar: 240px;
+  --spacing-admin-sidebar-collapsed: 64px;
+
+  /* --- Border radii --- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* --- shadcn → Tailwind color bridge --- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* --- Stitch design-system semantic colors --- */
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-error: var(--error);
+  --color-error-light: var(--error-light);
+
+  /* Stitch Material 3 surface system */
+  --color-surface: var(--ds-surface);
+  --color-surface-dim: var(--ds-surface-dim);
+  --color-surface-bright: var(--ds-surface-bright);
+  --color-surface-muted: var(--ds-surface-muted);
+  --color-surface-container: var(--ds-surface-container);
+  --color-surface-container-low: var(--ds-surface-container-low);
+  --color-surface-container-high: var(--ds-surface-container-high);
+  --color-surface-container-highest: var(--ds-surface-container-highest);
+  --color-surface-container-lowest: var(--ds-surface-container-lowest);
+  --color-surface-variant: var(--ds-surface-variant);
+  --color-surface-tint: var(--ds-surface-tint);
+
+  /* On-surface text colors */
+  --color-on-surface: var(--ds-on-surface);
+  --color-on-surface-variant: var(--ds-on-surface-variant);
+
+  /* Brand / Primary system */
+  --color-primary-container: var(--ds-primary-container);
+  --color-on-primary: var(--ds-on-primary);
+  --color-on-primary-container: var(--ds-on-primary-container);
+  --color-brand-hover: var(--ds-brand-hover);
+  --color-brand-light: var(--ds-brand-light);
+
+  /* Secondary system */
+  --color-secondary-container: var(--ds-secondary-container);
+  --color-on-secondary: var(--ds-on-secondary);
+  --color-on-secondary-container: var(--ds-on-secondary-container);
+
+  /* Tertiary system */
+  --color-tertiary: var(--ds-tertiary);
+  --color-tertiary-container: var(--ds-tertiary-container);
+  --color-on-tertiary: var(--ds-on-tertiary);
+  --color-on-tertiary-container: var(--ds-on-tertiary-container);
+
+  /* Error containers */
+  --color-error-container: var(--ds-error-container);
+  --color-on-error: var(--ds-on-error);
+  --color-on-error-container: var(--ds-on-error-container);
+
+  /* Outline */
+  --color-outline: var(--ds-outline);
+  --color-outline-variant: var(--ds-outline-variant);
+
+  /* Inverse */
+  --color-inverse-surface: var(--ds-inverse-surface);
+  --color-inverse-on-surface: var(--ds-inverse-on-surface);
+  --color-inverse-primary: var(--ds-inverse-primary);
+
+  /* Badges */
+  --color-badge-admin: var(--ds-badge-admin);
+  --color-badge-user: var(--ds-badge-user);
+
+  /* Fixed tones */
+  --color-primary-fixed: var(--ds-primary-fixed);
+  --color-primary-fixed-dim: var(--ds-primary-fixed-dim);
+  --color-on-primary-fixed: var(--ds-on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--ds-on-primary-fixed-variant);
+  --color-secondary-fixed: var(--ds-secondary-fixed);
+  --color-secondary-fixed-dim: var(--ds-secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--ds-on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--ds-on-secondary-fixed-variant);
+  --color-tertiary-fixed: var(--ds-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--ds-tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--ds-on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--ds-on-tertiary-fixed-variant);
+
+  /* On-background */
+  --color-on-background: var(--ds-on-background);
+}
+
+/* ------------------------------------------------------------------
+   2. Light Mode Variables (:root)
+   ------------------------------------------------------------------ */
+:root {
+  /* === shadcn core tokens (mapped to Stitch palette) === */
+  --background: #faf8ff; /* surface-bright */
+  --foreground: #1a1b23; /* on-surface */
+  --card: #ffffff; /* surface */
+  --card-foreground: #1a1b23; /* on-surface */
+  --popover: #ffffff;
+  --popover-foreground: #1a1b23;
+  --primary: #0037b0; /* Stitch primary */
+  --primary-foreground: #ffffff; /* on-primary */
+  --secondary: #5d5e66; /* Stitch secondary */
+  --secondary-foreground: #ffffff;
+  --muted: #f4f4f5; /* surface-muted */
+  --muted-foreground: #71717a; /* zinc-500 */
+  --accent: #eff6ff; /* brand-light */
+  --accent-foreground: #0037b0; /* primary */
+  --destructive: #dc2626; /* error */
+  --border: #e4e4e7; /* Stitch border */
+  --input: #e4e4e7;
+  --ring: #1d4ed8; /* primary-container / focus ring */
+
+  /* Charts (branded gradient) */
+  --chart-1: #1d4ed8;
+  --chart-2: #3b82f6;
+  --chart-3: #60a5fa;
+  --chart-4: #93c5fd;
+  --chart-5: #bfdbfe;
+
+  /* Radius base */
+  --radius: 0.5rem;
+
+  /* Sidebar (admin panel) */
+  --sidebar: #fafafa;
+  --sidebar-foreground: #1a1b23;
+  --sidebar-primary: #0037b0;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eff6ff;
+  --sidebar-accent-foreground: #0037b0;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #1d4ed8;
+
+  /* === Stitch Design System tokens === */
+
+  /* Semantic status colors */
+  --success: #16a34a;
+  --success-light: #f0fdf4;
+  --warning: #d97706;
+  --warning-light: #fffbeb;
+  --error: #dc2626;
+  --error-light: #fef2f2;
+
+  /* Material 3 surface system */
+  --ds-surface: #ffffff;
+  --ds-surface-dim: #d9d9e5;
+  --ds-surface-bright: #faf8ff;
+  --ds-surface-muted: #f4f4f5;
+  --ds-surface-container: #ededf9;
+  --ds-surface-container-low: #f3f2fe;
+  --ds-surface-container-high: #e8e7f3;
+  --ds-surface-container-highest: #e2e1ed;
+  --ds-surface-container-lowest: #ffffff;
+  --ds-surface-variant: #e2e1ed;
+  --ds-surface-tint: #2151da;
+
+  /* On-surface */
+  --ds-on-surface: #1a1b23;
+  --ds-on-surface-variant: #434655;
+
+  /* Primary */
+  --ds-primary-container: #1d4ed8;
+  --ds-on-primary: #ffffff;
+  --ds-on-primary-container: #cad3ff;
+  --ds-brand-hover: #1e40af;
+  --ds-brand-light: #eff6ff;
+
+  /* Secondary */
+  --ds-secondary-container: #e3e1ec;
+  --ds-on-secondary: #ffffff;
+  --ds-on-secondary-container: #63646c;
+
+  /* Tertiary */
+  --ds-tertiary: #7f2500;
+  --ds-tertiary-container: #a73400;
+  --ds-on-tertiary: #ffffff;
+  --ds-on-tertiary-container: #ffc9b7;
+
+  /* Error containers */
+  --ds-error-container: #ffdad6;
+  --ds-on-error: #ffffff;
+  --ds-on-error-container: #93000a;
+
+  /* Outline */
+  --ds-outline: #747686;
+  --ds-outline-variant: #c4c5d7;
+
+  /* Inverse */
+  --ds-inverse-surface: #2e3039;
+  --ds-inverse-on-surface: #f0f0fb;
+  --ds-inverse-primary: #b7c4ff;
+
+  /* Badges */
+  --ds-badge-admin: #f59e0b;
+  --ds-badge-user: #6b7280;
+
+  /* Fixed tones */
+  --ds-primary-fixed: #dce1ff;
+  --ds-primary-fixed-dim: #b7c4ff;
+  --ds-on-primary-fixed: #001551;
+  --ds-on-primary-fixed-variant: #0039b5;
+  --ds-secondary-fixed: #e3e1ec;
+  --ds-secondary-fixed-dim: #c6c5cf;
+  --ds-on-secondary-fixed: #1a1b22;
+  --ds-on-secondary-fixed-variant: #46464e;
+  --ds-tertiary-fixed: #ffdbcf;
+  --ds-tertiary-fixed-dim: #ffb59c;
+  --ds-on-tertiary-fixed: #390c00;
+  --ds-on-tertiary-fixed-variant: #832700;
+
+  /* On-background */
+  --ds-on-background: #1a1b23;
+}
+
+/* ------------------------------------------------------------------
+   3. Dark Mode Variables
+   ------------------------------------------------------------------ */
+.dark {
+  /* === shadcn core tokens (dark) === */
+  --background: #09090b; /* dark-bg */
+  --foreground: #fafafa;
+  --card: #18181b; /* dark-surface */
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --primary: #3b82f6; /* lighter blue for dark surfaces */
+  --primary-foreground: #ffffff;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #1e3a5f; /* dark brand-light */
+  --accent-foreground: #60a5fa;
+  --destructive: #ef4444;
+  --border: #3f3f46; /* dark-border */
+  --input: #3f3f46;
+  --ring: #3b82f6;
+
+  /* Charts (dark variant) */
+  --chart-1: #3b82f6;
+  --chart-2: #60a5fa;
+  --chart-3: #93c5fd;
+  --chart-4: #1d4ed8;
+  --chart-5: #1e40af;
+
+  /* Sidebar */
+  --sidebar: #18181b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #60a5fa;
+  --sidebar-border: #3f3f46;
+  --sidebar-ring: #3b82f6;
+
+  /* === Stitch Design System tokens (dark overrides) === */
+
+  --success: #22c55e;
+  --success-light: #052e16;
+  --warning: #f59e0b;
+  --warning-light: #451a03;
+  --error: #ef4444;
+  --error-light: #450a0a;
+
+  /* Surface system (dark) */
+  --ds-surface: #18181b;
+  --ds-surface-dim: #09090b;
+  --ds-surface-bright: #27272a;
+  --ds-surface-muted: #1e1e21;
+  --ds-surface-container: #1e1e21;
+  --ds-surface-container-low: #141416;
+  --ds-surface-container-high: #27272a;
+  --ds-surface-container-highest: #313134;
+  --ds-surface-container-lowest: #09090b;
+  --ds-surface-variant: #27272a;
+  --ds-surface-tint: #3b82f6;
+
+  /* On-surface (dark) */
+  --ds-on-surface: #fafafa;
+  --ds-on-surface-variant: #a1a1aa;
+
+  /* Primary (dark) */
+  --ds-primary-container: #1e40af;
+  --ds-on-primary: #ffffff;
+  --ds-on-primary-container: #bfdbfe;
+  --ds-brand-hover: #60a5fa;
+  --ds-brand-light: #1e3a5f;
+
+  /* Secondary (dark) */
+  --ds-secondary-container: #3f3f46;
+  --ds-on-secondary: #ffffff;
+  --ds-on-secondary-container: #a1a1aa;
+
+  /* Tertiary (dark) */
+  --ds-tertiary: #ffb59c;
+  --ds-tertiary-container: #832700;
+  --ds-on-tertiary: #390c00;
+  --ds-on-tertiary-container: #ffdbcf;
+
+  /* Error containers (dark) */
+  --ds-error-container: #93000a;
+  --ds-on-error: #690005;
+  --ds-on-error-container: #ffdad6;
+
+  /* Outline (dark) */
+  --ds-outline: #8e9099;
+  --ds-outline-variant: #45464f;
+
+  /* Inverse (dark) */
+  --ds-inverse-surface: #e2e1ed;
+  --ds-inverse-on-surface: #2e3039;
+  --ds-inverse-primary: #0037b0;
+
+  /* Badges (dark — same values, good contrast) */
+  --ds-badge-admin: #f59e0b;
+  --ds-badge-user: #9ca3af;
+
+  /* Fixed tones (dark) */
+  --ds-primary-fixed: #dce1ff;
+  --ds-primary-fixed-dim: #b7c4ff;
+  --ds-on-primary-fixed: #001551;
+  --ds-on-primary-fixed-variant: #0039b5;
+  --ds-secondary-fixed: #e3e1ec;
+  --ds-secondary-fixed-dim: #c6c5cf;
+  --ds-on-secondary-fixed: #1a1b22;
+  --ds-on-secondary-fixed-variant: #46464e;
+  --ds-tertiary-fixed: #ffdbcf;
+  --ds-tertiary-fixed-dim: #ffb59c;
+  --ds-on-tertiary-fixed: #390c00;
+  --ds-on-tertiary-fixed-variant: #832700;
+
+  /* On-background (dark) */
+  --ds-on-background: #fafafa;
+}
+
+/* ------------------------------------------------------------------
+   4. Base Layer
+   ------------------------------------------------------------------ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Arabic locale: swap body font to Cairo, enable RTL */
+  html[dir="rtl"] {
+    font-family: "Cairo", "DM Sans", ui-sans-serif, sans-serif;
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   5. Component Layer — Reusable patterns from Stitch screens
+   ------------------------------------------------------------------ */
 @layer components {
+  /* --- Section heading with decorative line + dot (legacy, kept for compat) --- */
   .header {
     @apply relative mx-auto mb-4 w-fit pb-3 text-lg leading-none font-semibold tracking-tight text-nowrap uppercase sm:mx-0 md:text-2xl lg:text-4xl;
 
     /* Header Line */
     &::before {
-      @apply absolute bottom-0 -left-3.75 h-1 w-[calc(100%+30px)] bg-blue-600 dark:bg-blue-900;
       content: "";
+      @apply absolute bottom-0 -left-3.75 h-1 w-[calc(100%+30px)] bg-[var(--primary)];
     }
 
     /* Header Dot */
     &::after {
-      @apply absolute bottom-0 left-2/4 block h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-blue-600 bg-white dark:border-blue-900 dark:bg-gray-900;
       content: "";
+      @apply absolute bottom-0 left-2/4 block h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-[var(--primary)] bg-[var(--card)];
     }
   }
-}
 
-@theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+  /* --- Page section wrapper with max container width --- */
+  .section-container {
+    @apply mx-auto w-full max-w-(--spacing-container-max) px-6;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  /* --- Stat counter number styling --- */
+  .stat-number {
+    font-family: "Sora", var(--font-sans);
+    @apply text-4xl font-bold;
   }
-  html {
-    @apply font-sans;
+
+  /* --- Action badge pills (history actions) --- */
+  .badge-create {
+    @apply bg-success-light text-success border border-(--success)/20;
+  }
+
+  .badge-update {
+    @apply bg-warning-light text-warning border border-(--warning)/20;
+  }
+
+  .badge-delete {
+    @apply bg-error-light text-error border border-(--error)/20;
+  }
+
+  /* --- Admin sidebar active route --- */
+  .sidebar-active {
+    @apply bg-accent text-accent-foreground font-medium;
+  }
+
+  /* --- Card hover lift effect (used across country/region/packing cards) --- */
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-md;
+  }
+
+  /* --- Sticky category navigation bar --- */
+  .sticky-nav {
+    @apply border-border bg-card sticky top-16 z-40 overflow-x-auto border-b;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* --- Feature card glassmorphism hover blob --- */
+  .feature-blob {
+    @apply absolute -inset-e-4 -top-4 h-24 w-24 rounded-full transition-transform duration-500 group-hover:scale-150;
+  }
+}
+
+/* ------------------------------------------------------------------
+   6. Utility Layer — Small, atomic helpers
+   ------------------------------------------------------------------ */
+@layer utilities {
+  /* RTL-aware directional arrow flip */
+  .rtl-flip {
+    [dir="rtl"] & {
+      transform: scaleX(-1);
+    }
+  }
+
+  /* Gradient background used in Hero section */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--ds-surface) 0%,
+      var(--ds-brand-light) 100%
+    );
+  }
+
+  .dark .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--ds-surface) 0%,
+      var(--ds-brand-light) 100%
+    );
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
