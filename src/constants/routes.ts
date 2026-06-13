@@ -1,9 +1,13 @@
 export const ROUTES = {
   HOME: "/",
+  HOME_API: "/home",
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign-up",
   VERIFY_EMAIL: "/verify-email",
   FORGET_PASSWORD: "/forget-password",
   RESET_PASSWORD: "/reset-password",
-  PROFILE: "/profile",
+  PROFILE: (id: string) => `/profile/${id}`,
+  CONTACT: "/contact",
+  ADMIN_PANEL: "/admin",
+  COUNTRIES: "/countries",
 } as const;
