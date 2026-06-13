@@ -1,19 +1,19 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { ArrowRight, File, MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface FeaturedCountriesProps {
   countries: FeaturedCountry[];
-  locale: string;
 }
 
 export const FeaturedCountries = async ({
   countries,
-  locale,
 }: FeaturedCountriesProps) => {
-  const t = await getTranslations("HomePage.featured");
+  const [t, locale] = await Promise.all([
+    getTranslations("HomePage.featured"),
+    getLocale(),
+  ]);
   const isRTL = locale === "ar";
 
   if (countries.length === 0) return null;
