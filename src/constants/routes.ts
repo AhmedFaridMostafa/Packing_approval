@@ -10,4 +10,6 @@ export const ROUTES = {
   CONTACT: "/contact",
   ADMIN_PANEL: "/admin",
   COUNTRIES: "/countries",
+  COUNTRIES_API: "/countries",
+  COUNTRY: (slug: string) => `/countries/${slug}`,
 } as const;

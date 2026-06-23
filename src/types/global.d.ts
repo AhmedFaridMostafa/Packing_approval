@@ -52,3 +52,22 @@ interface getHomeDataResponse {
   stats: HomeStats;
   featuredCountries: FeaturedCountry[];
 }
+
+interface getCountriesResponse {
+  countries: FeaturedCountry[];
+  totalItems: number;
+  totalPages: number;
+}
+
+interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
+  pathname: string;
+}
+
+interface RemoveUrlQueryParams {
+  params: string;
+  keysToRemove: string[];
+  pathname: string;
+}

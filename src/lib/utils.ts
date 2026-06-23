@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -33,3 +34,39 @@ export function getErrorMessage(status: number, t?: TranslateFn): string {
 
   return fallbacks[status] ?? "An unexpected error occurred.";
 }
+
+export const formUrlQuery = ({
+  params,
+  key,
+  value,
+  pathname,
+}: UrlQueryParams) => {
+  const queryString = qs.parse(params);
+  queryString[key] = value || null;
+  return qs.stringifyUrl(
+    { url: pathname, query: queryString },
+    { skipNull: true },
+  );
+};
+
+export const removeKeysFromUrlQuery = ({
+  params,
+  keysToRemove,
+  pathname,
+}: RemoveUrlQueryParams) => {
+  const queryString = qs.parse(params);
+  keysToRemove.forEach((key) => delete queryString[key]);
+  return qs.stringifyUrl(
+    { url: pathname, query: queryString },
+    { skipNull: true },
+  );
+};
+
+export const getInitials = (nameStr: string) => {
+  return nameStr
+    .split(/\s+/)
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+};

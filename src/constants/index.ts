@@ -33,3 +33,5 @@ export type OAuthProvider = (typeof SOCIAL_OAUTH_PROVIDERS)[number]["name"];
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+export const ITEMS_PER_PAGE = 8;

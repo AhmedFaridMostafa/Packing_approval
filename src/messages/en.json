@@ -433,5 +433,20 @@
     "title": "404 Not Found",
     "message": "Whoops! That page doesn't exist.",
     "goHome": "Go back home"
+  },
+  "CountriesPage": {
+    "meta_data": {
+      "title": "Browse Countries",
+      "description": "Browse standardized packing guidelines and approval standards for each operational country."
+    },
+    "title": "Browse Countries",
+    "description": "Select an operational country to view its regions and guidelines.",
+    "search_placeholder": "Search countries...",
+    "empty_state_title": "No countries found",
+    "empty_state_desc": "Try adjusting your search term.",
+    "clear_search": "Clear Search",
+    "regions_badge": "{count, plural, =1 {1 Region} other {# Regions}}",
+    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+    "total_badge": "{count} total"
   }
 }

@@ -22,7 +22,11 @@ export const api = {
       const url = new URL(`${API_BASE_URL}/${ROUTES.COUNTRIES_API}`);
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
-      return await fetchHandler<getCountriesResponse>(url.toString(), {}, t);
+      return await fetchHandler<getCountriesResponse>(
+        url.toString(),
+        { timeout: 2000 },
+        t,
+      );
     },
   },
 };
