@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Suspense } from "react";
 import AppProviders from "@/components/AppProviders";
 import { Spinner } from "@/components/ui/spinner";
+import { setRequestLocale } from "next-intl/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
 }) {
   const locale = await getLocale();
   if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
 
   const isRTL = locale === "ar";
 
