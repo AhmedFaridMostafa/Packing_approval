@@ -1,66 +1,72 @@
+import "./globals.css";
 import type { Metadata } from "next";
-import { Cairo, Roboto } from "next/font/google";
-import { ThemeProvider } from "@/context/ThemeProviders";
+import { Sora, DM_Sans, Cairo, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale, getMessages } from "next-intl/server";
+import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { locale as getLocale } from "next/root-params";
+import { cn } from "@/lib/utils";
+import { Suspense } from "react";
+import AppProviders from "@/components/AppProviders";
+import { Spinner } from "@/components/ui/spinner";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
+const sora = Sora({
   subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+});
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  display: "swap",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
-const cairo = Cairo({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  preload: true,
-});
-
 export const metadata: Metadata = {
-  title: {
-    template: "Packing Guide/ %s",
-    default: "Packing Approval System",
-  },
+  title: { template: "Packing Guide/ %s", default: "Packing Approval System" },
   description: "...",
 };
 
-interface LocaleLayoutProps {
+export default async function LocaleLayout({
+  children,
+}: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}
-
-const LocaleLayout = async ({ params, children }: LocaleLayoutProps) => {
-  const { locale } = await params;
+}) {
+  const locale = await getLocale();
   if (!hasLocale(routing.locales, locale)) notFound();
-  setRequestLocale(locale);
-  const messages = await getMessages();
 
   const isRTL = locale === "ar";
 
   return (
-    <html
-      lang={locale}
-      dir={isRTL ? "rtl" : "ltr"}
-      suppressHydrationWarning={true}
-    >
+    <html lang={locale} dir={isRTL ? "rtl" : "ltr"} suppressHydrationWarning>
       <body
-        className={`${isRTL ? cairo.className : roboto.className} bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white`}
-        suppressHydrationWarning={true}
+        className={cn(
+          sora.variable,
+          dmSans.variable,
+          cairo.variable,
+          jetbrainsMono.variable,
+          "bg-background text-foreground antialiased",
+        )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider>{children}</ThemeProvider>
-        </NextIntlClientProvider>
+        <Suspense fallback={<Spinner />}>
+          <AppProviders>{children}</AppProviders>
+        </Suspense>
         <Toaster />
       </body>
     </html>
   );
-};
-
-export default LocaleLayout;
+}
