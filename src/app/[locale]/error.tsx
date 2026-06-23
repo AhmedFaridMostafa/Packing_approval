@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 
 interface ErrorProps {
   error: Error;
@@ -12,9 +12,7 @@ export default function Error({ error, reset }: ErrorProps) {
     <main className="flex flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-semibold">Something went wrong!</h1>
       <p className="text-lg">{error.message}</p>
-      <Button onClick={reset} theme="default">
-        Try again
-      </Button>
+      <Button onClick={reset}>Try again</Button>
     </main>
   );
 }

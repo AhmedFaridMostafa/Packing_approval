@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar as AvatarUi, AvatarFallback } from "@/components/ui/avatar";
 import SmartImage from "./SmartImage";
 import type { User } from "better-auth";
@@ -18,13 +18,6 @@ const Avatar = ({
   fallbackClassName,
 }: AvatarProps) => {
   const [imageError, setImageError] = useState(false);
-
-  const initials = name
-    .split(" ")
-    .map((word: string) => word[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
 
   const handleImageError = () => {
     setImageError(true);
@@ -44,7 +37,7 @@ const Avatar = ({
         />
       ) : (
         <AvatarFallback className={fallbackClassName}>
-          {initials}
+          {getInitials(name)}
         </AvatarFallback>
       )}
     </AvatarUi>
