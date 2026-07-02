@@ -1,7 +1,7 @@
 import { db } from "@/drizzle/db";
 import { country, region, packing } from "@/drizzle/schemas/packing.schema";
 import slugify from "slugify";
-import { and, eq, ilike, isNull, or, sql, type SQL } from "drizzle-orm";
+import { and, asc, eq, ilike, isNull, or, sql, type SQL } from "drizzle-orm";
 import { ITEMS_PER_PAGE } from "@/constants";
 
 export const getCountries = async ({
@@ -54,6 +54,54 @@ export const getCountries = async ({
   const countries = rows.map(({ total_count: _, ...rest }) => rest);
 
   return { countries, totalItems, totalPages };
+};
+
+export const getCountryWithRegions = async (slug: string) => {
+  const [countryRecord] = await db
+    .select({
+      id: country.id,
+      slug: country.slug,
+      name_en: country.name_en,
+      name_ar: country.name_ar,
+      flag_url: country.flag_url,
+    })
+    .from(country)
+    .where(and(eq(country.slug, slug), isNull(country.deleted_at)))
+    .limit(1);
+
+  if (!countryRecord) return null;
+
+  const regions = await db
+    .select({
+      id: region.id,
+      slug: region.slug,
+      label_name_en: region.label_name_en,
+      label_name_ar: region.label_name_ar,
+      account: region.account,
+      labels: region.labels,
+      guidelines_count: sql<number>`cast(count(${packing.id}) as integer)`,
+    })
+    .from(region)
+    .leftJoin(
+      packing,
+      and(eq(packing.region_id, region.id), isNull(packing.deleted_at)),
+    )
+    .where(
+      and(eq(region.country_id, countryRecord.id), isNull(region.deleted_at)),
+    )
+    .groupBy(region.id)
+    .orderBy(asc(region.label_name_en));
+
+  const total_guidelines = regions.reduce(
+    (sum, r) => sum + r.guidelines_count,
+    0,
+  );
+
+  return {
+    country: countryRecord,
+    regions,
+    total_guidelines,
+  };
 };
 
 export const createCountry = async (data: {
