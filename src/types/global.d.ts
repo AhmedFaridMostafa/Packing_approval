@@ -71,3 +71,27 @@ interface RemoveUrlQueryParams {
   keysToRemove: string[];
   pathname: string;
 }
+
+interface CountryDetail {
+  id: number;
+  slug: string;
+  name_en: string;
+  name_ar: string;
+  flag_url: string | null;
+}
+
+interface RegionWithCount {
+  id: number;
+  slug: string;
+  label_name_en: string | null;
+  label_name_ar: string | null;
+  account: string;
+  labels: string[];
+  guidelines_count: number;
+}
+
+interface CountryWithRegionsResponse {
+  country: CountryDetail;
+  regions: RegionWithCount[];
+  total_guidelines: number;
+}

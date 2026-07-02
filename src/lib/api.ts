@@ -28,5 +28,16 @@ export const api = {
         t,
       );
     },
+    getCountryWithRegions: async (slug: string, t?: TranslateFn) => {
+      "use cache";
+      cacheLife("days");
+      cacheTag(`country-${slug}`);
+
+      return fetchHandler<CountryWithRegionsResponse>(
+        `${API_BASE_URL}/countries/${slug}`,
+        { timeout: 3000 },
+        t,
+      );
+    },
   },
 };

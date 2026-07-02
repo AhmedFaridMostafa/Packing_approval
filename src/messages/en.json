@@ -448,5 +448,20 @@
     "regions_badge": "{count, plural, =1 {1 Region} other {# Regions}}",
     "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
     "total_badge": "{count} total"
+  },
+  "CountryRegionsPage": {
+    "meta_data": {
+      "title": "Operational Regions - {Region}",
+      "description": "Browse operational regions and packing guidelines for {Region}"
+    },
+    "home_breadcrumb": "Home",
+    "countries_breadcrumb": "Countries",
+    "empty_title": "No regions found",
+    "empty_desc": "No operational regions have been configured for this country yet.",
+    "add_region_cta": "Add Region",
+    "account_label": "Account",
+    "labels_label": "Labels",
+    "regions_grid_title": "Operational Regions",
+    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}"
   }
 }

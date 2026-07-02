@@ -64,3 +64,14 @@ export function handleApiError(
 export function apiSuccess<T>(data: T, status = 200): APISuccessResponse<T> {
   return NextResponse.json({ success: true, data, error: null }, { status });
 }
+
+export function apiNotFound(t: TranslateFn): APIErrorResponse {
+  return NextResponse.json(
+    {
+      success: false,
+      error: { message: t("not_found") },
+      status: 404,
+    },
+    { status: 404 },
+  );
+}

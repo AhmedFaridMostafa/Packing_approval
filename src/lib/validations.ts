@@ -238,3 +238,6 @@ export const apiBanUserSchema = (t: TranslateFn) =>
     reason: z.string().optional(),
     expiresIn: z.number().int().positive().optional(),
   });
+
+export const apiSlugSchema = (t: TranslateFn) =>
+  z.string().min(1, t("not_found")).trim();

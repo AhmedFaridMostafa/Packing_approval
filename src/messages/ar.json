@@ -454,5 +454,20 @@
     "regions_badge": "{count} منطقة",
     "guidelines_badge": "{count} إرشاد",
     "total_badge": "{count} إجمالي"
+  },
+  "CountryRegionsPage": {
+    "meta_data": {
+      "title": "المناطق التشغيلية - {Region}",
+      "description": "تصفح المناطق التشغيلية وإرشادات التعبئة والتغليف المعتمدة لبلد {Region}"
+    },
+    "home_breadcrumb": "الرئيسية",
+    "countries_breadcrumb": "البلدان",
+    "empty_title": "لم يتم العثور على مناطق",
+    "empty_desc": "لم يتم تكوين أي مناطق تشغيلية لهذا البلد بعد.",
+    "add_region_cta": "إضافة منطقة",
+    "account_label": "الحساب",
+    "labels_label": "الملصقات",
+    "regions_grid_title": "المناطق التشغيلية",
+    "guidelines_badge": "{count} إرشاد"
   }
 }
