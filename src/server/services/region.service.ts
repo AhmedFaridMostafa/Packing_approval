@@ -31,7 +31,7 @@ export const createRegion = async (data: {
   account: string;
   labels: string[];
 }) => {
-  const slug = slugify(data.label_name_en, { lower: true, trim: true });
+  const slug = slugify(data.account, { lower: true, trim: true });
 
   const [newRegion] = await db
     .insert(region)
@@ -62,7 +62,10 @@ export const updateRegion = async (
   const updateData: RegionUpdate = { updated_at: new Date() };
   if (data.label_name_en) updateData.label_name_en = data.label_name_en;
   if (data.label_name_ar) updateData.label_name_ar = data.label_name_ar;
-  if (data.account) updateData.account = data.account;
+  if (data.account) {
+    updateData.account = data.account;
+    updateData.slug = slugify(data.account, { lower: true, trim: true });
+  }
   if (data.labels) updateData.labels = data.labels;
 
   const [updatedRegion] = await db
