@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SocialAuthForm from "@/components/forms/SocialAuthForm";
+import SocialAuthForm from "@/components/auth/SocialAuthForm";
 
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
