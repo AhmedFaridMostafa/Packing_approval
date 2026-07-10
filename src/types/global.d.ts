@@ -83,8 +83,8 @@ interface CountryDetail {
 interface RegionWithCount {
   id: number;
   slug: string;
-  label_name_en: string | null;
-  label_name_ar: string | null;
+  label_name_en: string;
+  label_name_ar: string;
   account: string;
   labels: string[];
   guidelines_count: number;
@@ -94,4 +94,32 @@ interface CountryWithRegionsResponse {
   country: CountryDetail;
   regions: RegionWithCount[];
   total_guidelines: number;
+}
+
+interface PackingDetail {
+  id: string;
+  title_en: string;
+  title_ar: string;
+  description_en: string | null;
+  description_ar: string | null;
+  image_url: string | null;
+}
+
+interface CategoryDetail {
+  id: number;
+  name_en: string;
+  name_ar: string;
+  sort_order: number;
+}
+
+interface CategoryGroup {
+  category: CategoryDetail;
+  items: PackingDetail[];
+}
+
+interface RegionPackingResponse {
+  country: CountryDetail;
+  region: Omit<RegionWithCount, "guidelines_count">;
+  groupedPacking: CategoryGroup[];
+  totalGuidelines: number;
 }

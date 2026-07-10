@@ -17,25 +17,40 @@ export const api = {
   countries: {
     getCountries: async (q?: string, page?: number, t?: TranslateFn) => {
       "use cache";
-      cacheLife("days");
+      cacheLife("weeks");
       cacheTag("countries");
       const url = new URL(`${API_BASE_URL}/${ROUTES.COUNTRIES_API}`);
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
       return await fetchHandler<getCountriesResponse>(
         url.toString(),
-        { timeout: 2000 },
+        { timeout: 4000 },
         t,
       );
     },
     getCountryWithRegions: async (slug: string, t?: TranslateFn) => {
       "use cache";
-      cacheLife("days");
+      cacheLife("weeks");
       cacheTag(`country-${slug}`);
 
       return fetchHandler<CountryWithRegionsResponse>(
         `${API_BASE_URL}/countries/${slug}`,
-        { timeout: 3000 },
+        { timeout: 4000 },
+        t,
+      );
+    },
+
+    getRegionPackingData: async (
+      countrySlug: string,
+      regionSlug: string,
+      t?: TranslateFn,
+    ) => {
+      "use cache";
+      cacheLife("weeks");
+      cacheTag(`region-packing-${countrySlug}-${regionSlug}`);
+      return fetchHandler<RegionPackingResponse>(
+        `${API_BASE_URL}/countries/${countrySlug}/${regionSlug}`,
+        { timeout: 4000 },
         t,
       );
     },

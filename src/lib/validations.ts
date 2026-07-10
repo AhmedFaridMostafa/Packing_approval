@@ -239,5 +239,16 @@ export const apiBanUserSchema = (t: TranslateFn) =>
     expiresIn: z.number().int().positive().optional(),
   });
 
-export const apiSlugSchema = (t: TranslateFn) =>
+export const slugSchema = (t: TranslateFn) =>
   z.string().min(1, t("not_found")).trim();
+
+export const countryParamsSchema = (t: TranslateFn) =>
+  z.object({
+    countrySlug: slugSchema(t),
+  });
+
+export const regionParamsSchema = (t: TranslateFn) =>
+  z.object({
+    countrySlug: slugSchema(t),
+    regionSlug: slugSchema(t),
+  });
