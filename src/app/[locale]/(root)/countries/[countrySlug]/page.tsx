@@ -8,9 +8,8 @@ import CountryHeader from "@/components/countries/slug/CountryHeader";
 import RegionsList from "@/components/countries/slug/RegionsList";
 
 export const generateMetadata = async ({ params }: RouteParams) => {
-  const { countrySlug, locale } = await params;
-
-  const [validationT, metaT] = await Promise.all([
+  const [{ countrySlug, locale }, validationT, metaT] = await Promise.all([
+    params,
     getTranslations("Validation"),
     getTranslations("CountryRegionsPage.meta_data"),
   ]);
@@ -37,13 +36,13 @@ export const generateMetadata = async ({ params }: RouteParams) => {
 };
 
 const CountryRegionsPage = async ({ params }: RouteParams) => {
-  const { locale, countrySlug } = await params;
-
-  const [requestHeaders, validationT, t] = await Promise.all([
-    headers(),
-    getTranslations("Validation"),
-    getTranslations("CountryRegionsPage"),
-  ]);
+  const [{ locale, countrySlug }, requestHeaders, validationT, t] =
+    await Promise.all([
+      params,
+      headers(),
+      getTranslations("Validation"),
+      getTranslations("CountryRegionsPage"),
+    ]);
 
   const [session, result] = await Promise.all([
     auth.api.getSession({ headers: requestHeaders }),
