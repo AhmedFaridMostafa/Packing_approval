@@ -456,7 +456,8 @@
 
   /* Arabic locale: swap body font to Cairo, enable RTL */
   html[dir="rtl"] {
-    font-family: var(--font-cairo), var(--font-dm-sans), ui-sans-serif, sans-serif;
+    font-family:
+      var(--font-cairo), var(--font-dm-sans), ui-sans-serif, sans-serif;
   }
 
   /* Respect reduced-motion preference */
@@ -528,7 +529,7 @@
 
   /* --- Sticky category navigation bar --- */
   .sticky-nav {
-    @apply border-border bg-card sticky top-16 z-40 overflow-x-auto border-b;
+    @apply border-border bg-card sticky top-0 z-40 mx-auto w-full max-w-(--spacing-container-max) overflow-x-auto border-b px-6 py-2 backdrop-blur;
     scrollbar-width: none;
     -ms-overflow-style: none;
 
