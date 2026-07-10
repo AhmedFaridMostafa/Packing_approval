@@ -21,7 +21,7 @@ const CountryHeader = ({
   const countryName = isRTL ? country.name_ar : country.name_en;
 
   return (
-    <div className="border-border mb-10 flex flex-col gap-6 border-b pb-8 md:flex-row md:items-center md:justify-between">
+    <div className="bg-surface border-border mb-10 flex flex-col gap-6 rounded-xl border-b px-4 py-8 md:flex-row md:items-center md:justify-between">
       {/* Country identity */}
       <div className="flex items-center gap-4">
         {country.flag_url ? (
