@@ -469,5 +469,24 @@
     "labels_label": "الملصقات",
     "regions_grid_title": "المناطق التشغيلية",
     "guidelines_badge": "{count} إرشاد"
+  },
+  "RegionPackingWaysPage": {
+    "meta_data": {
+      "title": "{regionName} - {countryName} | إرشادات التعبئة والتغليف",
+      "description": "تصفح إرشادات التعبئة والتغليف المعتمدة لمنطقة {regionName} في {countryName}"
+    },
+    "home_breadcrumb": "الرئيسية",
+    "countries_breadcrumb": "البلدان",
+    "guidelines_badge": "{count} إرشاد",
+    "account_label": "الحساب",
+    "download_pdf_cta": "تنزيل PDF",
+    "generating_pdf": "جاري الإنشاء...",
+    "empty_state_title": "لم يتم تكوين إرشادات",
+    "empty_state_desc": "لم يتم تكوين أي إرشادات تعبئة لهذه الفئة بعد.",
+    "no_items_in_region": "لم يتم تكوين أي إرشادات تعبئة لهذه المنطقة بعد.",
+    "add_guideline_cta": "إضافة إرشاد تعبئة",
+    "category_label": "الفئة",
+    "read_more": "اقرأ المزيد",
+    "read_less": "عرض أقل"
   }
 }

@@ -463,5 +463,24 @@
     "labels_label": "Labels",
     "regions_grid_title": "Operational Regions",
     "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}"
+  },
+  "RegionPackingWaysPage": {
+    "meta_data": {
+      "title": "{regionName} - {countryName} | Packing Approval",
+      "description": "Browse packing guidelines for {regionName}, {countryName}"
+    },
+    "home_breadcrumb": "Home",
+    "countries_breadcrumb": "Countries",
+    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+    "account_label": "Account",
+    "download_pdf_cta": "Download PDF",
+    "generating_pdf": "Generating...",
+    "empty_state_title": "No guidelines configured",
+    "empty_state_desc": "No packing guidelines have been configured for this category yet.",
+    "no_items_in_region": "No guidelines configured for this region yet.",
+    "add_guideline_cta": "Add Packing Way",
+    "category_label": "Category",
+    "read_more": "Read More",
+    "read_less": "Read Less"
   }
 }
