@@ -1,39 +1,69 @@
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, FileText, MapPin } from "lucide-react";
+import SmartImage from "@/components/shared/SmartImage";
 
-type RegionsCardProps = {
+interface RegionsCardProps {
   t: TranslateFn;
   regionUrl: string;
-  labelName: string | null;
+  labelName: string;
   labels: string[];
   account: string;
   guidelines_count: number;
-};
+  countryName?: string | null;
+  country_flag_url?: string | null;
+}
 
 const RegionsCard = ({
   t,
   regionUrl,
   labelName,
+  countryName,
   labels,
   account,
   guidelines_count,
+  country_flag_url,
 }: RegionsCardProps) => {
   return (
     <Link
       href={regionUrl}
       className="group border-border bg-card hover:border-primary/45 card-hover relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
     >
+      {/* Decorative blob */}
       <div aria-hidden="true" className="bg-primary/5 feature-blob" />
 
       <div>
+        {/* Country badge */}
+        {countryName && (
+          <div className="mb-4 flex items-center gap-2">
+            <div className="border-border relative h-5 w-7 shrink-0 overflow-hidden rounded-sm border shadow-sm">
+              {country_flag_url ? (
+                <SmartImage
+                  src={country_flag_url}
+                  alt={`${countryName} flag`}
+                  fill
+                  sizes="28px"
+                  className="object-cover"
+                />
+              ) : (
+                <span className="flex h-full w-full items-center justify-center text-xs">
+                  🌍
+                </span>
+              )}
+            </div>
+            <span className="text-caption text-on-surface-variant font-medium">
+              {countryName}
+            </span>
+          </div>
+        )}
+
         {/* Region title */}
         <div className="mb-4 flex items-center gap-2.5">
           <div className="bg-accent text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
             <MapPin className="h-5 w-5" />
           </div>
-          <h3 className="font-heading text-card-title text-on-surface truncate font-bold">
+          <h2 className="font-heading text-card-title text-on-surface truncate font-bold">
             {labelName}
-          </h3>
+          </h2>
         </div>
 
         {/* Account */}

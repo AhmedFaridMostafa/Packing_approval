@@ -1,7 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SmartImage from "@/components/SmartImage";
+import SmartImage from "@/components/shared/SmartImage";
 
 interface CountryHeaderProps {
   isRTL: boolean;

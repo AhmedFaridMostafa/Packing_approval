@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Avatar from "@/components/Avatar";
+import Avatar from "@/components/shared/Avatar";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 import { Link } from "@/i18n/navigation";

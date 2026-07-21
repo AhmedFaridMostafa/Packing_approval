@@ -10,7 +10,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle } from "@/components/ui/dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Maximize2 } from "lucide-react";
-import SmartImage from "@/components/SmartImage";
+import SmartImage from "@/components/shared/SmartImage";
 import { Button } from "@/components/ui/button";
 
 interface LightboxProps {

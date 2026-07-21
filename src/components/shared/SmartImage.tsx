@@ -1,6 +1,6 @@
 import Image, { type ImageProps } from "next/image";
 import { isCloudinaryUrl } from "@/lib/utils";
-import CldImage from "./CldImage";
+import CldImage from "@/components/shared/CldImage";
 
 type SmartImageProps = Omit<ImageProps, "src"> & {
   src: string;

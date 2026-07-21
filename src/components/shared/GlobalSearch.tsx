@@ -9,20 +9,21 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "../ui/input-group";
+} from "@/components/ui/input-group";
 import { formUrlQuery } from "@/lib/utils";
 
-interface ContainerSearchProps {
+interface RegionsSearchProps {
   searchPlaceholder: string;
 }
 
-const ContainerSearch = ({ searchPlaceholder }: ContainerSearchProps) => {
+const GlobalSearch = ({ searchPlaceholder }: RegionsSearchProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [inputValue, setInputValue] = useState(
     searchParams.get("search_query") ?? "",
   );
+
   const debouncer = useDebouncer(
     (value: string) => {
       const newUrl = formUrlQuery({
@@ -33,7 +34,7 @@ const ContainerSearch = ({ searchPlaceholder }: ContainerSearchProps) => {
       });
       router.push(newUrl);
     },
-    { wait: 1000 },
+    { wait: 700 },
   );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +57,7 @@ const ContainerSearch = ({ searchPlaceholder }: ContainerSearchProps) => {
   return (
     <InputGroup className="h-12 w-full max-w-md">
       <InputGroupInput
+        id="regions-search"
         name="search"
         type="text"
         value={inputValue}
@@ -74,4 +76,4 @@ const ContainerSearch = ({ searchPlaceholder }: ContainerSearchProps) => {
   );
 };
 
-export default ContainerSearch;
+export default GlobalSearch;

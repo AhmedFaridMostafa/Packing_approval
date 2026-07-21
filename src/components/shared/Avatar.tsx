@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { cn, getInitials } from "@/lib/utils";
 import { Avatar as AvatarUi, AvatarFallback } from "@/components/ui/avatar";
-import SmartImage from "./SmartImage";
+import SmartImage from "@/components/shared/SmartImage";
 import type { User } from "better-auth";
 
 interface AvatarProps extends Pick<User, "name" | "image"> {

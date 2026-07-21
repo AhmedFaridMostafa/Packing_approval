@@ -4,10 +4,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { cn, formUrlQuery } from "@/lib/utils";
 
-import { Button } from "./ui/button";
 import { usePathname } from "@/i18n/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTransition } from "react";
+import { Button } from "@/components/ui/button";
 
 interface PaginationProps {
   totalPages: number;

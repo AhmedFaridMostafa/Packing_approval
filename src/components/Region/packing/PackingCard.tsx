@@ -1,5 +1,5 @@
 import { Edit2, ImageIcon } from "lucide-react";
-import SmartImage from "@/components/SmartImage";
+import SmartImage from "@/components/shared/SmartImage";
 import { Link } from "@/i18n/navigation";
 import Lightbox from "@/components/Region/packing/Lightbox";
 
