@@ -482,5 +482,22 @@
     "category_label": "Category",
     "read_more": "Read More",
     "read_less": "Read Less"
+  },
+  "RegionsPage": {
+    "meta_data": {
+      "title": "All Operational Regions | Packing Approval",
+      "description": "Browse all operational regions and their packing guidelines across every country."
+    },
+    "title": "Operational Regions",
+    "description": "Browse all active regions and their packing specifications across every country.",
+    "search_placeholder": "Search by region, country or account...",
+    "empty_state_title": "No regions found",
+    "empty_state_desc": "Try adjusting your search term.",
+    "clear_search": "Clear Search",
+    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+    "account_label": "Account",
+    "labels_label": "Labels",
+    "add_region_cta": "Add Region",
+    "total_badge": "{count} total"
   }
 }
