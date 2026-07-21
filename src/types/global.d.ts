@@ -123,3 +123,24 @@ interface RegionPackingResponse {
   groupedPacking: CategoryGroup[];
   totalGuidelines: number;
 }
+
+interface RegionWithCountryAndCount {
+  id: number;
+  slug: string;
+  label_name_en: string;
+  label_name_ar: string;
+  account: string;
+  labels: string[];
+  country_id?: number;
+  country_name_en?: string;
+  country_name_ar?: string;
+  country_slug?: string;
+  country_flag_url?: string | null;
+  guidelines_count: number;
+}
+
+interface getRegionsPaginatedResponse {
+  regions: RegionWithCountryAndCount[];
+  totalItems: number;
+  totalPages: number;
+}

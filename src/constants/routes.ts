@@ -8,8 +8,14 @@ export const ROUTES = {
   RESET_PASSWORD: "/reset-password",
   PROFILE: (id: string) => `/profile/${id}`,
   CONTACT: "/contact",
-  ADMIN_PANEL: "/admin",
   COUNTRIES: "/countries",
   COUNTRIES_API: "/countries",
   COUNTRY: (slug: string) => `/countries/${slug}`,
+  REGION: (countrySlug: string, RegionSlug: string) =>
+    `/countries/${countrySlug}/${RegionSlug}`,
+
+  REGIONS: "/regions",
+  REGIONS_API: "/regions",
+  ADMIN_PANEL: "/admin",
+  ADMIN_PANEL_REGIONS_ADD: "/admin/regions/add",
 } as const;

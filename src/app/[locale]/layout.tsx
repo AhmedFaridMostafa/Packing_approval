@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import { locale as getLocale } from "next/root-params";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
-import AppProviders from "@/components/AppProviders";
+import AppProviders from "@/components/providers/AppProviders";
 import { Spinner } from "@/components/ui/spinner";
 import { setRequestLocale } from "next-intl/server";
 

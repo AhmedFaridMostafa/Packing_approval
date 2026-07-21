@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
 import { api } from "@/lib/api";
-import CountryNav from "@/components/countries/slug/CountryNav";
-import CountryHeader from "@/components/countries/slug/CountryHeader";
-import RegionsList from "@/components/countries/slug/RegionsList";
-
+import CountryNav from "@/components/countries/CountryNav";
+import CountryHeader from "@/components/countries/CountryHeader";
+import RegionsList from "@/components/regions/RegionsList";
+import RegionsEmpty from "@/components/regions/RegionsEmpty";
+import { Info } from "lucide-react";
 export const generateMetadata = async ({ params }: RouteParams) => {
   const [{ countrySlug, locale }, validationT, metaT] = await Promise.all([
     params,
@@ -79,15 +80,23 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
           guidelinesBadge={t("guidelines_badge", { count: totalGuidelines })}
           addRegionCta={t("add_region_cta")}
         />
-
-        <RegionsList
-          isRTL={isRTL}
-          t={t}
-          countrySlug={countrySlug}
-          countryId={country.id}
-          isAdmin={isAdmin}
-          regions={regions}
-        />
+        <h2 className="font-heading text-on-surface-variant mb-6 text-sm font-semibold tracking-wider uppercase">
+          {t("regions_grid_title")}
+        </h2>
+        {regions.length > 0 ? (
+          <RegionsList
+            translate={t}
+            isRTL={isRTL}
+            countrySlug={countrySlug}
+            regions={regions}
+          />
+        ) : (
+          <RegionsEmpty
+            IconTitle={Info}
+            title={t("empty_title")}
+            description={t("empty_desc")}
+          />
+        )}
       </div>
     </section>
   );

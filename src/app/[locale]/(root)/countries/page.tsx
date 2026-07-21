@@ -1,10 +1,12 @@
 import { api } from "@/lib/api";
 import { getLocale, getTranslations } from "next-intl/server";
 import CountriesTitle from "@/components/countries/CountriesTitle";
-import ContainerSearch from "@/components/countries/CountrySearch";
-import Pagination from "@/components/Pagination";
+import GlobalSearch from "@/components/shared/GlobalSearch";
+import Pagination from "@/components/shared/Pagination";
 import ContainerEmpty from "@/components/countries/CountryEmpty";
 import { CountryCard } from "@/components/countries/CountryCard";
+import { Suspense } from "react";
+import SearchSkeleton from "@/components/skeleton/SearchSkeleton";
 
 export async function generateMetadata() {
   const t = await getTranslations("CountriesPage.meta_data");
@@ -41,7 +43,9 @@ const CountriesPage = async ({ searchParams }: RouteParams) => {
     <section className="bg-surface-container-lowest section-container min-h-screen py-10 sm:py-16">
       <div className="border-border mb-8 flex flex-col gap-4 border-b pb-6 md:flex-row md:items-center md:justify-between">
         <CountriesTitle totalItems={totalItems} translate={translate} />
-        <ContainerSearch searchPlaceholder={translate("search_placeholder")} />
+        <Suspense fallback={<SearchSkeleton />}>
+          <GlobalSearch searchPlaceholder={translate("search_placeholder")} />
+        </Suspense>
       </div>
       {countries.length > 0 ? (
         <>
