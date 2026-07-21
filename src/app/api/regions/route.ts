@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-import { getRegions, createRegion } from "@/server/services/region.service";
+import {
+  createRegion,
+  getRegionsPaginated,
+} from "@/server/services/region.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
-import { apiRegionSchema } from "@/lib/validations";
+import { apiRegionSchema, regionsParamsSchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 
@@ -9,9 +12,17 @@ export async function GET(request: Request) {
   const t = await getTranslations("Validation");
   try {
     const { searchParams } = new URL(request.url);
-    const countryIdStr = searchParams.get("countryId");
-    const countryId = countryIdStr ? parseInt(countryIdStr) : undefined;
-    const data = await getRegions(countryId);
+
+    const { searchQuery, currentPage } = regionsParamsSchema(t).parse({
+      searchQuery: searchParams.get("q"),
+      currentPage: searchParams.get("page"),
+    });
+
+    const data = await getRegionsPaginated({
+      searchQuery,
+      currentPage,
+    });
+
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, t);

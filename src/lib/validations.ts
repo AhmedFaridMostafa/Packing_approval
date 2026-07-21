@@ -252,3 +252,9 @@ export const regionParamsSchema = (t: TranslateFn) =>
     countrySlug: slugSchema(t),
     regionSlug: slugSchema(t),
   });
+
+export const regionsParamsSchema = (t: TranslateFn) =>
+  z.object({
+    searchQuery: z.string().trim().optional(),
+    currentPage: z.number().int().positive().optional().default(1),
+  });

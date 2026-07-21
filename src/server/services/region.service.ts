@@ -6,7 +6,18 @@ import {
   region,
 } from "@/drizzle/schemas/packing.schema";
 import slugify from "slugify";
-import { eq, and, isNull, type InferInsertModel, asc } from "drizzle-orm";
+import {
+  eq,
+  and,
+  isNull,
+  type InferInsertModel,
+  asc,
+  or,
+  ilike,
+  sql,
+  type SQL,
+} from "drizzle-orm";
+import { ITEMS_PER_PAGE } from "@/constants";
 
 type RegionUpdate = Partial<Omit<InferInsertModel<typeof region>, "id">>;
 
@@ -207,4 +218,68 @@ export const getRegionPackingData = async (
     groupedPacking,
     totalGuidelines: groupedPacking.reduce((sum, g) => sum + g.items.length, 0),
   };
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GET ALL REGIONS (PAGINATED + SEARCHABLE)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const getRegionsPaginated = async ({
+  searchQuery,
+  currentPage = 1,
+}: {
+  searchQuery?: string;
+  currentPage?: number;
+}) => {
+  const page = Math.max(1, currentPage);
+  const filters: SQL[] = [
+    isNull(region.deleted_at),
+    isNull(country.deleted_at),
+  ];
+
+  if (searchQuery) {
+    filters.push(
+      or(
+        ilike(region.label_name_en, `%${searchQuery}%`),
+        ilike(region.label_name_ar, `%${searchQuery}%`),
+        ilike(region.account, `%${searchQuery}%`),
+        ilike(country.name_en, `%${searchQuery}%`),
+        ilike(country.name_ar, `%${searchQuery}%`),
+      ) as SQL,
+    );
+  }
+
+  const rows = await db
+    .select({
+      id: region.id,
+      slug: region.slug,
+      label_name_en: region.label_name_en,
+      label_name_ar: region.label_name_ar,
+      account: region.account,
+      labels: region.labels,
+      country_id: country.id,
+      country_name_en: country.name_en,
+      country_name_ar: country.name_ar,
+      country_slug: country.slug,
+      country_flag_url: country.flag_url,
+      guidelines_count: sql<number>`cast(count(distinct ${packing.id}) as integer)`,
+      total_count: sql<number>`cast(count(*) over() as integer)`,
+    })
+    .from(region)
+    .innerJoin(country, eq(region.country_id, country.id))
+    .leftJoin(
+      packing,
+      and(eq(packing.region_id, region.id), isNull(packing.deleted_at)),
+    )
+    .where(and(...filters))
+    .groupBy(region.id, country.id)
+    .orderBy(asc(country.name_en), asc(region.label_name_en))
+    .limit(ITEMS_PER_PAGE)
+    .offset((page - 1) * ITEMS_PER_PAGE);
+
+  const totalItems = rows[0]?.total_count ?? 0;
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const regions = rows.map(({ total_count: _, ...rest }) => rest);
+
+  return { regions, totalItems, totalPages };
 };

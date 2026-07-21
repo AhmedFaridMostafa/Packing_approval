@@ -55,4 +55,19 @@ export const api = {
       );
     },
   },
+  regions: {
+    getRegions: async (q?: string, page?: number, t?: TranslateFn) => {
+      "use cache";
+      cacheLife("weeks");
+      cacheTag("all-regions");
+      const url = new URL(`${API_BASE_URL}/regions`);
+      url.searchParams.set("page", String(page ?? 1));
+      if (q) url.searchParams.set("q", q);
+      return await fetchHandler<getRegionsPaginatedResponse>(
+        url.toString(),
+        { timeout: 4000 },
+        t,
+      );
+    },
+  },
 };
