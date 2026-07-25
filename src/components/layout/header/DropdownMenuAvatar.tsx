@@ -14,7 +14,7 @@ import Logout from "@/components/shared/Logout";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 import { Link } from "@/i18n/navigation";
-import { ROUTES } fr../../shared/Logoutnstants/routes";
+import { ROUTES } from "@/constants/routes";
 import { getTranslations } from "next-intl/server";
 
 const DropdownMenuAvatar = async () => {
