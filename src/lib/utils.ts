@@ -70,3 +70,18 @@ export const getInitials = (nameStr: string) => {
     .slice(0, 2)
     .toUpperCase();
 };
+
+export const formatDate = (dateString: string, isRTL: boolean) => {
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(isRTL ? "ar-EG" : "en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return dateString;
+  }
+};
