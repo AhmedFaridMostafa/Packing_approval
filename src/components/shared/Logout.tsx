@@ -7,7 +7,7 @@ import { LogOutIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 
-export function Logout() {
+const Logout = ({ signOut }: { signOut: string }) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -30,9 +30,11 @@ export function Logout() {
       ) : (
         <>
           <LogOutIcon />
-          Sign Out
+          {signOut}
         </>
       )}
     </Button>
   );
-}
+};
+
+export default Logout;

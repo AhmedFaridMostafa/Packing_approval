@@ -429,6 +429,12 @@
     "dark": "Dark Mode",
     "system": "System Mode"
   },
+  "DropdownMenuAvatar": {
+    "signIn": "Sign In",
+    "adminPanel": "Admin Panel",
+    "profile": "Profile",
+    "signOut": "Sign Out"
+  },
   "NotFound": {
     "title": "404 Not Found",
     "message": "Whoops! That page doesn't exist.",
@@ -499,5 +505,51 @@
     "labels_label": "Labels",
     "add_region_cta": "Add Region",
     "total_badge": "{count} total"
+  },
+  "AdminLayout": {
+    "title": "Admin Portal",
+    "dashboard": "Dashboard",
+    "countries": "Countries",
+    "regions": "Regions",
+    "categories": "Categories",
+    "packingWays": "Packing Ways",
+    "history": "Audit Logs",
+    "users": "Users",
+    "home": "Public Site",
+    "signOut": "Sign Out"
+  },
+  "AdminDashboard": {
+    "meta_data": {
+      "title": "Admin Dashboard | Packing Approval",
+      "description": "Administrative overview and operations dashboard for Packing Approval."
+    },
+    "welcome": "Welcome back, {name}",
+    "subtitle": "Here is what's happening across your global packing approval system today.",
+    "stats": {
+      "countries": "Active Countries",
+      "regions": "Operational Regions",
+      "categories": "Categories",
+      "guidelines": "Packing Guidelines",
+      "users": "Registered Users"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addCountry": "Add Country",
+      "addRegion": "Add Region",
+      "addCategory": "Add Category",
+      "addPackingWay": "Add Packing Way",
+      "reorderCategories": "Reorder Categories"
+    },
+    "recentHistory": {
+      "title": "Recent Audit Logs",
+      "subtitle": "Latest modification snapshots across guidelines.",
+      "viewAll": "View Full History",
+      "empty": "No audit records logged yet.",
+      "action": {
+        "CREATE": "Created",
+        "UPDATE": "Updated",
+        "DELETE": "Deleted"
+      }
+    }
   }
 }

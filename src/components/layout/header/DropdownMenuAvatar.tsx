@@ -10,20 +10,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Avatar from "@/components/shared/Avatar";
+import Logout from "@/components/shared/Logout";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth/auth";
 import { Link } from "@/i18n/navigation";
-import { ROUTES } from "@/constants/routes";
-import { Logout } from "./Logout";
+import { ROUTES } fr../../shared/Logoutnstants/routes";
+import { getTranslations } from "next-intl/server";
 
 const DropdownMenuAvatar = async () => {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const [session, t] = await Promise.all([
+    auth.api.getSession({ headers: await headers() }),
+    getTranslations("DropdownMenuAvatar"),
+  ]);
 
   if (!session?.user) {
     return (
       <Button asChild variant="link">
         <Link className="cursor-pointer" href={ROUTES.SIGN_IN}>
-          Sign In
+          {t("signIn")}
         </Link>
       </Button>
     );
@@ -44,7 +48,7 @@ const DropdownMenuAvatar = async () => {
                 href={ROUTES.ADMIN_PANEL}
               >
                 <ShieldUser />
-                Admin Panel
+                {t("adminPanel")}
               </Link>
             </DropdownMenuItem>
           )}
@@ -54,13 +58,13 @@ const DropdownMenuAvatar = async () => {
               href={ROUTES.PROFILE(session.user.id)}
             >
               <BadgeCheckIcon />
-              Profile
+              {t("profile")}
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Logout />
+          <Logout signOut={t("signOut")} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
