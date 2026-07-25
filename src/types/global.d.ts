@@ -144,3 +144,32 @@ interface getRegionsPaginatedResponse {
   totalItems: number;
   totalPages: number;
 }
+
+interface AdminDashboardStats {
+  countries: number;
+  regions: number;
+  categories: number;
+  guidelines: number;
+  users: number;
+}
+
+interface RecentHistoryItem {
+  id: string;
+  action: "CREATE" | "UPDATE" | "DELETE";
+  changed_by_name: string;
+  changed_by_email: string;
+  change_timestamp: string;
+  country_name_en: string;
+  country_name_ar: string;
+  region_name_en: string;
+  region_name_ar: string;
+  category_name_en: string;
+  category_name_ar: string;
+  title_en: string;
+  title_ar: string;
+}
+
+interface AdminDashboardResponse {
+  stats: AdminDashboardStats;
+  recentHistory: RecentHistoryItem[];
+}

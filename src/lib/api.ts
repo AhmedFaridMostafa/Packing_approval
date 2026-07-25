@@ -70,4 +70,16 @@ export const api = {
       );
     },
   },
+  admin: {
+    getDashboardData: async (headers?: Headers, t?: TranslateFn) => {
+      return fetchHandler<AdminDashboardResponse>(
+        `${API_BASE_URL}/admin/dashboard`,
+        {
+          headers: headers ? Object.fromEntries(headers.entries()) : {},
+          timeout: 5000,
+        },
+        t,
+      );
+    },
+  },
 };
