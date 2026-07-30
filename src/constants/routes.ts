@@ -17,9 +17,13 @@ export const ROUTES = {
   REGIONS: "/regions",
   REGIONS_API: "/regions",
   ADMIN_PANEL: "/admin",
+  ADMIN_PANEL_REGIONS: "/admin/regions",
   ADMIN_PANEL_REGIONS_ADD: "/admin/regions/add",
+  ADMIN_PANEL_COUNTRIES: "/admin/countries",
   ADMIN_PANEL_COUNTRIES_ADD: "/admin/countries/add",
   ADMIN_PANEL_CATEGORIES_ADD: "/admin/categories/add",
   ADMIN_PANEL_PACKING_WAYS_ADD: "/admin/packing-ways/add",
   ADMIN_PANEL_CATEGORIES_REORDER: "/admin/categories/reorder",
+  ADMIN_PANEL_History: "/admin/history",
+  ADMIN_PANEL_Users: "/admin/users",
 } as const;
