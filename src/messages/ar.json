@@ -557,5 +557,65 @@
         "DELETE": "حذف"
       }
     }
+  },
+  "AddCountryPage": {
+    "meta_data": {
+      "title": "إضافة بلد | لوحة التحكم",
+      "description": "إضافة بلد تشغيلي جديد إلى منصة موافقات التعبئة والتغليف."
+    },
+    "title": "إضافة بلد جديد",
+    "subtitle": "إنشاء سجّل بلد جديد بالاسمين الإنجليزي والعربي ورابط صورة العلم.",
+    "form": {
+      "name_en": {
+        "label": "اسم البلد (بالإنجليزية)",
+        "placeholder": "مثال: Egypt"
+      },
+      "name_ar": {
+        "label": "اسم البلد (بالعربية)",
+        "placeholder": "مثال: مصر"
+      },
+      "flag_url": {
+        "label": "رابط صورة العلم",
+        "placeholder": "https://flagcdn.com/w320/eg.png"
+      },
+      "submit": "إنشاء البلد",
+      "submitting": "جاري الإنشاء...",
+      "success": "تم إنشاء البلد بنجاح!",
+      "error": "فشل إنشاء البلد"
+    },
+    "preview": {
+      "title": "معاينة مباشرة",
+      "badge_subtitle": "معاينة شارة البلد"
+    }
+  },
+  "AdminCountriesPage": {
+    "meta_data": {
+      "title": "إدارة البلدان | لوحة التحكم",
+      "description": "إدارة البلدان النشطة، عرض الإحصائيات، التعديل، وإنشاء بلدان تشغيلية جديدة."
+    },
+    "title": "إدارة البلدان",
+    "subtitle": "نظرة عامة على جميع البلدان التشغيلية، عدد المناطق، وإجراءات الإدارة.",
+    "add_country": "إضافة بلد",
+    "search_placeholder": "ابحث باسم البلد...",
+    "table": {
+      "country": "البلد",
+      "slug": "المسار (Slug)",
+      "regions_count": "المناطق",
+      "guidelines_count": "الإرشادات",
+      "actions": "الإجراءات"
+    },
+    "actions": {
+      "view": "عرض المناطق",
+      "delete": "حذف البلد",
+      "cancel": "إلغاء حذف",
+      "delete_confirm_title": "حذف البلد",
+      "delete_confirm_desc": "هل أنت تأكد من حذف {name}؟ سيتم إلغاء تفعيل هذا البلد.",
+      "delete_success": "تم حذف البلد بنجاح",
+      "delete_error": "فشل حذف البلد"
+    },
+    "empty": {
+      "title": "لم يتم العثور على بلدان",
+      "description": "حاول تعديل كلمة البحث أو اضف بلداً جديداً."
+    }
   }
 }

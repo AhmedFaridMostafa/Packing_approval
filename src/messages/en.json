@@ -551,5 +551,65 @@
         "DELETE": "Deleted"
       }
     }
+  },
+  "AddCountryPage": {
+    "meta_data": {
+      "title": "Add Country | Admin Panel",
+      "description": "Add a new operational country to the packing approval platform."
+    },
+    "title": "Add New Country",
+    "subtitle": "Create a new country record with English & Arabic names and flag image URL.",
+    "form": {
+      "name_en": {
+        "label": "Country Name (English)",
+        "placeholder": "e.g., Egypt"
+      },
+      "name_ar": {
+        "label": "Country Name (Arabic)",
+        "placeholder": "e.g., مصر"
+      },
+      "flag_url": {
+        "label": "Flag Image URL",
+        "placeholder": "https://flagcdn.com/w320/eg.png"
+      },
+      "submit": "Create Country",
+      "submitting": "Creating...",
+      "success": "Country created successfully!",
+      "error": "Failed to create country"
+    },
+    "preview": {
+      "title": "Live Preview",
+      "badge_subtitle": "Country badge preview"
+    }
+  },
+  "AdminCountriesPage": {
+    "meta_data": {
+      "title": "Countries Management | Admin Panel",
+      "description": "Manage active countries, view stats, edit, and create new operational countries."
+    },
+    "title": "Countries Management",
+    "subtitle": "Overview of all operational countries, region counts, and management actions.",
+    "add_country": "Add Country",
+    "search_placeholder": "Search by country name...",
+    "table": {
+      "country": "Country",
+      "slug": "Slug",
+      "regions_count": "Regions",
+      "guidelines_count": "Guidelines",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View Regions",
+      "delete": "Delete Country",
+      "cancel": "Cancel Delete",
+      "delete_confirm_title": "Delete Country",
+      "delete_confirm_desc": "Are you sure you want to delete {name}? This will soft-delete the country.",
+      "delete_success": "Country deleted successfully",
+      "delete_error": "Failed to delete country"
+    },
+    "empty": {
+      "title": "No countries found",
+      "description": "Try adjusting your search query or add a new country."
+    }
   }
 }
