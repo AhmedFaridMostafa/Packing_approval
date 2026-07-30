@@ -123,3 +123,13 @@ export const createCountry = async (data: {
 
   return newCountry;
 };
+
+export const deleteCountry = async (id: number) => {
+  const [deletedRecord] = await db
+    .update(country)
+    .set({ deleted_at: new Date() })
+    .where(and(eq(country.id, id), isNull(country.deleted_at)))
+    .returning();
+
+  return deletedRecord;
+};
