@@ -57,7 +57,7 @@ const GlobalSearch = ({ searchPlaceholder }: RegionsSearchProps) => {
   return (
     <InputGroup className="h-12 w-full max-w-md">
       <InputGroupInput
-        id="regions-search"
+        id="global-search"
         name="search"
         type="text"
         value={inputValue}
