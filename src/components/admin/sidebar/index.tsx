@@ -1,6 +1,7 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import AdminSidebar from "./AdminSidebar";
 import AdminHeader from "./AdminHeader";
+import { adminNavigation } from "./config";
 import { getLocale, getTranslations } from "next-intl/server";
 
 interface SidebarAdminProps {
@@ -13,6 +14,15 @@ const SidebarAdmin = async ({ children }: SidebarAdminProps) => {
     getTranslations("AdminLayout"),
   ]);
   const isRtl = locale === "ar";
+
+  const navigationLabels = adminNavigation.reduce<Record<string, string>>(
+    (acc, item) => {
+      acc[item.key] = t(item.key);
+      return acc;
+    },
+    {},
+  );
+
   return (
     <SidebarProvider>
       <AdminSidebar
@@ -20,6 +30,7 @@ const SidebarAdmin = async ({ children }: SidebarAdminProps) => {
         title={t("title")}
         homeTitle={t("home")}
         signOut={t("signOut")}
+        navigationLabels={navigationLabels}
       />
       <SidebarInset className="bg-surface-container-lowest min-h-screen">
         <AdminHeader title={t("title")} />

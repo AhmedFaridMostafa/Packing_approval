@@ -10,12 +10,14 @@ interface AdminSidebarProps {
   homeTitle: string;
   signOut: string;
   isRtl: boolean;
+  navigationLabels: Record<string, string>;
 }
 const AdminSidebar = ({
   title,
   homeTitle,
   signOut,
   isRtl,
+  navigationLabels,
 }: AdminSidebarProps) => {
   return (
     <Sidebar
@@ -26,7 +28,7 @@ const AdminSidebar = ({
       )}
     >
       <SidebarBrand title={title} />
-      <SidebarNavigation />
+      <SidebarNavigation labels={navigationLabels} />
       <SidebarFooter homeTitle={homeTitle} signOut={signOut} />
     </Sidebar>
   );

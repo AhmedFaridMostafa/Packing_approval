@@ -10,11 +10,13 @@ import {
 
 import { adminNavigation } from "./config";
 import SidebarNavigationItem from "./SidebarNavigationItem";
-import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 
-const SidebarNavigation = () => {
-  const t = useTranslations("AdminLayout");
+interface SidebarNavigationProps {
+  labels: Record<string, string>;
+}
+
+const SidebarNavigation = ({ labels }: SidebarNavigationProps) => {
   const pathname = usePathname();
 
   return (
@@ -35,7 +37,7 @@ const SidebarNavigation = () => {
               return (
                 <SidebarNavigationItem
                   key={item.href}
-                  title={t(item.key)}
+                  title={labels[item.key] ?? item.key}
                   href={item.href}
                   icon={item.icon}
                   isActive={isActive}
