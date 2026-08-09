@@ -558,7 +558,10 @@
       "description": "Add a new operational country to the packing approval platform."
     },
     "title": "Add New Country",
-    "subtitle": "Create a new country record with English & Arabic names and flag image URL.",
+    "subtitle": "Create a new country record with English & Arabic names and flag image URL."
+  },
+
+  "CreateAndUpdateCountry": {
     "form": {
       "name_en": {
         "label": "Country Name (English)",
@@ -572,16 +575,45 @@
         "label": "Flag Image URL",
         "placeholder": "https://flagcdn.com/w320/eg.png"
       },
+      "image_file": {
+        "label": "Flag Image File Upload",
+        "placeholder": "Upload a flag image file (PNG, JPG, SVG)",
+        "upload": "Click to upload",
+        "drop": "or drag and drop",
+        "replace": "Click or drag another image to replace",
+        "invalid": "Please select a valid image file."
+      },
+      "or_separator": "OR"
+    },
+
+    "create": {
       "submit": "Create Country",
       "submitting": "Creating...",
       "success": "Country created successfully!",
       "error": "Failed to create country"
     },
+
+    "edit": {
+      "submit": "Save Changes",
+      "submitting": "Saving...",
+      "success": "Country updated successfully!",
+      "error": "Failed to update country"
+    },
+
     "preview": {
       "title": "Live Preview",
-      "badge_subtitle": "Country badge preview"
+      "badge_subtitle": "Country Badge Preview",
+      "description": "See how the country card will appear across the platform.",
+      "flag_alt": "Country flag preview",
+      "name_en_placeholder": "Country Name (EN)",
+      "name_ar_placeholder": "Country Name (Arabic)",
+      "operational_regions": "{count, plural, =0 {0 Operational Regions} =1 {1 Operational Region} other {# Operational Regions}}",
+      "status": {
+        "active": "Active"
+      }
     }
   },
+
   "AdminCountriesPage": {
     "meta_data": {
       "title": "Countries Management | Admin Panel",
