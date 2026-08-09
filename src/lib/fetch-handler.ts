@@ -19,9 +19,10 @@ export async function fetchHandler<T>(
     headers: customHeaders = {},
     ...restOptions
   } = options;
+  const isFormData = restOptions.body instanceof FormData;
 
   const headers: HeadersInit = {
-    "Content-Type": "application/json",
+    ...(isFormData ? {} : { "Content-Type": "application/json" }),
     Accept: "application/json",
     ...customHeaders,
   };

@@ -33,8 +33,7 @@ export const ImageSchema = (t: TranslateFn) =>
     })
     .min(1, { error: t("image_required") })
     .max(MAX_FILE_SIZE, { error: t("too_large") })
-    .mime(ACCEPTED_IMAGE_TYPES, { error: t("wrong_type") })
-    .optional();
+    .mime(ACCEPTED_IMAGE_TYPES, { error: t("wrong_type") });
 
 export const titleSchema = (t: TranslateFn) =>
   z
@@ -188,9 +187,11 @@ export const deleteUserSchema = z.object({
 
 export const apiCountrySchema = (t: TranslateFn) =>
   z.object({
+    id: z.number().optional(),
     name_en: z.string().min(1, t("name_en_required")),
     name_ar: z.string().min(1, t("name_ar_required")),
-    flag_url: z.url(t("invalid_url")),
+    flag_url: z.union([z.url(t("invalid_url")), z.literal("")]).optional(),
+    image_file: ImageSchema(t).optional(),
   });
 
 export const apiRegionSchema = (t: TranslateFn) =>

@@ -8,9 +8,34 @@ export const apiClient = {
   countries: {
     deleteCountry: async (id: number, t?: TranslateFn) => {
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}/${ROUTES.COUNTRIES_API}?id=${id}`,
+        `${API_BASE_URL}${ROUTES.COUNTRIES_API}?id=${id}`,
         {
           method: "DELETE",
+        },
+        t,
+      );
+    },
+    createCountry: async (
+      data: {
+        name_en: string;
+        name_ar: string;
+        flag_url?: string;
+        image_file?: File;
+      },
+      t?: TranslateFn,
+    ) => {
+      const formData = new FormData();
+      formData.append("name_en", data.name_en);
+      formData.append("name_ar", data.name_ar);
+      if (data.flag_url) formData.append("flag_url", data.flag_url);
+      if (data.image_file) formData.append("image_file", data.image_file);
+
+      return fetchHandler<CountryDetail>(
+        `${API_BASE_URL}${ROUTES.COUNTRIES_API}`,
+        {
+          method: "POST",
+          body: formData,
+          timeout: 120000,
         },
         t,
       );

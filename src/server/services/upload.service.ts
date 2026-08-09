@@ -6,13 +6,16 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const uploadImage = async (file: File): Promise<string> => {
+export const uploadImage = async (
+  file: File,
+  path: string,
+): Promise<string> => {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
   return new Promise((resolve, reject) => {
     cloudinary.uploader
-      .upload_stream({ folder: "packing_approval" }, (error, result) => {
+      .upload_stream({ folder: path }, (error, result) => {
         if (error || !result) {
           reject(error || new Error("Failed to upload image"));
         } else {
@@ -23,20 +26,17 @@ export const uploadImage = async (file: File): Promise<string> => {
   });
 };
 
-export const updateImage = async (url: string, file: File): Promise<string> => {
-  const publicId = url
-    .split("/")
-    .slice(-2)
-    .join("/")
-    .replace(/\.[^/.]+$/, "");
-
+export const updateImage = async (
+  file: File,
+  public_id: string,
+): Promise<string> => {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
   return new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
-        { folder: "packing_approval", public_id: publicId, overwrite: true },
+        { public_id: public_id, overwrite: true },
         (error, result) => {
           if (error || !result) {
             reject(error || new Error("Failed to update image"));
@@ -49,11 +49,21 @@ export const updateImage = async (url: string, file: File): Promise<string> => {
   });
 };
 
-export const deleteImage = async (url: string): Promise<void> => {
-  const publicId = url
-    .split("/")
-    .slice(-2)
-    .join("/")
-    .replace(/\.[^/.]+$/, "");
-  await cloudinary.uploader.destroy(publicId);
+export const cloneImageFromUrl = async (
+  imageUrl: string,
+  path: string,
+): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload(imageUrl, { folder: path }, (error, result) => {
+      if (error || !result) {
+        reject(error || new Error("Failed to clone image from URL"));
+      } else {
+        resolve(result.secure_url);
+      }
+    });
+  });
+};
+
+export const deleteImage = async (public_id: string): Promise<void> => {
+  await cloudinary.uploader.destroy(public_id);
 };
