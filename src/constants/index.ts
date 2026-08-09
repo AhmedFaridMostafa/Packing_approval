@@ -1,6 +1,11 @@
 import { GoogleIcon } from "@/components/auth/auth-icons";
+import type { Accept } from "react-dropzone";
 
 export const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+export const DEFAULT_ACCEPT: Accept = {
+  "image/*": [".png", ".jpg", ".jpeg", ".webp", ".svg"],
+};
 
 export const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",

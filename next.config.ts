@@ -12,11 +12,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "flagcdn.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
         hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },

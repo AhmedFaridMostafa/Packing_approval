@@ -85,3 +85,23 @@ export const formatDate = (dateString: string, isRTL: boolean) => {
     return dateString;
   }
 };
+
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
+
+export const formatFileSize = (bytes: number) => {
+  if (bytes < 1024) return `${bytes} B`;
+
+  const kb = bytes / 1024;
+
+  if (kb < 1024) return `${Math.round(kb)} KB`;
+
+  return `${(kb / 1024).toFixed(1)} MB`;
+};
+
+export const truncateFileName = (name: string, maxLength = 20) => {
+  if (name.length <= maxLength) return name;
+  const extension = name.includes(".") ? name.slice(name.lastIndexOf(".")) : "";
+  const baseName = name.slice(0, name.length - extension.length);
+  const availableLength = Math.max(1, maxLength - extension.length - 3);
+  return `${baseName.slice(0, availableLength)}...${extension}`;
+};
