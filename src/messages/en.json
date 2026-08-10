@@ -560,6 +560,14 @@
     "title": "Add New Country",
     "subtitle": "Create a new country record with English & Arabic names and flag image URL."
   },
+  "EditCountryPage": {
+    "meta_data": {
+      "title": "Edit Country | Admin Panel",
+      "description": "Edit operational country details and flag image."
+    },
+    "title": "Edit Country",
+    "subtitle": "Update country details, English & Arabic names and flag image."
+  },
 
   "CreateAndUpdateCountry": {
     "form": {
@@ -632,6 +640,7 @@
     },
     "actions": {
       "view": "View Regions",
+      "edit": "Edit",
       "delete": "Delete Country",
       "cancel": "Cancel Delete",
       "delete_confirm_title": "Delete Country",
