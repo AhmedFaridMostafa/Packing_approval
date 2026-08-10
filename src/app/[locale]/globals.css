@@ -483,13 +483,13 @@
     /* Header Line */
     &::before {
       content: "";
-      @apply absolute bottom-0 -left-3.75 h-1 w-[calc(100%+30px)] bg-[var(--primary)];
+      @apply bg-primary absolute bottom-0 -left-3.75 h-1 w-[calc(100%+30px)];
     }
 
     /* Header Dot */
     &::after {
       content: "";
-      @apply absolute bottom-0 left-2/4 block h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-[var(--primary)] bg-[var(--card)];
+      @apply border-primary bg-card absolute bottom-0 left-2/4 block h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border-4;
     }
   }
 
