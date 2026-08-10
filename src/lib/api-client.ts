@@ -40,5 +40,31 @@ export const apiClient = {
         t,
       );
     },
+    updateCountry: async (
+      data: {
+        slug: string;
+        name_en?: string;
+        name_ar?: string;
+        flag_url?: string;
+        image_file?: File;
+      },
+      t?: TranslateFn,
+    ) => {
+      const formData = new FormData();
+      if (data.name_en) formData.append("name_en", data.name_en);
+      if (data.name_ar) formData.append("name_ar", data.name_ar);
+      if (data.flag_url) formData.append("flag_url", data.flag_url);
+      if (data.image_file) formData.append("image_file", data.image_file);
+
+      return fetchHandler<CountryDetail>(
+        `${API_BASE_URL}${ROUTES.COUNTRY_API(data.slug)}`,
+        {
+          method: "PUT",
+          body: formData,
+          timeout: 120000,
+        },
+        t,
+      );
+    },
   },
 };

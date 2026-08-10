@@ -187,7 +187,7 @@ export const deleteUserSchema = z.object({
 
 export const apiCountrySchema = (t: TranslateFn) =>
   z.object({
-    id: z.number().optional(),
+    slug: slugSchema(t).optional(),
     name_en: z.string().min(1, t("name_en_required")),
     name_ar: z.string().min(1, t("name_ar_required")),
     flag_url: z.union([z.url(t("invalid_url")), z.literal("")]).optional(),

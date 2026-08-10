@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   getCountries,
   createCountry,
+  updateCountry,
   deleteCountry,
 } from "@/server/services/country.service";
 import {

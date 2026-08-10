@@ -124,6 +124,35 @@ export const createCountry = async (data: {
   return newCountry;
 };
 
+export const updateCountry = async ({
+  slug,
+  name_en,
+  name_ar,
+  flag_url,
+}: {
+  slug: string;
+  name_en: string;
+  name_ar: string;
+  flag_url?: string | undefined;
+}) => {
+  const updateFields: Record<string, any> = {
+    updated_at: new Date(),
+    slug: slugify(name_en, { lower: true, trim: true }),
+    name_en: name_en,
+    name_ar: name_ar,
+  };
+
+  if (flag_url !== undefined) updateFields.flag_url = flag_url;
+
+  const [updatedRecord] = await db
+    .update(country)
+    .set(updateFields)
+    .where(and(eq(country.slug, slug), isNull(country.deleted_at)))
+    .returning();
+
+  return updatedRecord;
+};
+
 export const deleteCountry = async (id: number) => {
   const [deletedRecord] = await db
     .update(country)
