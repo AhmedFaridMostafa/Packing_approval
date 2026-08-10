@@ -92,7 +92,7 @@ const CountryRow = ({ country, isRTL, labels }: CountryRowProps) => {
             </Link>
           </Button>
 
-          <DeleteCountryButton id={country.id} labels={labels} />
+          <DeleteCountryButton slug={country.slug} labels={labels} />
         </div>
       </TableCell>
     </TableRow>

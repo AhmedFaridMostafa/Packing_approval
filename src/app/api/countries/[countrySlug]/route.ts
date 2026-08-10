@@ -1,4 +1,5 @@
 import {
+  deleteCountry,
   getCountryWithRegions,
   updateCountry,
 } from "@/server/services/country.service";
@@ -83,6 +84,37 @@ export async function PUT(
 
     return apiSuccess(data);
   } catch (error) {
+    return handleApiError(error, t);
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ countrySlug?: string }> },
+) {
+  const [t, { countrySlug }] = await Promise.all([
+    getTranslations("Validation"),
+    params,
+  ]);
+  try {
+    const auth = await checkApiAdmin(request.headers);
+
+    if (!auth.authorized) {
+      return NextResponse.json(
+        { success: false, data: null, error: t("unauthorized") },
+        { status: 401 },
+      );
+    }
+
+    const validation = countryParamsSchema(t).parse({ countrySlug });
+
+    const deleted = await deleteCountry(validation.countrySlug);
+
+    revalidateTag("countries", { expire: 0 });
+    revalidateTag(`country-${deleted.slug}`, { expire: 0 });
+
+    return apiSuccess(deleted);
+  } catch (error: unknown) {
     return handleApiError(error, t);
   }
 }

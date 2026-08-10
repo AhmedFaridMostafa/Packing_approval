@@ -153,11 +153,11 @@ export const updateCountry = async ({
   return updatedRecord;
 };
 
-export const deleteCountry = async (id: number) => {
+export const deleteCountry = async (slug: string) => {
   const [deletedRecord] = await db
     .update(country)
     .set({ deleted_at: new Date() })
-    .where(and(eq(country.id, id), isNull(country.deleted_at)))
+    .where(and(eq(country.slug, slug), isNull(country.deleted_at)))
     .returning();
 
   return deletedRecord;

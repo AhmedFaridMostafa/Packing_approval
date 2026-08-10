@@ -6,15 +6,6 @@ const API_BASE_URL =
 
 export const apiClient = {
   countries: {
-    deleteCountry: async (id: number, t?: TranslateFn) => {
-      return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${API_ROUTES.COUNTRIES}?id=${id}`,
-        {
-          method: "DELETE",
-        },
-        t,
-      );
-    },
     createCountry: async (
       data: {
         name_en: string;
@@ -62,6 +53,15 @@ export const apiClient = {
           method: "PUT",
           body: formData,
           timeout: 120000,
+        },
+        t,
+      );
+    },
+    deleteCountry: async (slug: string, t?: TranslateFn) => {
+      return fetchHandler<CountryDetail>(
+        `${API_BASE_URL}${API_ROUTES.COUNTRY(slug)}`,
+        {
+          method: "DELETE",
         },
         t,
       );

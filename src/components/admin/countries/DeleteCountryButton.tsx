@@ -26,7 +26,7 @@ import {
 import { useTranslations } from "next-intl";
 
 interface DeleteCountryButtonProps {
-  id: number;
+  slug: string;
   labels: {
     delete: string;
     cancel: string;
@@ -37,7 +37,7 @@ interface DeleteCountryButtonProps {
   };
 }
 
-const DeleteCountryButton = ({ id, labels }: DeleteCountryButtonProps) => {
+const DeleteCountryButton = ({ slug, labels }: DeleteCountryButtonProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const validationT = useTranslations("Validation");
@@ -46,7 +46,7 @@ const DeleteCountryButton = ({ id, labels }: DeleteCountryButtonProps) => {
     startTransition(async () => {
       try {
         const response = await apiClient.countries.deleteCountry(
-          id,
+          slug,
           validationT,
         );
 

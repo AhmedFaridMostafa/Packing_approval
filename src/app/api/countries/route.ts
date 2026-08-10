@@ -76,35 +76,3 @@ export async function POST(request: Request) {
     return handleApiError(error, t);
   }
 }
-
-export async function DELETE(request: Request) {
-  const t = await getTranslations("Validation");
-  try {
-    const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("unauthorized") },
-        { status: 401 },
-      );
-    }
-
-    const { searchParams } = new URL(request.url);
-    const idStr = searchParams.get("id");
-
-    if (!idStr) {
-      return NextResponse.json(
-        { success: false, data: null, error: "ID is required" },
-        { status: 400 },
-      );
-    }
-
-    const deleted = await deleteCountry(parseInt(idStr));
-
-    revalidateTag("countries", { expire: 0 });
-    revalidateTag(`country-${deleted.slug}`, { expire: 0 });
-
-    return apiSuccess(deleted);
-  } catch (error: unknown) {
-    return handleApiError(error, t);
-  }
-}
