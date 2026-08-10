@@ -26,7 +26,7 @@ const CountryForm = ({ mode, country, regionsCounts }: CountryFormProps) => {
   const form = useForm<CountryFormValues>({
     resolver: zodResolver(apiCountrySchema(validationT)),
     defaultValues: {
-      id: country?.id ?? undefined,
+      slug: country?.slug ?? undefined,
       name_en: country?.name_en ?? "",
       name_ar: country?.name_ar ?? "",
       flag_url: country?.flag_url ?? "",

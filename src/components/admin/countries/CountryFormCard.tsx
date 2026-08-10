@@ -34,7 +34,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
       const response = await (mode === "create"
         ? apiClient.countries.createCountry(data, validationT)
         : apiClient.countries.updateCountry(
-            { id: data.id!, ...data },
+            { slug: data.slug!, ...data },
             validationT,
           ));
       if (response.success) {

@@ -53,6 +53,7 @@ const AdminCountriesTable = ({
                 isRTL={isRTL}
                 labels={{
                   view: t("actions.view"),
+                  edit: t("actions.edit"),
                   delete: t("actions.delete"),
                   cancel: t("actions.cancel"),
                   confirmTitle: t("actions.delete_confirm_title"),

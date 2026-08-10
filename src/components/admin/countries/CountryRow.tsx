@@ -1,4 +1,4 @@
-import { Eye, FileText, Globe, MapPin } from "lucide-react";
+import { Eye, FileText, Globe, MapPin, Pencil } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
 
@@ -17,6 +17,7 @@ interface CountryRowProps {
   validationT?: TranslateFn;
   labels: {
     view: string;
+    edit?: string;
     delete: string;
     cancel: string;
     confirmTitle: string;
@@ -81,6 +82,13 @@ const CountryRow = ({ country, isRTL, labels }: CountryRowProps) => {
             <Link href={ROUTES.COUNTRY(country.slug)}>
               <Eye className="mr-1 h-4 w-4" />
               {labels.view}
+            </Link>
+          </Button>
+
+          <Button variant="outline" size="sm" asChild>
+            <Link href={ROUTES.ADMIN_PANEL_COUNTRIES_EDIT(country.slug)}>
+              <Pencil className="mr-1 h-4 w-4" />
+              {labels.edit ?? "Edit"}
             </Link>
           </Button>
 
