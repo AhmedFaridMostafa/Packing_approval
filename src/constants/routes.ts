@@ -1,31 +1,68 @@
 export const ROUTES = {
   HOME: "/",
-  HOME_API: "/home",
+
   SIGN_IN: "/sign-in",
   SIGN_UP: "/sign-up",
   VERIFY_EMAIL: "/verify-email",
   FORGET_PASSWORD: "/forget-password",
   RESET_PASSWORD: "/reset-password",
+
   PROFILE: (id: string) => `/profile/${id}`,
+
   CONTACT: "/contact",
+
   COUNTRIES: "/countries",
-  COUNTRIES_API: "/countries",
-  COUNTRY: (slug: string) => `/countries/${slug}`,
-  COUNTRY_API: (slug: string) => `/countries/${slug}`,
-  REGION: (countrySlug: string, RegionSlug: string) =>
-    `/countries/${countrySlug}/${RegionSlug}`,
+  COUNTRY: (countrySlug: string) => `/countries/${countrySlug}`,
+  REGION: (countrySlug: string, regionSlug: string) =>
+    `/countries/${countrySlug}/${regionSlug}`,
 
   REGIONS: "/regions",
-  REGIONS_API: "/regions",
-  ADMIN_PANEL: "/admin",
-  ADMIN_PANEL_REGIONS: "/admin/regions",
-  ADMIN_PANEL_REGIONS_ADD: "/admin/regions/add",
-  ADMIN_PANEL_COUNTRIES: "/admin/countries",
-  ADMIN_PANEL_COUNTRIES_ADD: "/admin/countries/add",
-  ADMIN_PANEL_COUNTRIES_EDIT: (slug: string) => `/admin/countries/edit/${slug}`,
-  ADMIN_PANEL_CATEGORIES_ADD: "/admin/categories/add",
-  ADMIN_PANEL_PACKING_WAYS_ADD: "/admin/packing-ways/add",
-  ADMIN_PANEL_CATEGORIES_REORDER: "/admin/categories/reorder",
-  ADMIN_PANEL_History: "/admin/history",
-  ADMIN_PANEL_Users: "/admin/users",
+
+  ADMIN: "/admin",
+  ADMIN_REGIONS: "/admin/regions",
+  ADMIN_REGIONS_ADD: "/admin/regions/add",
+
+  ADMIN_COUNTRIES: "/admin/countries",
+  ADMIN_COUNTRIES_ADD: "/admin/countries/add",
+  ADMIN_COUNTRIES_EDIT: (countrySlug: string) =>
+    `/admin/countries/edit/${countrySlug}`,
+
+  ADMIN_CATEGORIES_ADD: "/admin/categories/add",
+  ADMIN_CATEGORIES_REORDER: "/admin/categories/reorder",
+
+  ADMIN_PACKING_WAYS_ADD: "/admin/packing-ways/add",
+
+  ADMIN_HISTORY: "/admin/history",
+  ADMIN_USERS: "/admin/users",
+} as const;
+
+export const API_ROUTES = {
+  HOME: "/api/home",
+
+  AUTH: "/api/auth",
+
+  COUNTRIES: "/api/countries",
+  COUNTRY: (countrySlug: string) => `/api/countries/${countrySlug}`,
+  REGION: (countrySlug: string, regionSlug: string) =>
+    `/api/countries/${countrySlug}/${regionSlug}`,
+
+  REGIONS: "/api/regions",
+  REGION_BY_ID: (id: string) => `/api/regions/${id}`,
+
+  CATEGORIES: "/api/categories",
+  CATEGORIES_REORDER: "/api/categories/reorder",
+
+  PACKING_WAYS: "/api/packing-ways",
+  PACKING_WAY: (id: string) => `/api/packing-ways/${id}`,
+
+  PROFILE: "/api/profile",
+
+  USERS: "/api/users",
+  USER: (id: string) => `/api/users/${id}`,
+  USER_BAN: (id: string) => `/api/users/${id}/ban`,
+  USER_PASSWORD: (id: string) => `/api/users/${id}/password`,
+
+  PACKING_HISTORY: "/api/packing-history",
+
+  ADMIN_DASHBOARD: "/api/admin/dashboard",
 } as const;

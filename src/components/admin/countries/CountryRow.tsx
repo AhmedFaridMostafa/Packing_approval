@@ -86,7 +86,7 @@ const CountryRow = ({ country, isRTL, labels }: CountryRowProps) => {
           </Button>
 
           <Button variant="outline" size="sm" asChild>
-            <Link href={ROUTES.ADMIN_PANEL_COUNTRIES_EDIT(country.slug)}>
+            <Link href={ROUTES.ADMIN_COUNTRIES_EDIT(country.slug)}>
               <Pencil className="mr-1 h-4 w-4" />
               {labels.edit ?? "Edit"}
             </Link>

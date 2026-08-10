@@ -35,7 +35,7 @@ const AllRegionsTitle = ({ t, totalItems, isAdmin }: AllRegionsTitleProps) => {
           className="bg-primary text-primary-foreground hover:bg-brand-hover rounded-xl px-5 py-2.5 font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5"
         >
           <Link
-            href={ROUTES.ADMIN_PANEL_REGIONS_ADD}
+            href={ROUTES.ADMIN_REGIONS_ADD}
             className="inline-flex items-center gap-2"
           >
             <Plus className="h-5 w-5" />

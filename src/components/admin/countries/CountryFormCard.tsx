@@ -39,7 +39,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
           ));
       if (response.success) {
         toast.success(t(`${mode}.success`));
-        router.push(ROUTES.ADMIN_PANEL_COUNTRIES);
+        router.push(ROUTES.ADMIN_COUNTRIES);
         router.refresh();
       } else {
         toast.error(response.error?.message || t(`${mode}.error`));

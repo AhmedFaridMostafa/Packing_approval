@@ -71,7 +71,7 @@ const AdminCountriesPage = async ({
           asChild
           className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-11 shrink-0 items-center gap-2 rounded-xl font-semibold shadow-sm"
         >
-          <Link href={ROUTES.ADMIN_PANEL_COUNTRIES_ADD}>
+          <Link href={ROUTES.ADMIN_COUNTRIES_ADD}>
             <Plus className="h-5 w-5" />
             {t("add_country")}
           </Link>

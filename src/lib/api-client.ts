@@ -1,14 +1,14 @@
-import { ROUTES } from "@/constants/routes";
+import { API_ROUTES } from "@/constants/routes";
 import { fetchHandler } from "./fetch-handler";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3000/api";
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3000";
 
 export const apiClient = {
   countries: {
     deleteCountry: async (id: number, t?: TranslateFn) => {
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${ROUTES.COUNTRIES_API}?id=${id}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRIES}?id=${id}`,
         {
           method: "DELETE",
         },
@@ -31,7 +31,7 @@ export const apiClient = {
       if (data.image_file) formData.append("image_file", data.image_file);
 
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${ROUTES.COUNTRIES_API}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRIES}`,
         {
           method: "POST",
           body: formData,
@@ -57,7 +57,7 @@ export const apiClient = {
       if (data.image_file) formData.append("image_file", data.image_file);
 
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${ROUTES.COUNTRY_API(data.slug)}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRY(data.slug)}`,
         {
           method: "PUT",
           body: formData,

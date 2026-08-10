@@ -45,7 +45,7 @@ const DropdownMenuAvatar = async () => {
             <DropdownMenuItem>
               <Link
                 className="flex items-center justify-between gap-1.5"
-                href={ROUTES.ADMIN_PANEL}
+                href={ROUTES.ADMIN}
               >
                 <ShieldUser />
                 {t("adminPanel")}

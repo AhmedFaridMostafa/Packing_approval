@@ -12,38 +12,38 @@ import {
 export const adminNavigation = [
   {
     key: "dashboard",
-    href: ROUTES.ADMIN_PANEL,
+    href: ROUTES.ADMIN,
     icon: LayoutDashboard,
     exact: true,
   },
   {
     key: "countries",
-    href: ROUTES.ADMIN_PANEL_COUNTRIES,
+    href: ROUTES.ADMIN_COUNTRIES,
     icon: Globe,
   },
   {
     key: "regions",
-    href: ROUTES.ADMIN_PANEL_REGIONS,
+    href: ROUTES.ADMIN_REGIONS,
     icon: MapPin,
   },
   {
     key: "categories",
-    href: ROUTES.ADMIN_PANEL_CATEGORIES_REORDER,
+    href: ROUTES.ADMIN_CATEGORIES_REORDER,
     icon: FolderTree,
   },
   {
     key: "packingWays",
-    href: ROUTES.ADMIN_PANEL_PACKING_WAYS_ADD,
+    href: ROUTES.ADMIN_PACKING_WAYS_ADD,
     icon: Package,
   },
   {
     key: "history",
-    href: ROUTES.ADMIN_PANEL_History,
+    href: ROUTES.ADMIN_HISTORY,
     icon: History,
   },
   {
     key: "users",
-    href: ROUTES.ADMIN_PANEL_Users,
+    href: ROUTES.ADMIN_USERS,
     icon: Users,
   },
 ] as const;

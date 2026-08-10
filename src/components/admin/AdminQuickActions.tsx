@@ -11,27 +11,27 @@ const AdminQuickActions = ({ t }: AdminQuickActionsProps) => {
   const actions = [
     {
       title: t("quickActions.addCountry"),
-      href: ROUTES.ADMIN_PANEL_COUNTRIES_ADD,
+      href: ROUTES.ADMIN_COUNTRIES_ADD,
       icon: Globe,
     },
     {
       title: t("quickActions.addRegion"),
-      href: ROUTES.ADMIN_PANEL_REGIONS_ADD,
+      href: ROUTES.ADMIN_REGIONS_ADD,
       icon: MapPin,
     },
     {
       title: t("quickActions.addCategory"),
-      href: ROUTES.ADMIN_PANEL_CATEGORIES_ADD,
+      href: ROUTES.ADMIN_CATEGORIES_ADD,
       icon: FolderTree,
     },
     {
       title: t("quickActions.addPackingWay"),
-      href: ROUTES.ADMIN_PANEL_PACKING_WAYS_ADD,
+      href: ROUTES.ADMIN_PACKING_WAYS_ADD,
       icon: Package,
     },
     {
       title: t("quickActions.reorderCategories"),
-      href: ROUTES.ADMIN_PANEL_CATEGORIES_REORDER,
+      href: ROUTES.ADMIN_CATEGORIES_REORDER,
       icon: ArrowUpDown,
     },
   ];
