@@ -24,6 +24,7 @@ export const ROUTES = {
 
   ADMIN_COUNTRIES: "/admin/countries",
   ADMIN_COUNTRIES_ADD: "/admin/countries/add",
+  ADMIN_COUNTRIES_DELETED: "/admin/countries/deleted",
   ADMIN_COUNTRIES_EDIT: (countrySlug: string) =>
     `/admin/countries/edit/${countrySlug}`,
 
@@ -42,6 +43,9 @@ export const API_ROUTES = {
   AUTH: "/api/auth",
 
   COUNTRIES: "/api/countries",
+  COUNTRIES_DELETED: "/api/countries/deleted",
+  COUNTRY_RESTORE: (countrySlug: string) =>
+    `/api/countries/${countrySlug}/restore`,
   COUNTRY: (countrySlug: string) => `/api/countries/${countrySlug}`,
   REGION: (countrySlug: string, regionSlug: string) =>
     `/api/countries/${countrySlug}/${regionSlug}`,

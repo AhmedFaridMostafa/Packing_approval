@@ -568,6 +568,27 @@
     "title": "Edit Country",
     "subtitle": "Update country details, English & Arabic names and flag image."
   },
+  "DeleteCountryPage": {
+    "meta_data": {
+      "title": "Delete Country | Admin Panel",
+      "description": "Confirm deletion of operational country and review affected regions and guidelines."
+    },
+    "title": "Delete Country",
+    "subtitle": "Review operational impact and confirm soft deletion of country record.",
+    "warning_title": "Warning: Irreversible Operational Impact",
+    "warning_desc": "Soft-deleting this country will disable access to all associated operational regions and packing guidelines across field applications.",
+    "impact_summary": "Impact Analysis",
+    "regions_count_label": "Operational Regions Affected",
+    "guidelines_count_label": "Packing Guidelines Affected",
+    "confirm_label": "Type country name '{name}' to enable deletion:",
+    "confirm_placeholder": "Type exact country name",
+    "submit_button": "Delete Country Permanently",
+    "submitting": "Deleting Country...",
+    "cancel_button": "Cancel & Return",
+    "success": "Country deleted successfully",
+    "error": "Failed to delete country",
+    "back_to_list": "Back to Countries List"
+  },
 
   "CreateAndUpdateCountry": {
     "form": {
@@ -630,6 +651,7 @@
     "title": "Countries Management",
     "subtitle": "Overview of all operational countries, region counts, and management actions.",
     "add_country": "Add Country",
+    "deleted_countries": "Deleted Archive",
     "search_placeholder": "Search by country name...",
     "table": {
       "country": "Country",
@@ -651,6 +673,34 @@
     "empty": {
       "title": "No countries found",
       "description": "Try adjusting your search query or add a new country."
+    }
+  },
+
+  "DeletedCountriesPage": {
+    "meta_data": {
+      "title": "Deleted Countries Archive | Admin Panel",
+      "description": "View previously soft-deleted countries and restore them."
+    },
+    "title": "Deleted Countries Archive",
+    "subtitle": "Overview of soft-deleted country records with option to restore.",
+    "active_countries": "Active Countries",
+    "search_placeholder": "Search deleted countries...",
+    "table": {
+      "country": "Country",
+      "slug": "Slug",
+      "deleted_at": "Deleted At",
+      "regions_count": "Regions",
+      "guidelines_count": "Guidelines",
+      "actions": "Actions"
+    },
+    "actions": {
+      "restore": "Restore",
+      "restore_success": "Country restored successfully!",
+      "restore_error": "Failed to restore country"
+    },
+    "empty": {
+      "title": "No deleted countries",
+      "description": "There are no soft-deleted countries in the archive."
     }
   }
 }

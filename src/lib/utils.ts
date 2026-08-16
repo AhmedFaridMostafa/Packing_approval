@@ -71,7 +71,10 @@ export const getInitials = (nameStr: string) => {
     .toUpperCase();
 };
 
-export const formatDate = (dateString: string, isRTL: boolean) => {
+export const formatDate = (
+  dateString: string | Date,
+  isRTL: boolean,
+): string => {
   try {
     const date = new Date(dateString);
     return date.toLocaleDateString(isRTL ? "ar-EG" : "en-US", {
@@ -82,7 +85,7 @@ export const formatDate = (dateString: string, isRTL: boolean) => {
       minute: "2-digit",
     });
   } catch {
-    return dateString;
+    return "—";
   }
 };
 

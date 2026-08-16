@@ -1,61 +1,61 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Archive, Globe, Plus } from "lucide-react";
-import { api } from "@/lib/api";
+import { Archive, ArrowLeft, ArrowRight, Globe } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 import { Button } from "@/components/ui/button";
 import Pagination from "@/components/shared/Pagination";
-import AdminCountriesTable from "@/components/admin/countries/AdminCountriesTable";
+import DeletedCountriesTable from "@/components/admin/countries/DeletedCountriesTable";
 import GlobalSearch from "@/components/shared/GlobalSearch";
+import { api } from "@/lib/api";
+import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminCountriesPage.meta_data");
+  const t = await getTranslations("DeletedCountriesPage.meta_data");
   return {
     title: t("title"),
     description: t("description"),
   };
 }
 
-interface AdminCountriesPageProps {
-  searchParams: Promise<{ search_query?: string; page?: string }>;
-}
-
-const AdminCountriesPage = async ({
-  searchParams,
-}: AdminCountriesPageProps) => {
-  const [{ search_query, page }, t, validationT, locale] = await Promise.all([
-    searchParams,
-    getTranslations("AdminCountriesPage"),
-    getTranslations("Validation"),
-    getLocale(),
-  ]);
+const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
+  const [{ search_query, page }, t, validationT, locale, requestHeaders] =
+    await Promise.all([
+      searchParams,
+      getTranslations("DeletedCountriesPage"),
+      getTranslations("Validation"),
+      getLocale(),
+      headers(),
+    ]);
 
   const currentPage = page ? parseInt(page) : 1;
   const isRTL = locale === "ar";
+  const BackIcon = isRTL ? ArrowRight : ArrowLeft;
 
-  const response = await api.countries.getCountries(
+  const result = await api.countries.getDeletedCountries(
+    requestHeaders,
     search_query,
     currentPage,
     validationT,
   );
 
-  if (!response.success) {
+  if (!result.success) {
+    if (result.status === 404) notFound();
     return (
       <section className="bg-surface-container-lowest section-container flex min-h-screen items-center justify-center">
-        <p className="text-destructive text-sm">{response.error.message}</p>
+        <p className="text-destructive text-sm">{result.error.message}</p>
       </section>
     );
   }
 
-  const { countries, totalPages } = response.data;
-
+  const { countries, totalPages } = result.data;
   return (
     <div className="flex flex-col gap-6">
       {/* Page Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
-            <Globe className="h-6 w-6" />
+          <div className="bg-destructive/10 text-destructive flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
+            <Archive className="h-6 w-6" />
           </div>
           <div>
             <h1 className="font-heading text-on-surface text-2xl font-bold sm:text-3xl">
@@ -67,28 +67,16 @@ const AdminCountriesPage = async ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Button
-            asChild
-            variant="outline"
-            className="border-border flex h-11 shrink-0 items-center gap-2 rounded-xl font-semibold shadow-xs"
-          >
-            <Link href={ROUTES.ADMIN_COUNTRIES_DELETED}>
-              <Archive className="h-4 w-4" />
-              {t("deleted_countries")}
-            </Link>
-          </Button>
-
-          <Button
-            asChild
-            className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-11 shrink-0 items-center gap-2 rounded-xl font-semibold shadow-xs"
-          >
-            <Link href={ROUTES.ADMIN_COUNTRIES_ADD}>
-              <Plus className="h-5 w-5" />
-              {t("add_country")}
-            </Link>
-          </Button>
-        </div>
+        <Button
+          asChild
+          variant="outline"
+          className="border-border flex h-11 shrink-0 items-center gap-2 rounded-xl font-semibold shadow-xs"
+        >
+          <Link href={ROUTES.ADMIN_COUNTRIES}>
+            <BackIcon className="h-4 w-4" />
+            {t("active_countries")}
+          </Link>
+        </Button>
       </div>
 
       {/* Search Bar */}
@@ -111,7 +99,7 @@ const AdminCountriesPage = async ({
           </p>
         </div>
       ) : (
-        <AdminCountriesTable countries={countries} t={t} isRTL={isRTL} />
+        <DeletedCountriesTable countries={countries} t={t} isRTL={isRTL} />
       )}
 
       {/* Pagination */}
@@ -120,4 +108,4 @@ const AdminCountriesPage = async ({
   );
 };
 
-export default AdminCountriesPage;
+export default DeletedCountriesPage;
