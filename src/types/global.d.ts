@@ -59,6 +59,22 @@ interface getCountriesResponse {
   totalPages: number;
 }
 
+interface DeletedCountry {
+  id: number;
+  slug: string;
+  name_en: string;
+  name_ar: string;
+  flag_url: string | null;
+  deleted_at: Date | string;
+  region_count: number;
+  guidelines_count: number;
+}
+interface getDeletedCountriesResponse {
+  countries: DeletedCountry[];
+  totalItems: number;
+  totalPages: number;
+}
+
 interface UrlQueryParams {
   params: string;
   key: string;

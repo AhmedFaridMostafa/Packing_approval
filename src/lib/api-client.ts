@@ -66,5 +66,14 @@ export const apiClient = {
         t,
       );
     },
+    restoreCountry: async (slug: string, t?: TranslateFn) => {
+      return fetchHandler<CountryDetail>(
+        `${API_BASE_URL}${API_ROUTES.COUNTRY_RESTORE(slug)}`,
+        {
+          method: "POST",
+        },
+        t,
+      );
+    },
   },
 };

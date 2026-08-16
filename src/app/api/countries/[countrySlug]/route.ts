@@ -71,7 +71,6 @@ export async function PUT(
     } else if (validatedData.image_file && validatedData.image_file.size > 0) {
       flag_url = await uploadImage(validatedData.image_file, "countries_flags");
     }
-    console.log("flag_url", flag_url);
     const data = await updateCountry({
       slug: validatedData.slug,
       name_ar: validatedData.name_ar,

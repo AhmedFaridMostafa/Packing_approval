@@ -9,7 +9,7 @@ export const api = {
   home: {
     getHomeData: (t?: TranslateFn) =>
       fetchHandler<getHomeDataResponse>(
-        `${API_BASE_URL}/${API_ROUTES.HOME}`,
+        `${API_BASE_URL}${API_ROUTES.HOME}`,
         {},
         t,
       ),
@@ -19,7 +19,7 @@ export const api = {
       "use cache";
       cacheLife("weeks");
       cacheTag("countries");
-      const url = new URL(`${API_BASE_URL}/${API_ROUTES.COUNTRIES}`);
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.COUNTRIES}`);
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
       return await fetchHandler<getCountriesResponse>(
@@ -34,12 +34,11 @@ export const api = {
       cacheTag(`country-${slug}`);
 
       return fetchHandler<CountryWithRegionsResponse>(
-        `${API_BASE_URL}/countries/${slug}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRY(slug)}`,
         { timeout: 4000 },
         t,
       );
     },
-
     getRegionPackingData: async (
       countrySlug: string,
       regionSlug: string,
@@ -54,13 +53,31 @@ export const api = {
         t,
       );
     },
+    getDeletedCountries: async (
+      headers: Headers,
+      q?: string,
+      page?: number,
+      t?: TranslateFn,
+    ) => {
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.COUNTRIES_DELETED}`);
+      if (q) url.searchParams.set("q", q);
+      if (page) url.searchParams.set("page", String(page));
+      return await fetchHandler<getDeletedCountriesResponse>(
+        url.toString(),
+        {
+          headers: headers ? Object.fromEntries(headers.entries()) : {},
+          timeout: 4000,
+        },
+        t,
+      );
+    },
   },
   regions: {
     getRegions: async (q?: string, page?: number, t?: TranslateFn) => {
       "use cache";
       cacheLife("weeks");
       cacheTag("all-regions");
-      const url = new URL(`${API_BASE_URL}/${API_ROUTES.REGIONS}`);
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.REGIONS}`);
       url.searchParams.set("page", String(page ?? 1));
       if (q) url.searchParams.set("q", q);
       return await fetchHandler<getRegionsPaginatedResponse>(
@@ -73,7 +90,7 @@ export const api = {
   admin: {
     getDashboardData: async (headers?: Headers, t?: TranslateFn) => {
       return fetchHandler<AdminDashboardResponse>(
-        `${API_BASE_URL}/${API_ROUTES.ADMIN_DASHBOARD}`,
+        `${API_BASE_URL}${API_ROUTES.ADMIN_DASHBOARD}`,
         {
           headers: headers ? Object.fromEntries(headers.entries()) : {},
           timeout: 5000,

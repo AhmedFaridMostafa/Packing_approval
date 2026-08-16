@@ -1,7 +1,7 @@
 import { db } from "@/drizzle/db";
 import { country, region, packing } from "@/drizzle/schemas/packing.schema";
 import slugify from "slugify";
-import { and, asc, eq, ilike, isNull, or, sql, type SQL } from "drizzle-orm";
+import { and, asc, eq, ilike, isNotNull, isNull, or, sql, type SQL } from "drizzle-orm";
 import { ITEMS_PER_PAGE } from "@/constants";
 
 export const getCountries = async ({
@@ -162,3 +162,61 @@ export const deleteCountry = async (slug: string) => {
 
   return deletedRecord;
 };
+
+export const getDeletedCountries = async ({
+  searchQuery,
+  currentPage = 1,
+}: {
+  searchQuery?: string;
+  currentPage?: number;
+}) => {
+  const page = Math.max(1, currentPage);
+  const filters: SQL[] = [isNotNull(country.deleted_at)];
+
+  if (searchQuery) {
+    filters.push(
+      or(
+        ilike(country.name_en, `%${searchQuery}%`),
+        ilike(country.name_ar, `%${searchQuery}%`),
+      ) as SQL,
+    );
+  }
+
+  const rows = await db
+    .select({
+      id: country.id,
+      slug: country.slug,
+      name_en: country.name_en,
+      name_ar: country.name_ar,
+      flag_url: country.flag_url,
+      deleted_at: country.deleted_at,
+      region_count: sql<number>`cast(count(distinct ${region.id}) as integer)`,
+      guidelines_count: sql<number>`cast(count(distinct ${packing.id}) as integer)`,
+      total_count: sql<number>`cast(count(*) over() as integer)`,
+    })
+    .from(country)
+    .leftJoin(region, eq(region.country_id, country.id))
+    .leftJoin(packing, eq(packing.region_id, region.id))
+    .where(and(...filters))
+    .groupBy(country.id)
+    .orderBy(country.deleted_at)
+    .limit(ITEMS_PER_PAGE)
+    .offset((page - 1) * ITEMS_PER_PAGE);
+
+  const totalItems = rows[0]?.total_count ?? 0;
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const countries = rows.map(({ total_count: _, ...rest }) => rest);
+
+  return { countries, totalItems, totalPages };
+};
+
+export const restoreCountry = async (slug: string) => {
+  const [restoredRecord] = await db
+    .update(country)
+    .set({ deleted_at: null, updated_at: new Date() })
+    .where(and(eq(country.slug, slug), isNotNull(country.deleted_at)))
+    .returning();
+
+  return restoredRecord;
+};
+
