@@ -7,6 +7,7 @@ import { api } from "@/lib/api";
 import { checkApiAdmin } from "@/lib/auth-helpers";
 import { redirect } from "@/i18n/navigation";
 import { ROUTES } from "@/constants/routes";
+import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
   const t = await getTranslations("AdminDashboard.meta_data");
@@ -29,7 +30,15 @@ const AdminDashboardPage = async () => {
   ]);
 
   if (!authorized) redirect({ href: ROUTES.HOME, locale });
-  if (!dashboardData.success) return <div>{dashboardData?.error.message}</div>;
+
+  if (!dashboardData.success)
+    return (
+      <ErrorState
+        layout="page"
+        message={dashboardData.error.message}
+        status={dashboardData.status}
+      />
+    );
 
   const isRTL = locale === "ar";
   const userName = session?.user?.name || "Admin";
