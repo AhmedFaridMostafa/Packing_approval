@@ -7,28 +7,25 @@ const API_BASE_URL =
 
 export const api = {
   home: {
-    getHomeData: (t?: TranslateFn) =>
+    getHomeData: () =>
       fetchHandler<getHomeDataResponse>(
         `${API_BASE_URL}${API_ROUTES.HOME}`,
         {},
-        t,
       ),
   },
   countries: {
-    getCountries: async (q?: string, page?: number, t?: TranslateFn) => {
+    getCountries: async (q?: string, page?: number) => {
       "use cache";
       cacheLife("weeks");
       cacheTag("countries");
       const url = new URL(`${API_BASE_URL}${API_ROUTES.COUNTRIES}`);
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
-      return await fetchHandler<getCountriesResponse>(
-        url.toString(),
-        { timeout: 4000 },
-        t,
-      );
+      return await fetchHandler<getCountriesResponse>(url.toString(), {
+        timeout: 4000,
+      });
     },
-    getCountryWithRegions: async (slug: string, t?: TranslateFn) => {
+    getCountryWithRegions: async (slug: string) => {
       "use cache";
       cacheLife("weeks");
       cacheTag(`country-${slug}`);
@@ -36,66 +33,52 @@ export const api = {
       return fetchHandler<CountryWithRegionsResponse>(
         `${API_BASE_URL}${API_ROUTES.COUNTRY(slug)}`,
         { timeout: 4000 },
-        t,
       );
     },
-    getRegionPackingData: async (
-      countrySlug: string,
-      regionSlug: string,
-      t?: TranslateFn,
-    ) => {
+    getRegionPackingData: async (countrySlug: string, regionSlug: string) => {
       "use cache";
       cacheLife("weeks");
       cacheTag(`region-packing-${countrySlug}-${regionSlug}`);
       return fetchHandler<RegionPackingResponse>(
         `${API_BASE_URL}${API_ROUTES.REGION(countrySlug, regionSlug)}`,
         { timeout: 4000 },
-        t,
       );
     },
     getDeletedCountries: async (
       headers: Headers,
       q?: string,
       page?: number,
-      t?: TranslateFn,
     ) => {
       const url = new URL(`${API_BASE_URL}${API_ROUTES.COUNTRIES_DELETED}`);
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
-      return await fetchHandler<getDeletedCountriesResponse>(
-        url.toString(),
-        {
-          headers: headers ? Object.fromEntries(headers.entries()) : {},
-          timeout: 4000,
-        },
-        t,
-      );
+      return await fetchHandler<getDeletedCountriesResponse>(url.toString(), {
+        headers: headers ? Object.fromEntries(headers.entries()) : {},
+        timeout: 4000,
+      });
     },
   },
   regions: {
-    getRegions: async (q?: string, page?: number, t?: TranslateFn) => {
+    getRegions: async (q?: string, page?: number) => {
       "use cache";
       cacheLife("weeks");
       cacheTag("all-regions");
       const url = new URL(`${API_BASE_URL}${API_ROUTES.REGIONS}`);
       url.searchParams.set("page", String(page ?? 1));
       if (q) url.searchParams.set("q", q);
-      return await fetchHandler<getRegionsPaginatedResponse>(
-        url.toString(),
-        { timeout: 4000 },
-        t,
-      );
+      return await fetchHandler<getRegionsPaginatedResponse>(url.toString(), {
+        timeout: 4000,
+      });
     },
   },
   admin: {
-    getDashboardData: async (headers?: Headers, t?: TranslateFn) => {
-      return fetchHandler<AdminDashboardResponse>(
+    getDashboardData: async (headers?: Headers) => {
+      return await fetchHandler<AdminDashboardResponse>(
         `${API_BASE_URL}${API_ROUTES.ADMIN_DASHBOARD}`,
         {
           headers: headers ? Object.fromEntries(headers.entries()) : {},
           timeout: 5000,
         },
-        t,
       );
     },
   },

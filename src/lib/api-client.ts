@@ -6,15 +6,12 @@ const API_BASE_URL =
 
 export const apiClient = {
   countries: {
-    createCountry: async (
-      data: {
-        name_en: string;
-        name_ar: string;
-        flag_url?: string;
-        image_file?: File;
-      },
-      t?: TranslateFn,
-    ) => {
+    createCountry: async (data: {
+      name_en: string;
+      name_ar: string;
+      flag_url?: string;
+      image_file?: File;
+    }) => {
       const formData = new FormData();
       formData.append("name_en", data.name_en);
       formData.append("name_ar", data.name_ar);
@@ -28,9 +25,9 @@ export const apiClient = {
           body: formData,
           timeout: 120000,
         },
-        t,
       );
     },
+
     updateCountry: async (
       data: {
         slug: string;
@@ -54,25 +51,24 @@ export const apiClient = {
           body: formData,
           timeout: 120000,
         },
-        t,
       );
     },
-    deleteCountry: async (slug: string, t?: TranslateFn) => {
+
+    deleteCountry: async (slug: string) => {
       return fetchHandler<CountryDetail>(
         `${API_BASE_URL}${API_ROUTES.COUNTRY(slug)}`,
         {
           method: "DELETE",
         },
-        t,
       );
     },
-    restoreCountry: async (slug: string, t?: TranslateFn) => {
+
+    restoreCountry: async (slug: string) => {
       return fetchHandler<CountryDetail>(
         `${API_BASE_URL}${API_ROUTES.COUNTRY_RESTORE(slug)}`,
         {
           method: "POST",
         },
-        t,
       );
     },
   },
