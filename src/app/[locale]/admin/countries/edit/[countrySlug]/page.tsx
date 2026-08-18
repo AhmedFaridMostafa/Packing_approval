@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import CountryForm from "@/components/admin/countries/CountryForm";
 import { Pencil } from "lucide-react";
 import { api } from "@/lib/api";
+import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
   const t = await getTranslations("EditCountryPage.meta_data");
@@ -13,27 +14,23 @@ export async function generateMetadata() {
 }
 
 const EditCountryPage = async ({ params }: RouteParams) => {
-  const [{ countrySlug }, validationT, t] = await Promise.all([
+  const [{ countrySlug }, t] = await Promise.all([
     params,
-    getTranslations("Validation"),
     getTranslations("EditCountryPage"),
   ]);
 
   if (!countrySlug) return notFound();
 
-  const result = await api.countries.getCountryWithRegions(
-    countrySlug,
-    validationT,
-  );
+  const result = await api.countries.getCountryWithRegions(countrySlug);
 
-  if (!result.success) {
-    if (result.status === 404) notFound();
+  if (!result.success)
     return (
-      <section className="bg-surface-container-lowest section-container flex min-h-screen items-center justify-center">
-        <p className="text-destructive text-sm">{result.error.message}</p>
-      </section>
+      <ErrorState
+        layout="page"
+        status={result.status}
+        message={result.error.message}
+      />
     );
-  }
 
   return (
     <div className="flex flex-col gap-8">

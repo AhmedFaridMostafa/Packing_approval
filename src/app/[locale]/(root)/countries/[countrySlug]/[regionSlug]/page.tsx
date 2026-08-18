@@ -7,27 +7,24 @@ import { api } from "@/lib/api";
 import RegionNav from "@/components/Region/RegionNav";
 import RegionHeader from "@/components/Region/RegionHeader";
 import GuidelinesEmpty from "@/components/Region/GuidelinesEmpty";
+import ErrorState from "@/components/shared/ErrorState";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // METADATA
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const generateMetadata = async ({ params }: RouteParams) => {
-  const [{ countrySlug, regionSlug, locale }, validationT, metaT] =
-    await Promise.all([
-      params,
-      getTranslations("Validation"),
-      getTranslations("RegionPackingWaysPage.meta_data"),
-    ]);
+  const [{ countrySlug, regionSlug, locale }, t] = await Promise.all([
+    params,
+    getTranslations("RegionPackingWaysPage.meta_data"),
+  ]);
 
   const result = await api.countries.getRegionPackingData(
     countrySlug,
     regionSlug,
-    validationT,
   );
 
   if (!result.success) {
-    if (result.status === 404) notFound();
     return { title: "Error" };
   }
 
@@ -41,8 +38,8 @@ export const generateMetadata = async ({ params }: RouteParams) => {
     : result.data.region.label_name_en;
 
   return {
-    title: metaT("title", { regionName, countryName }),
-    description: metaT("description", { regionName, countryName }),
+    title: t("title", { regionName, countryName }),
+    description: t("description", { regionName, countryName }),
   };
 };
 
@@ -51,10 +48,9 @@ export const generateMetadata = async ({ params }: RouteParams) => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const RegionPackingWaysPage = async ({ params }: RouteParams) => {
-  const [{ countrySlug, regionSlug, locale }, validationT, t, requestHeaders] =
+  const [{ countrySlug, regionSlug, locale }, t, requestHeaders] =
     await Promise.all([
       params,
-      getTranslations("Validation"),
       getTranslations("RegionPackingWaysPage"),
       headers(),
     ]);
@@ -62,17 +58,16 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
   const result = await api.countries.getRegionPackingData(
     countrySlug,
     regionSlug,
-    validationT,
   );
 
-  if (!result.success) {
-    if (result.status === 404) notFound();
+  if (!result.success)
     return (
-      <section className="bg-surface-container-lowest section-container flex min-h-screen items-center justify-center">
-        <p className="text-destructive text-sm">{result.error.message}</p>
-      </section>
+      <ErrorState
+        layout="page"
+        status={result.status}
+        message={result.error.message}
+      />
     );
-  }
 
   // Authenticate session
   const session = await auth.api.getSession({ headers: requestHeaders });

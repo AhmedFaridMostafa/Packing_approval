@@ -27,16 +27,12 @@ interface CountryFormCardProps {
 const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
   const router = useRouter();
   const t = useTranslations("CreateAndUpdateCountry");
-  const validationT = useTranslations("Validation");
 
   const onSubmit = async (data: CountryFormValues) => {
     try {
       const response = await (mode === "create"
-        ? apiClient.countries.createCountry(data, validationT)
-        : apiClient.countries.updateCountry(
-            { slug: data.slug!, ...data },
-            validationT,
-          ));
+        ? apiClient.countries.createCountry(data)
+        : apiClient.countries.updateCountry({ slug: data.slug!, ...data }));
       if (response.success) {
         toast.success(t(`${mode}.success`));
         router.push(ROUTES.ADMIN_COUNTRIES);

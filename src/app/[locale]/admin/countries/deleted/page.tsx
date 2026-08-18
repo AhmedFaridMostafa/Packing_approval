@@ -9,6 +9,7 @@ import GlobalSearch from "@/components/shared/GlobalSearch";
 import { api } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
+import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
   const t = await getTranslations("DeletedCountriesPage.meta_data");
@@ -19,14 +20,14 @@ export async function generateMetadata() {
 }
 
 const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
-  const [{ search_query, page }, t, validationT, locale, requestHeaders] =
-    await Promise.all([
+  const [{ search_query, page }, t, locale, requestHeaders] = await Promise.all(
+    [
       searchParams,
       getTranslations("DeletedCountriesPage"),
-      getTranslations("Validation"),
       getLocale(),
       headers(),
-    ]);
+    ],
+  );
 
   const currentPage = page ? parseInt(page) : 1;
   const isRTL = locale === "ar";
@@ -36,17 +37,16 @@ const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
     requestHeaders,
     search_query,
     currentPage,
-    validationT,
   );
 
-  if (!result.success) {
-    if (result.status === 404) notFound();
+  if (!result.success)
     return (
-      <section className="bg-surface-container-lowest section-container flex min-h-screen items-center justify-center">
-        <p className="text-destructive text-sm">{result.error.message}</p>
-      </section>
+      <ErrorState
+        layout="page"
+        status={result.status}
+        message={result.error.message}
+      />
     );
-  }
 
   const { countries, totalPages } = result.data;
   return (

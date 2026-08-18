@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Pagination from "@/components/shared/Pagination";
 import AdminCountriesTable from "@/components/admin/countries/AdminCountriesTable";
 import GlobalSearch from "@/components/shared/GlobalSearch";
+import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
   const t = await getTranslations("AdminCountriesPage.meta_data");
@@ -23,31 +24,28 @@ interface AdminCountriesPageProps {
 const AdminCountriesPage = async ({
   searchParams,
 }: AdminCountriesPageProps) => {
-  const [{ search_query, page }, t, validationT, locale] = await Promise.all([
+  const [{ search_query, page }, t, locale] = await Promise.all([
     searchParams,
     getTranslations("AdminCountriesPage"),
-    getTranslations("Validation"),
     getLocale(),
   ]);
 
   const currentPage = page ? parseInt(page) : 1;
   const isRTL = locale === "ar";
 
-  const response = await api.countries.getCountries(
-    search_query,
-    currentPage,
-    validationT,
-  );
+  const result = await api.countries.getCountries(search_query, currentPage);
 
-  if (!response.success) {
+  if (!result.success) {
     return (
-      <section className="bg-surface-container-lowest section-container flex min-h-screen items-center justify-center">
-        <p className="text-destructive text-sm">{response.error.message}</p>
-      </section>
+      <ErrorState
+        layout="page"
+        status={result.status}
+        message={result.error.message}
+      />
     );
   }
 
-  const { countries, totalPages } = response.data;
+  const { countries, totalPages } = result.data;
 
   return (
     <div className="flex flex-col gap-6">

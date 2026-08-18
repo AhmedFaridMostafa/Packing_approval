@@ -25,7 +25,7 @@ const AdminDashboardPage = async () => {
 
   const [{ authorized, session }, dashboardData] = await Promise.all([
     checkApiAdmin(requestHeaders),
-    api.admin.getDashboardData(requestHeaders, t),
+    api.admin.getDashboardData(requestHeaders),
   ]);
 
   if (!authorized) redirect({ href: ROUTES.HOME, locale });

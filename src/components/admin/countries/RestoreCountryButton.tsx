@@ -1,7 +1,6 @@
 "use client";
 
 import { useTransition } from "react";
-import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { RotateCcw } from "lucide-react";
 import { toast } from "sonner";
@@ -22,15 +21,11 @@ interface RestoreCountryButtonProps {
 const RestoreCountryButton = ({ slug, labels }: RestoreCountryButtonProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const validationT = useTranslations("Validation");
 
   const handleRestore = () => {
     startTransition(async () => {
       try {
-        const response = await apiClient.countries.restoreCountry(
-          slug,
-          validationT,
-        );
+        const response = await apiClient.countries.restoreCountry(slug);
         if (response.success) {
           toast.success(labels.success);
           router.refresh();

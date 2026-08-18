@@ -23,7 +23,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useTranslations } from "next-intl";
 
 interface DeleteCountryButtonProps {
   slug: string;
@@ -40,15 +39,11 @@ interface DeleteCountryButtonProps {
 const DeleteCountryButton = ({ slug, labels }: DeleteCountryButtonProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const validationT = useTranslations("Validation");
 
   const handleDelete = () => {
     startTransition(async () => {
       try {
-        const response = await apiClient.countries.deleteCountry(
-          slug,
-          validationT,
-        );
+        const response = await apiClient.countries.deleteCountry(slug);
 
         if (response.success) {
           toast.success(labels.success);

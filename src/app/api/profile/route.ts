@@ -38,8 +38,8 @@ export async function PUT(request: Request) {
     let imageUrl: string | null = null;
     if (imageFile) {
       imageUrl = authCheck.session.user.image
-        ? await updateImage(authCheck.session.user.image, imageFile)
-        : await uploadImage(imageFile);
+        ? await updateImage(imageFile, `users/${authCheck.session.user.id}`)
+        : await uploadImage(imageFile, `users/${authCheck.session.user.id}`);
     }
     const body = Object.fromEntries(
       ["name", "image"].map((key) => [key, formData.get(key)]),

@@ -53,7 +53,7 @@ export async function PUT(
     }
     const formData = await request.formData();
     const imageFile = ImageSchema(t).parse(formData.get("image"));
-    const imageUrl = imageFile ? await uploadImage(imageFile) : null;
+    const imageUrl = imageFile ? await uploadImage(imageFile, "") : null;
 
     const body = Object.fromEntries(
       [
