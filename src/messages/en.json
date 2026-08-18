@@ -440,6 +440,26 @@
     "message": "Whoops! That page doesn't exist.",
     "goHome": "Go back home"
   },
+  "ErrorState": {
+    "generic": {
+      "title": "Something Went Wrong",
+      "description": "An unexpected error occurred while processing your request. Please try again."
+    },
+    "not_found": {
+      "title": "Resource Not Found",
+      "description": "The page or item you are looking for does not exist or may have been moved."
+    },
+    "unauthorized": {
+      "title": "Access Restricted",
+      "description": "You do not have the required permissions to view this content or perform this action."
+    },
+    "network": {
+      "title": "Connection Issue",
+      "description": "Unable to connect to the server. Please check your connection and try again."
+    },
+    "retry": "Try Again",
+    "go_home": "Go to Homepage"
+  },
   "CountriesPage": {
     "meta_data": {
       "title": "Browse Countries",

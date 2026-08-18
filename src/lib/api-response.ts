@@ -1,77 +1,111 @@
 import { NextResponse } from "next/server";
 import { flattenError, ZodError } from "zod";
+import { ApiError } from "./errors";
+
+function errorResponse(
+  message: string,
+  status: number,
+  details?: Record<string, string[]>,
+): APIErrorResponse {
+  return NextResponse.json(
+    {
+      success: false,
+      status,
+      error: details ? { message, details } : { message },
+    },
+    { status },
+  );
+}
 
 export function handleApiError(
   error: unknown,
   t?: TranslateFn,
 ): APIErrorResponse {
   if (error instanceof ZodError) {
-    return NextResponse.json(
-      {
-        success: false,
-        data: null,
-        error: flattenError(error),
-      },
-      { status: 400 },
+    const { fieldErrors, formErrors } = flattenError(error);
+    return errorResponse(
+      formErrors[0] ?? (t ? t("validation_error") : "Validation failed."),
+      400,
+      fieldErrors,
     );
   }
 
-  // Handle PostgreSQL database errors (unique constraint, foreign key)
-  const dbError = error as Record<string, unknown> | null;
-  if (dbError && typeof dbError === "object" && "code" in dbError) {
-    if (dbError.code === "23505") {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          error: t ? t("resource_exists") : "Resource already exists.",
-        },
-        { status: 400 },
-      );
-    }
+  if (error instanceof ApiError) {
+    return errorResponse(error.message, error.status, error.details);
+  }
 
-    if (dbError.code === "23503") {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          error: t
-            ? t("resource_referenced")
-            : "Cannot delete resource because it is referenced by other records.",
-        },
-        { status: 409 },
-      );
+  // Malformed JSON body (e.g. request.json() threw before Zod ever ran).
+  if (error instanceof SyntaxError) {
+    return errorResponse(
+      t ? t("invalid_json") : "Malformed request body.",
+      400,
+    );
+  }
+
+  // Postgres error codes: https://www.postgresql.org/docs/current/errcodes-appendix.html
+  if (error && typeof error === "object" && "code" in error) {
+    const dbError = error as { code: unknown; detail?: string };
+
+    switch (dbError.code) {
+      case "23505": // unique_violation
+        return errorResponse(
+          t ? t("resource_exists") : "Resource already exists.",
+          409,
+        );
+
+      case "23503": {
+        // foreign_key_violation — distinguish insert (referenced row missing)
+        // from delete (still referenced elsewhere) using Postgres's detail text.
+        const isMissingReference = dbError.detail?.includes(
+          "is not present in table",
+        );
+
+        return isMissingReference
+          ? errorResponse(
+              t
+                ? t("invalid_reference")
+                : "Referenced resource does not exist.",
+              400,
+            )
+          : errorResponse(
+              t
+                ? t("resource_referenced")
+                : "Cannot delete resource because it is referenced by other records.",
+              409,
+            );
+      }
+
+      case "23502": // not_null_violation
+        return errorResponse(
+          t ? t("missing_required_field") : "A required field is missing.",
+          400,
+        );
+
+      case "22P02": // invalid_text_representation (bad UUID, bad enum, etc.)
+        return errorResponse(
+          t ? t("invalid_input") : "Invalid input format.",
+          400,
+        );
     }
   }
 
-  const message =
-    error instanceof Error
-      ? error.message
-      : t
-        ? t("internal_error")
-        : "Internal Server Error";
+  // Log the real error server-side; never leak it to the client.
+  console.error("[handleApiError] Unhandled error:", error);
 
-  return NextResponse.json(
-    {
-      success: false,
-      data: null,
-      error: message,
-    },
-    { status: 500 },
-  );
+  return errorResponse(t ? t("internal_error") : "Internal Server Error", 500);
 }
 
-export function apiSuccess<T>(data: T, status = 200): APISuccessResponse<T> {
-  return NextResponse.json({ success: true, data, error: null }, { status });
+export function apiSuccess<T = null>(
+  data: T,
+  status = 200,
+): APISuccessResponse<T> {
+  return NextResponse.json({ success: true, data, status }, { status });
 }
 
 export function apiNotFound(t: TranslateFn): APIErrorResponse {
-  return NextResponse.json(
-    {
-      success: false,
-      error: { message: t("not_found") },
-      status: 404,
-    },
-    { status: 404 },
-  );
+  return errorResponse(t("not_found"), 404);
+}
+
+export function apiUnauthorized(t: TranslateFn): APIErrorResponse {
+  return errorResponse(t("unauthorized"), 401);
 }
