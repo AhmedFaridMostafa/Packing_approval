@@ -25,8 +25,8 @@ export async function fetchHandler<T>(
       headers,
       signal: AbortSignal.timeout(timeout),
     });
-
-    return await response.json();
+    const data = await response.json();
+    return { ...data, status: response.status };
   } catch (err) {
     if (err instanceof DOMException && err.name === "TimeoutError") {
       return { success: false, status: 408, error: {} };
