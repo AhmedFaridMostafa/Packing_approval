@@ -8,7 +8,7 @@ type ErrorResponse = {
   success: false;
   status: number;
   error: {
-    message: string;
+    message?: string;
     details?: Record<string, string[]>;
   };
 };
