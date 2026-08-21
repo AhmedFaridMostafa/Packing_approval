@@ -1,7 +1,10 @@
-import { NextResponse } from "next/server";
 import { restoreCountry } from "@/server/services/country.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
-import { apiSuccess, handleApiError } from "@/lib/api-response";
+import {
+  apiSuccess,
+  apiUnauthorized,
+  handleApiError,
+} from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 import { revalidateTag } from "next/cache";
 import { countryParamsSchema } from "@/lib/validations";
@@ -15,15 +18,10 @@ export async function POST(
     params,
   ]);
   try {
-    const validation = countryParamsSchema(t).parse({ countrySlug });
     const auth = await checkApiAdmin(request.headers);
+    if (!auth.authorized) return apiUnauthorized(t);
 
-    if (!auth.authorized) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("unauthorized") },
-        { status: 401 },
-      );
-    }
+    const validation = countryParamsSchema(t).parse({ countrySlug });
 
     const restored = await restoreCountry(validation.countrySlug);
     revalidateTag("countries", { expire: 0 });
@@ -31,6 +29,7 @@ export async function POST(
 
     return apiSuccess(restored);
   } catch (error: unknown) {
+    console.error(`Error in POST ${request.url}:`, error);
     return handleApiError(error, t);
   }
 }

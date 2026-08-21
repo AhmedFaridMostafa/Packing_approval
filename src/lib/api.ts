@@ -49,7 +49,9 @@ export const api = {
       q?: string,
       page?: number,
     ) => {
-      const url = new URL(`${API_BASE_URL}${API_ROUTES.COUNTRIES_DELETED}`);
+      const url = new URL(
+        `${API_BASE_URL}${API_ROUTES.COUNTRIES_ADMIN_DELETED}`,
+      );
       if (q) url.searchParams.set("q", q);
       if (page) url.searchParams.set("page", String(page));
       return await fetchHandler<getDeletedCountriesResponse>(url.toString(), {

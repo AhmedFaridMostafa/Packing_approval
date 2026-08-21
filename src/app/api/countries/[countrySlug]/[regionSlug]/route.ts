@@ -4,7 +4,7 @@ import { apiNotFound, apiSuccess, handleApiError } from "@/lib/api-response";
 import { getRegionPackingData } from "@/server/services/region.service";
 
 export async function GET(
-  _req: Request,
+  request: Request,
   {
     params,
   }: { params: Promise<{ countrySlug?: string; regionSlug?: string }> },
@@ -22,6 +22,7 @@ export async function GET(
     if (!result) return apiNotFound(t);
     return apiSuccess(result);
   } catch (error) {
+    console.error(`Error in GET ${request.url}:`, error);
     return handleApiError(error, t);
   }
 }

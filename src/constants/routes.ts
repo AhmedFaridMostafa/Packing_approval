@@ -43,9 +43,11 @@ export const API_ROUTES = {
   AUTH: "/api/auth",
 
   COUNTRIES: "/api/countries",
-  COUNTRIES_DELETED: "/api/countries/deleted",
-  COUNTRY_RESTORE: (countrySlug: string) =>
-    `/api/countries/${countrySlug}/restore`,
+  COUNTRIES_ADMIN: "/api/admin/countries",
+  COUNTRIES_ADMIN_DELETED: "/api/admin/countries/deleted",
+  COUNTRY_ADMIN: (countrySlug: string) => `/api/admin/countries/${countrySlug}`,
+  COUNTRY_ADMIN_RESTORE: (countrySlug: string) =>
+    `/api/admin/countries/${countrySlug}/restore`,
   COUNTRY: (countrySlug: string) => `/api/countries/${countrySlug}`,
   REGION: (countrySlug: string, regionSlug: string) =>
     `/api/countries/${countrySlug}/${regionSlug}`,

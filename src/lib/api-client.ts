@@ -19,7 +19,7 @@ export const apiClient = {
       if (data.image_file) formData.append("image_file", data.image_file);
 
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${API_ROUTES.COUNTRIES}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRIES_ADMIN}`,
         {
           method: "POST",
           body: formData,
@@ -45,7 +45,7 @@ export const apiClient = {
       if (data.image_file) formData.append("image_file", data.image_file);
 
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${API_ROUTES.COUNTRY(data.slug)}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRY_ADMIN(data.slug)}`,
         {
           method: "PUT",
           body: formData,
@@ -56,7 +56,7 @@ export const apiClient = {
 
     deleteCountry: async (slug: string) => {
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${API_ROUTES.COUNTRY(slug)}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRY_ADMIN(slug)}`,
         {
           method: "DELETE",
         },
@@ -65,7 +65,7 @@ export const apiClient = {
 
     restoreCountry: async (slug: string) => {
       return fetchHandler<CountryDetail>(
-        `${API_BASE_URL}${API_ROUTES.COUNTRY_RESTORE(slug)}`,
+        `${API_BASE_URL}${API_ROUTES.COUNTRY_ADMIN_RESTORE(slug)}`,
         {
           method: "POST",
         },
