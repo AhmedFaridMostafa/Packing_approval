@@ -42,7 +42,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1 || isPending}
         aria-label="Previous page"
-        className="border-border hover:bg-accent hover:text-primary rounded-xl transition-all duration-200"
+        className="border-border hover:bg-accent hover:text-primary cursor-pointer rounded-xl transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <ChevronLeft className="rtl-flip h-5 w-5" />
       </Button>
@@ -54,7 +54,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
           onClick={() => handlePageChange(page)}
           aria-label={`Page ${page}`}
           className={cn(
-            "border-border h-10 w-10 rounded-xl font-semibold transition-all duration-200",
+            "border-border h-10 w-10 cursor-pointer rounded-xl font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50",
             currentPage === page
               ? "bg-primary text-primary-foreground shadow-sm"
               : "hover:bg-accent hover:text-primary",
@@ -71,7 +71,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages || isPending}
         aria-label="Next page"
-        className="border-border hover:bg-accent hover:text-primary rounded-xl transition-all duration-200"
+        className="border-border hover:bg-accent hover:text-primary cursor-pointer rounded-xl transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <ChevronRight className="rtl-flip h-5 w-5" />
       </Button>
