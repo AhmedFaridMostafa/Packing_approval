@@ -72,4 +72,51 @@ export const apiClient = {
       );
     },
   },
+
+  regions: {
+    createRegion: async (data: {
+      country_id: number;
+      label_name_en: string;
+      label_name_ar: string;
+      account: string;
+      labels: string[];
+    }) => {
+      return fetchHandler<Region>(
+        `${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN}`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          timeout: 120000,
+        },
+      );
+    },
+
+    updateRegion: async (
+      id: number,
+      data: {
+        label_name_en?: string;
+        label_name_ar?: string;
+        account?: string;
+        labels?: string[];
+      },
+    ) => {
+      return fetchHandler<Region>(
+        `${API_BASE_URL}${API_ROUTES.REGION_ADMIN(id)}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(data),
+          timeout: 120000,
+        },
+      );
+    },
+
+    deleteRegion: async (id: number) => {
+      return fetchHandler<Region>(
+        `${API_BASE_URL}${API_ROUTES.REGION_ADMIN(id)}`,
+        {
+          method: "DELETE",
+        },
+      );
+    },
+  },
 };

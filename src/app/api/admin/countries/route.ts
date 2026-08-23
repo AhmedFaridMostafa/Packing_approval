@@ -1,4 +1,7 @@
-import { createCountry } from "@/server/services/country.service";
+import {
+  createCountry,
+  getAllActiveCountries,
+} from "@/server/services/country.service";
 import {
   cloneImageFromUrl,
   uploadImage,
@@ -12,6 +15,19 @@ import {
 } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 import { revalidateTag } from "next/cache";
+
+export async function GET(request: Request) {
+  const t = await getTranslations("Validation");
+  try {
+    const auth = await checkApiAdmin(request.headers);
+    if (!auth.authorized) return apiUnauthorized(t);
+    const countries = await getAllActiveCountries();
+    return apiSuccess(countries, 200);
+  } catch (error: unknown) {
+    console.error(`Error in GET ${request.url}:`, error);
+    return handleApiError(error, t);
+  }
+}
 
 export async function POST(request: Request) {
   const t = await getTranslations("Validation");

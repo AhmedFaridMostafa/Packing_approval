@@ -25,6 +25,15 @@ export const api = {
         timeout: 4000,
       });
     },
+    getAllActiveCountries: async (headers: Headers) => {
+      return await fetchHandler<Country[]>(
+        `${API_BASE_URL}${API_ROUTES.COUNTRIES_ADMIN}`,
+        {
+          headers: headers ? Object.fromEntries(headers.entries()) : {},
+          timeout: 4000,
+        },
+      );
+    },
     getCountryWithRegions: async (slug: string) => {
       "use cache";
       cacheLife("weeks");
@@ -38,7 +47,7 @@ export const api = {
     getRegionPackingData: async (countrySlug: string, regionSlug: string) => {
       "use cache";
       cacheLife("weeks");
-      cacheTag(`region-packing-${countrySlug}-${regionSlug}`);
+      cacheTag(`region-packing-${countrySlug}-${regionSlug}`, "regions-detail");
       return fetchHandler<RegionPackingResponse>(
         `${API_BASE_URL}${API_ROUTES.REGION(countrySlug, regionSlug)}`,
         { timeout: 4000 },
@@ -66,15 +75,24 @@ export const api = {
       cacheLife("weeks");
       cacheTag("all-regions");
       const url = new URL(`${API_BASE_URL}${API_ROUTES.REGIONS}`);
-      url.searchParams.set("page", String(page ?? 1));
+      if (page) url.searchParams.set("page", String(page));
       if (q) url.searchParams.set("q", q);
       return await fetchHandler<getRegionsPaginatedResponse>(url.toString(), {
         timeout: 4000,
       });
     },
+    getRegionById: async (headers: Headers, id: number) => {
+      return await fetchHandler<RegionDetailResponse>(
+        `${API_BASE_URL}${API_ROUTES.REGION_ADMIN(id)}`,
+        {
+          headers: headers ? Object.fromEntries(headers.entries()) : {},
+          timeout: 4000,
+        },
+      );
+    },
   },
   admin: {
-    getDashboardData: async (headers?: Headers) => {
+    getDashboardData: async (headers: Headers) => {
       return await fetchHandler<AdminDashboardResponse>(
         `${API_BASE_URL}${API_ROUTES.ADMIN_DASHBOARD}`,
         {

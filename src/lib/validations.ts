@@ -203,6 +203,33 @@ export const apiRegionSchema = (t: TranslateFn) =>
     labels: z.array(z.string()).min(1, t("labels_required")),
   });
 
+export const regionFormSchema = (t: TranslateFn) =>
+  z.object({
+    country_id: z
+      .string({ error: t("country_id_required") })
+      .min(1, { error: t("country_id_required") }),
+    label_name_en: z
+      .string({ error: t("label_name_en_required") })
+      .trim()
+      .min(1, { error: t("label_name_en_required") })
+      .max(100, { error: t("name_too_long") }),
+    label_name_ar: z
+      .string({ error: t("label_name_ar_required") })
+      .trim()
+      .min(1, { error: t("label_name_ar_required") })
+      .max(100, { error: t("name_too_long") }),
+    account: z
+      .string({ error: t("account_required") })
+      .trim()
+      .min(1, { error: t("account_required") })
+      .max(100, { error: t("name_too_long") }),
+    labels: z
+      .string({ error: t("labels_required") })
+      .trim()
+      .min(1, { error: t("labels_required") })
+      .max(300, { error: t("name_too_long") }),
+  });
+
 export const apiCategorySchema = (t: TranslateFn) =>
   z.object({
     name_en: z.string().min(1, t("name_en_required")),
@@ -257,5 +284,5 @@ export const regionParamsSchema = (t: TranslateFn) =>
 export const regionsParamsSchema = (t: TranslateFn) =>
   z.object({
     searchQuery: z.string().trim().optional(),
-    currentPage: z.number().int().positive().optional().default(1),
+    currentPage: z.coerce.number().int().positive().optional().default(1),
   });

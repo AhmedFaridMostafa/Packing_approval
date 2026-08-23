@@ -40,6 +40,15 @@ export const getRegionById = async (id: number) => {
   return existingRegion;
 };
 
+export const getRegionWithCountryById = async (id: number) => {
+  const [existingRegion] = await db
+    .select()
+    .from(region)
+    .innerJoin(country, eq(region.country_id, country.id))
+    .where(and(eq(region.id, id), isNull(region.deleted_at)));
+  return existingRegion;
+};
+
 export const createRegion = async (data: {
   country_id: number;
   label_name_en: string;

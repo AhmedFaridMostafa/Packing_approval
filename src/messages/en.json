@@ -722,5 +722,94 @@
       "title": "No deleted countries",
       "description": "There are no soft-deleted countries in the archive."
     }
+  },
+
+  "AdminRegionsPage": {
+    "meta_data": {
+      "title": "Regions Management | Admin Panel",
+      "description": "Manage packing regions across all countries, view guideline counts, edit, and create new regions."
+    },
+    "title": "Regions Management",
+    "subtitle": "Overview of all regions across countries with guideline counts and management actions.",
+    "add_region": "Add Region",
+    "search_placeholder": "Search by region, account or country...",
+    "table": {
+      "region": "Region",
+      "country": "Country",
+      "account": "Account",
+      "labels": "Labels",
+      "guidelines_count": "Guidelines",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View Guidelines",
+      "edit": "Edit",
+      "delete": "Delete Region",
+      "cancel": "Cancel Delete",
+      "delete_confirm_title": "Delete Region",
+      "delete_confirm_desc": "Are you sure you want to delete {name}? This will soft-delete the region.",
+      "delete_success": "Region deleted successfully",
+      "delete_error": "Failed to delete region"
+    },
+    "empty": {
+      "title": "No regions found",
+      "description": "Try adjusting your search query or add a new region."
+    }
+  },
+
+  "AddRegionPage": {
+    "meta_data": {
+      "title": "Add Region | Admin Panel",
+      "description": "Create a new packing region under a country with bilingual labels."
+    },
+    "title": "Add New Region",
+    "subtitle": "Define a new region with bilingual labels, an account identifier, and packaging labels."
+  },
+
+  "EditRegionPage": {
+    "meta_data": {
+      "title": "Edit Region | Admin Panel",
+      "description": "Update region details, bilingual labels, and account information."
+    },
+    "title": "Edit Region",
+    "subtitle": "Update the region's bilingual labels, account identifier, and packaging labels."
+  },
+
+  "CreateAndUpdateRegion": {
+    "form": {
+      "country_id": {
+        "label": "Country",
+        "placeholder": "Select a country"
+      },
+      "label_name_en": {
+        "label": "Label Name (English)",
+        "placeholder": "e.g. Cairo Region"
+      },
+      "label_name_ar": {
+        "label": "Label Name (Arabic)",
+        "placeholder": "e.g. منطقة القاهرة"
+      },
+      "account": {
+        "label": "Account",
+        "placeholder": "e.g. cairo-region"
+      },
+      "labels": {
+        "label": "Labels",
+        "placeholder": "e.g. Fragile, Handle with care",
+        "hint": "Separate multiple labels with commas"
+      }
+    },
+    "create": {
+      "submit": "Create Region",
+      "submitting": "Creating...",
+      "success": "Region created successfully",
+      "error": "Failed to create region"
+    },
+    "edit": {
+      "submit": "Save Changes",
+      "submitting": "Saving...",
+      "success": "Region updated successfully",
+      "error": "Failed to update region"
+    }
   }
 }

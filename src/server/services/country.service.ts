@@ -1,8 +1,22 @@
 import { db } from "@/drizzle/db";
 import { country, region, packing } from "@/drizzle/schemas/packing.schema";
 import slugify from "slugify";
-import { and, asc, eq, ilike, isNotNull, isNull, or, sql, type SQL } from "drizzle-orm";
+import {
+  and,
+  asc,
+  eq,
+  ilike,
+  isNotNull,
+  isNull,
+  or,
+  sql,
+  type SQL,
+} from "drizzle-orm";
 import { ITEMS_PER_PAGE } from "@/constants";
+
+export const getAllActiveCountries = async () => {
+  return await db.select().from(country).where(isNull(country.deleted_at));
+};
 
 export const getCountries = async ({
   searchQuery,
@@ -219,4 +233,3 @@ export const restoreCountry = async (slug: string) => {
 
   return restoredRecord;
 };
-

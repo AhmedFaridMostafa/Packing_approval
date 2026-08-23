@@ -21,6 +21,7 @@ export const ROUTES = {
   ADMIN: "/admin",
   ADMIN_REGIONS: "/admin/regions",
   ADMIN_REGIONS_ADD: "/admin/regions/add",
+  ADMIN_REGIONS_EDIT: (id: number) => `/admin/regions/edit/${id}`,
 
   ADMIN_COUNTRIES: "/admin/countries",
   ADMIN_COUNTRIES_ADD: "/admin/countries/add",
@@ -53,7 +54,8 @@ export const API_ROUTES = {
     `/api/countries/${countrySlug}/${regionSlug}`,
 
   REGIONS: "/api/regions",
-  REGION_BY_ID: (id: string) => `/api/regions/${id}`,
+  REGIONS_ADMIN: "/api/admin/regions",
+  REGION_ADMIN: (id: number) => `/api/admin/regions/${id}`,
 
   CATEGORIES: "/api/categories",
   CATEGORIES_REORDER: "/api/categories/reorder",
