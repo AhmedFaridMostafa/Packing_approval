@@ -13,15 +13,22 @@ type ErrorResponse = {
   };
 };
 
-type APIErrorResponse = NextResponse<ErrorResponse>;
-type APISuccessResponse<T = null> = NextResponse<SuccessResponse<T>>;
+type APISuccessResponse<T = null> = NextResponse<
+  Omit<SuccessResponse<T>>,
+  "status"
+>;
+type APIErrorResponse = NextResponse<Omit<ErrorResponse, "status">>;
 
-type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
 type ActionResponse<T = null> = SuccessResponse<T> | ErrorResponse;
 
 interface RouteParams {
   params: Promise<Record<string, string>>;
-  searchParams: Promise<Record<string, string>>;
+  searchParams: Promise<
+    Record<string, string> & {
+      search_query?: string;
+      page?: string;
+    }
+  >;
 }
 
 type TranslateFn = (key: string, values?: any) => string;
@@ -88,7 +95,7 @@ interface RemoveUrlQueryParams {
   pathname: string;
 }
 
-interface CountryDetail {
+interface Country {
   id: number;
   slug: string;
   name_en: string;
@@ -96,18 +103,20 @@ interface CountryDetail {
   flag_url: string | null;
 }
 
-interface RegionWithCount {
+interface Region {
   id: number;
   slug: string;
   label_name_en: string;
   label_name_ar: string;
   account: string;
   labels: string[];
+}
+interface RegionWithCount extends Region {
   guidelines_count: number;
 }
 
 interface CountryWithRegionsResponse {
-  country: CountryDetail;
+  country: Country;
   regions: RegionWithCount[];
   total_guidelines: number;
 }
@@ -134,8 +143,8 @@ interface CategoryGroup {
 }
 
 interface RegionPackingResponse {
-  country: CountryDetail;
-  region: Omit<RegionWithCount, "guidelines_count">;
+  country: Country;
+  region: Region;
   groupedPacking: CategoryGroup[];
   totalGuidelines: number;
 }
@@ -159,6 +168,11 @@ interface getRegionsPaginatedResponse {
   regions: RegionWithCountryAndCount[];
   totalItems: number;
   totalPages: number;
+}
+
+interface RegionDetailResponse {
+  region: Region;
+  country: Country;
 }
 
 interface AdminDashboardStats {

@@ -10,7 +10,6 @@ function errorResponse(
   return NextResponse.json(
     {
       success: false,
-      status,
       error: details ? { message, details } : { message },
     },
     { status },
@@ -99,7 +98,7 @@ export function apiSuccess<T = null>(
   data: T,
   status = 200,
 ): APISuccessResponse<T> {
-  return NextResponse.json({ success: true, data, status }, { status });
+  return NextResponse.json({ success: true, data }, { status });
 }
 
 export function apiNotFound(t: TranslateFn): APIErrorResponse {

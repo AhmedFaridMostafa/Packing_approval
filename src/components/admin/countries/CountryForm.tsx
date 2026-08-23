@@ -16,7 +16,7 @@ export type CountryFormValues = z.infer<ReturnType<typeof apiCountrySchema>>;
 
 interface CountryFormProps {
   mode: "create" | "edit";
-  country?: CountryDetail;
+  country?: Country;
   regionsCounts?: number;
 }
 

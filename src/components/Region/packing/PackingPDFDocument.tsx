@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
 
 interface PackingPDFDocumentProps {
   groupedPacking: CategoryGroup[];
-  country: CountryDetail;
-  region: Omit<RegionWithCount, "guidelines_count">;
+  country: Country;
+  region: Region;
 }
 
 export function PackingPDFDocument({

@@ -8,8 +8,8 @@ interface RegionPackingProps {
   isAdmin: boolean;
   generatingPdf: string;
   downloadPdfCta: string;
-  country: CountryDetail;
-  region: Omit<RegionWithCount, "guidelines_count">;
+  country: Country;
+  region: Region;
 }
 
 const RegionPacking = ({

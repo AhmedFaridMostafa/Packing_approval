@@ -5,7 +5,7 @@ import SmartImage from "@/components/shared/SmartImage";
 
 interface CountryHeaderProps {
   isRTL: boolean;
-  country: CountryDetail;
+  country: Country;
   isAdmin: boolean;
   guidelinesBadge: string;
   addRegionCta: string;

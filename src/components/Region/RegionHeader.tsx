@@ -5,7 +5,7 @@ interface RegionHeaderProps {
   regionName: string;
   guidelinesBadge: string;
   accountLabel: string;
-  region: Omit<RegionWithCount, "guidelines_count">;
+  region: Region;
 }
 
 const RegionHeader = ({

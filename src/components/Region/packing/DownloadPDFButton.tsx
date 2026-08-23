@@ -11,8 +11,8 @@ interface DownloadPDFButtonProps {
   generatingPdf: string;
   downloadPdfCta: string;
   groupedPacking: CategoryGroup[];
-  country: CountryDetail;
-  region: Omit<RegionWithCount, "guidelines_count">;
+  country: Country;
+  region: Region;
 }
 
 const DownloadPDFButton = ({
