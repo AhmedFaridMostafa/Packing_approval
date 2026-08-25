@@ -10,6 +10,7 @@ import {
   eq,
   and,
   isNull,
+  isNotNull,
   type InferInsertModel,
   asc,
   or,
@@ -110,6 +111,16 @@ export const deleteRegion = async (id: number) => {
     .returning();
 
   return deletedRegion;
+};
+
+export const restoreRegion = async (id: number) => {
+  const [restoredRegion] = await db
+    .update(region)
+    .set({ deleted_at: null, updated_at: new Date() })
+    .where(and(eq(region.id, id), isNotNull(region.deleted_at)))
+    .returning();
+
+  return restoredRegion;
 };
 
 export const getRegionPackingData = async (
@@ -283,6 +294,70 @@ export const getRegionsPaginated = async ({
     .where(and(...filters))
     .groupBy(region.id, country.id)
     .orderBy(asc(country.name_en), asc(region.label_name_en))
+    .limit(ITEMS_PER_PAGE)
+    .offset((page - 1) * ITEMS_PER_PAGE);
+
+  const totalItems = rows[0]?.total_count ?? 0;
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+  const regions = rows.map(({ total_count: _, ...rest }) => rest);
+
+  return { regions, totalItems, totalPages };
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GET DELETED REGIONS (PAGINATED + SEARCHABLE)
+// Regions whose parent country is also soft-deleted are hidden — restore the
+// country instead to bring those back.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const getDeletedRegions = async ({
+  searchQuery,
+  currentPage = 1,
+}: {
+  searchQuery?: string;
+  currentPage?: number;
+}) => {
+  const page = Math.max(1, currentPage);
+  const filters: SQL[] = [
+    isNotNull(region.deleted_at),
+    isNull(country.deleted_at),
+  ];
+
+  if (searchQuery) {
+    filters.push(
+      or(
+        ilike(region.label_name_en, `%${searchQuery}%`),
+        ilike(region.label_name_ar, `%${searchQuery}%`),
+        ilike(region.account, `%${searchQuery}%`),
+        ilike(country.name_en, `%${searchQuery}%`),
+        ilike(country.name_ar, `%${searchQuery}%`),
+      ) as SQL,
+    );
+  }
+
+  const rows = await db
+    .select({
+      id: region.id,
+      slug: region.slug,
+      label_name_en: region.label_name_en,
+      label_name_ar: region.label_name_ar,
+      account: region.account,
+      labels: region.labels,
+      deleted_at: region.deleted_at,
+      country_id: country.id,
+      country_slug: country.slug,
+      country_name_en: country.name_en,
+      country_name_ar: country.name_ar,
+      country_flag_url: country.flag_url,
+      guidelines_count: sql<number>`cast(count(distinct ${packing.id}) as integer)`,
+      total_count: sql<number>`cast(count(*) over() as integer)`,
+    })
+    .from(region)
+    .innerJoin(country, eq(region.country_id, country.id))
+    .leftJoin(packing, eq(packing.region_id, region.id))
+    .where(and(...filters))
+    .groupBy(region.id, country.id)
+    .orderBy(asc(region.deleted_at))
     .limit(ITEMS_PER_PAGE)
     .offset((page - 1) * ITEMS_PER_PAGE);
 

@@ -118,5 +118,14 @@ export const apiClient = {
         },
       );
     },
+
+    restoreRegion: async (id: number) => {
+      return fetchHandler<Region>(
+        `${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN_RESTORE(id)}`,
+        {
+          method: "POST",
+        },
+      );
+    },
   },
 };

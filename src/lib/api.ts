@@ -90,6 +90,15 @@ export const api = {
         },
       );
     },
+    getDeletedRegions: async (headers: Headers, q?: string, page?: number) => {
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN_DELETED}`);
+      if (q) url.searchParams.set("q", q);
+      if (page) url.searchParams.set("page", String(page));
+      return await fetchHandler<getDeletedRegionsResponse>(url.toString(), {
+        headers: headers ? Object.fromEntries(headers.entries()) : {},
+        timeout: 4000,
+      });
+    },
   },
   admin: {
     getDashboardData: async (headers: Headers) => {

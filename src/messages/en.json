@@ -732,6 +732,7 @@
     "title": "Regions Management",
     "subtitle": "Overview of all regions across countries with guideline counts and management actions.",
     "add_region": "Add Region",
+    "deleted_regions": "Deleted Regions",
     "search_placeholder": "Search by region, account or country...",
     "table": {
       "region": "Region",
@@ -754,6 +755,35 @@
     "empty": {
       "title": "No regions found",
       "description": "Try adjusting your search query or add a new region."
+    }
+  },
+
+  "DeletedRegionsPage": {
+    "meta_data": {
+      "title": "Deleted Regions Archive | Admin Panel",
+      "description": "View previously soft-deleted regions and restore them."
+    },
+    "title": "Deleted Regions Archive",
+    "subtitle": "Overview of soft-deleted region records with option to restore.",
+    "active_regions": "Active Regions",
+    "search_placeholder": "Search deleted regions...",
+    "table": {
+      "region": "Region",
+      "country": "Country",
+      "account": "Account",
+      "labels": "Labels",
+      "guidelines_count": "Guidelines",
+      "deleted_at": "Deleted At",
+      "actions": "Actions"
+    },
+    "actions": {
+      "restore": "Restore",
+      "restore_success": "Region restored successfully!",
+      "restore_error": "Failed to restore region"
+    },
+    "empty": {
+      "title": "No deleted regions",
+      "description": "There are no soft-deleted regions in the archive."
     }
   },
 

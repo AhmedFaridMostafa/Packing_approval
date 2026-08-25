@@ -170,6 +170,27 @@ interface getRegionsPaginatedResponse {
   totalPages: number;
 }
 
+interface DeletedRegion {
+  id: number;
+  slug: string;
+  label_name_en: string;
+  label_name_ar: string;
+  account: string;
+  labels: string[];
+  deleted_at: Date | string;
+  country_id?: number;
+  country_slug?: string;
+  country_name_en?: string;
+  country_name_ar?: string;
+  country_flag_url?: string | null;
+  guidelines_count: number;
+}
+interface getDeletedRegionsResponse {
+  regions: DeletedRegion[];
+  totalItems: number;
+  totalPages: number;
+}
+
 interface RegionDetailResponse {
   region: Region;
   country: Country;
