@@ -21,7 +21,7 @@ const AdminQuickActions = ({ t }: AdminQuickActionsProps) => {
     },
     {
       title: t("quickActions.addCategory"),
-      href: ROUTES.ADMIN_CATEGORIES_ADD,
+      href: `${ROUTES.ADMIN_CATEGORIES}?action=add`,
       icon: FolderTree,
     },
     {
@@ -31,7 +31,7 @@ const AdminQuickActions = ({ t }: AdminQuickActionsProps) => {
     },
     {
       title: t("quickActions.reorderCategories"),
-      href: ROUTES.ADMIN_CATEGORIES_REORDER,
+      href: `${ROUTES.ADMIN_CATEGORIES}?view=reorder`,
       icon: ArrowUpDown,
     },
   ];

@@ -28,7 +28,7 @@ export const adminNavigation = [
   },
   {
     key: "categories",
-    href: ROUTES.ADMIN_CATEGORIES_REORDER,
+    href: ROUTES.ADMIN_CATEGORIES,
     icon: FolderTree,
   },
   {

@@ -170,6 +170,19 @@ interface getRegionsPaginatedResponse {
   totalPages: number;
 }
 
+interface Category {
+  id: number;
+  name_en: string;
+  name_ar: string;
+  sort_order: number;
+}
+
+interface CategoryWithCount extends Category {
+  guidelines_count: number;
+}
+
+type getAdminCategoriesResponse = CategoryWithCount[];
+
 interface DeletedRegion {
   id: number;
   slug: string;

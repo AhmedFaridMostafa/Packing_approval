@@ -128,4 +128,41 @@ export const apiClient = {
       );
     },
   },
+
+  categories: {
+    createCategory: async (data: { name_en: string; name_ar: string }) => {
+      return fetchHandler<Category>(
+        `${API_BASE_URL}${API_ROUTES.CATEGORIES_ADMIN}`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        },
+      );
+    },
+
+    updateCategory: async (
+      id: number,
+      data: { name_en?: string; name_ar?: string },
+    ) => {
+      return fetchHandler<Category>(
+        `${API_BASE_URL}${API_ROUTES.CATEGORY_ADMIN(id)}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(data),
+        },
+      );
+    },
+
+    reorderCategories: async (
+      updates: { id: number; sort_order: number }[],
+    ) => {
+      return fetchHandler<{ message: string }>(
+        `${API_BASE_URL}${API_ROUTES.CATEGORIES_ADMIN_REORDER}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(updates),
+        },
+      );
+    },
+  },
 };

@@ -100,6 +100,17 @@ export const api = {
       });
     },
   },
+  categories: {
+    getAdminCategories: async (headers: Headers) => {
+      return await fetchHandler<getAdminCategoriesResponse>(
+        `${API_BASE_URL}${API_ROUTES.CATEGORIES_ADMIN}`,
+        {
+          headers: headers ? Object.fromEntries(headers.entries()) : {},
+          timeout: 4000,
+        },
+      );
+    },
+  },
   admin: {
     getDashboardData: async (headers: Headers) => {
       return await fetchHandler<AdminDashboardResponse>(

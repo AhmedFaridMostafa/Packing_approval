@@ -30,7 +30,7 @@ export const ROUTES = {
   ADMIN_COUNTRIES_EDIT: (countrySlug: string) =>
     `/admin/countries/edit/${countrySlug}`,
 
-  ADMIN_CATEGORIES_ADD: "/admin/categories/add",
+  ADMIN_CATEGORIES: "/admin/categories",
   ADMIN_CATEGORIES_REORDER: "/admin/categories/reorder",
 
   ADMIN_PACKING_WAYS_ADD: "/admin/packing-ways/add",
@@ -60,8 +60,9 @@ export const API_ROUTES = {
   REGION_ADMIN: (id: number) => `/api/admin/regions/${id}`,
   REGIONS_ADMIN_RESTORE: (id: number) => `/api/admin/regions/${id}/restore`,
 
-  CATEGORIES: "/api/categories",
-  CATEGORIES_REORDER: "/api/categories/reorder",
+  CATEGORIES_ADMIN: "/api/admin/categories",
+  CATEGORY_ADMIN: (id: number) => `/api/admin/categories/${id}`,
+  CATEGORIES_ADMIN_REORDER: "/api/admin/categories/reorder",
 
   PACKING_WAYS: "/api/packing-ways",
   PACKING_WAY: (id: string) => `/api/packing-ways/${id}`,
