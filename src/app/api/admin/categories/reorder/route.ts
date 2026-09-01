@@ -22,7 +22,7 @@ export async function PUT(request: Request) {
 
     revalidateTag("regions-detail", { expire: 0 });
 
-    return apiSuccess(null, 204);
+    return apiSuccess(null, 201);
   } catch (error: unknown) {
     console.error(`Error in PUT ${request.url}:`, error);
     return handleApiError(error, t);
