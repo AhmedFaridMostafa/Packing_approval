@@ -236,6 +236,20 @@ export const apiCategorySchema = (t: TranslateFn) =>
     name_ar: z.string().min(1, t("name_ar_required")),
   });
 
+export const categoryFormSchema = (t: TranslateFn) =>
+  z.object({
+    name_en: z
+      .string({ error: t("name_en_required") })
+      .trim()
+      .min(1, { error: t("name_en_required") })
+      .max(100, { error: t("name_too_long") }),
+    name_ar: z
+      .string({ error: t("name_ar_required") })
+      .trim()
+      .min(1, { error: t("name_ar_required") })
+      .max(100, { error: t("name_too_long") }),
+  });
+
 export const apiCategoryReorderSchema = (t: TranslateFn) =>
   z.array(
     z.object({

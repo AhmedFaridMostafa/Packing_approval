@@ -791,6 +791,62 @@
     }
   },
 
+  "AdminCategoriesPage": {
+    "meta_data": {
+      "title": "إدارة الفئات | لوحة التحكم",
+      "description": "إدارة فئات إرشادات التغليف، وتحديث الأسماء ثنائية اللغة، والتحكم في ترتيب عرضها."
+    },
+    "title": "الفئات",
+    "items_count": "{count} فئة",
+    "add_category": "إضافة فئة",
+    "reorder_categories": "إعادة ترتيب الفئات",
+    "edit_category": "تعديل الفئة",
+    "table": {
+      "name_en": "الاسم (بالإنجليزية)",
+      "name_ar": "الاسم (بالعربية)",
+      "sort_order": "ترتيب العرض",
+      "guidelines_count": "الإرشادات",
+      "actions": "الإجراءات"
+    },
+    "reorder": {
+      "title": "ترتيب الفئات",
+      "subtitle": "اسحب وأفلت الفئات لتحديد ترتيب ظهورها في صفحات إرشادات التغليف العامة.",
+      "list_header": "الفئة (إنجليزي / عربي)",
+      "rank_header": "الترتيب",
+      "discard": "تجاهل",
+      "save_changes": "حفظ التغييرات",
+      "unsaved_banner": "لديك تغييرات في الترتيب لم يتم حفظها.",
+      "save_success": "تم تحديث ترتيب الفئات بنجاح!",
+      "save_error": "فشل تحديث ترتيب الفئات",
+      "drag_handle": "اسحب {name}"
+    },
+    "dialog": {
+      "create": {
+        "title": "إضافة فئة",
+        "description": "إنشاء فئة عرض جديدة بالاسمين الإنجليزي والعربي.",
+        "submit": "إنشاء"
+      },
+      "edit": {
+        "title": "تعديل الفئة",
+        "description": "تحديث الاسمين الإنجليزي والعربي للفئة.",
+        "submit": "حفظ التغييرات"
+      },
+      "cancel": "إلغاء",
+      "name_en": "الاسم (بالإنجليزية)",
+      "name_ar": "الاسم (بالعربية)",
+      "name_en_placeholder": "مثال: Electronics",
+      "name_ar_placeholder": "مثال: الإلكترونيات",
+      "create_success": "تم إنشاء الفئة بنجاح!",
+      "create_error": "فشل إنشاء الفئة",
+      "edit_success": "تم تحديث الفئة بنجاح!",
+      "edit_error": "فشل تحديث الفئة"
+    },
+    "empty": {
+      "title": "لم يتم العثور على فئات",
+      "description": "أنشئ أول فئة لتبدأ في تجميع إرشادات التغليف."
+    }
+  },
+
   "AddRegionPage": {
     "meta_data": {
       "title": "إضافة منطقة | لوحة التحكم",

@@ -787,6 +787,62 @@
     }
   },
 
+  "AdminCategoriesPage": {
+    "meta_data": {
+      "title": "Category Management | Admin Panel",
+      "description": "Manage packing guideline categories, update bilingual names, and control their display order."
+    },
+    "title": "Categories",
+    "items_count": "{count} Categories",
+    "add_category": "Add Category",
+    "reorder_categories": "Reorder Categories",
+    "edit_category": "Edit Category",
+    "table": {
+      "name_en": "Name (English)",
+      "name_ar": "Name (Arabic)",
+      "sort_order": "Sort Order",
+      "guidelines_count": "Packing Ways",
+      "actions": "Actions"
+    },
+    "reorder": {
+      "title": "Category Order",
+      "subtitle": "Drag and drop categories to set their display order on the public packing guidelines pages.",
+      "list_header": "Category (EN / AR)",
+      "rank_header": "Rank",
+      "discard": "Discard",
+      "save_changes": "Save Changes",
+      "unsaved_banner": "You have unsaved order changes.",
+      "save_success": "Category order updated successfully!",
+      "save_error": "Failed to update category order",
+      "drag_handle": "Drag {name}"
+    },
+    "dialog": {
+      "create": {
+        "title": "Add Category",
+        "description": "Create a new display category with English and Arabic names.",
+        "submit": "Create"
+      },
+      "edit": {
+        "title": "Edit Category",
+        "description": "Update the category's English and Arabic names.",
+        "submit": "Save Changes"
+      },
+      "cancel": "Cancel",
+      "name_en": "Name (English)",
+      "name_ar": "Name (Arabic)",
+      "name_en_placeholder": "e.g. Electronics",
+      "name_ar_placeholder": "e.g. الإلكترونيات",
+      "create_success": "Category created successfully!",
+      "create_error": "Failed to create category",
+      "edit_success": "Category updated successfully!",
+      "edit_error": "Failed to update category"
+    },
+    "empty": {
+      "title": "No categories found",
+      "description": "Create your first category to start grouping packing guidelines."
+    }
+  },
+
   "AddRegionPage": {
     "meta_data": {
       "title": "Add Region | Admin Panel",

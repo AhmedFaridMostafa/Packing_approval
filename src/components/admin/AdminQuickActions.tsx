@@ -21,7 +21,7 @@ const AdminQuickActions = ({ t }: AdminQuickActionsProps) => {
     },
     {
       title: t("quickActions.addCategory"),
-      href: `${ROUTES.ADMIN_CATEGORIES}?action=add`,
+      href: `${ROUTES.ADMIN_CATEGORIES}?dialog=create`,
       icon: FolderTree,
     },
     {
