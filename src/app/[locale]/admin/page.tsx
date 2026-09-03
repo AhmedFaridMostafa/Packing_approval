@@ -4,9 +4,6 @@ import AdminStatsCards from "@/components/admin/AdminStatsCards";
 import AdminQuickActions from "@/components/admin/AdminQuickActions";
 import RecentHistoryList from "@/components/admin/RecentHistoryList";
 import { api } from "@/lib/api";
-import { checkApiAdmin } from "@/lib/auth-helpers";
-import { redirect } from "@/i18n/navigation";
-import { ROUTES } from "@/constants/routes";
 import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
