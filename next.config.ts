@@ -5,9 +5,6 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
-  experimental: {
-    rootParams: true,
-  },
   images: {
     remotePatterns: [
       {
