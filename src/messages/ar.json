@@ -3,9 +3,18 @@
     "title": "Packing Way",
     "description": "بوابتك إلى حلول التعبئة والتغليف الموحدة في جميع أنحاء العالم",
     "NavigationLinks": [
-      { "href": "/countries", "text": "البلدان" },
-      { "href": "/regions", "text": "المناطق" },
-      { "href": "/contact", "text": "اتصال" }
+      {
+        "href": "/countries",
+        "text": "البلدان"
+      },
+      {
+        "href": "/regions",
+        "text": "المناطق"
+      },
+      {
+        "href": "/contact",
+        "text": "اتصال"
+      }
     ]
   },
   "HomePage": {
@@ -52,7 +61,6 @@
       "role_desc": "أدوار محددة تفصل بين التصفح العام للمستخدمين وبين إدارة المحتوى للمسؤولين."
     }
   },
-
   "Navbar": {
     "home": "الصفحة الرئيسية",
     "Add packing way": "إضافة طريقة التعبئة",
@@ -69,7 +77,6 @@
     "All users": "جميع المستخدمين",
     "Countries": "بلدان"
   },
-
   "Auth": {
     "Auth_layout": {
       "title": "انضم إلى تطبيق موافقة التعبئة",
@@ -144,7 +151,6 @@
       "global_error": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
     }
   },
-
   "userSetting": {
     "profile": {
       "title": "الملف الشخصي",
@@ -183,20 +189,23 @@
       "updateButton": "تحديث كلمة المرور"
     }
   },
-
   "categories": {
     "title": "إضافة فئة",
     "form": {
-      "category": { "label": "الفئة:", "placeholder": "Carton" },
-      "category_ar": { "label": "الفئة (بالعربية):", "placeholder": "كرتون" }
+      "category": {
+        "label": "الفئة:",
+        "placeholder": "Carton"
+      },
+      "category_ar": {
+        "label": "الفئة (بالعربية):",
+        "placeholder": "كرتون"
+      }
     }
   },
-
   "cardOption": {
     "delete_packing_way": "حذف طريقة التعبئة",
     "delete_confirmation": "هل أنت متأكد أنك تريد الحذف"
   },
-
   "packingHistory": {
     "title": "سجل التعبئة",
     "label": {
@@ -216,7 +225,6 @@
       }
     }
   },
-
   "packingWay": {
     "addTitle": "إضافة طريقة التعبئة",
     "editTitle": "تعديل طريقة التعبئة",
@@ -252,7 +260,6 @@
       "editSubmit": "عديل طريقة التعبئة"
     }
   },
-
   "country": {
     "addTitle": "أضف البلد",
     "form": {
@@ -286,13 +293,11 @@
       "addSubmit": "أضف البلد"
     }
   },
-
   "role": {
     "user": "مستخدم",
     "moderator": "مشرف",
     "admin": "مسؤول"
   },
-
   "usersPage": {
     "title": "قائمة المستخدمين",
     "userTable": {
@@ -320,7 +325,6 @@
       "updateButton": "تحديث"
     }
   },
-
   "packingMethods": {
     "noMethodsAuth": {
       "title": "لم تتم إضافة طرق تعبئة بعد.",
@@ -332,7 +336,6 @@
       "message": "يرجى العودة لاحقًا للاطلاع على التحديثات."
     }
   },
-
   "save": "حفظ",
   "edit": "تعديل",
   "delete": "حذف",
@@ -549,7 +552,7 @@
       "title": "لوحة التحكم | موافقات التعبئة والتغليف",
       "description": "النظرة العامة الإدارية ولوحة عمليات موافقات التعبئة والتغليف."
     },
-    "welcome": "مرحباً بك مجدداً، {name}",
+    "welcome": "مرحباً بك مجدداً",
     "subtitle": "إليك نظرة شاملة على مستجدات نظام موافقات التعبئة والتغليف اليوم.",
     "stats": {
       "countries": "البلدان النشطة",
@@ -639,21 +642,18 @@
       },
       "or_separator": "أو"
     },
-
     "create": {
       "submit": "إنشاء البلد",
       "submitting": "جاري إنشاء البلد...",
       "success": "تم إنشاء البلد بنجاح!",
       "error": "فشل إنشاء البلد"
     },
-
     "edit": {
       "submit": "حفظ التغييرات",
       "submitting": "جاري حفظ التغييرات...",
       "success": "تم تحديث البلد بنجاح!",
       "error": "فشل تحديث البلد"
     },
-
     "preview": {
       "title": "معاينة مباشرة",
       "badge_subtitle": "معاينة شارة البلد",
@@ -699,7 +699,6 @@
       "description": "حاول تعديل كلمة البحث أو اضف بلداً جديداً."
     }
   },
-
   "DeletedCountriesPage": {
     "meta_data": {
       "title": "أرشيف البلدان المحذوفة | لوحة التحكم",
@@ -727,7 +726,6 @@
       "description": "لا توجد أي سجلات بلدان محذوفة مؤقتاً في الأرشيف حالياً."
     }
   },
-
   "AdminRegionsPage": {
     "meta_data": {
       "title": "إدارة المناطق | لوحة التحكم",
@@ -761,7 +759,6 @@
       "description": "حاول تعديل كلمة البحث أو اضف منطقة جديدة."
     }
   },
-
   "DeletedRegionsPage": {
     "meta_data": {
       "title": "أرشيف المناطق المحذوفة | لوحة التحكم",
@@ -790,7 +787,6 @@
       "description": "لا توجد أي سجلات مناطق محذوفة مؤقتاً في الأرشيف حالياً."
     }
   },
-
   "AdminCategoriesPage": {
     "meta_data": {
       "title": "إدارة الفئات | لوحة التحكم",
@@ -846,7 +842,6 @@
       "description": "أنشئ أول فئة لتبدأ في تجميع إرشادات التغليف."
     }
   },
-
   "AddRegionPage": {
     "meta_data": {
       "title": "إضافة منطقة | لوحة التحكم",
@@ -855,7 +850,6 @@
     "title": "إضافة منطقة جديدة",
     "subtitle": "حدد منطقة جديدة بالتسميات ثنائية اللغة ومعرّف الحساب وعلامات التغليف."
   },
-
   "EditRegionPage": {
     "meta_data": {
       "title": "تعديل المنطقة | لوحة التحكم",
@@ -864,7 +858,6 @@
     "title": "تعديل المنطقة",
     "subtitle": "قم بتحديث تسميات المنطقة ثنائية اللغة ومعرّف الحساب وعلامات التغليف."
   },
-
   "CreateAndUpdateRegion": {
     "form": {
       "country_id": {

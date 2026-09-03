@@ -3,9 +3,18 @@
     "title": "Packing Way",
     "description": "Your gateway to standardized packing solutions worldwide",
     "NavigationLinks": [
-      { "href": "/countries", "text": "Countries" },
-      { "href": "/regions", "text": "Regions" },
-      { "href": "/contact", "text": "Contact" }
+      {
+        "href": "/countries",
+        "text": "Countries"
+      },
+      {
+        "href": "/regions",
+        "text": "Regions"
+      },
+      {
+        "href": "/contact",
+        "text": "Contact"
+      }
     ]
   },
   "HomePage": {
@@ -543,7 +552,7 @@
       "title": "Admin Dashboard | Packing Approval",
       "description": "Administrative overview and operations dashboard for Packing Approval."
     },
-    "welcome": "Welcome back, {name}",
+    "welcome": "Welcome back",
     "subtitle": "Here is what's happening across your global packing approval system today.",
     "stats": {
       "countries": "Active Countries",
@@ -609,7 +618,6 @@
     "error": "Failed to delete country",
     "back_to_list": "Back to Countries List"
   },
-
   "CreateAndUpdateCountry": {
     "form": {
       "name_en": {
@@ -634,21 +642,18 @@
       },
       "or_separator": "OR"
     },
-
     "create": {
       "submit": "Create Country",
       "submitting": "Creating...",
       "success": "Country created successfully!",
       "error": "Failed to create country"
     },
-
     "edit": {
       "submit": "Save Changes",
       "submitting": "Saving...",
       "success": "Country updated successfully!",
       "error": "Failed to update country"
     },
-
     "preview": {
       "title": "Live Preview",
       "badge_subtitle": "Country Badge Preview",
@@ -662,7 +667,6 @@
       }
     }
   },
-
   "AdminCountriesPage": {
     "meta_data": {
       "title": "Countries Management | Admin Panel",
@@ -695,7 +699,6 @@
       "description": "Try adjusting your search query or add a new country."
     }
   },
-
   "DeletedCountriesPage": {
     "meta_data": {
       "title": "Deleted Countries Archive | Admin Panel",
@@ -723,7 +726,6 @@
       "description": "There are no soft-deleted countries in the archive."
     }
   },
-
   "AdminRegionsPage": {
     "meta_data": {
       "title": "Regions Management | Admin Panel",
@@ -757,7 +759,6 @@
       "description": "Try adjusting your search query or add a new region."
     }
   },
-
   "DeletedRegionsPage": {
     "meta_data": {
       "title": "Deleted Regions Archive | Admin Panel",
@@ -786,7 +787,6 @@
       "description": "There are no soft-deleted regions in the archive."
     }
   },
-
   "AdminCategoriesPage": {
     "meta_data": {
       "title": "Category Management | Admin Panel",
@@ -842,7 +842,6 @@
       "description": "Create your first category to start grouping packing guidelines."
     }
   },
-
   "AddRegionPage": {
     "meta_data": {
       "title": "Add Region | Admin Panel",
@@ -851,7 +850,6 @@
     "title": "Add New Region",
     "subtitle": "Define a new region with bilingual labels, an account identifier, and packaging labels."
   },
-
   "EditRegionPage": {
     "meta_data": {
       "title": "Edit Region | Admin Panel",
@@ -860,7 +858,6 @@
     "title": "Edit Region",
     "subtitle": "Update the region's bilingual labels, account identifier, and packaging labels."
   },
-
   "CreateAndUpdateRegion": {
     "form": {
       "country_id": {
