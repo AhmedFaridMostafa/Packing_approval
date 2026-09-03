@@ -95,7 +95,7 @@ export const auth = betterAuth({
     }),
     nextCookies(),
   ],
-  database: drizzleAdapter(db, { provider: "pg", schema }),
+  database: drizzleAdapter(db, { provider: "pg", schema, transaction: true }),
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
