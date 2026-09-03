@@ -24,12 +24,7 @@ const AdminDashboardPage = async () => {
     getLocale(),
   ]);
 
-  const [{ authorized, session }, dashboardData] = await Promise.all([
-    checkApiAdmin(requestHeaders),
-    api.admin.getDashboardData(requestHeaders),
-  ]);
-
-  if (!authorized) redirect({ href: ROUTES.HOME, locale });
+  const dashboardData = await api.admin.getDashboardData(requestHeaders);
 
   if (!dashboardData.success)
     return (
@@ -41,14 +36,13 @@ const AdminDashboardPage = async () => {
     );
 
   const isRTL = locale === "ar";
-  const userName = session?.user?.name || "Admin";
 
   return (
     <div className="flex flex-col gap-8">
       {/* Welcome Banner */}
       <div className="bg-primary/5 border-primary/20 rounded-2xl border p-6 sm:p-8">
         <h1 className="font-heading text-on-surface text-2xl font-bold sm:text-3xl">
-          {t("welcome", { name: userName })}
+          {t("welcome")}
         </h1>
         <p className="text-body-base text-on-surface-variant mt-2 max-w-2xl">
           {t("subtitle")}

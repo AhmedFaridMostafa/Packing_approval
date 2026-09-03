@@ -1,19 +1,16 @@
-import { headers } from "next/headers";
-import { redirect } from "@/i18n/navigation";
+import { Suspense } from "react";
 
-import SidebarAdmin from "@/components/admin/sidebar";
-import { checkApiAdmin } from "@/lib/auth-helpers";
-import { ROUTES } from "@/constants/routes";
-import { getLocale } from "next-intl/server";
+import AdminGuard from "@/components/admin/AdminGuard";
+import AdminShellSkeleton from "@/components/admin/AdminShellSkeleton";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const AdminLayout = async ({ children }: AdminLayoutProps) => {
-  const [requestHeaders, locale] = await Promise.all([headers(), getLocale()]);
-  const { authorized } = await checkApiAdmin(requestHeaders);
-  if (!authorized) redirect({ href: ROUTES.HOME, locale });
-  return <SidebarAdmin>{children}</SidebarAdmin>;
-};
+const AdminLayout = ({ children }: AdminLayoutProps) => (
+  <Suspense fallback={<AdminShellSkeleton />}>
+    <AdminGuard>{children}</AdminGuard>
+  </Suspense>
+);
+
 export default AdminLayout;
