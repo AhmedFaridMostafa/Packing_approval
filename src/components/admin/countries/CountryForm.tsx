@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import useObjectUrl from "@/hooks/useObjectUrl";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,10 +34,10 @@ const CountryForm = ({ mode, country, regionsCounts }: CountryFormProps) => {
     },
   });
 
-  const nameEn = form.watch("name_en");
-  const nameAr = form.watch("name_ar");
-  const flagUrl = form.watch("flag_url");
-  const imageFile = form.watch("image_file");
+  const [nameEn, nameAr, flagUrl, imageFile] = useWatch({
+    control: form.control,
+    name: ["name_en", "name_ar", "flag_url", "image_file"],
+  });
 
   const filePreviewUrl = useObjectUrl(imageFile);
   const effectiveFlagUrl = flagUrl || filePreviewUrl;
