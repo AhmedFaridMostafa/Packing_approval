@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
 import { api } from "@/lib/api";

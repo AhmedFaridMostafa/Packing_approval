@@ -8,7 +8,7 @@ import { checkApiAdmin } from "@/lib/auth-helpers";
 import { apiPackingSchema, ImageSchema } from "@/lib/validations";
 import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
-import { updateImage, uploadImage } from "@/server/services/upload.service";
+import { uploadImage } from "@/server/services/upload.service";
 
 export async function GET(
   request: Request,

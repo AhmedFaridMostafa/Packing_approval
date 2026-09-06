@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  convertFileToUrl,
   cn,
   formatFileSize,
   truncateFileName,
@@ -85,7 +84,7 @@ const FileUploader = ({
         alt: value.name,
       },
     ];
-  }, [value]);
+  }, [value, src]);
 
   return (
     <div className="w-full">

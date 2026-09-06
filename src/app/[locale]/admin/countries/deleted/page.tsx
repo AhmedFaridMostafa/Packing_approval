@@ -7,7 +7,6 @@ import Pagination from "@/components/shared/Pagination";
 import DeletedCountriesTable from "@/components/admin/countries/DeletedCountriesTable";
 import GlobalSearch from "@/components/shared/GlobalSearch";
 import { api } from "@/lib/api";
-import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import ErrorState from "@/components/shared/ErrorState";
 

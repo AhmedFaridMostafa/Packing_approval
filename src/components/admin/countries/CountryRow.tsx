@@ -14,7 +14,6 @@ import { ROUTES } from "@/constants/routes";
 interface CountryRowProps {
   country: FeaturedCountry;
   isRTL: boolean;
-  validationT?: TranslateFn;
   labels: {
     view: string;
     edit?: string;
