@@ -200,6 +200,7 @@ export function PackingPDFDocument({
             {group.items.map((item) => (
               <View key={item.id} style={styles.card} wrap={false}>
                 {item.image_url && (
+                  // eslint-disable-next-line jsx-a11y/alt-text
                   <Image
                     src={getCldImageUrl({
                       src: item.image_url,
