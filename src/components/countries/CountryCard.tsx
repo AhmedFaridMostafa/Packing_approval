@@ -1,12 +1,13 @@
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import type { _Translator } from "next-intl";
 import { File, MapPin } from "lucide-react";
 import { getInitials } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
 
 interface CountryCardProps {
   country: FeaturedCountry;
-  translate: TranslateFn;
+  translate: _Translator;
   locale: string;
 }
 

@@ -1,10 +1,11 @@
 import { Link } from "@/i18n/navigation";
+import type { _Translator } from "next-intl";
 import { ArrowUpDown, Globe, MapPin, FolderTree, Package } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { ROUTES } from "@/constants/routes";
 
 interface AdminQuickActionsProps {
-  t: TranslateFn;
+  t: _Translator;
 }
 
 const AdminQuickActions = ({ t }: AdminQuickActionsProps) => {

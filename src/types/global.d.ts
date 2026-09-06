@@ -31,8 +31,6 @@ interface RouteParams {
   >;
 }
 
-type TranslateFn = (key: string, values?: any) => string;
-
 interface LinkItem {
   href: string;
   text: string;

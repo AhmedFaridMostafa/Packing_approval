@@ -1,8 +1,9 @@
 import { ROUTES } from "@/constants/routes";
+import type { _Translator } from "next-intl";
 import RegionsCard from "@/components/regions/RegionsCard";
 
 interface RegionsListProps {
-  translate: TranslateFn;
+  translate: _Translator;
   isRTL: boolean;
   countrySlug?: string;
   regions: RegionWithCountryAndCount[];

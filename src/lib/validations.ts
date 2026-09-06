@@ -1,9 +1,10 @@
 import { z } from "zod";
+import type { _Translator } from "next-intl";
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE, USER_ROLES } from "@/constants";
 
 // --- Base Schemas ---
 
-export const nameSchema = (t: TranslateFn) =>
+export const nameSchema = (t: _Translator) =>
   z
     .string({ error: t("name_required") })
     .trim()
@@ -11,7 +12,7 @@ export const nameSchema = (t: TranslateFn) =>
     .max(50, { error: t("name_too_long") })
     .regex(/^[a-zA-Z\s-']+$/, { error: t("name_format") });
 
-export const passwordSchema = (t: TranslateFn) =>
+export const passwordSchema = (t: _Translator) =>
   z
     .string({ error: t("password_required") })
     .min(8, { error: t("password_too_short") })
@@ -20,13 +21,13 @@ export const passwordSchema = (t: TranslateFn) =>
     .regex(/[a-z]/, { error: t("password_lowercase") })
     .regex(/[0-9]/, { error: t("password_number") });
 
-export const emailSchema = (t: TranslateFn) =>
+export const emailSchema = (t: _Translator) =>
   z
     .email({ error: t("email_invalid") })
     .min(5, { error: t("email_too_short") })
     .max(254, { error: t("email_too_long") });
 
-export const ImageSchema = (t: TranslateFn) =>
+export const ImageSchema = (t: _Translator) =>
   z
     .file({
       error: t("image_required"),
@@ -35,14 +36,14 @@ export const ImageSchema = (t: TranslateFn) =>
     .max(MAX_FILE_SIZE, { error: t("too_large") })
     .mime(ACCEPTED_IMAGE_TYPES, { error: t("wrong_type") });
 
-export const titleSchema = (t: TranslateFn) =>
+export const titleSchema = (t: _Translator) =>
   z
     .string({ error: t("title_required") })
     .trim()
     .min(5, { error: t("title_too_short") })
     .max(50, { error: t("title_too_long") });
 
-export const descriptionSchema = (t: TranslateFn) =>
+export const descriptionSchema = (t: _Translator) =>
   z
     .string({ error: t("description_required") })
     .trim()
@@ -51,32 +52,32 @@ export const descriptionSchema = (t: TranslateFn) =>
 
 // --- Composed Schemas ---
 
-export const signinSchema = (t: TranslateFn) =>
+export const signinSchema = (t: _Translator) =>
   z.object({
     email: emailSchema(t),
     password: passwordSchema(t),
   });
 
-export const signupSchema = (t: TranslateFn) =>
+export const signupSchema = (t: _Translator) =>
   z.object({
     name: nameSchema(t),
     email: emailSchema(t),
     password: passwordSchema(t),
   });
 
-export const signupAdminSchema = (t: TranslateFn) =>
+export const signupAdminSchema = (t: _Translator) =>
   signupSchema(t).extend({
     confirmPassword: passwordSchema(t),
     role: z.enum(Object.values(USER_ROLES)).default("user"),
   });
 
-export const profileSchema = (t: TranslateFn) =>
+export const profileSchema = (t: _Translator) =>
   z.object({
     name: nameSchema(t),
     avatar: z.union([z.undefined(), ImageSchema(t)]),
   });
 
-export const confirmPasswordSchema = (t: TranslateFn) =>
+export const confirmPasswordSchema = (t: _Translator) =>
   z
     .object({
       currentPassword: z
@@ -94,7 +95,7 @@ export const confirmPasswordSchema = (t: TranslateFn) =>
       path: ["newPassword"],
     });
 
-export const packingWaySchema = (t: TranslateFn) =>
+export const packingWaySchema = (t: _Translator) =>
   z.object({
     title: titleSchema(t),
     title_ar: titleSchema(t),
@@ -105,7 +106,7 @@ export const packingWaySchema = (t: TranslateFn) =>
     Image: ImageSchema(t),
   });
 
-export const updatePackingSchema = (t: TranslateFn) =>
+export const updatePackingSchema = (t: _Translator) =>
   z.object({
     id: z.number({ error: "ID is required" }),
     title: titleSchema(t),
@@ -116,7 +117,7 @@ export const updatePackingSchema = (t: TranslateFn) =>
     category: z.string({ error: t("category_required") }),
   });
 
-export const countrySchema = (t: TranslateFn) =>
+export const countrySchema = (t: _Translator) =>
   z.object({
     label_name: z
       .string({ error: t("label_name_required") })
@@ -149,18 +150,18 @@ export const countrySchema = (t: TranslateFn) =>
     ]),
   });
 
-export const categorySchema = (t: TranslateFn) =>
+export const categorySchema = (t: _Translator) =>
   z.object({
     category: z.string({ error: t("category_required") }),
     category_ar: z.string({ error: t("category_required") }),
   });
 
-export const forgotPasswordSchema = (t: TranslateFn) =>
+export const forgotPasswordSchema = (t: _Translator) =>
   z.object({
     email: emailSchema(t),
   });
 
-export const resetPasswordSchema = (t: TranslateFn) =>
+export const resetPasswordSchema = (t: _Translator) =>
   z
     .object({
       password: passwordSchema(t),
@@ -173,7 +174,7 @@ export const resetPasswordSchema = (t: TranslateFn) =>
 
 // --- Admin Only (Static - No Translation needed usually) ---
 
-export const roleUpdateSchema = (t: TranslateFn) =>
+export const roleUpdateSchema = (t: _Translator) =>
   z.object({
     userId: z.uuid(),
     newRole: z.enum(Object.values(USER_ROLES), { error: t("invalid_role") }),
@@ -185,7 +186,7 @@ export const deleteUserSchema = z.object({
 
 // --- API Entity Schemas ---
 
-export const apiCountrySchema = (t: TranslateFn) =>
+export const apiCountrySchema = (t: _Translator) =>
   z.object({
     slug: slugSchema(t).optional(),
     name_en: z.string().min(1, t("name_en_required")),
@@ -194,7 +195,7 @@ export const apiCountrySchema = (t: TranslateFn) =>
     image_file: ImageSchema(t).optional(),
   });
 
-export const apiRegionSchema = (t: TranslateFn) =>
+export const apiRegionSchema = (t: _Translator) =>
   z.object({
     country_id: z.number().positive(t("country_id_required")),
     label_name_en: z.string().min(1, t("label_name_en_required")),
@@ -203,7 +204,7 @@ export const apiRegionSchema = (t: TranslateFn) =>
     labels: z.array(z.string()).min(1, t("labels_required")),
   });
 
-export const regionFormSchema = (t: TranslateFn) =>
+export const regionFormSchema = (t: _Translator) =>
   z.object({
     country_id: z
       .string({ error: t("country_id_required") })
@@ -230,13 +231,13 @@ export const regionFormSchema = (t: TranslateFn) =>
       .max(300, { error: t("name_too_long") }),
   });
 
-export const apiCategorySchema = (t: TranslateFn) =>
+export const apiCategorySchema = (t: _Translator) =>
   z.object({
     name_en: z.string().min(1, t("name_en_required")),
     name_ar: z.string().min(1, t("name_ar_required")),
   });
 
-export const categoryFormSchema = (t: TranslateFn) =>
+export const categoryFormSchema = (t: _Translator) =>
   z.object({
     name_en: z
       .string({ error: t("name_en_required") })
@@ -250,15 +251,15 @@ export const categoryFormSchema = (t: TranslateFn) =>
       .max(100, { error: t("name_too_long") }),
   });
 
-export const apiCategoryReorderSchema = (t: TranslateFn) =>
+export const apiCategoryReorderSchema = (t: _Translator) =>
   z.array(
     z.object({
-      id: z.number().positive(),
-      sort_order: z.number().int(),
+      id: z.number().positive({ error: t("category_id_required") }),
+      sort_order: z.number().int({ error: t("sort_order_invalid") }),
     }),
   );
 
-export const apiPackingSchema = (t: TranslateFn) =>
+export const apiPackingSchema = (t: _Translator) =>
   z.object({
     region_id: z.number().positive(t("region_id_required")),
     category_id: z.number().positive(t("category_id_required")),
@@ -269,34 +270,46 @@ export const apiPackingSchema = (t: TranslateFn) =>
     image_url: z.url(t("invalid_url")).optional().nullable(),
   });
 
-export const apiProfileSchema = (t: TranslateFn) =>
+export const apiProfileSchema = (t: _Translator) =>
   z.object({
     name: z.string().min(1, t("name_required")).optional(),
     image: z.url().optional().nullable(),
   });
 
-export const apiBanUserSchema = (t: TranslateFn) =>
+export const apiBanUserSchema = (t: _Translator) =>
   z.object({
-    reason: z.string().optional(),
-    expiresIn: z.number().int().positive().optional(),
+    reason: z
+      .string()
+      .max(500, { error: t("ban_reason_too_long") })
+      .optional(),
+    expiresIn: z
+      .number()
+      .int()
+      .positive({ error: t("ban_expires_in_invalid") })
+      .optional(),
   });
 
-export const slugSchema = (t: TranslateFn) =>
+export const slugSchema = (t: _Translator) =>
   z.string().min(1, t("not_found")).trim();
 
-export const countryParamsSchema = (t: TranslateFn) =>
+export const countryParamsSchema = (t: _Translator) =>
   z.object({
     countrySlug: slugSchema(t),
   });
 
-export const regionParamsSchema = (t: TranslateFn) =>
+export const regionParamsSchema = (t: _Translator) =>
   z.object({
     countrySlug: slugSchema(t),
     regionSlug: slugSchema(t),
   });
 
-export const regionsParamsSchema = (t: TranslateFn) =>
+export const regionsParamsSchema = (t: _Translator) =>
   z.object({
     searchQuery: z.string().trim().optional(),
-    currentPage: z.coerce.number().int().positive().optional().default(1),
+    currentPage: z
+      .coerce.number()
+      .int()
+      .positive({ error: t("page_invalid") })
+      .optional()
+      .default(1),
   });

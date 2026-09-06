@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import type { _Translator } from "next-intl";
 import {
   Table,
   TableBody,
@@ -11,7 +12,7 @@ import DeletedRegionRow from "./DeletedRegionRow";
 
 interface DeletedRegionsTableProps {
   regions: DeletedRegion[];
-  t: TranslateFn;
+  t: _Translator;
   isRTL: boolean;
 }
 

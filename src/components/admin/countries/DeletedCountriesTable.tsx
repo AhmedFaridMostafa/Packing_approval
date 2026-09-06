@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import type { _Translator } from "next-intl";
 import {
   Table,
   TableBody,
@@ -10,7 +11,7 @@ import DeletedCountryRow from "./DeletedCountryRow";
 
 interface DeletedCountriesTableProps {
   countries: DeletedCountry[];
-  t: TranslateFn;
+  t: _Translator;
   isRTL: boolean;
 }
 

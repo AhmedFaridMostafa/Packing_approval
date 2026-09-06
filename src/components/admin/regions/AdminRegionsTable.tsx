@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import type { _Translator } from "next-intl";
 import {
   Table,
   TableBody,
@@ -11,7 +12,7 @@ import RegionRow from "./RegionRow";
 
 interface AdminRegionsTableProps {
   regions: RegionWithCountryAndCount[];
-  t: TranslateFn;
+  t: _Translator;
 
   isRTL: boolean;
 }

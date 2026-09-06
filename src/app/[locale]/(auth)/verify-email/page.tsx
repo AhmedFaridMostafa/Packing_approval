@@ -32,9 +32,10 @@ const VerifyEmailPage = () => {
   const [isResending, startTransition] = useTransition();
   const [countdown, setCountdown] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isCountingDown = countdown > 0;
 
   useEffect(() => {
-    if (countdown <= 0) return;
+    if (!isCountingDown) return;
     intervalRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -46,7 +47,7 @@ const VerifyEmailPage = () => {
     }, 1000);
 
     return () => clearInterval(intervalRef.current!);
-  }, [countdown > 0]);
+  }, [isCountingDown]);
 
   const handleResend = useCallback(() => {
     if (!email || countdown > 0) return;

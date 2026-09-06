@@ -1,8 +1,9 @@
 import { Badge } from "../ui/badge";
+import type { _Translator } from "next-intl";
 
 interface CountriesTitleProps {
   totalItems: number;
-  translate: TranslateFn;
+  translate: _Translator;
 }
 
 export function CountriesTitle({ totalItems, translate }: CountriesTitleProps) {

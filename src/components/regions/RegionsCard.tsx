@@ -1,9 +1,10 @@
 import { Link } from "@/i18n/navigation";
+import type { _Translator } from "next-intl";
 import { ArrowRight, FileText, MapPin } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
 
 interface RegionsCardProps {
-  t: TranslateFn;
+  t: _Translator;
   regionUrl: string;
   labelName: string;
   labels: string[];

@@ -28,16 +28,13 @@ export const apiClient = {
       );
     },
 
-    updateCountry: async (
-      data: {
-        slug: string;
-        name_en?: string;
-        name_ar?: string;
-        flag_url?: string;
-        image_file?: File;
-      },
-      t?: TranslateFn,
-    ) => {
+    updateCountry: async (data: {
+      slug: string;
+      name_en?: string;
+      name_ar?: string;
+      flag_url?: string;
+      image_file?: File;
+    }) => {
       const formData = new FormData();
       if (data.name_en) formData.append("name_en", data.name_en);
       if (data.name_ar) formData.append("name_ar", data.name_ar);

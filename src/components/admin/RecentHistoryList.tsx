@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import type { _Translator } from "next-intl";
 import { ArrowRight, History, User, Calendar, MapPin, Tag } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +8,7 @@ import { formatDate } from "@/lib/utils";
 
 interface RecentHistoryListProps {
   history: RecentHistoryItem[];
-  t: TranslateFn;
+  t: _Translator;
   isRTL: boolean;
 }
 

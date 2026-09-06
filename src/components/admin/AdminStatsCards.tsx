@@ -1,9 +1,10 @@
 import { Globe, MapPin, FolderTree, Package, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import type { _Translator } from "next-intl";
 
 interface AdminStatsCardsProps {
   stats: AdminDashboardStats;
-  t: TranslateFn;
+  t: _Translator;
 }
 
 const AdminStatsCards = ({ stats, t }: AdminStatsCardsProps) => {

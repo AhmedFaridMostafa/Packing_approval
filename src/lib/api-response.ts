@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { flattenError, ZodError } from "zod";
+import type { _Translator } from "next-intl";
 import { ApiError } from "./errors";
 
 function errorResponse(
@@ -18,7 +19,7 @@ function errorResponse(
 
 export function handleApiError(
   error: unknown,
-  t?: TranslateFn,
+  t?: _Translator,
 ): APIErrorResponse {
   if (error instanceof ZodError) {
     const { fieldErrors, formErrors } = flattenError(error);
@@ -101,10 +102,10 @@ export function apiSuccess<T = null>(
   return NextResponse.json({ success: true, data }, { status });
 }
 
-export function apiNotFound(t: TranslateFn): APIErrorResponse {
+export function apiNotFound(t: _Translator): APIErrorResponse {
   return errorResponse(t("not_found"), 404);
 }
 
-export function apiUnauthorized(t: TranslateFn): APIErrorResponse {
+export function apiUnauthorized(t: _Translator): APIErrorResponse {
   return errorResponse(t("unauthorized"), 401);
 }

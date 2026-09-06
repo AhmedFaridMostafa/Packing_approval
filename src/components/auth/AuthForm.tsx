@@ -17,6 +17,8 @@ import {
   useForm,
 } from "react-hook-form";
 import { useTranslations } from "next-intl";
+import type { _Translator } from "next-intl";
+import type { ErrorContext } from "@better-fetch/fetch";
 
 // UI
 import { toast } from "sonner";
@@ -37,10 +39,12 @@ import { ROUTES } from "@/constants/routes";
 import { signIn, signUp } from "@/lib/auth/auth-client";
 
 interface AuthFormProps<T extends FieldValues> {
-  getSchema: (t: TranslateFn) => ZodType<T, T>;
+  getSchema: (t: _Translator) => ZodType<T, T>;
   defaultValues: T;
   formType: "Sign_in" | "Sign_up";
 }
+
+type AuthErrorBody = { status?: string; message?: string };
 
 const AuthForm = <T extends FieldValues>({
   getSchema,
@@ -59,7 +63,10 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    const commonOptions = {
+    const commonOptions: {
+      onSuccess: () => void;
+      onError: (context: ErrorContext) => void;
+    } = {
       onSuccess: () => {
         toast.success(t("success"));
         router.push(
@@ -69,15 +76,16 @@ const AuthForm = <T extends FieldValues>({
         );
         router.refresh();
       },
-      onError: (error: any) => {
-        if (error?.error?.status === "ACCOUNT_NOT_VERIFIED") {
+      onError: (context) => {
+        const body = (context?.error?.error as AuthErrorBody | undefined) ?? {};
+        if (body?.status === "ACCOUNT_NOT_VERIFIED") {
           router.push(
             `${ROUTES.VERIFY_EMAIL}?email=${encodeURIComponent(data.email)}`,
           );
           router.refresh();
         } else {
-          toast.error(t("error", { status: error?.error?.status || "" }), {
-            description: error?.error?.message || t("global_error"),
+          toast.error(t("error", { status: body?.status || "" }), {
+            description: body?.message || t("global_error"),
           });
         }
       },

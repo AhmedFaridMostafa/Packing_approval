@@ -1,11 +1,12 @@
 import { Building2 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import type { _Translator } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 
 interface AllRegionsTitleProps {
-  t: TranslateFn;
+  t: _Translator;
   totalItems: number;
   isAdmin: boolean;
 }
