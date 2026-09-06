@@ -1,6 +1,7 @@
 "use client";
 
 import { XIcon } from "lucide-react";
+import Image from "next/image";
 
 import {
   Attachment,
@@ -38,15 +39,19 @@ const AttachmentImage = ({ images, onRemove }: AttachmentImageProps) => {
             className="bg-surface-container-lowest border-border flex items-center justify-between rounded-xl border p-3 shadow-xs"
           >
             <div className="flex items-center gap-3 overflow-hidden">
-              <AttachmentMedia variant="image" className="border-border relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border bg-surface-container">
-                <img
+              <AttachmentMedia
+                variant="image"
+                className="border-border bg-surface-container relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border"
+              >
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </AttachmentMedia>
               <AttachmentContent className="flex flex-col truncate">
-                <AttachmentTitle className="text-on-surface truncate font-semibold text-sm">
+                <AttachmentTitle className="text-on-surface truncate text-sm font-semibold">
                   {image.name}
                 </AttachmentTitle>
                 <AttachmentDescription className="text-on-surface-variant text-xs">
