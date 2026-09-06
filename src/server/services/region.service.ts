@@ -299,7 +299,10 @@ export const getRegionsPaginated = async ({
 
   const totalItems = rows[0]?.total_count ?? 0;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
-  const regions = rows.map(({ total_count: _, ...rest }) => rest);
+  const regions = rows.map(({ total_count, ...region }) => {
+    void total_count;
+    return region;
+  });
 
   return { regions, totalItems, totalPages };
 };
@@ -363,7 +366,10 @@ export const getDeletedRegions = async ({
 
   const totalItems = rows[0]?.total_count ?? 0;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
-  const regions = rows.map(({ total_count: _, ...rest }) => rest);
+  const regions = rows.map(({ total_count, ...region }) => {
+    void total_count;
+    return region;
+  });
 
   return { regions, totalItems, totalPages };
 };

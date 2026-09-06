@@ -65,7 +65,10 @@ export const getCountries = async ({
 
   const totalItems = rows[0]?.total_count ?? 0;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
-  const countries = rows.map(({ total_count: _, ...rest }) => rest);
+  const countries = rows.map(({ total_count, ...country }) => {
+    void total_count;
+    return country;
+  });
 
   return { countries, totalItems, totalPages };
 };
@@ -149,7 +152,7 @@ export const updateCountry = async ({
   name_ar: string;
   flag_url?: string | undefined;
 }) => {
-  const updateFields: Record<string, any> = {
+  const updateFields: Partial<typeof country.$inferSelect> = {
     updated_at: new Date(),
     slug: slugify(name_en, { lower: true, trim: true }),
     name_en: name_en,
@@ -219,7 +222,10 @@ export const getDeletedCountries = async ({
 
   const totalItems = rows[0]?.total_count ?? 0;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
-  const countries = rows.map(({ total_count: _, ...rest }) => rest);
+  const countries = rows.map(({ total_count, ...country }) => {
+    void total_count;
+    return country;
+  });
 
   return { countries, totalItems, totalPages };
 };
