@@ -1,6 +1,14 @@
 import { db } from "@/drizzle/db";
 import { categories, packing } from "@/drizzle/schemas/packing.schema";
-import { eq, isNull, max, asc, and, sql } from "drizzle-orm";
+import { eq, isNull, max, asc, and, count } from "drizzle-orm";
+
+export const getCategories = async () => {
+  return await db
+    .select()
+    .from(categories)
+    .where(isNull(categories.deleted_at))
+    .orderBy(asc(categories.sort_order));
+};
 
 export const getCategoriesWithCounts = async () => {
   return await db
@@ -9,7 +17,7 @@ export const getCategoriesWithCounts = async () => {
       name_en: categories.name_en,
       name_ar: categories.name_ar,
       sort_order: categories.sort_order,
-      guidelines_count: sql<number>`cast(count(${packing.id}) as integer)`,
+      guidelines_count: count(packing.id),
     })
     .from(categories)
     .leftJoin(

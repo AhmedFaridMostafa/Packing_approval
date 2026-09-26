@@ -1,5 +1,5 @@
 import { db } from "@/drizzle/db";
-import { count, isNull, eq, and, sql, desc } from "drizzle-orm";
+import { count, isNull, eq, and, desc, countDistinct } from "drizzle-orm";
 import {
   country,
   region,
@@ -44,8 +44,8 @@ export async function getFeaturedCountries() {
       name_en: country.name_en,
       name_ar: country.name_ar,
       flag_url: country.flag_url,
-      region_count: sql<number>`cast(count(distinct ${region.id}) as integer)`,
-      guidelines_count: sql<number>`cast(count(distinct ${packing.id}) as integer)`,
+      region_count: countDistinct(region.id),
+      guidelines_count: countDistinct(packing.id),
     })
     .from(country)
     .leftJoin(
@@ -58,6 +58,6 @@ export async function getFeaturedCountries() {
     )
     .where(isNull(country.deleted_at))
     .groupBy(country.id)
-    .orderBy(desc(sql<number>`count(distinct ${packing.id})`))
+    .orderBy(desc(countDistinct(packing.id)))
     .limit(8);
 }
