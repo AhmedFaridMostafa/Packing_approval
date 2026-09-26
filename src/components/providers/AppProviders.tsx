@@ -1,16 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-export default async function AppProviders({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const messages = await getMessages();
+const AppProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -21,4 +15,5 @@ export default async function AppProviders({
       </ThemeProvider>
     </NextIntlClientProvider>
   );
-}
+};
+export default AppProviders;

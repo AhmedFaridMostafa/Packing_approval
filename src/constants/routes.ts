@@ -33,7 +33,10 @@ export const ROUTES = {
   ADMIN_CATEGORIES: "/admin/categories",
   ADMIN_CATEGORIES_REORDER: "/admin/categories/reorder",
 
+  ADMIN_PACKING_WAYS: "/admin/packing-ways",
   ADMIN_PACKING_WAYS_ADD: "/admin/packing-ways/add",
+  ADMIN_PACKING_WAYS_EDIT: (id: string) => `/admin/packing-ways/edit/${id}`,
+  ADMIN_PACKING_WAYS_DELETED: "/admin/packing-ways/deleted",
 
   ADMIN_HISTORY: "/admin/history",
   ADMIN_USERS: "/admin/users",
@@ -66,6 +69,12 @@ export const API_ROUTES = {
 
   PACKING_WAYS: "/api/packing-ways",
   PACKING_WAY: (id: string) => `/api/packing-ways/${id}`,
+  PACKING_WAYS_ADMIN: "/api/admin/packing-ways",
+  PACKING_WAYS_ADMIN_FORM_DATA: "/api/admin/packing-ways/form-data",
+  PACKING_WAYS_ADMIN_DELETED: "/api/admin/packing-ways/deleted",
+  PACKING_WAY_ADMIN: (id: string) => `/api/admin/packing-ways/${id}`,
+  PACKING_WAY_ADMIN_RESTORE: (id: string) =>
+    `/api/admin/packing-ways/${id}/restore`,
 
   PROFILE: "/api/profile",
 

@@ -2,6 +2,7 @@ import { Edit2, ImageIcon } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
 import { Link } from "@/i18n/navigation";
 import Lightbox from "@/components/Region/packing/Lightbox";
+import { ROUTES } from "@/constants/routes";
 
 interface PackingCardProps extends PackingDetail {
   isAdmin: boolean;
@@ -46,7 +47,7 @@ const PackingCard = ({
         {/* Admin Action float overlay */}
         {isAdmin && (
           <Link
-            href={`/admin/packing-ways/${id}/edit`}
+            href={ROUTES.ADMIN_PACKING_WAYS_EDIT(id)}
             className="bg-primary hover:bg-brand-hover absolute top-3 left-3 flex h-8 w-8 items-center justify-center rounded-xl text-white shadow-md transition-colors"
             aria-label="Edit packing way"
           >

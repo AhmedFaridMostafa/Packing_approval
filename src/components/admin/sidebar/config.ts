@@ -33,7 +33,7 @@ export const adminNavigation = [
   },
   {
     key: "packingWays",
-    href: ROUTES.ADMIN_PACKING_WAYS_ADD,
+    href: ROUTES.ADMIN_PACKING_WAYS,
     icon: Package,
   },
   {
