@@ -27,6 +27,9 @@ interface RouteParams {
     Record<string, string> & {
       search_query?: string;
       page?: string;
+      country_id?: string;
+      region_id?: string;
+      category_id?: string;
     }
   >;
 }
@@ -234,4 +237,61 @@ interface RecentHistoryItem {
 interface AdminDashboardResponse {
   stats: AdminDashboardStats;
   recentHistory: RecentHistoryItem[];
+}
+
+interface AdminPackingWayItem {
+  id: string;
+  title_en: string;
+  title_ar: string;
+  description_en: string | null;
+  description_ar: string | null;
+  image_url: string | null;
+  region_id: number;
+  region_name_en: string;
+  region_name_ar: string;
+  region_slug: string;
+  country_id: number;
+  country_name_en: string;
+  country_name_ar: string;
+  country_slug: string;
+  country_flag_url: string | null;
+  category_id: number;
+  category_name_en: string;
+  category_name_ar: string;
+  created_at: Date | string;
+  updated_at: Date | string;
+  updated_by_name: string | null;
+}
+
+interface getAdminPackingWaysResponse {
+  packingWays: AdminPackingWayItem[];
+  totalItems: number;
+  totalPages: number;
+}
+
+interface DeletedPackingWayItem extends AdminPackingWayItem {
+  deleted_at: Date | string;
+  deleted_by_name: string | null;
+  deleted_by_email: string | null;
+}
+
+interface getDeletedPackingWaysResponse {
+  packingWays: DeletedPackingWayItem[];
+  totalItems: number;
+  totalPages: number;
+}
+
+type PackingWayDetail = AdminPackingWayItem;
+
+interface RegionOption {
+  id: number;
+  label_name_en: string;
+  label_name_ar: string;
+  account: string;
+}
+
+interface PackingWayFormData {
+  countries: Country[];
+  regionsByCountry: Record<number, RegionOption[]>;
+  categories: Category[];
 }

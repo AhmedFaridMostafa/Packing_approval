@@ -89,8 +89,8 @@ export const region = pgTable(
 
     slug: text("slug").notNull(),
 
-    label_name_en: text("label_name_en"),
-    label_name_ar: text("label_name_ar"),
+    label_name_en: text("label_name_en").notNull(),
+    label_name_ar: text("label_name_ar").notNull(),
 
     account: text("account").notNull(),
     labels: text("labels").array().notNull().default([]),
