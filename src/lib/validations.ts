@@ -95,61 +95,6 @@ export const confirmPasswordSchema = (t: _Translator) =>
       path: ["newPassword"],
     });
 
-export const packingWaySchema = (t: _Translator) =>
-  z.object({
-    title: titleSchema(t),
-    title_ar: titleSchema(t),
-    description: descriptionSchema(t),
-    description_ar: descriptionSchema(t),
-    country: z.string({ error: t("country_required") }),
-    category: z.string({ error: t("category_required") }),
-    Image: ImageSchema(t),
-  });
-
-export const updatePackingSchema = (t: _Translator) =>
-  z.object({
-    id: z.number({ error: "ID is required" }),
-    title: titleSchema(t),
-    title_ar: titleSchema(t),
-    description: descriptionSchema(t),
-    description_ar: descriptionSchema(t),
-    Image: z.union([z.undefined(), ImageSchema(t)]),
-    category: z.string({ error: t("category_required") }),
-  });
-
-export const countrySchema = (t: _Translator) =>
-  z.object({
-    label_name: z
-      .string({ error: t("label_name_required") })
-      .trim()
-      .min(3, { error: t("name_too_short") })
-      .max(100, { error: t("name_too_long") }),
-    account: z
-      .string({ error: t("account_required") })
-      .trim()
-      .min(3, { error: t("name_too_short") })
-      .max(100, { error: t("name_too_long") }),
-    labels: z
-      .string({ error: t("labels_required") })
-      .trim()
-      .min(2, { error: t("name_too_short") })
-      .max(120, { error: t("name_too_long") }),
-    country_name: z
-      .string({ error: t("country_name_required") })
-      .trim()
-      .min(3, { error: t("name_too_short") })
-      .max(50, { error: t("name_too_long") }),
-    country_name_ar: z
-      .string({ error: t("country_name_required") })
-      .trim()
-      .min(3, { error: t("name_too_short") })
-      .max(50, { error: t("name_too_long") }),
-    flag_url: z.union([
-      ImageSchema(t),
-      z.string({ error: t("image_required") }),
-    ]),
-  });
-
 export const categorySchema = (t: _Translator) =>
   z.object({
     category: z.string({ error: t("category_required") }),
@@ -265,9 +210,29 @@ export const apiPackingSchema = (t: _Translator) =>
     category_id: z.number().positive(t("category_id_required")),
     title_en: z.string().min(1, t("title_en_required")),
     title_ar: z.string().min(1, t("title_ar_required")),
-    description_en: z.string().min(1, t("description_en_required")),
-    description_ar: z.string().min(1, t("description_ar_required")),
+    description_en: z
+      .string()
+      .min(1, t("description_en_required"))
+      .optional()
+      .nullable(),
+    description_ar: z
+      .string()
+      .min(1, t("description_ar_required"))
+      .optional()
+      .nullable(),
     image_url: z.url(t("invalid_url")).optional().nullable(),
+  });
+
+export const packingWayFormSchema = (t: _Translator) =>
+  z.object({
+    country_id: z.string().min(1, t("country_id_required")),
+    region_id: z.string().min(1, t("region_id_required")),
+    category_id: z.string().min(1, t("category_id_required")),
+    title_en: titleSchema(t),
+    title_ar: titleSchema(t),
+    description_en: z.string().min(1, t("description_en_required")).optional(),
+    description_ar: z.string().min(1, t("description_ar_required")).optional(),
+    image: z.union([z.instanceof(File), z.undefined()]),
   });
 
 export const apiProfileSchema = (t: _Translator) =>
@@ -306,8 +271,8 @@ export const regionParamsSchema = (t: _Translator) =>
 export const regionsParamsSchema = (t: _Translator) =>
   z.object({
     searchQuery: z.string().trim().optional(),
-    currentPage: z
-      .coerce.number()
+    currentPage: z.coerce
+      .number()
       .int()
       .positive({ error: t("page_invalid") })
       .optional()

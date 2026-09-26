@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth/auth";
 
-export const getApiAuthSession = async (headers: Headers) => {
-  return await auth.api.getSession({ headers });
+export const getApiAuthSession = (headers: Headers) => {
+  return auth.api.getSession({ headers });
 };
 
 export const checkApiAuth = async (headers: Headers) => {

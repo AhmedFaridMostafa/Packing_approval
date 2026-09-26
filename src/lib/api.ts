@@ -111,6 +111,68 @@ export const api = {
       );
     },
   },
+  packingWays: {
+    getFormData: async (headers: Headers) =>
+      fetchHandler<PackingWayFormData>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAYS_ADMIN_FORM_DATA}`,
+        {
+          headers: Object.fromEntries(headers.entries()),
+          timeout: 40000,
+        },
+      ),
+    getRegionsForCountry: async (headers: Headers, countryId: number) =>
+      fetchHandler<Region[]>(
+        `${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN}?country_id=${countryId}`,
+        {
+          headers: Object.fromEntries(headers.entries()),
+          timeout: 40000,
+        },
+      ),
+    getPackingWays: async (
+      headers: Headers,
+      params: {
+        q?: string;
+        country_id?: number;
+        region_id?: number;
+        category_id?: number;
+        page?: number;
+      } = {},
+    ) => {
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.PACKING_WAYS_ADMIN}`);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, String(value));
+      });
+      return fetchHandler<getAdminPackingWaysResponse>(url.toString(), {
+        headers: Object.fromEntries(headers.entries()),
+        timeout: 40000,
+      });
+    },
+    getPackingWayById: async (headers: Headers, id: string) =>
+      fetchHandler<PackingWayDetail>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAY_ADMIN(id)}`,
+        { headers: Object.fromEntries(headers.entries()), timeout: 40000 },
+      ),
+    getDeletedPackingWays: async (
+      headers: Headers,
+      params: {
+        q?: string;
+        country_id?: number;
+        category_id?: number;
+        page?: number;
+      } = {},
+    ) => {
+      const url = new URL(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAYS_ADMIN_DELETED}`,
+      );
+      Object.entries(params).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, String(value));
+      });
+      return fetchHandler<getDeletedPackingWaysResponse>(url.toString(), {
+        headers: Object.fromEntries(headers.entries()),
+        timeout: 40000,
+      });
+    },
+  },
   admin: {
     getDashboardData: async (headers: Headers) => {
       return await fetchHandler<AdminDashboardResponse>(

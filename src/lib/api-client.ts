@@ -162,4 +162,31 @@ export const apiClient = {
       );
     },
   },
+  packingWays: {
+    getRegionsForCountry: (countryId: number) =>
+      fetchHandler<Region[]>(
+        `${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN}?country_id=${countryId}`,
+        { timeout: 4000 },
+      ),
+    createPackingWay: (formData: FormData) =>
+      fetchHandler<PackingWayDetail>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAYS_ADMIN}`,
+        { method: "POST", body: formData, timeout: 120000 },
+      ),
+    updatePackingWay: (id: string, formData: FormData) =>
+      fetchHandler<PackingWayDetail>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAY_ADMIN(id)}`,
+        { method: "PUT", body: formData, timeout: 120000 },
+      ),
+    deletePackingWay: (id: string) =>
+      fetchHandler<PackingWayDetail>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAY_ADMIN(id)}`,
+        { method: "DELETE" },
+      ),
+    restorePackingWay: (id: string) =>
+      fetchHandler<PackingWayDetail>(
+        `${API_BASE_URL}${API_ROUTES.PACKING_WAY_ADMIN_RESTORE(id)}`,
+        { method: "POST" },
+      ),
+  },
 };
