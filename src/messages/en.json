@@ -898,5 +898,125 @@
       "success": "Region updated successfully",
       "error": "Failed to update region"
     }
+  },
+  "AdminPackingWaysPage": {
+    "title": "Packing Ways",
+    "subtitle": "Manage packing guidelines across countries and regions.",
+    "add": "Add Packing Way",
+    "deleted": "Deleted Archive",
+    "search_placeholder": "Search packing ways, countries or regions...",
+    "filters": {
+      "all_countries": "All countries",
+      "all_categories": "All categories"
+    },
+    "unknown": "Unknown",
+    "table": {
+      "packing_way": "Packing Way",
+      "category": "Category",
+      "region": "Region",
+      "country": "Country",
+      "updated": "Last Updated",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "delete_title": "Delete packing way?",
+      "delete_description": "This will soft-delete the packing way and preserve its audit history.",
+      "delete_success": "Packing way deleted",
+      "delete_error": "Could not delete packing way"
+    },
+    "empty": {
+      "title": "No packing ways found",
+      "description": "Try a different search or add a packing way."
+    }
+  },
+  "DeletedPackingWaysPage": {
+    "title": "Deleted Packing Ways",
+    "subtitle": "Restore soft-deleted packing guidelines from the archive.",
+    "active": "Active Packing Ways",
+    "search_placeholder": "Search deleted packing ways...",
+    "table": {
+      "packing_way": "Packing Way",
+      "category": "Category",
+      "country": "Country",
+      "deleted": "Deleted",
+      "actions": "Actions"
+    },
+    "actions": {
+      "restore": "Restore",
+      "restore_success": "Packing way restored",
+      "restore_error": "Could not restore packing way"
+    },
+    "empty": "No deleted packing ways in the archive."
+  },
+  "AddPackingWayPage": {
+    "title": "Add Packing Way",
+    "subtitle": "Create a bilingual packing guideline for a region."
+  },
+  "EditPackingWayPage": {
+    "title": "Edit Packing Way",
+    "subtitle": "Update the packing guideline and its image.",
+    "load_error": "Could not load the packing way."
+  },
+  "CreateAndUpdatePackingWay": {
+    "form": {
+      "country": { "label": "Country", "placeholder": "Select a country" },
+      "region": { "label": "Region", "placeholder": "Select a region" },
+      "category": { "label": "Category", "placeholder": "Select a category" },
+      "title_en": {
+        "label": "Title (English)",
+        "placeholder": "e.g. Seal the carton"
+      },
+      "title_ar": {
+        "label": "Title (Arabic)",
+        "placeholder": "أدخل العنوان بالعربية"
+      },
+      "description_en": {
+        "label": "Description (English)",
+        "placeholder": "Describe the packing instruction"
+      },
+      "description_ar": {
+        "label": "Description (Arabic)",
+        "placeholder": "أدخل وصف التعليمات بالعربية"
+      },
+      "image": {
+        "label": "Image",
+        "upload": "Upload an image",
+        "drop": "or drag and drop",
+        "replace": "Replace image",
+        "hint": "JPG, PNG or WEBP up to 5MB",
+        "current": "The existing image will be kept unless you choose a replacement.",
+        "using_current": "A saved image is currently active. Upload a new file only if you wish to replace it.",
+        "undo_replacement": "Keep saved image",
+        "new_selected": "New replacement image selected (pending save)"
+      }
+    },
+    "create": {
+      "submit": "Create Packing Way",
+      "success": "Packing way created",
+      "error": "Could not create packing way"
+    },
+    "edit": {
+      "submit": "Save Changes",
+      "success": "Packing way updated",
+      "error": "Could not update packing way"
+    },
+    "preview": {
+      "title": "Preview Panel",
+      "saved_title": "Current Saved Version",
+      "saved_desc": "Baseline record currently in the database.",
+      "draft_title": "Live Preview (Draft)",
+      "draft_desc": "Real-time preview of changes before saving.",
+      "badge_saved": "Saved in DB",
+      "badge_draft": "Live Draft",
+      "no_image": "No image attached",
+      "using_saved_image": "Using saved image",
+      "new_replacement_image": "New replacement image staged",
+      "last_updated": "Last updated",
+      "by_user": "by {name}"
+    }
   }
 }
