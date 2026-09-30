@@ -4,8 +4,8 @@ import { headers } from "next/headers";
 import { api } from "@/lib/api";
 import CountryNav from "@/components/countries/CountryNav";
 import CountryHeader from "@/components/countries/CountryHeader";
-import RegionsList from "@/components/regions/RegionsList";
-import RegionsEmpty from "@/components/regions/RegionsEmpty";
+import List from "@/components/regions/list/List";
+import Empty from "@/components/regions/list/Empty";
 import { Info } from "lucide-react";
 import ErrorState from "@/components/shared/ErrorState";
 
@@ -77,14 +77,14 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
           {t("regions_grid_title")}
         </h2>
         {regions.length > 0 ? (
-          <RegionsList
+          <List
             translate={t}
             isRTL={isRTL}
             countrySlug={countrySlug}
             regions={regions}
           />
         ) : (
-          <RegionsEmpty
+          <Empty
             IconTitle={Info}
             title={t("empty_title")}
             description={t("empty_desc")}

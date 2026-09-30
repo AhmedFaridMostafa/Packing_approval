@@ -2,7 +2,7 @@ import CategorySectionList from "./category/CategorySectionList";
 import StickyCategoryNav from "./category/StickyCategoryNav";
 import DownloadPDFButton from "./packing/DownloadPDFButton";
 
-interface RegionPackingProps {
+interface PackingProps {
   groupedPacking: CategoryGroup[];
   isRTL: boolean;
   isAdmin: boolean;
@@ -12,7 +12,7 @@ interface RegionPackingProps {
   region: Region;
 }
 
-const RegionPacking = ({
+const Packing = ({
   groupedPacking,
   isRTL,
   isAdmin,
@@ -20,7 +20,7 @@ const RegionPacking = ({
   downloadPdfCta,
   country,
   region,
-}: RegionPackingProps) => {
+}: PackingProps) => {
   return (
     <>
       <StickyCategoryNav groupedPacking={groupedPacking} isRTL={isRTL}>
@@ -54,4 +54,4 @@ const RegionPacking = ({
   );
 };
 
-export default RegionPacking;
+export default Packing;

@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { History, Calendar, User, CheckCircle2, ImageIcon } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
-import Lightbox from "@/components/Region/packing/Lightbox";
+import Lightbox from "@/components/regions/detail/packing/Lightbox";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";

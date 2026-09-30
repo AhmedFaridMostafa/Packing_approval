@@ -1,20 +1,15 @@
 import { ROUTES } from "@/constants/routes";
 import type { _Translator } from "next-intl";
-import RegionsCard from "@/components/regions/RegionsCard";
+import Card from "./Card";
 
-interface RegionsListProps {
+interface ListProps {
   translate: _Translator;
   isRTL: boolean;
   countrySlug?: string;
   regions: RegionWithCountryAndCount[];
 }
 
-const RegionsList = ({
-  regions,
-  translate,
-  isRTL,
-  countrySlug,
-}: RegionsListProps) => {
+const List = ({ regions, translate, isRTL, countrySlug }: ListProps) => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {regions.map((region) => {
@@ -25,7 +20,7 @@ const RegionsList = ({
           : region?.country_name_en;
 
         return (
-          <RegionsCard
+          <Card
             key={`${region.id}-${region.slug}`}
             t={translate}
             regionUrl={ROUTES.REGION(
@@ -45,4 +40,4 @@ const RegionsList = ({
   );
 };
 
-export default RegionsList;
+export default List;

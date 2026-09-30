@@ -1,11 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
-import RegionPacking from "@/components/Region/RegionPacking";
 import { api } from "@/lib/api";
-import RegionNav from "@/components/Region/RegionNav";
-import RegionHeader from "@/components/Region/RegionHeader";
-import GuidelinesEmpty from "@/components/Region/GuidelinesEmpty";
+import Packing from "@/components/regions/detail/Packing";
+import Nav from "@/components/regions/detail/Nav";
+import Header from "@/components/regions/detail/Header.";
+import GuidelinesEmpty from "@/components/regions/detail/GuidelinesEmpty";
 import ErrorState from "@/components/shared/ErrorState";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
     <>
       <section className="py-10 pb-0 sm:py-12">
         <div className="section-container">
-          <RegionNav
+          <Nav
             homeNav={t("home_breadcrumb")}
             countriesNav={t("countries_breadcrumb")}
             countrySlug={countrySlug}
@@ -92,7 +92,7 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
             regionName={regionName}
           />
 
-          <RegionHeader
+          <Header
             countryName={countryName}
             regionName={regionName}
             guidelinesBadge={t("guidelines_badge", {
@@ -111,7 +111,7 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
           description={t("no_items_in_region")}
         />
       ) : (
-        <RegionPacking
+        <Packing
           country={country}
           groupedPacking={groupedPacking}
           region={region}

@@ -4,7 +4,7 @@ import { useWatch, type Control } from "react-hook-form";
 import { useLocale, useTranslations } from "next-intl";
 import { Eye, Package, Sparkles } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
-import Lightbox from "@/components/Region/packing/Lightbox";
+import Lightbox from "@/components/regions/detail/packing/Lightbox";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import useObjectUrl from "@/hooks/useObjectUrl";

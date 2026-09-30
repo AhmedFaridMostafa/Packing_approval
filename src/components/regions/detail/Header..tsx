@@ -1,6 +1,6 @@
 import { PackageOpen } from "lucide-react";
 
-interface RegionHeaderProps {
+interface HeaderProps {
   countryName: string;
   regionName: string;
   guidelinesBadge: string;
@@ -8,13 +8,13 @@ interface RegionHeaderProps {
   region: Region;
 }
 
-const RegionHeader = ({
+const Header = ({
   countryName,
   regionName,
   guidelinesBadge,
   accountLabel,
   region,
-}: RegionHeaderProps) => {
+}: HeaderProps) => {
   return (
     <div className="bg-surface mb-2 flex flex-col gap-4 rounded-xl px-4 py-8 sm:flex-row sm:items-end sm:justify-between">
       <div>
@@ -54,4 +54,4 @@ const RegionHeader = ({
   );
 };
 
-export default RegionHeader;
+export default Header;

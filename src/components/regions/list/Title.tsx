@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 
-interface AllRegionsTitleProps {
+interface TitleProps {
   t: _Translator;
   totalItems: number;
   isAdmin: boolean;
 }
 
-const AllRegionsTitle = ({ t, totalItems, isAdmin }: AllRegionsTitleProps) => {
+const Title = ({ t, totalItems, isAdmin }: TitleProps) => {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div className="flex items-center gap-4">
@@ -48,4 +48,4 @@ const AllRegionsTitle = ({ t, totalItems, isAdmin }: AllRegionsTitleProps) => {
   );
 };
 
-export default AllRegionsTitle;
+export default Title;

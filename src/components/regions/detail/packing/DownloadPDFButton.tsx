@@ -30,7 +30,7 @@ const DownloadPDFButton = ({
       try {
         const [{ pdf }, { PackingPDFDocument }] = await Promise.all([
           import("@react-pdf/renderer"),
-          import("@/components/Region/packing/PackingPDFDocument"),
+          import("@/components/regions/detail/packing/PackingPDFDocument"),
         ]);
         const blob = await pdf(
           <PackingPDFDocument

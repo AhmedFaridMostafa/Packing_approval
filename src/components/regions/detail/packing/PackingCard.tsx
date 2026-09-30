@@ -1,7 +1,7 @@
 import { Edit2, ImageIcon } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
 import { Link } from "@/i18n/navigation";
-import Lightbox from "@/components/Region/packing/Lightbox";
+import Lightbox from "@/components/regions/detail/packing/Lightbox";
 import { ROUTES } from "@/constants/routes";
 
 interface PackingCardProps extends PackingDetail {

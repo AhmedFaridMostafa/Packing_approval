@@ -9,7 +9,7 @@ import {
 import { ROUTES } from "@/constants/routes";
 import { Link } from "@/i18n/navigation";
 
-interface RegionNavProps {
+interface NavProps {
   homeNav: string;
   countriesNav: string;
   countrySlug: string;
@@ -17,13 +17,13 @@ interface RegionNavProps {
   regionName: string;
 }
 
-const RegionNav = ({
+const Nav = ({
   countriesNav,
   countryName,
   homeNav,
   countrySlug,
   regionName,
-}: RegionNavProps) => {
+}: NavProps) => {
   return (
     <Breadcrumb className="mb-8 font-medium">
       <BreadcrumbList>
@@ -55,4 +55,4 @@ const RegionNav = ({
   );
 };
 
-export default RegionNav;
+export default Nav;

@@ -3,7 +3,7 @@ import type { _Translator } from "next-intl";
 import { ArrowRight, FileText, MapPin } from "lucide-react";
 import SmartImage from "@/components/shared/SmartImage";
 
-interface RegionsCardProps {
+interface CardProps {
   t: _Translator;
   regionUrl: string;
   labelName: string;
@@ -14,7 +14,7 @@ interface RegionsCardProps {
   country_flag_url?: string | null;
 }
 
-const RegionsCard = ({
+const Card = ({
   t,
   regionUrl,
   labelName,
@@ -23,7 +23,7 @@ const RegionsCard = ({
   account,
   guidelines_count,
   country_flag_url,
-}: RegionsCardProps) => {
+}: CardProps) => {
   return (
     <Link
       href={regionUrl}
@@ -107,4 +107,4 @@ const RegionsCard = ({
   );
 };
 
-export default RegionsCard;
+export default Card;
