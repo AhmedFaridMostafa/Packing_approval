@@ -2,9 +2,9 @@ import { Link } from "@/i18n/navigation";
 import type { _Translator } from "next-intl";
 import { ArrowRight, History, User, Calendar, MapPin, Tag } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
+import { ActionBadge } from "./ActionBadge";
 
 interface RecentHistoryListProps {
   history: RecentHistoryItem[];
@@ -13,31 +13,6 @@ interface RecentHistoryListProps {
 }
 
 const RecentHistoryList = ({ history, t, isRTL }: RecentHistoryListProps) => {
-  const getActionBadge = (action: RecentHistoryItem["action"]) => {
-    switch (action) {
-      case "CREATE":
-        return (
-          <Badge className="border-emerald-500/20 bg-emerald-500/10 font-semibold text-emerald-600">
-            {t("recentHistory.action.CREATE")}
-          </Badge>
-        );
-      case "UPDATE":
-        return (
-          <Badge className="border-blue-500/20 bg-blue-500/10 font-semibold text-blue-600">
-            {t("recentHistory.action.UPDATE")}
-          </Badge>
-        );
-      case "DELETE":
-        return (
-          <Badge className="bg-destructive/10 text-destructive border-destructive/20 font-semibold">
-            {t("recentHistory.action.DELETE")}
-          </Badge>
-        );
-      default:
-        return <Badge variant="outline">{action}</Badge>;
-    }
-  };
-
   return (
     <Card className="border-border bg-card rounded-2xl p-6 shadow-sm">
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -95,7 +70,9 @@ const RecentHistoryList = ({ history, t, isRTL }: RecentHistoryListProps) => {
               >
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center gap-2">
-                    {getActionBadge(item.action)}
+                    <ActionBadge action={item.action}>
+                      {t(`recentHistory.action.${item.action}`)}
+                    </ActionBadge>
                     <span className="font-heading text-on-surface font-semibold">
                       {title || categoryName}
                     </span>
