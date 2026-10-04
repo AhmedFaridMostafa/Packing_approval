@@ -949,6 +949,49 @@
     },
     "empty": "لا توجد طرق تعبئة محذوفة في الأرشيف."
   },
+  "AdminHistoryPage": {
+    "title": "سجل التعديلات",
+    "subtitle": "تتبع كل التغييرات التي تطرأ على إرشادات التعبئة.",
+    "search_placeholder": "ابحث بالعنوان أو باسم/بريد المسؤول...",
+    "filters": {
+      "all_actions": "جميع الإجراءات",
+      "all_countries": "جميع البلدان",
+      "all_regions": "جميع المناطق",
+      "all_categories": "جميع الفئات"
+    },
+    "actions": {
+      "CREATE": "إنشاء",
+      "UPDATE": "تحديث",
+      "DELETE": "حذف",
+      "view": "عرض التفاصيل"
+    },
+    "table": {
+      "packing_way": "طريقة التعبئة",
+      "action": "الإجراء",
+      "category": "الفئة",
+      "region": "المنطقة",
+      "country": "الدولة",
+      "changed_by": "بواسطة",
+      "date": "التاريخ",
+      "details": "التفاصيل"
+    },
+    "empty": {
+      "title": "لا توجد سجلات تعديلات",
+      "description": "جرّب فلاتر أو كلمات بحث مختلفة."
+    },
+    "details": {
+      "before": "قبل",
+      "after": "بعد",
+      "no_description": "لا يوجد وصف",
+      "field": {
+        "title_en": "العنوان (EN)",
+        "title_ar": "العنوان (AR)",
+        "description_en": "الوصف (EN)",
+        "description_ar": "الوصف (AR)",
+        "image": "الصورة"
+      }
+    }
+  },
   "AddPackingWayPage": {
     "title": "إضافة طريقة تعبئة",
     "subtitle": "أنشئ تعليمات تعبئة ثنائية اللغة لمنطقة."

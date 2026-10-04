@@ -952,6 +952,49 @@
     },
     "empty": "No deleted packing ways in the archive."
   },
+  "AdminHistoryPage": {
+    "title": "Audit Logs",
+    "subtitle": "Track every change made to packing ways.",
+    "search_placeholder": "Search by title or admin name/email...",
+    "filters": {
+      "all_actions": "All actions",
+      "all_countries": "All countries",
+      "all_regions": "All regions",
+      "all_categories": "All categories"
+    },
+    "actions": {
+      "CREATE": "Created",
+      "UPDATE": "Updated",
+      "DELETE": "Deleted",
+      "view": "View details"
+    },
+    "table": {
+      "packing_way": "Packing Way",
+      "action": "Action",
+      "category": "Category",
+      "region": "Region",
+      "country": "Country",
+      "changed_by": "Changed By",
+      "date": "Date",
+      "details": "Details"
+    },
+    "empty": {
+      "title": "No audit records found",
+      "description": "Try different filters or search terms."
+    },
+    "details": {
+      "before": "Before",
+      "after": "After",
+      "no_description": "No description",
+      "field": {
+        "title_en": "Title (EN)",
+        "title_ar": "Title (AR)",
+        "description_en": "Description (EN)",
+        "description_ar": "Description (AR)",
+        "image": "Image"
+      }
+    }
+  },
   "AddPackingWayPage": {
     "title": "Add Packing Way",
     "subtitle": "Create a bilingual packing guideline for a region."
