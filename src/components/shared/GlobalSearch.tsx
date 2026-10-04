@@ -10,7 +10,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { formUrlQuery } from "@/lib/utils";
+import { updateUrlQuery } from "@/lib/utils";
 
 interface RegionsSearchProps {
   searchPlaceholder: string;
@@ -26,11 +26,10 @@ const GlobalSearch = ({ searchPlaceholder }: RegionsSearchProps) => {
 
   const debouncer = useDebouncer(
     (value: string) => {
-      const newUrl = formUrlQuery({
+      const newUrl = updateUrlQuery({
         params: searchParams.toString(),
-        key: "search_query",
-        value,
         pathname,
+        updates: { search_query: value },
       });
       router.push(newUrl);
     },
@@ -45,11 +44,10 @@ const GlobalSearch = ({ searchPlaceholder }: RegionsSearchProps) => {
   const handleClear = () => {
     setInputValue("");
     debouncer.cancel();
-    const newUrl = formUrlQuery({
+    const newUrl = updateUrlQuery({
       params: searchParams.toString(),
-      key: "search_query",
-      value: "",
       pathname,
+      updates: { search_query: null },
     });
     router.push(newUrl);
   };

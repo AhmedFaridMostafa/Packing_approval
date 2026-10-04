@@ -10,20 +10,6 @@ export function isCloudinaryUrl(url: string): boolean {
   return url.includes("res.cloudinary.com") || !url.startsWith("https://");
 }
 
-export const formUrlQuery = ({
-  params,
-  key,
-  value,
-  pathname,
-}: UrlQueryParams) => {
-  const queryString = qs.parse(params);
-  queryString[key] = value || null;
-  return qs.stringifyUrl(
-    { url: pathname, query: queryString },
-    { skipNull: true },
-  );
-};
-
 export const removeKeysFromUrlQuery = ({
   params,
   keysToRemove,
@@ -31,6 +17,33 @@ export const removeKeysFromUrlQuery = ({
 }: RemoveUrlQueryParams) => {
   const queryString = qs.parse(params);
   keysToRemove.forEach((key) => delete queryString[key]);
+  return qs.stringifyUrl(
+    { url: pathname, query: queryString },
+    { skipNull: true },
+  );
+};
+
+export const updateUrlQuery = ({
+  params,
+  pathname,
+  updates,
+  remove = [],
+}: {
+  params: string;
+  pathname: string;
+  updates?: Record<string, string | null>;
+  remove?: string[];
+}) => {
+  const queryString = qs.parse(params);
+
+  Object.entries(updates ?? {}).forEach(([key, value]) => {
+    queryString[key] = value || null;
+  });
+
+  remove.forEach((key) => {
+    delete queryString[key];
+  });
+
   return qs.stringifyUrl(
     { url: pathname, query: queryString },
     { skipNull: true },

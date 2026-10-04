@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import GlobalSearch from "@/components/shared/GlobalSearch";
+import { updateUrlQuery } from "@/lib/utils";
 import {
   Select,
   SelectContent,
@@ -31,11 +32,16 @@ const PackingWaysFilterControls = ({
   const router = useRouter();
 
   const update = (key: string, value: string) => {
-    const next = new URLSearchParams(params.toString());
-    if (value === "all") next.delete(key);
-    else next.set(key, value);
-    next.delete("page");
-    router.push(`${pathname}${next.size ? `?${next}` : ""}`);
+    const newUrl = updateUrlQuery({
+      params: params.toString(),
+      pathname,
+      updates: {
+        [key]: value === "all" ? null : value,
+      },
+      remove: ["page"],
+    });
+
+    router.push(newUrl);
   };
 
   return (

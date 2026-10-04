@@ -5,7 +5,7 @@ import { useTransition } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { cn, formUrlQuery } from "@/lib/utils";
+import { cn, updateUrlQuery } from "@/lib/utils";
 import { usePathname } from "@/i18n/navigation";
 
 interface PaginationProps {
@@ -37,11 +37,10 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
 
     startTransition(() => {
-      const newUrl = formUrlQuery({
+      const newUrl = updateUrlQuery({
         params: searchParams.toString(),
         pathname,
-        key: "page",
-        value: page.toString(),
+        updates: { page: page.toString() },
       });
       router.push(newUrl);
     });
