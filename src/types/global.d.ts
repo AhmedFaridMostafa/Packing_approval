@@ -30,6 +30,7 @@ interface RouteParams {
       country_id?: string;
       region_id?: string;
       category_id?: string;
+      action?: string;
     }
   >;
 }
@@ -81,13 +82,6 @@ interface getDeletedCountriesResponse {
   countries: DeletedCountry[];
   totalItems: number;
   totalPages: number;
-}
-
-interface UrlQueryParams {
-  params: string;
-  key: string;
-  value: string | null;
-  pathname: string;
 }
 
 interface RemoveUrlQueryParams {
@@ -282,6 +276,51 @@ interface getDeletedPackingWaysResponse {
 }
 
 type PackingWayDetail = AdminPackingWayItem;
+
+interface PackingSnapshot {
+  id: string;
+  region_id: number;
+  category_id: number;
+  title_en: string;
+  title_ar: string;
+  description_en: string | null;
+  description_ar: string | null;
+  image_url: string | null;
+  created_by_id: string | null;
+  updated_by_id: string | null;
+  deleted_by_id: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+}
+
+interface AdminHistoryItem {
+  id: string;
+  action: "CREATE" | "UPDATE" | "DELETE";
+  packing_id: string | null;
+  changed_by_name: string;
+  changed_by_email: string;
+  change_timestamp: string;
+  country_id: number;
+  country_name_en: string;
+  country_name_ar: string;
+  region_id: number;
+  region_name_en: string;
+  region_name_ar: string;
+  category_id: number;
+  category_name_en: string;
+  category_name_ar: string;
+  title_en: string | null;
+  title_ar: string | null;
+  snapshot_before: PackingSnapshot | null;
+  snapshot_after: PackingSnapshot | null;
+}
+
+interface getPackingHistoryResponse {
+  history: AdminHistoryItem[];
+  totalItems: number;
+  totalPages: number;
+}
 
 interface RegionOption {
   id: number;

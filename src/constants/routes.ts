@@ -83,7 +83,7 @@ export const API_ROUTES = {
   USER_BAN: (id: string) => `/api/users/${id}/ban`,
   USER_PASSWORD: (id: string) => `/api/users/${id}/password`,
 
-  PACKING_HISTORY: "/api/packing-history",
+  PACKING_HISTORY_ADMIN: "/api/admin/packing-history",
 
   ADMIN_DASHBOARD: "/api/admin/dashboard",
 } as const;

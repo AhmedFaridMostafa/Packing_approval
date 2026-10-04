@@ -173,6 +173,28 @@ export const api = {
       });
     },
   },
+  history: {
+    getPackingHistory: async (
+      headers: Headers,
+      params: {
+        q?: string;
+        country_id?: number;
+        region_id?: number;
+        category_id?: number;
+        action?: string;
+        page?: number;
+      } = {},
+    ) => {
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.PACKING_HISTORY_ADMIN}`);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, String(value));
+      });
+      return fetchHandler<getPackingHistoryResponse>(url.toString(), {
+        headers: Object.fromEntries(headers.entries()),
+        timeout: 40000,
+      });
+    },
+  },
   admin: {
     getDashboardData: async (headers: Headers) => {
       return await fetchHandler<AdminDashboardResponse>(

@@ -40,3 +40,5 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const ITEMS_PER_PAGE = 8;
+
+export const ACTIONS = ["CREATE", "UPDATE", "DELETE"] as const;
