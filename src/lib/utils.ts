@@ -10,19 +10,6 @@ export function isCloudinaryUrl(url: string): boolean {
   return url.includes("res.cloudinary.com") || !url.startsWith("https://");
 }
 
-export const removeKeysFromUrlQuery = ({
-  params,
-  keysToRemove,
-  pathname,
-}: RemoveUrlQueryParams) => {
-  const queryString = qs.parse(params);
-  keysToRemove.forEach((key) => delete queryString[key]);
-  return qs.stringifyUrl(
-    { url: pathname, query: queryString },
-    { skipNull: true },
-  );
-};
-
 export const updateUrlQuery = ({
   params,
   pathname,
@@ -75,6 +62,11 @@ export const formatDate = (
   } catch {
     return "—";
   }
+};
+
+export const isBanExpired = (banExpires: string | null): boolean => {
+  if (!banExpires) return false;
+  return new Date(banExpires).getTime() <= Date.now();
 };
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
