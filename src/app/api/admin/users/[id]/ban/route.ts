@@ -1,9 +1,19 @@
-import { NextResponse } from "next/server";
-import { banUser, unbanUser } from "@/server/services/user.service";
+import {
+  banUser,
+  getUserById,
+  unbanUser,
+} from "@/server/services/user.service";
 import { checkApiAdmin } from "@/lib/auth-helpers";
-import { apiSuccess, handleApiError } from "@/lib/api-response";
+import {
+  apiNotFound,
+  apiSuccess,
+  apiUnauthorized,
+  handleApiError,
+} from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 import { apiBanUserSchema } from "@/lib/validations";
+import { ApiError } from "@/lib/errors";
+import { USER_REMOVED_MARKER } from "@/constants";
 
 export async function POST(
   request: Request,
@@ -12,21 +22,18 @@ export async function POST(
   const t = await getTranslations("Validation");
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("unauthorized") },
-        { status: 401 },
-      );
-    }
+    if (!auth.authorized) return apiUnauthorized(t);
 
     const resolvedParams = await params;
 
-    if (auth.session?.user.id === resolvedParams.id) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("cannot_ban_self") },
-        { status: 403 },
-      );
-    }
+    if (auth.session?.user.id === resolvedParams.id)
+      throw new ApiError(403, t("cannot_ban_self"));
+
+    const target = await getUserById(request.headers, resolvedParams.id);
+    if (!target) return apiNotFound(t);
+
+    if (target.banReason === USER_REMOVED_MARKER)
+      throw new ApiError(403, t("user_already_removed"));
 
     const body = await request.json().catch(() => ({}));
     const validatedData = apiBanUserSchema(t).parse(body);
@@ -51,22 +58,18 @@ export async function DELETE(
   const t = await getTranslations("Validation");
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("unauthorized") },
-        { status: 401 },
-      );
-    }
+    if (!auth.authorized) return apiUnauthorized(t);
 
     const resolvedParams = await params;
 
-    // Cannot unban yourself
-    if (auth.session?.user.id === resolvedParams.id) {
-      return NextResponse.json(
-        { success: false, data: null, error: t("cannot_unban_self") },
-        { status: 403 },
-      );
-    }
+    if (auth.session?.user.id === resolvedParams.id)
+      throw new ApiError(403, t("cannot_unban_self"));
+
+    const target = await getUserById(request.headers, resolvedParams.id);
+    if (!target) return apiNotFound(t);
+
+    if (target.banReason === USER_REMOVED_MARKER)
+      throw new ApiError(403, t("cannot_unban_removed"));
 
     const data = await unbanUser(request.headers, resolvedParams.id);
     return apiSuccess(data);

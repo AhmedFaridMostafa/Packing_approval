@@ -17,4 +17,10 @@ export const ac = createAccessControl({ ...defaultStatements, ...statement });
 
 export const user = ac.newRole(userAc.statements);
 
-export const admin = ac.newRole({ ...adminAc.statements, ...statement });
+export const admin = ac.newRole({
+  ...adminAc.statements,
+  user: adminAc.statements.user.filter(
+    (permission) => permission !== "delete",
+  ),
+  ...statement,
+});
