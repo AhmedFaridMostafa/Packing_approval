@@ -23,7 +23,6 @@ export const apiClient = {
         {
           method: "POST",
           body: formData,
-          timeout: 120000,
         },
       );
     },
@@ -46,7 +45,6 @@ export const apiClient = {
         {
           method: "PUT",
           body: formData,
-          timeout: 120000,
         },
       );
     },
@@ -83,7 +81,6 @@ export const apiClient = {
         {
           method: "POST",
           body: JSON.stringify(data),
-          timeout: 120000,
         },
       );
     },
@@ -102,7 +99,6 @@ export const apiClient = {
         {
           method: "PUT",
           body: JSON.stringify(data),
-          timeout: 120000,
         },
       );
     },
@@ -162,21 +158,21 @@ export const apiClient = {
       );
     },
   },
+
   packingWays: {
     getRegionsForCountry: (countryId: number) =>
       fetchHandler<Region[]>(
         `${API_BASE_URL}${API_ROUTES.REGIONS_ADMIN}?country_id=${countryId}`,
-        { timeout: 4000 },
       ),
     createPackingWay: (formData: FormData) =>
       fetchHandler<PackingWayDetail>(
         `${API_BASE_URL}${API_ROUTES.PACKING_WAYS_ADMIN}`,
-        { method: "POST", body: formData, timeout: 120000 },
+        { method: "POST", body: formData },
       ),
     updatePackingWay: (id: string, formData: FormData) =>
       fetchHandler<PackingWayDetail>(
         `${API_BASE_URL}${API_ROUTES.PACKING_WAY_ADMIN(id)}`,
-        { method: "PUT", body: formData, timeout: 120000 },
+        { method: "PUT", body: formData },
       ),
     deletePackingWay: (id: string) =>
       fetchHandler<PackingWayDetail>(

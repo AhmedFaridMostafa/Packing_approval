@@ -6,12 +6,9 @@ export async function fetchHandler<T>(
   url: string,
   options: FetchOptions = {},
 ): Promise<ActionResponse<T>> {
-  const {
-    timeout = 10000,
-    headers: customHeaders = {},
-    ...restOptions
-  } = options;
+  const { timeout, headers: customHeaders = {}, ...restOptions } = options;
   const isFormData = restOptions.body instanceof FormData;
+  const finalTimeout = timeout ?? (isFormData ? 120_000 : 10_000);
 
   const headers: HeadersInit = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
@@ -23,7 +20,7 @@ export async function fetchHandler<T>(
     const response = await fetch(url, {
       ...restOptions,
       headers,
-      signal: AbortSignal.timeout(timeout),
+      signal: AbortSignal.timeout(finalTimeout),
     });
     const data = await response.json();
     return { ...data, status: response.status };
