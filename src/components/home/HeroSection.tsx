@@ -7,8 +7,8 @@ export const HeroSection = async () => {
   const t = await getTranslations("HomePage.hero");
 
   return (
-    <section className="hero-gradient section-container relative overflow-hidden py-24 md:py-32 lg:py-36">
-      <div className="mx-auto max-w-3xl text-center">
+    <section className="hero-gradient relative overflow-hidden py-24 md:py-32 lg:py-36">
+      <div className="section-container mx-auto max-w-3xl text-center">
         {/* Tagline pill */}
         <div className="border-primary/20 bg-accent mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
           <span className="bg-primary h-2 w-2 animate-pulse rounded-full" />

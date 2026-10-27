@@ -24,8 +24,8 @@ export const StatsBar = async ({
   ];
 
   return (
-    <section className="border-border bg-surface-container-low section-container border-y py-12 md:py-16 lg:py-20">
-      <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8 lg:gap-10">
+    <section className="border-border bg-surface-container-low border-y py-12 md:py-16 lg:py-20">
+      <div className="section-container grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8 lg:gap-10">
         {stats.map(({ value, label, Icon }) => (
           <div
             key={label}
