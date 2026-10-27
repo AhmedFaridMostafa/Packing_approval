@@ -195,6 +195,24 @@ export const api = {
       });
     },
   },
+  users: {
+    getUsers: async (
+      headers: Headers,
+      params: {
+        q?: string;
+        page?: number;
+      } = {},
+    ) => {
+      const url = new URL(`${API_BASE_URL}${API_ROUTES.USERS_ADMIN}`);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, String(value));
+      });
+      return fetchHandler<getAdminUsersResponse>(url.toString(), {
+        headers: Object.fromEntries(headers.entries()),
+        timeout: 5000,
+      });
+    },
+  },
   admin: {
     getDashboardData: async (headers: Headers) => {
       return await fetchHandler<AdminDashboardResponse>(

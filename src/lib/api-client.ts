@@ -185,4 +185,63 @@ export const apiClient = {
         { method: "POST" },
       ),
   },
+
+  users: {
+    createUser: async (data: {
+      name: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+      role: "admin" | "user";
+    }) => {
+      return fetchHandler<{ user: AdminUser }>(
+        `${API_BASE_URL}${API_ROUTES.USERS_ADMIN}`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        },
+      );
+    },
+
+    updateRole: async (id: string, role: "admin" | "user") => {
+      return fetchHandler<{ user: AdminUser }>(
+        `${API_BASE_URL}${API_ROUTES.USER_ADMIN(id)}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ role }),
+        },
+      );
+    },
+
+    banUser: async (
+      id: string,
+      data?: { reason?: string; expiresIn?: number },
+    ) => {
+      return fetchHandler<{ user: AdminUser }>(
+        `${API_BASE_URL}${API_ROUTES.USER_ADMIN_BAN(id)}`,
+        {
+          method: "POST",
+          body: JSON.stringify(data ?? {}),
+        },
+      );
+    },
+
+    unbanUser: async (id: string) => {
+      return fetchHandler<{ user: AdminUser }>(
+        `${API_BASE_URL}${API_ROUTES.USER_ADMIN_BAN(id)}`,
+        {
+          method: "DELETE",
+        },
+      );
+    },
+
+    removeUser: async (id: string) => {
+      return fetchHandler<{ message: string }>(
+        `${API_BASE_URL}${API_ROUTES.USER_ADMIN(id)}`,
+        {
+          method: "DELETE",
+        },
+      );
+    },
+  },
 };
