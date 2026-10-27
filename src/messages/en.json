@@ -293,38 +293,6 @@
       "addSubmit": "Add Country"
     }
   },
-  "role": {
-    "user": "User",
-    "moderator": "Moderator",
-    "admin": "Admin"
-  },
-  "usersPage": {
-    "title": "Users List",
-    "userTable": {
-      "headers": {
-        "user": "User",
-        "role": "Role",
-        "email": "Email",
-        "actions": "Actions"
-      },
-      "actions": {
-        "edit": "Edit",
-        "delete": "Delete",
-        "deleteConfirmTitle": "Delete User",
-        "deleteConfirmMessage": "Are you sure you want to delete User:"
-      }
-    },
-    "form": {
-      "email": {
-        "label": "Email"
-      },
-      "role": {
-        "label": "Role",
-        "placeholder": "Select role"
-      },
-      "updateButton": "Update"
-    }
-  },
   "packingMethods": {
     "noMethodsAuth": {
       "title": "No packing methods added yet.",
@@ -412,7 +380,6 @@
     "unauthorized": "Unauthorized",
     "not_found": "Not found",
     "invalid_id": "Invalid ID",
-    "cannot_delete_self": "You cannot delete yourself",
     "cannot_ban_self": "You cannot ban yourself",
     "cannot_unban_self": "You cannot unban yourself",
     "no_file_provided": "No file provided",
@@ -422,7 +389,20 @@
     "sort_order_invalid": "Sort order must be a whole number",
     "ban_reason_too_long": "Ban reason must not exceed 500 characters",
     "ban_expires_in_invalid": "Ban duration must be a positive whole number of seconds",
-    "page_invalid": "Page number must be a positive whole number"
+    "page_invalid": "Page number must be a positive whole number",
+    "invalid_role": "Invalid role",
+    "user_removed": "User removed successfully",
+    "cannot_change_own_role": "You cannot change your own role",
+    "cannot_unban_removed": "You cannot unban a removed user",
+    "cannot_remove_self": "You cannot remove yourself",
+    "user_already_removed": "This user has already been removed",
+    "invalid_ban_reason": "This ban reason is not allowed",
+    "password_updated": "Password updated successfully",
+    "validation_error": "Validation failed.",
+    "invalid_json": "Malformed request body.",
+    "missing_required_field": "A required field is missing.",
+    "invalid_reference": "Referenced resource does not exist.",
+    "invalid_input": "Invalid input format."
   },
   "Footer": {
     "title": "PackingWays",
@@ -993,6 +973,103 @@
         "description_ar": "Description (AR)",
         "image": "Image"
       }
+    }
+  },
+  "AdminUsersPage": {
+    "meta_data": {
+      "title": "Users Management",
+      "description": "View and manage all registered users"
+    },
+    "title": "Users Management",
+    "subtitle": "View and manage all registered users.",
+    "add_user": "Add User",
+    "search_placeholder": "Search by email...",
+    "shown_count": "{count} shown",
+    "you_badge": "You",
+    "email_verified": "Email verified",
+    "email_not_verified": "Email not verified",
+    "table": {
+      "user": "User",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "banned": "Banned",
+      "removed": "Removed",
+      "banned_reason": "Reason: {reason}",
+      "banned_until": "Until: {date}"
+    },
+    "roles": {
+      "admin": "Admin",
+      "user": "User"
+    },
+    "actions": {
+      "change_role": "Change Role",
+      "ban": "Ban User",
+      "unban": "Unban User",
+      "remove": "Remove User",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "role_change": {
+      "title": "Change User Role",
+      "description": "Select a new role for {name}. Current role: {current}.",
+      "warning": "Granting admin access gives full control over the platform.",
+      "success": "Role updated successfully",
+      "error": "Failed to update role"
+    },
+    "ban": {
+      "title": "Ban User",
+      "description": "Are you sure you want to ban {name}?",
+      "reason_label": "Reason (optional, up to 500 characters)",
+      "reason_placeholder": "Enter ban reason...",
+      "expiry_label": "Ban Duration",
+      "expiry_permanent": "Permanent",
+      "expiry_1day": "1 Day",
+      "expiry_7days": "7 Days",
+      "expiry_30days": "30 Days",
+      "success": "User banned successfully",
+      "error": "Failed to ban user"
+    },
+    "unban": {
+      "title": "Unban User",
+      "description": "Are you sure you want to unban {name}?",
+      "success": "User unbanned successfully",
+      "error": "Failed to unban user"
+    },
+    "remove": {
+      "title": "Remove User",
+      "description": "Are you sure you want to remove {name}?",
+      "warning": "{name} will no longer be able to sign in. Their record and activity history are preserved. This cannot be undone.",
+      "success": "User removed successfully",
+      "error": "Failed to remove user"
+    },
+    "empty": {
+      "title": "No users found",
+      "description": "No users match your search criteria."
+    },
+    "create": {
+      "meta_data": {
+        "title": "Add User",
+        "description": "Create a new user and send them a verification email"
+      },
+      "title": "Add User",
+      "subtitle": "Create a new user. They will receive a verification email before they can sign in.",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "role": "Role",
+      "role_user": "User",
+      "role_admin": "Admin",
+      "password_hint": "At least 8 characters with an uppercase letter, a lowercase letter, and a number.",
+      "submit": "Create User",
+      "submitting": "Creating...",
+      "success": "User created successfully. A verification email has been sent.",
+      "error": "Could not create user"
     }
   },
   "AddPackingWayPage": {

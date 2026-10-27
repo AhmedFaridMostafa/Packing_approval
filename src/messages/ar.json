@@ -293,38 +293,6 @@
       "addSubmit": "أضف البلد"
     }
   },
-  "role": {
-    "user": "مستخدم",
-    "moderator": "مشرف",
-    "admin": "مسؤول"
-  },
-  "usersPage": {
-    "title": "قائمة المستخدمين",
-    "userTable": {
-      "headers": {
-        "user": "المستخدم",
-        "role": "الدور",
-        "email": "البريد الإلكتروني",
-        "actions": "الإجراءات"
-      },
-      "actions": {
-        "edit": "تعديل",
-        "delete": "حذف",
-        "deleteConfirmTitle": "حذف المستخدم",
-        "deleteConfirmMessage": "هل أنت متأكد أنك تريد حذف المستخدم:"
-      }
-    },
-    "form": {
-      "email": {
-        "label": "البريد الإلكتروني"
-      },
-      "role": {
-        "label": "الدور",
-        "placeholder": "اختر الدور"
-      },
-      "updateButton": "تحديث"
-    }
-  },
   "packingMethods": {
     "noMethodsAuth": {
       "title": "لم تتم إضافة طرق تعبئة بعد.",
@@ -412,7 +380,6 @@
     "unauthorized": "غير مصرح لك",
     "not_found": "غير موجود",
     "invalid_id": "معرف غير صالح",
-    "cannot_delete_self": "لا يمكنك حذف نفسك",
     "cannot_ban_self": "لا يمكنك حظر نفسك",
     "cannot_unban_self": "لا يمكنك إلغاء حظر نفسك",
     "no_file_provided": "لم يتم تقديم ملف",
@@ -422,7 +389,20 @@
     "sort_order_invalid": "يجب أن يكون ترتيب الفرز عدداً صحيحاً",
     "ban_reason_too_long": "يجب ألا يتجاوز سبب الحظر 500 حرف",
     "ban_expires_in_invalid": "يجب أن تكون مدة الحظر عدداً صحيحاً موجباً بالثواني",
-    "page_invalid": "يجب أن يكون رقم الصفحة عدداً صحيحاً موجباً"
+    "page_invalid": "يجب أن يكون رقم الصفحة عدداً صحيحاً موجباً",
+    "invalid_role": "دور غير صالح",
+    "user_removed": "تمت إزالة المستخدم بنجاح",
+    "cannot_change_own_role": "لا يمكنك تغيير دورك الخاص",
+    "cannot_unban_removed": "لا يمكنك إلغاء الحظر عن مستخدم تمت إزالته",
+    "cannot_remove_self": "لا يمكنك إزالة نفسك",
+    "user_already_removed": "تمت إزالة هذا المستخدم بالفعل",
+    "invalid_ban_reason": "سبب الحظر هذا غير مسموح به",
+    "password_updated": "تم تحديث كلمة المرور بنجاح",
+    "validation_error": "فشل التحقق من صحة البيانات.",
+    "invalid_json": "جسم الطلب غير صالح.",
+    "missing_required_field": "حقل مطلوب مفقود.",
+    "invalid_reference": "العنصر المشار إليه غير موجود.",
+    "invalid_input": "تنسيق المدخلات غير صالح."
   },
   "Footer": {
     "title": "PackingWays",
@@ -990,6 +970,103 @@
         "description_ar": "الوصف (AR)",
         "image": "الصورة"
       }
+    }
+  },
+  "AdminUsersPage": {
+    "meta_data": {
+      "title": "إدارة المستخدمين",
+      "description": "عرض وإدارة جميع المستخدمين المسجلين"
+    },
+    "title": "إدارة المستخدمين",
+    "subtitle": "عرض وإدارة جميع المستخدمين المسجلين.",
+    "add_user": "إضافة مستخدم",
+    "search_placeholder": "ابحث بالبريد الإلكتروني...",
+    "shown_count": "يظهر {count}",
+    "you_badge": "أنت",
+    "email_verified": "تم التحقق من البريد الإلكتروني",
+    "email_not_verified": "لم يتم التحقق من البريد الإلكتروني",
+    "table": {
+      "user": "المستخدم",
+      "role": "الدور",
+      "status": "الحالة",
+      "joined": "تاريخ الانضمام",
+      "actions": "الإجراءات"
+    },
+    "status": {
+      "active": "نشط",
+      "banned": "محظور",
+      "removed": "تمت إزالته",
+      "banned_reason": "السبب: {reason}",
+      "banned_until": "حتى: {date}"
+    },
+    "roles": {
+      "admin": "مسؤول",
+      "user": "مستخدم"
+    },
+    "actions": {
+      "change_role": "تغيير الدور",
+      "ban": "حظر المستخدم",
+      "unban": "إلغاء الحظر",
+      "remove": "إزالة المستخدم",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد"
+    },
+    "role_change": {
+      "title": "تغيير دور المستخدم",
+      "description": "اختر دوراً جديداً لـ {name}. الدور الحالي: {current}.",
+      "warning": "منح صلاحية المسؤول يمنح تحكماً كاملاً في المنصة.",
+      "success": "تم تحديث الدور بنجاح",
+      "error": "فشل تحديث الدور"
+    },
+    "ban": {
+      "title": "حظر المستخدم",
+      "description": "هل أنت متأكد أنك تريد حظر {name}؟",
+      "reason_label": "السبب (اختياري، حتى 500 حرف)",
+      "reason_placeholder": "أدخل سبب الحظر...",
+      "expiry_label": "مدة الحظر",
+      "expiry_permanent": "دائم",
+      "expiry_1day": "يوم واحد",
+      "expiry_7days": "7 أيام",
+      "expiry_30days": "30 يوماً",
+      "success": "تم حظر المستخدم بنجاح",
+      "error": "فشل حظر المستخدم"
+    },
+    "unban": {
+      "title": "إلغاء حظر المستخدم",
+      "description": "هل أنت متأكد أنك تريد إلغاء حظر {name}؟",
+      "success": "تم إلغاء حظر المستخدم بنجاح",
+      "error": "فشل إلغاء حظر المستخدم"
+    },
+    "remove": {
+      "title": "إزالة المستخدم",
+      "description": "هل أنت متأكد أنك تريد إزالة {name}؟",
+      "warning": "لن يتمكن {name} من تسجيل الدخول مجدداً. سيتم الاحتفاظ بسجلاته وسجل نشاطه. لا يمكن التراجع عن هذا الإجراء.",
+      "success": "تمت إزالة المستخدم بنجاح",
+      "error": "فشل إزالة المستخدم"
+    },
+    "empty": {
+      "title": "لا يوجد مستخدمون",
+      "description": "لا يوجد مستخدمون يطابقون معايير البحث."
+    },
+    "create": {
+      "meta_data": {
+        "title": "إضافة مستخدم",
+        "description": "إنشاء مستخدم جديد وإرسال بريد إلكتروني للتحقق"
+      },
+      "title": "إضافة مستخدم",
+      "subtitle": "أنشئ مستخدماً جديداً. سيستلم بريداً إلكترونياً للتحقق قبل أن يتمكن من تسجيل الدخول.",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "role": "الدور",
+      "role_user": "مستخدم",
+      "role_admin": "مسؤول",
+      "password_hint": "8 أحرف على الأقل مع حرف كبير وحرف صغير ورقم.",
+      "submit": "إنشاء المستخدم",
+      "submitting": "جارٍ الإنشاء...",
+      "success": "تم إنشاء المستخدم بنجاح. تم إرسال بريد إلكتروني للتحقق.",
+      "error": "تعذر إنشاء المستخدم"
     }
   },
   "AddPackingWayPage": {
