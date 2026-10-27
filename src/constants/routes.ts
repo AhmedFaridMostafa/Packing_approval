@@ -40,6 +40,7 @@ export const ROUTES = {
 
   ADMIN_HISTORY: "/admin/history",
   ADMIN_USERS: "/admin/users",
+  ADMIN_USERS_CREATE: "/admin/users/create",
 } as const;
 
 export const API_ROUTES = {
@@ -78,10 +79,9 @@ export const API_ROUTES = {
 
   PROFILE: "/api/profile",
 
-  USERS: "/api/users",
-  USER: (id: string) => `/api/users/${id}`,
-  USER_BAN: (id: string) => `/api/users/${id}/ban`,
-  USER_PASSWORD: (id: string) => `/api/users/${id}/password`,
+  USERS_ADMIN: "/api/admin/users",
+  USER_ADMIN: (id: string) => `/api/admin/users/${id}`,
+  USER_ADMIN_BAN: (id: string) => `/api/admin/users/${id}/ban`,
 
   PACKING_HISTORY_ADMIN: "/api/admin/packing-history",
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { flattenError, ZodError } from "zod";
 import type { _Translator } from "next-intl";
+import { APIError as APIErrorAuth } from "better-auth";
 import { ApiError } from "./errors";
 
 function errorResponse(
@@ -32,6 +33,13 @@ export function handleApiError(
 
   if (error instanceof ApiError) {
     return errorResponse(error.message, error.status, error.details);
+  }
+
+  // Better Auth APIError (auth + admin plugin errors): map client errors to
+  // their own status and message. 5xx falls through to the generic 500 so
+  // internal messages never leak.
+  if (error instanceof APIErrorAuth && error.statusCode < 500) {
+    return errorResponse(error.message, error.statusCode);
   }
 
   // Malformed JSON body (e.g. request.json() threw before Zod ever ran).

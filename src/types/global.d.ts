@@ -84,12 +84,6 @@ interface getDeletedCountriesResponse {
   totalPages: number;
 }
 
-interface RemoveUrlQueryParams {
-  params: string;
-  keysToRemove: string[];
-  pathname: string;
-}
-
 interface Country {
   id: number;
   slug: string;
@@ -333,4 +327,30 @@ interface PackingWayFormData {
   countries: Country[];
   regionsByCountry: Record<number, RegionOption[]>;
   categories: Category[];
+}
+type Role = "admin" | "user";
+interface AdminUser {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image: string | null;
+  role: Role;
+  banned: boolean | null;
+  banReason: string | null;
+  banExpires: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface getAdminUsersResponse {
+  users: AdminUser[];
+  totalItems: number;
+  totalPages: number;
+}
+
+interface UserDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  user: AdminUser;
 }

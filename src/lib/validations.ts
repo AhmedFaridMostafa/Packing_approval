@@ -1,6 +1,11 @@
 import { z } from "zod";
 import type { _Translator } from "next-intl";
-import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE, USER_ROLES } from "@/constants";
+import {
+  ACCEPTED_IMAGE_TYPES,
+  MAX_FILE_SIZE,
+  USER_REMOVED_MARKER,
+  USER_ROLES,
+} from "@/constants";
 
 // --- Base Schemas ---
 
@@ -66,10 +71,18 @@ export const signupSchema = (t: _Translator) =>
   });
 
 export const signupAdminSchema = (t: _Translator) =>
-  signupSchema(t).extend({
-    confirmPassword: passwordSchema(t),
-    role: z.enum(Object.values(USER_ROLES)).default("user"),
-  });
+  signupSchema(t)
+    .extend({
+      confirmPassword: passwordSchema(t),
+      role: z.enum(USER_ROLES).default("user"),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      error: t("password_mismatch"),
+      path: ["confirmPassword"],
+    });
+
+export const apiAdminCreateUserSchema = (t: _Translator) =>
+  signupAdminSchema(t);
 
 export const profileSchema = (t: _Translator) =>
   z.object({
@@ -121,13 +134,9 @@ export const resetPasswordSchema = (t: _Translator) =>
 
 export const roleUpdateSchema = (t: _Translator) =>
   z.object({
-    userId: z.uuid(),
-    newRole: z.enum(Object.values(USER_ROLES), { error: t("invalid_role") }),
+    userId: z.string().min(1),
+    newRole: z.enum(USER_ROLES, { error: t("invalid_role") }),
   });
-
-export const deleteUserSchema = z.object({
-  userId: z.uuid(),
-});
 
 // --- API Entity Schemas ---
 
@@ -246,6 +255,9 @@ export const apiBanUserSchema = (t: _Translator) =>
     reason: z
       .string()
       .max(500, { error: t("ban_reason_too_long") })
+      .refine((reason) => reason !== USER_REMOVED_MARKER, {
+        error: t("invalid_ban_reason"),
+      })
       .optional(),
     expiresIn: z
       .number()
