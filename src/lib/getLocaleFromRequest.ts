@@ -1,7 +1,12 @@
 import { Locale, routing } from "@/i18n/routing";
 
-export function getLocaleFromRequest(request?: Request | null): Locale {
-  const cookie = request?.headers?.get("cookie") ?? "";
+export function getLocaleFromRequest(
+  request?: Request | Headers | null,
+): Locale {
+  const cookie =
+    request instanceof Headers
+      ? (request.get("cookie") ?? "")
+      : (request?.headers?.get("cookie") ?? "");
   const raw = cookie
     .split("; ")
     .find((r) => r.startsWith("NEXT_LOCALE="))
