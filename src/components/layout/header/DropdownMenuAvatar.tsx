@@ -35,7 +35,11 @@ const DropdownMenuAvatar = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="overflow-hidden rounded-full"
+        >
           <Avatar name={session.user.name} image={session.user.image} />
         </Button>
       </DropdownMenuTrigger>
