@@ -349,6 +349,17 @@ interface getAdminUsersResponse {
   totalPages: number;
 }
 
+interface ProfileSource {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image?: string | null;
+  role: Role;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
 interface UserDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
