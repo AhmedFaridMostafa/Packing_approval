@@ -15,7 +15,7 @@ export const nameSchema = (t: _Translator) =>
     .trim()
     .min(3, { error: t("name_too_short") })
     .max(50, { error: t("name_too_long") })
-    .regex(/^[a-zA-Z\s-']+$/, { error: t("name_format") });
+    .regex(/^[\p{L}\p{M}\s'-]+$/u, { error: t("name_format") });
 
 export const passwordSchema = (t: _Translator) =>
   z
