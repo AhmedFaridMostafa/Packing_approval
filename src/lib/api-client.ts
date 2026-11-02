@@ -244,4 +244,20 @@ export const apiClient = {
       );
     },
   },
+
+  profile: {
+    updateProfile: async (data: { name?: string; image?: File }) => {
+      const formData = new FormData();
+      if (data.name !== undefined) formData.append("name", data.name);
+      if (data.image) formData.append("image", data.image);
+
+      return fetchHandler<ProfileSource>(
+        `${API_BASE_URL}${API_ROUTES.PROFILE}`,
+        {
+          method: "PUT",
+          body: formData,
+        },
+      );
+    },
+  },
 };
