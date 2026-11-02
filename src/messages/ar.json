@@ -154,9 +154,16 @@
   "userSetting": {
     "profile": {
       "title": "الملف الشخصي",
+      "subtitle": "إدارة معلوماتك الشخصية وتفضيلاتك",
       "name": "الاسم",
       "email": "البريد الإلكتروني",
-      "role": "الدور"
+      "role": "الدور",
+      "role_admin": "مسؤول",
+      "role_user": "مستخدم",
+      "meta_data": {
+        "title": "الملف الشخصي",
+        "description": "عرض وإدارة ملفك الشخصي"
+      }
     },
     "appSetting": {
       "title": "إعدادات التطبيق",
@@ -170,7 +177,8 @@
       "title": "معلومات الملف الشخصي",
       "fullName": "الاسم الكامل",
       "profilePicture": "صورة الملف الشخصي",
-      "updateButton": "تحديث الملف الشخصي"
+      "updateButton": "تحديث الملف الشخصي",
+      "removePhoto": "إزالة الصورة"
     },
     "changePassword": {
       "title": "تغيير كلمة المرور",
@@ -186,7 +194,14 @@
         "label": "تأكيد كلمة المرور الجديدة",
         "placeholder": "أعد إدخال كلمة المرور الجديدة"
       },
+      "hint": "8 أحرف على الأقل مع حرف كبير وحرف صغير ورقم.",
       "updateButton": "تحديث كلمة المرور"
+    },
+    "toasts": {
+      "profile_updated": "تم تحديث الملف الشخصي بنجاح",
+      "profile_update_failed": "فشل تحديث الملف الشخصي",
+      "password_changed": "تم تغيير كلمة المرور بنجاح",
+      "password_change_failed": "فشل تغيير كلمة المرور"
     }
   },
   "categories": {
