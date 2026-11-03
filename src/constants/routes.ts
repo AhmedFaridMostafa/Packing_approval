@@ -31,7 +31,6 @@ export const ROUTES = {
     `/admin/countries/edit/${countrySlug}`,
 
   ADMIN_CATEGORIES: "/admin/categories",
-  ADMIN_CATEGORIES_REORDER: "/admin/categories/reorder",
 
   ADMIN_PACKING_WAYS: "/admin/packing-ways",
   ADMIN_PACKING_WAYS_ADD: "/admin/packing-ways/add",
