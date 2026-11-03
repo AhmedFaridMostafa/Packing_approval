@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { api } from "@/lib/api";
 import Packing from "@/components/regions/detail/Packing";
 import Nav from "@/components/regions/detail/Nav";
-import Header from "@/components/regions/detail/Header.";
+import Header from "@/components/regions/detail/Header";
 import GuidelinesEmpty from "@/components/regions/detail/GuidelinesEmpty";
 import ErrorState from "@/components/shared/ErrorState";
 
