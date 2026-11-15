@@ -1,7 +1,7 @@
 {
   "Header": {
-    "title": "Packing Way",
-    "description": "Your gateway to standardized packing solutions worldwide",
+    "title": "Packing Approval",
+    "description": "Approved packing guidelines for every destination, with every change on record.",
     "NavigationLinks": [
       {
         "href": "/countries",
@@ -17,11 +17,44 @@
       }
     ]
   },
+  "ContactPage": {
+    "meta_data": {
+      "title": "Contact",
+      "description": "Where to go for what in Packing Approval — approved guidelines, accounts, and administrator help."
+    },
+    "title": "Contact",
+    "description": "A quick guide to the right next step: find an approved packing guideline, get an account, or reach your administrator.",
+    "cards": {
+      "guidelines": {
+        "title": "Find a packing guideline",
+        "description": "Browse the approved packing rules by country and region, and download the PDF for any region — no account required.",
+        "primary_cta": "Browse countries",
+        "secondary_cta": "All regions"
+      },
+      "account": {
+        "title": "Get an account",
+        "description": "Accounts are created by your administrator. Once you have one, sign in to manage your profile.",
+        "cta": "Sign in"
+      },
+      "report": {
+        "title": "Report a problem",
+        "description": "Found an incorrect or outdated guideline? Tell your administrator — admins keep the rules approved and every change on record.",
+        "cta_admin": "Open admin dashboard",
+        "cta_user": "Sign in"
+      }
+    },
+    "direct": {
+      "title": "Reach us directly",
+      "description": "Questions about a destination or its approved packing guideline? Email or call us — we work in English and Arabic.",
+      "email_label": "Email",
+      "phone_label": "Phone"
+    }
+  },
   "HomePage": {
     "hero": {
-      "tagline": "Packing Management Portal",
-      "title": "Standardize Your <br>Packing Excellence</br>",
-      "description": "The central portal for global packing guidelines and operational consistency. Ensure compliance and quality across every region.",
+      "tagline": "Approved Guidelines, On Record",
+      "title": "The Approved Packing Rule, <br>On Record for Every Destination</br>",
+      "description": "Packing Approval keeps the current approved packing guideline for every country and region — and every change to it on an immutable audit trail. Find your destination, trust the rule, download the PDF.",
       "browse_cta": "Browse Countries",
       "signin_cta": "Sign In"
     },
@@ -46,11 +79,17 @@
       "subtitle": "Quick access to high-volume operational regions.",
       "view_all": "View All",
       "regions_count": "{count} Regions",
-      "guidelines_count": "{count} Guidelines"
+      "guidelines_count": "{count} Guidelines",
+      "empty": "No countries published yet — check back soon.",
+      "flag_alt": "Country flag"
+    },
+    "degraded": {
+      "title": "Live data temporarily unavailable",
+      "description": "We couldn't load the current counts and featured countries just now. You can still browse countries and download the approved guidelines directly."
     },
     "capabilities": {
-      "title": "Enterprise Capabilities",
-      "subtitle": "Built for global operations teams requiring precision and compliance.",
+      "title": "Why Packing Approval",
+      "subtitle": "Built for teams that need to know the current rule — and who changed it last.",
       "bilingual_title": "Bilingual Support",
       "bilingual_desc": "Native RTL (Arabic) and LTR (English) layouts with complete UI mirroring.",
       "pdf_title": "PDF Export",
@@ -79,8 +118,9 @@
   },
   "Auth": {
     "Auth_layout": {
-      "title": "Join Packing Approval App",
-      "description": "To get your questions answered about the packing of the customers in the warehouse",
+      "header_title": "Packing Approval",
+      "title": "Your Packing Approval account",
+      "description": "Sign in to manage packing guidelines and approvals — or create an account to get started.",
       "logo_alt": "Packing Approval Logo"
     },
     "labels": {
@@ -92,10 +132,12 @@
     "Sign_in": {
       "submit": "Sign In",
       "success": "Signed in successfully",
-      "footer_text": "Don't have an account? <link>Sign up</link>",
+      "footer_text": "Don't have an account? Ask your administrator to create one for you.",
       "error": "Failed to sign in (Status: {status})",
       "forgot_password": "Forgot password?",
-      "global_error": "Invalid credentials"
+      "global_error": "Invalid credentials",
+      "anonymous_hint": "Browsing guidelines and downloading PDFs doesn't require an account.",
+      "dismiss_error": "Dismiss error"
     },
     "Sign_up": {
       "submit": "Sign Up",
@@ -141,6 +183,7 @@
       "access_denied": "Access denied."
     },
     "SocialAuth": {
+      "or_divider": "or continue with",
       "sign_in_with": "Sign in with {provider}",
       "signing_in": "Signing in with {provider}...",
       "success": "Sign-in Successful",
@@ -420,9 +463,9 @@
     "invalid_input": "Invalid input format."
   },
   "Footer": {
-    "title": "PackingWays",
+    "title": "Packing Approval",
     "tagline": "Precision in every package.",
-    "copyright": "© 2024 PackingWays International.",
+    "copyright": "© {year} Packing Approval. All rights reserved.",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -441,7 +484,8 @@
     "signIn": "Sign In",
     "adminPanel": "Admin Panel",
     "profile": "Profile",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "logoutError": "An error occurred while logging out. Please try again."
   },
   "NotFound": {
     "title": "404 Not Found",
@@ -544,7 +588,8 @@
     "history": "Audit Logs",
     "users": "Users",
     "home": "Public Site",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "logoutError": "An error occurred while logging out. Please try again."
   },
   "AdminDashboard": {
     "meta_data": {
