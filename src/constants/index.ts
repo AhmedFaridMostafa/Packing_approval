@@ -38,6 +38,11 @@ export type OAuthProvider = (typeof SOCIAL_OAUTH_PROVIDERS)[number]["name"];
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+// Direct contact details published on the public /contact page (owner-supplied).
+export const CONTACT_EMAIL = "ahmed.farid9977@gmail.com";
+export const CONTACT_PHONE_DISPLAY = "+20 109 788 0057";
+export const CONTACT_PHONE_TEL = "+201097880057";
+
 export const ITEMS_PER_PAGE = 8;
 
 export const ACTIONS = ["CREATE", "UPDATE", "DELETE"] as const;
