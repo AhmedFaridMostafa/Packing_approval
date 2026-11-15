@@ -8,10 +8,9 @@ const API_BASE_URL =
 export const api = {
   home: {
     getHomeData: () =>
-      fetchHandler<getHomeDataResponse>(
-        `${API_BASE_URL}${API_ROUTES.HOME}`,
-        {},
-      ),
+      fetchHandler<getHomeDataResponse>(`${API_BASE_URL}${API_ROUTES.HOME}`, {
+        cache: "no-store",
+      }),
   },
   countries: {
     getCountries: async (q?: string, page?: number) => {
