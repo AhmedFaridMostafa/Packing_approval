@@ -195,90 +195,90 @@
    2. Light Mode Variables (:root)
    ------------------------------------------------------------------ */
 :root {
-  /* === shadcn core tokens (mapped to Stitch palette) === */
-  --background: #faf8ff; /* surface-bright */
-  --foreground: #1a1b23; /* on-surface */
+  /* === shadcn core tokens (mapped to Product Identity palette) === */
+  --background: #faf6f0; /* surface-bright — Warm Paper */
+  --foreground: #3e382e; /* on-surface — Espresso */
   --card: #ffffff; /* surface */
-  --card-foreground: #1a1b23; /* on-surface */
+  --card-foreground: #3e382e; /* on-surface */
   --popover: #ffffff;
-  --popover-foreground: #1a1b23;
-  --primary: #0037b0; /* Stitch primary */
-  --primary-foreground: #ffffff; /* on-primary */
-  --secondary: #5d5e66; /* Stitch secondary */
-  --secondary-foreground: #ffffff;
-  --muted: #f4f4f5; /* surface-muted */
-  --muted-foreground: #71717a; /* zinc-500 */
-  --accent: #eff6ff; /* brand-light */
-  --accent-foreground: #0037b0; /* primary */
+  --popover-foreground: #3e382e;
+  --primary: #4c9f68; /* Approval Green — the logo's check */
+  --primary-foreground: #14231a; /* espresso ink on green, like the logo check */
+  --secondary: #c8a886; /* Kraft */
+  --secondary-foreground: #3e382e;
+  --muted: #f1ece4; /* surface-muted */
+  --muted-foreground: #8a8073; /* warm gray */
+  --accent: #e9f4ec; /* brand-light */
+  --accent-foreground: #2e7d4f; /* dark green for contrast on tint */
   --destructive: #dc2626; /* error */
-  --border: #e4e4e7; /* Stitch border */
-  --input: #e4e4e7;
-  --ring: #1d4ed8; /* primary-container / focus ring */
+  --border: #e5ded2; /* warm hairline */
+  --input: #e5ded2;
+  --ring: #35915b; /* primary-container / focus ring */
 
   /* Charts (branded gradient) */
-  --chart-1: #1d4ed8;
-  --chart-2: #3b82f6;
-  --chart-3: #60a5fa;
-  --chart-4: #93c5fd;
-  --chart-5: #bfdbfe;
+  --chart-1: #35915b;
+  --chart-2: #4c9f68;
+  --chart-3: #6fb98a;
+  --chart-4: #97d0ae;
+  --chart-5: #c2e4cd;
 
   /* Radius base */
   --radius: 0.5rem;
 
   /* Sidebar (admin panel) */
-  --sidebar: #fafafa;
-  --sidebar-foreground: #1a1b23;
-  --sidebar-primary: #0037b0;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eff6ff;
-  --sidebar-accent-foreground: #0037b0;
-  --sidebar-border: #e4e4e7;
-  --sidebar-ring: #1d4ed8;
+  --sidebar: #f6f1e8;
+  --sidebar-foreground: #3e382e;
+  --sidebar-primary: #4c9f68;
+  --sidebar-primary-foreground: #14231a;
+  --sidebar-accent: #e9f4ec;
+  --sidebar-accent-foreground: #2e7d4f;
+  --sidebar-border: #e5ded2;
+  --sidebar-ring: #35915b;
 
   /* === Stitch Design System tokens === */
 
   /* Semantic status colors */
-  --success: #16a34a;
-  --success-light: #f0fdf4;
+  --success: #4c9f68;
+  --success-light: #e9f4ec;
   --warning: #d97706;
-  --warning-light: #fffbeb;
+  --warning-light: #fdf3e3;
   --error: #dc2626;
-  --error-light: #fef2f2;
+  --error-light: #fdecea;
 
   /* Material 3 surface system */
   --ds-surface: #ffffff;
-  --ds-surface-dim: #d9d9e5;
-  --ds-surface-bright: #faf8ff;
-  --ds-surface-muted: #f4f4f5;
-  --ds-surface-container: #ededf9;
-  --ds-surface-container-low: #f3f2fe;
-  --ds-surface-container-high: #e8e7f3;
-  --ds-surface-container-highest: #e2e1ed;
+  --ds-surface-dim: #e7dfd2;
+  --ds-surface-bright: #faf6f0;
+  --ds-surface-muted: #f1ece4;
+  --ds-surface-container: #efe9dd;
+  --ds-surface-container-low: #f5f0e7;
+  --ds-surface-container-high: #e9e1d3;
+  --ds-surface-container-highest: #e2d9c8;
   --ds-surface-container-lowest: #ffffff;
-  --ds-surface-variant: #e2e1ed;
-  --ds-surface-tint: #2151da;
+  --ds-surface-variant: #e2d9c8;
+  --ds-surface-tint: #4c9f68;
 
   /* On-surface */
-  --ds-on-surface: #1a1b23;
-  --ds-on-surface-variant: #434655;
+  --ds-on-surface: #3e382e;
+  --ds-on-surface-variant: #6e6455;
 
   /* Primary */
-  --ds-primary-container: #1d4ed8;
-  --ds-on-primary: #ffffff;
-  --ds-on-primary-container: #cad3ff;
-  --ds-brand-hover: #1e40af;
-  --ds-brand-light: #eff6ff;
+  --ds-primary-container: #35915b;
+  --ds-on-primary: #14231a;
+  --ds-on-primary-container: #d3ecdc;
+  --ds-brand-hover: #3b7f52;
+  --ds-brand-light: #e9f4ec;
 
   /* Secondary */
-  --ds-secondary-container: #e3e1ec;
-  --ds-on-secondary: #ffffff;
-  --ds-on-secondary-container: #63646c;
+  --ds-secondary-container: #eadfcd;
+  --ds-on-secondary: #3e382e;
+  --ds-on-secondary-container: #7a6a52;
 
   /* Tertiary */
-  --ds-tertiary: #7f2500;
-  --ds-tertiary-container: #a73400;
+  --ds-tertiary: #8a6845;
+  --ds-tertiary-container: #b08d64;
   --ds-on-tertiary: #ffffff;
-  --ds-on-tertiary-container: #ffc9b7;
+  --ds-on-tertiary-container: #4a3520;
 
   /* Error containers */
   --ds-error-container: #ffdad6;
@@ -286,34 +286,34 @@
   --ds-on-error-container: #93000a;
 
   /* Outline */
-  --ds-outline: #747686;
-  --ds-outline-variant: #c4c5d7;
+  --ds-outline: #8a8073;
+  --ds-outline-variant: #ddd3c2;
 
   /* Inverse */
-  --ds-inverse-surface: #2e3039;
-  --ds-inverse-on-surface: #f0f0fb;
-  --ds-inverse-primary: #b7c4ff;
+  --ds-inverse-surface: #3e382e;
+  --ds-inverse-on-surface: #faf6f0;
+  --ds-inverse-primary: #bfe3cd;
 
   /* Badges */
   --ds-badge-admin: #f59e0b;
-  --ds-badge-user: #6b7280;
+  --ds-badge-user: #8a8073;
 
   /* Fixed tones */
-  --ds-primary-fixed: #dce1ff;
-  --ds-primary-fixed-dim: #b7c4ff;
-  --ds-on-primary-fixed: #001551;
-  --ds-on-primary-fixed-variant: #0039b5;
-  --ds-secondary-fixed: #e3e1ec;
-  --ds-secondary-fixed-dim: #c6c5cf;
-  --ds-on-secondary-fixed: #1a1b22;
-  --ds-on-secondary-fixed-variant: #46464e;
-  --ds-tertiary-fixed: #ffdbcf;
-  --ds-tertiary-fixed-dim: #ffb59c;
-  --ds-on-tertiary-fixed: #390c00;
-  --ds-on-tertiary-fixed-variant: #832700;
+  --ds-primary-fixed: #d8eedd;
+  --ds-primary-fixed-dim: #b3dcc0;
+  --ds-on-primary-fixed: #143c26;
+  --ds-on-primary-fixed-variant: #2e7d4f;
+  --ds-secondary-fixed: #eadfcd;
+  --ds-secondary-fixed-dim: #d3c4ac;
+  --ds-on-secondary-fixed: #3e382e;
+  --ds-on-secondary-fixed-variant: #6e6455;
+  --ds-tertiary-fixed: #ecd9bd;
+  --ds-tertiary-fixed-dim: #dbb98a;
+  --ds-on-tertiary-fixed: #4a3520;
+  --ds-on-tertiary-fixed-variant: #8a6845;
 
   /* On-background */
-  --ds-on-background: #1a1b23;
+  --ds-on-background: #3e382e;
 }
 
 /* ------------------------------------------------------------------
@@ -321,85 +321,85 @@
    ------------------------------------------------------------------ */
 .dark {
   /* === shadcn core tokens (dark) === */
-  --background: #09090b; /* dark-bg */
-  --foreground: #fafafa;
-  --card: #18181b; /* dark-surface */
-  --card-foreground: #fafafa;
-  --popover: #18181b;
-  --popover-foreground: #fafafa;
-  --primary: #3b82f6; /* lighter blue for dark surfaces */
-  --primary-foreground: #ffffff;
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --accent: #1e3a5f; /* dark brand-light */
-  --accent-foreground: #60a5fa;
+  --background: #171310; /* dark-bg — warm near-black */
+  --foreground: #f0e9df;
+  --card: #211c17; /* dark-surface */
+  --card-foreground: #f0e9df;
+  --popover: #211c17;
+  --popover-foreground: #f0e9df;
+  --primary: #5cb377; /* lighter Approval Green for dark surfaces */
+  --primary-foreground: #10241a;
+  --secondary: #3a332a;
+  --secondary-foreground: #f0e9df;
+  --muted: #2a241d;
+  --muted-foreground: #a39a8c;
+  --accent: #22392b; /* dark brand-light */
+  --accent-foreground: #7cc79b;
   --destructive: #ef4444;
-  --border: #3f3f46; /* dark-border */
-  --input: #3f3f46;
-  --ring: #3b82f6;
+  --border: #3a332a; /* dark-border */
+  --input: #3a332a;
+  --ring: #5cb377;
 
   /* Charts (dark variant) */
-  --chart-1: #3b82f6;
-  --chart-2: #60a5fa;
-  --chart-3: #93c5fd;
-  --chart-4: #1d4ed8;
-  --chart-5: #1e40af;
+  --chart-1: #5cb377;
+  --chart-2: #7cc79b;
+  --chart-3: #a5d9b8;
+  --chart-4: #3b7f52;
+  --chart-5: #2e6a44;
 
   /* Sidebar */
-  --sidebar: #18181b;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #27272a;
-  --sidebar-accent-foreground: #60a5fa;
-  --sidebar-border: #3f3f46;
-  --sidebar-ring: #3b82f6;
+  --sidebar: #211c17;
+  --sidebar-foreground: #f0e9df;
+  --sidebar-primary: #5cb377;
+  --sidebar-primary-foreground: #10241a;
+  --sidebar-accent: #2a241d;
+  --sidebar-accent-foreground: #7cc79b;
+  --sidebar-border: #3a332a;
+  --sidebar-ring: #5cb377;
 
   /* === Stitch Design System tokens (dark overrides) === */
 
-  --success: #22c55e;
-  --success-light: #052e16;
+  --success: #5cb377;
+  --success-light: #14291c;
   --warning: #f59e0b;
-  --warning-light: #451a03;
+  --warning-light: #2e1f0a;
   --error: #ef4444;
-  --error-light: #450a0a;
+  --error-light: #2e0f0d;
 
   /* Surface system (dark) */
-  --ds-surface: #18181b;
-  --ds-surface-dim: #09090b;
-  --ds-surface-bright: #27272a;
-  --ds-surface-muted: #1e1e21;
-  --ds-surface-container: #1e1e21;
-  --ds-surface-container-low: #141416;
-  --ds-surface-container-high: #27272a;
-  --ds-surface-container-highest: #313134;
-  --ds-surface-container-lowest: #09090b;
-  --ds-surface-variant: #27272a;
-  --ds-surface-tint: #3b82f6;
+  --ds-surface: #211c17;
+  --ds-surface-dim: #171310;
+  --ds-surface-bright: #2a241d;
+  --ds-surface-muted: #26201a;
+  --ds-surface-container: #26201a;
+  --ds-surface-container-low: #1c1813;
+  --ds-surface-container-high: #2e2820;
+  --ds-surface-container-highest: #38312a;
+  --ds-surface-container-lowest: #171310;
+  --ds-surface-variant: #2e2820;
+  --ds-surface-tint: #5cb377;
 
   /* On-surface (dark) */
-  --ds-on-surface: #fafafa;
-  --ds-on-surface-variant: #a1a1aa;
+  --ds-on-surface: #f0e9df;
+  --ds-on-surface-variant: #a39a8c;
 
   /* Primary (dark) */
-  --ds-primary-container: #1e40af;
-  --ds-on-primary: #ffffff;
-  --ds-on-primary-container: #bfdbfe;
-  --ds-brand-hover: #60a5fa;
-  --ds-brand-light: #1e3a5f;
+  --ds-primary-container: #2e6a44;
+  --ds-on-primary: #10241a;
+  --ds-on-primary-container: #cdeeda;
+  --ds-brand-hover: #7cc79b;
+  --ds-brand-light: #22392b;
 
   /* Secondary (dark) */
-  --ds-secondary-container: #3f3f46;
-  --ds-on-secondary: #ffffff;
-  --ds-on-secondary-container: #a1a1aa;
+  --ds-secondary-container: #3a332a;
+  --ds-on-secondary: #f0e9df;
+  --ds-on-secondary-container: #a39a8c;
 
   /* Tertiary (dark) */
-  --ds-tertiary: #ffb59c;
-  --ds-tertiary-container: #832700;
-  --ds-on-tertiary: #390c00;
-  --ds-on-tertiary-container: #ffdbcf;
+  --ds-tertiary: #dbb98a;
+  --ds-tertiary-container: #6b4a2c;
+  --ds-on-tertiary: #2a1a0c;
+  --ds-on-tertiary-container: #f3e3cf;
 
   /* Error containers (dark) */
   --ds-error-container: #93000a;
@@ -407,34 +407,34 @@
   --ds-on-error-container: #ffdad6;
 
   /* Outline (dark) */
-  --ds-outline: #8e9099;
-  --ds-outline-variant: #45464f;
+  --ds-outline: #a39a8c;
+  --ds-outline-variant: #3a332a;
 
   /* Inverse (dark) */
-  --ds-inverse-surface: #e2e1ed;
-  --ds-inverse-on-surface: #2e3039;
-  --ds-inverse-primary: #0037b0;
+  --ds-inverse-surface: #e9e1d3;
+  --ds-inverse-on-surface: #3e382e;
+  --ds-inverse-primary: #4c9f68;
 
   /* Badges (dark — same values, good contrast) */
   --ds-badge-admin: #f59e0b;
-  --ds-badge-user: #9ca3af;
+  --ds-badge-user: #a39a8c;
 
   /* Fixed tones (dark) */
-  --ds-primary-fixed: #dce1ff;
-  --ds-primary-fixed-dim: #b7c4ff;
-  --ds-on-primary-fixed: #001551;
-  --ds-on-primary-fixed-variant: #0039b5;
-  --ds-secondary-fixed: #e3e1ec;
-  --ds-secondary-fixed-dim: #c6c5cf;
-  --ds-on-secondary-fixed: #1a1b22;
-  --ds-on-secondary-fixed-variant: #46464e;
-  --ds-tertiary-fixed: #ffdbcf;
-  --ds-tertiary-fixed-dim: #ffb59c;
-  --ds-on-tertiary-fixed: #390c00;
-  --ds-on-tertiary-fixed-variant: #832700;
+  --ds-primary-fixed: #d8eedd;
+  --ds-primary-fixed-dim: #b3dcc0;
+  --ds-on-primary-fixed: #143c26;
+  --ds-on-primary-fixed-variant: #2e7d4f;
+  --ds-secondary-fixed: #eadfcd;
+  --ds-secondary-fixed-dim: #d3c4ac;
+  --ds-on-secondary-fixed: #3e382e;
+  --ds-on-secondary-fixed-variant: #6e6455;
+  --ds-tertiary-fixed: #ecd9bd;
+  --ds-tertiary-fixed-dim: #dbb98a;
+  --ds-on-tertiary-fixed: #4a3520;
+  --ds-on-tertiary-fixed-variant: #8a6845;
 
   /* On-background (dark) */
-  --ds-on-background: #fafafa;
+  --ds-on-background: #f0e9df;
 }
 
 /* ------------------------------------------------------------------

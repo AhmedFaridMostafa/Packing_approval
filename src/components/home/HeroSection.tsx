@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { ROUTES } from "@/constants/routes";
 import { ArrowRight } from "lucide-react";
 
-export const HeroSection = async () => {
+const HeroSection = async () => {
   const t = await getTranslations("HomePage.hero");
 
   return (
@@ -55,3 +55,5 @@ export const HeroSection = async () => {
     </section>
   );
 };
+
+export default HeroSection;

@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Archive, ArrowLeft, ArrowRight, Globe } from "lucide-react";
+import { Archive, ArrowLeft, Globe } from "lucide-react";
 import { ROUTES } from "@/constants/routes";
 import { Button } from "@/components/ui/button";
 import Pagination from "@/components/shared/Pagination";
@@ -30,7 +30,6 @@ const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
 
   const currentPage = page ? parseInt(page) : 1;
   const isRTL = locale === "ar";
-  const BackIcon = isRTL ? ArrowRight : ArrowLeft;
 
   const result = await api.countries.getDeletedCountries(
     requestHeaders,
@@ -72,7 +71,7 @@ const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
           className="border-border flex h-11 shrink-0 items-center gap-2 rounded-xl font-semibold shadow-xs"
         >
           <Link href={ROUTES.ADMIN_COUNTRIES}>
-            <BackIcon className="h-4 w-4" />
+            <ArrowLeft className="rtl-flip h-4 w-4" />
             {t("active_countries")}
           </Link>
         </Button>

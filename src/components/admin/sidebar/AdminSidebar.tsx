@@ -9,6 +9,7 @@ interface AdminSidebarProps {
   title: string;
   homeTitle: string;
   signOut: string;
+  logoutError: string;
   isRtl: boolean;
   navigationLabels: Record<string, string>;
 }
@@ -16,6 +17,7 @@ const AdminSidebar = ({
   title,
   homeTitle,
   signOut,
+  logoutError,
   isRtl,
   navigationLabels,
 }: AdminSidebarProps) => {
@@ -29,7 +31,11 @@ const AdminSidebar = ({
     >
       <SidebarBrand title={title} />
       <SidebarNavigation labels={navigationLabels} />
-      <SidebarFooter homeTitle={homeTitle} signOut={signOut} />
+      <SidebarFooter
+        homeTitle={homeTitle}
+        signOut={signOut}
+        logoutError={logoutError}
+      />
     </Sidebar>
   );
 };

@@ -22,7 +22,7 @@ const Header = async () => {
           className="flex flex-nowrap items-center gap-2 sm:gap-3"
         >
           <Image alt="site logo" src="/site-logo.png" width={32} height={32} />
-          <span className="text-primary font-heading text-xl font-bold">
+          <span className="text-primary font-heading text-2xl font-bold">
             {t("title")}
           </span>
         </Link>

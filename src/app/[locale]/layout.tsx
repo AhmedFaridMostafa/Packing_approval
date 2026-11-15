@@ -38,7 +38,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { template: "Packing Guide/ %s", default: "Packing Approval System" },
+  title: { template: "Packing Approval / %s", default: "Packing Approval" },
   description: "...",
 };
 

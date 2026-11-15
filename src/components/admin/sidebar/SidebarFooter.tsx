@@ -16,8 +16,9 @@ import { ROUTES } from "@/constants/routes";
 interface SidebarFooterProps {
   homeTitle: string;
   signOut: string;
+  logoutError: string;
 }
-const SidebarFooter = ({ homeTitle, signOut }: SidebarFooterProps) => {
+const SidebarFooter = ({ homeTitle, signOut, logoutError }: SidebarFooterProps) => {
   return (
     <UISidebarFooter className="border-t-border border-t p-3">
       <SidebarMenu>
@@ -35,7 +36,7 @@ const SidebarFooter = ({ homeTitle, signOut }: SidebarFooterProps) => {
 
         <SidebarMenuItem>
           <div className="px-2 py-1">
-            <Logout signOut={signOut} />
+            <Logout signOut={signOut} logoutError={logoutError} />
           </div>
         </SidebarMenuItem>
       </SidebarMenu>

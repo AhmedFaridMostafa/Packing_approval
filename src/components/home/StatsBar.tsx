@@ -8,7 +8,7 @@ interface StatsBarProps {
   guidelines: number;
 }
 
-export const StatsBar = async ({
+const StatsBar = async ({
   countries,
   regions,
   categories,
@@ -32,9 +32,7 @@ export const StatsBar = async ({
             className="bg-surface-container-lowest flex flex-col items-center justify-center gap-1 rounded-lg border px-6 py-8 text-center"
           >
             <Icon className="text-primary size-6 md:size-8 lg:size-10" />
-            <h3 className="stat-number tabular-nums">
-              {value.toLocaleString()}
-            </h3>
+            <h3 className="stat-number tabular-nums">{value}</h3>
             <p className="text-caption text-on-surface-variant font-semibold tracking-wider uppercase">
               {label}
             </p>
@@ -44,3 +42,5 @@ export const StatsBar = async ({
     </section>
   );
 };
+
+export default StatsBar;

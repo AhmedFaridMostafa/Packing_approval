@@ -68,7 +68,7 @@ const DropdownMenuAvatar = async () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Logout signOut={t("signOut")} />
+          <Logout signOut={t("signOut")} logoutError={t("logoutError")} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -30,6 +30,7 @@ const SidebarAdmin = async ({ children }: SidebarAdminProps) => {
         title={t("title")}
         homeTitle={t("home")}
         signOut={t("signOut")}
+        logoutError={t("logoutError")}
         navigationLabels={navigationLabels}
       />
       <SidebarInset className="bg-surface-container-lowest min-h-screen">

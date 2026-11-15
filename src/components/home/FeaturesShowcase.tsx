@@ -3,10 +3,10 @@ import { getTranslations } from "next-intl/server";
 
 const capabilities = [
   {
-    titleKey: "bilingual_title" as const,
-    descKey: "bilingual_desc" as const,
+    titleKey: "audit_title" as const,
+    descKey: "audit_desc" as const,
     blobColor: "bg-primary/10",
-    icon: <Languages />,
+    icon: <History />,
   },
   {
     titleKey: "pdf_title" as const,
@@ -15,20 +15,20 @@ const capabilities = [
     icon: <FileText />,
   },
   {
-    titleKey: "audit_title" as const,
-    descKey: "audit_desc" as const,
-    blobColor: "bg-warning/10",
-    icon: <History />,
+    titleKey: "bilingual_title" as const,
+    descKey: "bilingual_desc" as const,
+    blobColor: "bg-tertiary/10",
+    icon: <Languages />,
   },
   {
     titleKey: "role_title" as const,
     descKey: "role_desc" as const,
-    blobColor: "bg-tertiary/10",
+    blobColor: "bg-warning/10",
     icon: <LockKeyhole />,
   },
 ];
 
-export const FeaturesShowcase = async () => {
+const FeaturesShowcase = async () => {
   const t = await getTranslations("HomePage.capabilities");
   return (
     <section className="bg-surface-container-lowest py-20 md:py-28">
@@ -48,7 +48,7 @@ export const FeaturesShowcase = async () => {
           {capabilities.map(({ titleKey, descKey, icon, blobColor }) => (
             <div
               key={titleKey}
-              className="group border-border bg-card hover:border-primary/30 relative overflow-hidden rounded-2xl border p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group border-border bg-card hover:border-primary/30 relative overflow-hidden rounded-xl border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               {/* Decorative blob */}
               <div aria-hidden="true" className={`feature-blob ${blobColor}`} />
@@ -59,7 +59,7 @@ export const FeaturesShowcase = async () => {
               </div>
 
               {/* Text */}
-              <h3 className="font-heading text-card-title text-on-surface relative font-semibold">
+              <h3 className="text-card-title text-on-surface relative font-semibold">
                 {t(titleKey)}
               </h3>
               <p className="text-table-cell text-on-surface-variant relative mt-2 leading-relaxed">
@@ -72,3 +72,5 @@ export const FeaturesShowcase = async () => {
     </section>
   );
 };
+
+export default FeaturesShowcase;

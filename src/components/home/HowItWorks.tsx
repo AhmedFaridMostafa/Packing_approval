@@ -22,7 +22,7 @@ const steps = [
   },
 ];
 
-export const HowItWorks = async () => {
+const HowItWorks = async () => {
   const t = await getTranslations("HomePage.how_it_works");
 
   return (
@@ -48,7 +48,7 @@ export const HowItWorks = async () => {
           {steps.map(({ number, titleKey, descKey, icon }) => (
             <div
               key={number}
-              className="group border-border bg-card hover:border-primary/40 relative flex flex-col items-center gap-5 rounded-2xl border p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group border-border bg-card hover:border-primary/40 relative flex flex-col items-center gap-5 rounded-xl border p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               {/* Step number badge */}
               <div className="border-primary bg-card text-primary absolute -top-4 flex h-8 w-8 items-center justify-center rounded-full border-2 text-xs font-bold tabular-nums">
@@ -62,7 +62,7 @@ export const HowItWorks = async () => {
 
               {/* Text */}
               <div>
-                <h3 className="font-heading text-card-title text-on-surface font-semibold">
+                <h3 className="text-card-title text-on-surface font-semibold">
                   {t(titleKey)}
                 </h3>
                 <p className="text-table-cell text-on-surface-variant mt-2 leading-relaxed">
@@ -76,3 +76,5 @@ export const HowItWorks = async () => {
     </section>
   );
 };
+
+export default HowItWorks;

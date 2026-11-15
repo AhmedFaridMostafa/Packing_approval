@@ -19,7 +19,7 @@ const Footer = async () => {
                 width={28}
                 height={28}
               />
-              <span className="font-heading text-primary text-lg font-bold">
+              <span className="font-heading text-primary text-2xl font-bold">
                 {t("title")}
               </span>
             </Link>
@@ -69,7 +69,7 @@ const Footer = async () => {
             <ul className="flex flex-col gap-2">
               <li>
                 <Link
-                  href="#"
+                  href={ROUTES.CONTACT}
                   className="text-caption text-on-surface-variant hover:text-primary transition-colors duration-200"
                 >
                   {t("support")}
@@ -82,14 +82,8 @@ const Footer = async () => {
         {/* Bottom bar */}
         <div className="border-border mt-10 flex flex-col items-center justify-between gap-3 border-t pt-6 sm:flex-row">
           <p className="text-caption text-on-surface-variant">
-            {t("copyright")}
+            {t("copyright", { year: 2026 })}
           </p>
-          <div className="flex items-center gap-1.5">
-            <span className="bg-success inline-block h-2 w-2 animate-pulse rounded-full" />
-            <span className="text-caption text-on-surface-variant">
-              All systems operational
-            </span>
-          </div>
         </div>
       </div>
     </footer>
