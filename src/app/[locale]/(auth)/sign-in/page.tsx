@@ -1,19 +1,10 @@
 "use client";
 
 // UI
-import AuthForm from "@/components/auth/AuthForm";
-
-// Schema
-import { signinSchema } from "@/lib/validations";
+import SignInForm from "@/components/auth/SignInForm";
 
 const SignInPage = () => {
-  return (
-    <AuthForm
-      formType="Sign_in"
-      getSchema={signinSchema}
-      defaultValues={{ email: "", password: "" }}
-    />
-  );
+  return <SignInForm />;
 };
 
 export default SignInPage;

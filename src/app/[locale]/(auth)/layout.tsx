@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SocialAuthForm from "@/components/auth/SocialAuthForm";
+import { LanguageButton } from "@/components/layout/header/LanguageButton";
 
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
@@ -18,21 +19,31 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className="flex min-h-screen items-center justify-center px-4 py-10">
-      <section className="light-border min-w-full rounded-[10px] border px-4 py-10 shadow-md sm:min-w-130 sm:px-8">
-        <div className="flex items-center justify-between gap-2">
-          <div className="space-y-2.5">
-            <h1 className="h1-bold text-dark100_light900">{t("title")}</h1>
-            <p className="paragraph-regular text-dark500_light400">
-              {t("description")}
-            </p>
+      <section className="border-border bg-card w-full max-w-130 rounded-xl border p-6 sm:p-10">
+        {/* Brand lockup + language switcher */}
+        <div className="mb-8 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <Image
+              src="/site-logo.png"
+              alt={t("logo_alt")}
+              width={36}
+              height={36}
+              className="object-contain"
+            />
+            <span className="font-heading text-primary text-2xl font-bold">
+              {t("header_title")}
+            </span>
           </div>
-          <Image
-            src="/site-logo.png"
-            alt={t("logo_alt")}
-            width={50}
-            height={50}
-            className="object-contain"
-          />
+          <LanguageButton />
+        </div>
+
+        <div className="space-y-2">
+          <h1 className="font-heading text-section-title text-on-surface font-bold">
+            {t("title")}
+          </h1>
+          <p className="text-body-base text-on-surface-variant">
+            {t("description")}
+          </p>
         </div>
 
         {children}

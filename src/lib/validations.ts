@@ -60,7 +60,10 @@ export const descriptionSchema = (t: _Translator) =>
 export const signinSchema = (t: _Translator) =>
   z.object({
     email: emailSchema(t),
-    password: passwordSchema(t),
+    password: z
+      .string({ error: t("password_required") })
+      .min(8, { error: t("password_too_short") })
+      .max(64, { error: t("password_too_long") }),
   });
 
 export const signupSchema = (t: _Translator) =>

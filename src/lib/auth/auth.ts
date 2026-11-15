@@ -35,6 +35,8 @@ const REMOVED_USER_MESSAGES: Record<Locale, string> = {
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
+    // Accounts are admin-created only (see /admin/users). Public sign-up is off.
+    disableSignUp: true,
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url }, request) => {
       const locale = getLocaleFromRequest(request);
@@ -121,6 +123,8 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      // No implicit account creation via OAuth either — admins create users.
+      disableSignUp: true,
     },
   },
 });

@@ -58,7 +58,13 @@ const SocialAuthForm = () => {
   };
 
   return (
-    <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
+    <>
+      <div className="border-border mt-10 flex items-center gap-3 border-t pt-6">
+        <span className="text-caption text-on-surface-variant w-full text-center">
+          {t("or_divider")}
+        </span>
+      </div>
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
       {SOCIAL_OAUTH_PROVIDERS.map((provider) => {
         const isPending = pendingProvider === provider.name;
         const localizedProviderName = t(`providers.${provider.name}`);
@@ -76,7 +82,8 @@ const SocialAuthForm = () => {
           </Button>
         );
       })}
-    </div>
+      </div>
+    </>
   );
 };
 
