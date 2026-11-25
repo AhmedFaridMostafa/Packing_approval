@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 // ─────────────────────────────────────────────────────────────────────────────
 
 export async function generateMetadata() {
-  const t = await getTranslations("ContactPage.meta_data");
+  const t = await getTranslations("public.contact.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -30,7 +30,7 @@ export async function generateMetadata() {
 
 const ContactPage = async () => {
   const [t, requestHeaders] = await Promise.all([
-    getTranslations("ContactPage"),
+    getTranslations("public.contact"),
     headers(),
   ]);
 
@@ -65,13 +65,13 @@ const ContactPage = async () => {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button asChild className="rounded-xl">
                 <Link href={ROUTES.COUNTRIES}>
-                  {t("cards.guidelines.primary_cta")}
+                  {t("cards.guidelines.primaryCta")}
                   <ArrowRight className="rtl-flip size-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" className="rounded-xl">
                 <Link href={ROUTES.REGIONS}>
-                  {t("cards.guidelines.secondary_cta")}
+                  {t("cards.guidelines.secondaryCta")}
                 </Link>
               </Button>
             </div>
@@ -113,8 +113,8 @@ const ContactPage = async () => {
               <Button asChild variant="outline" className="rounded-xl">
                 <Link href={isAdmin ? ROUTES.ADMIN : ROUTES.SIGN_IN}>
                   {isAdmin
-                    ? t("cards.report.cta_admin")
-                    : t("cards.report.cta_user")}
+                    ? t("cards.report.ctaAdmin")
+                    : t("cards.report.ctaUser")}
                   <ArrowRight className="rtl-flip size-4" />
                 </Link>
               </Button>
@@ -137,7 +137,7 @@ const ContactPage = async () => {
           <div className="flex items-center gap-3">
             <Mail className="text-primary size-5 shrink-0" aria-hidden="true" />
             <span className="text-body-base text-on-surface-variant">
-              {t("direct.email_label")}:
+              {t("direct.emailLabel")}:
             </span>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -150,7 +150,7 @@ const ContactPage = async () => {
           <div className="flex items-center gap-3">
             <Phone className="text-primary size-5 shrink-0" aria-hidden="true" />
             <span className="text-body-base text-on-surface-variant">
-              {t("direct.phone_label")}:
+              {t("direct.phoneLabel")}:
             </span>
             <a
               href={`tel:${CONTACT_PHONE_TEL}`}

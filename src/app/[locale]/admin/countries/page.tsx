@@ -10,7 +10,7 @@ import GlobalSearch from "@/components/shared/GlobalSearch";
 import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminCountriesPage.meta_data");
+  const t = await getTranslations("admin.countries.list.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -26,7 +26,7 @@ const AdminCountriesPage = async ({
 }: AdminCountriesPageProps) => {
   const [{ search_query, page }, t, locale] = await Promise.all([
     searchParams,
-    getTranslations("AdminCountriesPage"),
+    getTranslations("admin.countries.list"),
     getLocale(),
   ]);
 
@@ -73,7 +73,7 @@ const AdminCountriesPage = async ({
           >
             <Link href={ROUTES.ADMIN_COUNTRIES_DELETED}>
               <Archive className="h-4 w-4" />
-              {t("deleted_countries")}
+              {t("actions.viewDeleted")}
             </Link>
           </Button>
 
@@ -83,7 +83,7 @@ const AdminCountriesPage = async ({
           >
             <Link href={ROUTES.ADMIN_COUNTRIES_ADD}>
               <Plus className="h-5 w-5" />
-              {t("add_country")}
+              {t("actions.add")}
             </Link>
           </Button>
         </div>
@@ -91,7 +91,7 @@ const AdminCountriesPage = async ({
 
       {/* Search Bar */}
       <div className="flex items-center gap-4">
-        <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+        <GlobalSearch searchPlaceholder={t("search.placeholder")} />
         <span className="text-on-surface-variant text-caption font-medium">
           {countries.length > 0 && `${countries.length} shown`}
         </span>

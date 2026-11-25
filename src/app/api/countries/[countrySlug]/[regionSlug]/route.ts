@@ -9,20 +9,20 @@ export async function GET(
     params,
   }: { params: Promise<{ countrySlug?: string; regionSlug?: string }> },
 ) {
-  const [t, { countrySlug, regionSlug }] = await Promise.all([
-    getTranslations("Validation"),
+  const [tApi, { countrySlug, regionSlug }] = await Promise.all([
+    getTranslations("api.errors"),
     params,
   ]);
   try {
-    const validation = regionParamsSchema(t).parse({ countrySlug, regionSlug });
+    const validation = regionParamsSchema(tApi).parse({ countrySlug, regionSlug });
     const result = await getRegionPackingData(
       validation.countrySlug,
       validation.regionSlug,
     );
-    if (!result) return apiNotFound(t);
+    if (!result) return apiNotFound(tApi);
     return apiSuccess(result);
   } catch (error) {
     console.error(`Error in GET ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

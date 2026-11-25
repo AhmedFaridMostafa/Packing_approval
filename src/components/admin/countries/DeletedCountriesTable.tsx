@@ -27,24 +27,26 @@ const DeletedCountriesTable = ({
           <TableHeader className="bg-surface-container-low/60">
             <TableRow className="border-border">
               <TableHead className="w-75 font-bold">
-                {t("table.country")}
+                {t("table.columns.country")}
               </TableHead>
 
-              <TableHead>{t("table.slug")}</TableHead>
+              <TableHead>{t("table.columns.slug")}</TableHead>
 
               <TableHead className="text-center">
-                {t("table.deleted_at")}
-              </TableHead>
-
-              <TableHead className="text-center">
-                {t("table.regions_count")}
+                {t("table.columns.deletedAt")}
               </TableHead>
 
               <TableHead className="text-center">
-                {t("table.guidelines_count")}
+                {t("table.columns.regionsCount")}
               </TableHead>
 
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead className="text-center">
+                {t("table.columns.guidelinesCount")}
+              </TableHead>
+
+              <TableHead className="text-end">
+                {t("table.columns.actions")}
+              </TableHead>
             </TableRow>
           </TableHeader>
 
@@ -56,8 +58,8 @@ const DeletedCountriesTable = ({
                 isRTL={isRTL}
                 labels={{
                   restore: t("actions.restore"),
-                  success: t("actions.restore_success"),
-                  error: t("actions.restore_error"),
+                  success: t("toasts.restoreSuccess"),
+                  error: t("toasts.restoreError"),
                 }}
               />
             ))}

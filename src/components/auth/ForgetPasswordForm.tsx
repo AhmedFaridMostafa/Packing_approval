@@ -22,9 +22,10 @@ import { ROUTES } from "@/constants/routes";
 import { requestPasswordReset } from "@/lib/auth/auth-client";
 
 const ForgetPasswordForm = () => {
-  const t = useTranslations("Auth.forgotPassword");
-  const tLabels = useTranslations("Auth.labels");
-  const tValidation = useTranslations("Validation");
+  const t = useTranslations("auth.forgotPassword");
+  const tLabels = useTranslations("auth.labels");
+  const tValidation = useTranslations("validation");
+  const tReset = useTranslations("auth.resetPassword");
 
   const schema = forgotPasswordSchema(tValidation);
 
@@ -43,11 +44,11 @@ const ForgetPasswordForm = () => {
       },
       {
         onSuccess: () => {
-          toast.success(tValidation("reset_email_sent"));
+          toast.success(t("emailSent"));
         },
         onError: (ctx) => {
           toast.error(
-            ctx.error.message || tValidation("password_reset_failed"),
+            ctx.error.message || tReset("failed"),
           );
         },
       },

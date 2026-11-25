@@ -24,7 +24,7 @@ const PackingWayForm = ({
   packingWay,
   children,
 }: PackingWayFormProps) => {
-  const validationT = useTranslations("Validation");
+  const validationT = useTranslations("validation");
 
   const form = useForm<PackingWayFormValues>({
     resolver: zodResolver(packingWayFormSchema(validationT)),

@@ -10,7 +10,7 @@ import { apiAdminCreateUserSchema } from "@/lib/validations";
 import { getLocaleFromRequest } from "@/lib/getLocaleFromRequest";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -32,10 +32,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const body = await request.json();
     const validated = apiAdminCreateUserSchema(t).parse(body);
@@ -49,6 +52,6 @@ export async function POST(request: Request) {
 
     return apiSuccess(data, 201);
   } catch (error: unknown) {
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

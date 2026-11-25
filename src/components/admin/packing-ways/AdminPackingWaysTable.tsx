@@ -25,10 +25,10 @@ const AdminPackingWaysTable = ({
     edit: t("actions.edit"),
     delete: t("actions.delete"),
     cancel: t("actions.cancel"),
-    delete_title: t("actions.delete_title"),
-    delete_description: t("actions.delete_description"),
-    delete_success: t("actions.delete_success"),
-    delete_error: t("actions.delete_error"),
+    delete_title: t("dialogs.delete.title"),
+    delete_description: t("dialogs.delete.description"),
+    delete_success: t("toasts.deleteSuccess"),
+    delete_error: t("toasts.deleteError"),
     unknown: t("unknown"),
   };
   return (
@@ -37,12 +37,12 @@ const AdminPackingWaysTable = ({
         <Table>
           <TableHeader className="bg-surface-container-low/60">
             <TableRow>
-              <TableHead>{t("table.packing_way")}</TableHead>
-              <TableHead>{t("table.category")}</TableHead>
-              <TableHead>{t("table.region")}</TableHead>
-              <TableHead>{t("table.country")}</TableHead>
-              <TableHead>{t("table.updated")}</TableHead>
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead>{t("table.columns.packingWay")}</TableHead>
+              <TableHead>{t("table.columns.category")}</TableHead>
+              <TableHead>{t("table.columns.region")}</TableHead>
+              <TableHead>{t("table.columns.country")}</TableHead>
+              <TableHead>{t("table.columns.updatedAt")}</TableHead>
+              <TableHead className="text-end">{t("table.columns.actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -17,7 +17,7 @@ import ErrorState from "@/components/shared/ErrorState";
 // ─────────────────────────────────────────────────────────────────────────────
 
 export async function generateMetadata() {
-  const t = await getTranslations("RegionsPage.meta_data");
+  const t = await getTranslations("public.regions.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -34,7 +34,7 @@ const AllRegionsPage = async ({ searchParams }: RouteParams) => {
   const searchQuery = search_query ?? "";
 
   const [t, locale, requestHeaders] = await Promise.all([
-    getTranslations("RegionsPage"),
+    getTranslations("public.regions"),
     getLocale(),
     headers(),
   ]);
@@ -67,7 +67,7 @@ const AllRegionsPage = async ({ searchParams }: RouteParams) => {
         {/* Search bar */}
         <div className="flex justify-start md:justify-end">
           <Suspense fallback={<SearchSkeleton />}>
-            <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+            <GlobalSearch searchPlaceholder={t("search.placeholder")} />
           </Suspense>
         </div>
       </div>
@@ -81,8 +81,8 @@ const AllRegionsPage = async ({ searchParams }: RouteParams) => {
       ) : (
         <Empty
           IconTitle={MapPinOff}
-          title={t("empty_state_title")}
-          description={t("empty_state_desc")}
+          title={t("empty.title")}
+          description={t("empty.description")}
         />
       )}
     </section>

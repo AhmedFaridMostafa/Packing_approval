@@ -14,7 +14,7 @@ const EditPackingWayPage = async ({ params }: RouteParams) => {
   const [detail, formData, t] = await Promise.all([
     api.packingWays.getPackingWayById(requestHeaders, id),
     api.packingWays.getFormData(requestHeaders),
-    getTranslations("EditPackingWayPage"),
+    getTranslations("admin.packingWays.form.edit"),
   ]);
 
   if (!detail.success)
@@ -31,7 +31,7 @@ const EditPackingWayPage = async ({ params }: RouteParams) => {
       <ErrorState
         layout="page"
         status={formData.status}
-        message={t("load_error")}
+        message={t("loadError")}
       />
     );
 

@@ -4,26 +4,26 @@ import { getTranslations } from "next-intl/server";
 const steps = [
   {
     number: "01",
-    titleKey: "step1_title" as const,
-    descKey: "step1_desc" as const,
+    titleKey: "step1Title" as const,
+    descKey: "step1Desc" as const,
     icon: <Search />,
   },
   {
     number: "02",
-    titleKey: "step2_title" as const,
-    descKey: "step2_desc" as const,
+    titleKey: "step2Title" as const,
+    descKey: "step2Desc" as const,
     icon: <FileText />,
   },
   {
     number: "03",
-    titleKey: "step3_title" as const,
-    descKey: "step3_desc" as const,
+    titleKey: "step3Title" as const,
+    descKey: "step3Desc" as const,
     icon: <FileDown />,
   },
 ];
 
 const HowItWorks = async () => {
-  const t = await getTranslations("HomePage.how_it_works");
+  const t = await getTranslations("public.home.howItWorks");
 
   return (
     <section className="bg-surface-container-lowest py-20 md:py-28">

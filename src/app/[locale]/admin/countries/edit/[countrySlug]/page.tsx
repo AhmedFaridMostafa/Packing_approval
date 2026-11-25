@@ -6,7 +6,7 @@ import { api } from "@/lib/api";
 import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
-  const t = await getTranslations("EditCountryPage.meta_data");
+  const t = await getTranslations("admin.countries.form.edit.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -16,7 +16,7 @@ export async function generateMetadata() {
 const EditCountryPage = async ({ params }: RouteParams) => {
   const [{ countrySlug }, t] = await Promise.all([
     params,
-    getTranslations("EditCountryPage"),
+    getTranslations("admin.countries.form.edit"),
   ]);
 
   if (!countrySlug) return notFound();

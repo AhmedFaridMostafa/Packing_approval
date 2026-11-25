@@ -10,11 +10,14 @@ import { apiProfileSchema, ImageSchema } from "@/lib/validations";
 import { updateImage, uploadImage } from "@/server/services/upload.service";
 
 export async function PUT(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const authCheck = await checkApiAuth(request.headers);
     if (!authCheck.authorized || !authCheck.session?.user)
-      return apiUnauthorized(t);
+      return apiUnauthorized(tApi);
 
     const formData = await request.formData();
 
@@ -47,6 +50,6 @@ export async function PUT(request: Request) {
       ...(validatedData.image ? { image: validatedData.image } : {}),
     });
   } catch (error: unknown) {
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

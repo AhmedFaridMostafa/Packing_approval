@@ -50,23 +50,23 @@ export async function POST(request: Request) {
     const clonedRequest = request.clone();
     const decision = await checkArcjet(request);
     if (decision.isDenied()) {
-      const t = await getTranslations("Auth.Arcjet");
+      const t = await getTranslations("auth.arcjet");
       if (decision.reason.isRateLimit()) {
-        return new Response(t("rate_limit"), { status: 429 });
+        return new Response(t("rateLimit"), { status: 429 });
       } else if (decision.reason.isEmail()) {
         let message: string;
         if (decision.reason.emailTypes.includes("INVALID")) {
-          message = t("email_invalid");
+          message = t("emailInvalid");
         } else if (decision.reason.emailTypes.includes("DISPOSABLE")) {
-          message = t("email_disposable");
+          message = t("emailDisposable");
         } else if (decision.reason.emailTypes.includes("NO_MX_RECORDS")) {
-          message = t("email_no_mx");
+          message = t("emailNoMx");
         } else {
-          message = t("email_generic");
+          message = t("emailGeneric");
         }
         return Response.json({ message }, { status: 400 });
       } else {
-        return new Response(t("access_denied"), { status: 403 });
+        return new Response(t("accessDenied"), { status: 403 });
       }
     }
     const authResponse = await authHandlers.POST(clonedRequest);

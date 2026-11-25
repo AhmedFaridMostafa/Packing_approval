@@ -20,7 +20,7 @@ import { getTranslations } from "next-intl/server";
 const DropdownMenuAvatar = async () => {
   const [session, t] = await Promise.all([
     auth.api.getSession({ headers: await headers() }),
-    getTranslations("DropdownMenuAvatar"),
+    getTranslations("layout.userMenu"),
   ]);
 
   if (!session?.user) {

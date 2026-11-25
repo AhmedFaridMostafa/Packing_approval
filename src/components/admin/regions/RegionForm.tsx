@@ -48,8 +48,8 @@ const splitLabels = (raw: string) =>
 
 const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
   const router = useRouter();
-  const validationT = useTranslations("Validation");
-  const t = useTranslations("CreateAndUpdateRegion");
+  const validationT = useTranslations("validation");
+  const t = useTranslations("admin.regions.form");
 
   const form = useForm<RegionFormValues>({
     resolver: zodResolver(regionFormSchema(validationT)),
@@ -105,7 +105,7 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.country_id.label")}
+                  {t("fields.countryId.label")}
                 </FieldLabel>
                 <Select
                   value={field.value}
@@ -118,7 +118,7 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                     className="bg-surface-container-low! border-border! h-11! w-full! rounded-xl! font-medium!"
                   >
                     <SelectValue
-                      placeholder={t("form.country_id.placeholder")}
+                      placeholder={t("fields.countryId.placeholder")}
                     />
                   </SelectTrigger>
                   <SelectContent>
@@ -150,13 +150,13 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.label_name_en.label")}
+                  {t("fields.labelNameEn.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.label_name_en.placeholder")}
+                  placeholder={t("fields.labelNameEn.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 {fieldState.invalid && (
@@ -176,14 +176,14 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.label_name_ar.label")}
+                  {t("fields.labelNameAr.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   dir="rtl"
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.label_name_ar.placeholder")}
+                  placeholder={t("fields.labelNameAr.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 {fieldState.invalid && (
@@ -203,13 +203,13 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.account.label")}
+                  {t("fields.account.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.account.placeholder")}
+                  placeholder={t("fields.account.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 {fieldState.invalid && (
@@ -229,17 +229,17 @@ const RegionForm = ({ mode, countries, region }: RegionFormProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.labels.label")}
+                  {t("fields.labels.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.labels.placeholder")}
+                  placeholder={t("fields.labels.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 <FieldDescription className="text-on-surface-variant">
-                  {t("form.labels.hint")}
+                  {t("fields.labels.hint")}
                 </FieldDescription>
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />

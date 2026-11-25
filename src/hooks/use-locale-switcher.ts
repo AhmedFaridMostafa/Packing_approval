@@ -16,7 +16,7 @@ interface UseLocaleSwitcherOptions {
 export function useLocaleSwitcher({
   showToast = true,
 }: UseLocaleSwitcherOptions = {}) {
-  const t = useTranslations("languageSwitcher");
+  const t = useTranslations("layout.languageSwitcher");
 
   const router = useRouter();
   const pathname = usePathname();

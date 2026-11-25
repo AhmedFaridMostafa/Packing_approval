@@ -14,7 +14,7 @@ const PackingWaySavedCard = async ({
   packingWay,
 }: PackingWaySavedCardProps) => {
   const [t, locale] = await Promise.all([
-    getTranslations("CreateAndUpdatePackingWay"),
+    getTranslations("admin.packingWays.form.preview"),
     getLocale(),
   ]);
   const isRTL = locale === "ar";
@@ -41,10 +41,10 @@ const PackingWaySavedCard = async ({
           </div>
           <div>
             <h3 className="font-heading text-on-surface text-base font-bold">
-              {t("preview.saved_title")}
+              {t("savedTitle")}
             </h3>
             <p className="text-caption text-on-surface-variant/80">
-              {t("preview.saved_desc")}
+              {t("savedDesc")}
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ const PackingWaySavedCard = async ({
           className="shrink-0 gap-1 border-emerald-600/30 bg-emerald-500/10 text-xs text-emerald-700 dark:text-emerald-400"
         >
           <CheckCircle2 className="size-3" />
-          {t("preview.badge_saved")}
+          {t("badgeSaved")}
         </Badge>
       </div>
 
@@ -85,7 +85,7 @@ const PackingWaySavedCard = async ({
             <div className="text-on-surface-variant/40 flex h-full w-full flex-col items-center justify-center gap-1.5 p-4 text-center">
               <ImageIcon className="size-8" />
               <span className="text-caption font-medium">
-                {t("preview.no_image")}
+                {t("noImage")}
               </span>
             </div>
           )}

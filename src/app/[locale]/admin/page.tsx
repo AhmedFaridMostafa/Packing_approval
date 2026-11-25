@@ -7,7 +7,7 @@ import { api } from "@/lib/api";
 import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminDashboard.meta_data");
+  const t = await getTranslations("admin.dashboard.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -17,7 +17,7 @@ export async function generateMetadata() {
 const AdminDashboardPage = async () => {
   const [requestHeaders, t, locale] = await Promise.all([
     headers(),
-    getTranslations("AdminDashboard"),
+    getTranslations("admin.dashboard"),
     getLocale(),
   ]);
 

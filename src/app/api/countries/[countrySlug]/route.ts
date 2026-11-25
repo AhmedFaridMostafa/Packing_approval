@@ -7,18 +7,18 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ countrySlug?: string }> },
 ) {
-  const [t, { countrySlug }] = await Promise.all([
-    getTranslations("Validation"),
+  const [tApi, { countrySlug }] = await Promise.all([
+    getTranslations("api.errors"),
     params,
   ]);
 
   try {
-    const validation = countryParamsSchema(t).parse({ countrySlug });
+    const validation = countryParamsSchema(tApi).parse({ countrySlug });
     const result = await getCountryWithRegions(validation.countrySlug);
-    if (!result) return apiNotFound(t);
+    if (!result) return apiNotFound(tApi);
     return apiSuccess(result);
   } catch (error) {
     console.error(`Error in GET ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

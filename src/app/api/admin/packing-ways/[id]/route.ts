@@ -20,7 +20,7 @@ interface Params {
 }
 
 export async function GET(request: Request, { params }: Params) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -32,14 +32,17 @@ export async function GET(request: Request, { params }: Params) {
 }
 
 export async function PUT(request: Request, { params }: Params) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized || !auth.session) return apiUnauthorized(t);
+    if (!auth.authorized || !auth.session) return apiUnauthorized(tApi);
     const id = (await params).id;
     const existing = await getPackingWayDetailById(id);
 
-    if (!existing) return apiNotFound(t);
+    if (!existing) return apiNotFound(tApi);
 
     const formData = await request.formData();
 
@@ -65,12 +68,12 @@ export async function PUT(request: Request, { params }: Params) {
     return apiSuccess(result);
   } catch (error) {
     console.error(`Error in PUT ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
 
 export async function DELETE(request: Request, { params }: Params) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized || !auth.session) return apiUnauthorized(t);

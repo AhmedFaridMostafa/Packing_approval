@@ -30,9 +30,9 @@ import useObjectUrl from "@/hooks/useObjectUrl";
 type ProfileFormValues = z.infer<ReturnType<typeof profileSchema>>;
 
 const ProfileInformationForm = ({ user }: { user: ProfileSource }) => {
-  const validationT = useTranslations("Validation");
-  const t = useTranslations("userSetting.profileInformation");
-  const toastT = useTranslations("userSetting.toasts");
+  const validationT = useTranslations("validation");
+  const t = useTranslations("account.profileInformation");
+  const toastT = useTranslations("account.toasts");
   const router = useRouter();
 
   const form = useForm<ProfileFormValues>({
@@ -55,16 +55,16 @@ const ProfileInformationForm = ({ user }: { user: ProfileSource }) => {
       });
 
       if (!response.success) {
-        toast.error(response.error?.message || toastT("profile_update_failed"));
+        toast.error(response.error?.message || toastT("profileUpdateFailed"));
         return;
       }
 
-      toast.success(toastT("profile_updated"));
+      toast.success(toastT("profileUpdated"));
       // Clears the pending avatar and re-baselines dirty state to the saved name.
       form.reset({ name: data.name });
       router.refresh();
     } catch {
-      toast.error(toastT("profile_update_failed"));
+      toast.error(toastT("profileUpdateFailed"));
     }
   };
 

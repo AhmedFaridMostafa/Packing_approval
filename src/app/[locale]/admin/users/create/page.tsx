@@ -4,7 +4,7 @@ import { UserPlus } from "lucide-react";
 import UserFormCard from "@/components/admin/users/UserFormCard";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminUsersPage.create.meta_data");
+  const t = await getTranslations("admin.users.create.metaData");
   return {
     title: t("title"),
     description: t("description"),
@@ -12,7 +12,7 @@ export async function generateMetadata() {
 }
 
 const AddUserPage = async () => {
-  const t = await getTranslations("AdminUsersPage.create");
+  const t = await getTranslations("admin.users.create");
 
   return (
     <div className="flex flex-col gap-8">

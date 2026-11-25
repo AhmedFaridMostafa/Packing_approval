@@ -20,8 +20,8 @@ const DeletedPackingWaysTable = ({
 }) => {
   const labels = {
     restore: t("actions.restore"),
-    success: t("actions.restore_success"),
-    error: t("actions.restore_error"),
+    success: t("toasts.restoreSuccess"),
+    error: t("toasts.restoreError"),
   };
   return (
     <Card className="overflow-hidden rounded-2xl">
@@ -29,11 +29,11 @@ const DeletedPackingWaysTable = ({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{t("table.packing_way")}</TableHead>
-              <TableHead>{t("table.category")}</TableHead>
-              <TableHead>{t("table.country")}</TableHead>
-              <TableHead>{t("table.deleted")}</TableHead>
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead>{t("table.columns.packingWay")}</TableHead>
+              <TableHead>{t("table.columns.category")}</TableHead>
+              <TableHead>{t("table.columns.country")}</TableHead>
+              <TableHead>{t("table.columns.deletedAt")}</TableHead>
+              <TableHead className="text-end">{t("table.columns.actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -14,7 +14,7 @@ const DeletedPackingWaysPage = async ({ searchParams }: RouteParams) => {
   const [params, requestHeaders, t, locale] = await Promise.all([
     searchParams,
     headers(),
-    getTranslations("DeletedPackingWaysPage"),
+    getTranslations("admin.packingWays.deleted"),
     getLocale(),
   ]);
 
@@ -47,11 +47,11 @@ const DeletedPackingWaysPage = async ({ searchParams }: RouteParams) => {
         <Button variant="outline" asChild>
           <Link href={ROUTES.ADMIN_PACKING_WAYS}>
             <ArrowLeft className="me-2 size-4" />
-            {t("active")}
+            {t("actions.viewActive")}
           </Link>
         </Button>
       </div>
-      <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+      <GlobalSearch searchPlaceholder={t("search.placeholder")} />
       {result.data.packingWays.length ? (
         <DeletedPackingWaysTable
           packingWays={result.data.packingWays}
@@ -59,7 +59,7 @@ const DeletedPackingWaysPage = async ({ searchParams }: RouteParams) => {
           isRTL={locale === "ar"}
         />
       ) : (
-        <div className="rounded-2xl border py-20 text-center">{t("empty")}</div>
+        <div className="rounded-2xl border py-20 text-center">{t("empty.title")}</div>
       )}
       {result.data.totalPages > 1 && (
         <Pagination totalPages={result.data.totalPages} />

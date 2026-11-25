@@ -11,49 +11,49 @@ import {
 
 export const nameSchema = (t: _Translator) =>
   z
-    .string({ error: t("name_required") })
+    .string({ error: t("name.required") })
     .trim()
-    .min(3, { error: t("name_too_short") })
-    .max(50, { error: t("name_too_long") })
-    .regex(/^[\p{L}\p{M}\s'-]+$/u, { error: t("name_format") });
+    .min(3, { error: t("name.tooShort") })
+    .max(50, { error: t("name.tooLong") })
+    .regex(/^[\p{L}\p{M}\s'-]+$/u, { error: t("name.format") });
 
 export const passwordSchema = (t: _Translator) =>
   z
-    .string({ error: t("password_required") })
-    .min(8, { error: t("password_too_short") })
-    .max(64, { error: t("password_too_long") })
-    .regex(/[A-Z]/, { error: t("password_uppercase") })
-    .regex(/[a-z]/, { error: t("password_lowercase") })
-    .regex(/[0-9]/, { error: t("password_number") });
+    .string({ error: t("password.required") })
+    .min(8, { error: t("password.tooShort") })
+    .max(64, { error: t("password.tooLong") })
+    .regex(/[A-Z]/, { error: t("password.uppercase") })
+    .regex(/[a-z]/, { error: t("password.lowercase") })
+    .regex(/[0-9]/, { error: t("password.number") });
 
 export const emailSchema = (t: _Translator) =>
   z
-    .email({ error: t("email_invalid") })
-    .min(5, { error: t("email_too_short") })
-    .max(254, { error: t("email_too_long") });
+    .email({ error: t("email.invalid") })
+    .min(5, { error: t("email.tooShort") })
+    .max(254, { error: t("email.tooLong") });
 
 export const ImageSchema = (t: _Translator) =>
   z
     .file({
-      error: t("image_required"),
+      error: t("image.required"),
     })
-    .min(1, { error: t("image_required") })
-    .max(MAX_FILE_SIZE, { error: t("too_large") })
-    .mime(ACCEPTED_IMAGE_TYPES, { error: t("wrong_type") });
+    .min(1, { error: t("image.required") })
+    .max(MAX_FILE_SIZE, { error: t("image.maxSize") })
+    .mime(ACCEPTED_IMAGE_TYPES, { error: t("image.wrongType") });
 
 export const titleSchema = (t: _Translator) =>
   z
-    .string({ error: t("title_required") })
+    .string({ error: t("title.required") })
     .trim()
-    .min(5, { error: t("title_too_short") })
-    .max(50, { error: t("title_too_long") });
+    .min(5, { error: t("title.tooShort") })
+    .max(50, { error: t("title.tooLong") });
 
 export const descriptionSchema = (t: _Translator) =>
   z
-    .string({ error: t("description_required") })
+    .string({ error: t("description.required") })
     .trim()
-    .min(10, { error: t("description_too_short") })
-    .max(2000, { error: t("description_too_long") });
+    .min(10, { error: t("description.tooShort") })
+    .max(2000, { error: t("description.tooLong") });
 
 // --- Composed Schemas ---
 
@@ -61,9 +61,9 @@ export const signinSchema = (t: _Translator) =>
   z.object({
     email: emailSchema(t),
     password: z
-      .string({ error: t("password_required") })
-      .min(8, { error: t("password_too_short") })
-      .max(64, { error: t("password_too_long") }),
+      .string({ error: t("password.required") })
+      .min(8, { error: t("password.tooShort") })
+      .max(64, { error: t("password.tooLong") }),
   });
 
 export const signupSchema = (t: _Translator) =>
@@ -80,7 +80,7 @@ export const signupAdminSchema = (t: _Translator) =>
       role: z.enum(USER_ROLES).default("user"),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      error: t("password_mismatch"),
+      error: t("password.mismatch"),
       path: ["confirmPassword"],
     });
 
@@ -98,23 +98,23 @@ export const confirmPasswordSchema = (t: _Translator) =>
     .object({
       currentPassword: z
         .string()
-        .min(1, { error: t("current_password_required") }),
+        .min(1, { error: t("password.currentRequired") }),
       newPassword: passwordSchema(t),
       confirmPassword: passwordSchema(t),
     })
     .refine((data) => data.newPassword === data.confirmPassword, {
-      error: t("password_mismatch"),
+      error: t("password.mismatch"),
       path: ["confirmPassword"],
     })
     .refine((data) => data.currentPassword !== data.newPassword, {
-      error: t("new_password_different"),
+      error: t("password.mustDiffer"),
       path: ["newPassword"],
     });
 
 export const categorySchema = (t: _Translator) =>
   z.object({
-    category: z.string({ error: t("category_required") }),
-    category_ar: z.string({ error: t("category_required") }),
+    category: z.string({ error: t("category.required") }),
+    category_ar: z.string({ error: t("category.required") }),
   });
 
 export const forgotPasswordSchema = (t: _Translator) =>
@@ -129,7 +129,7 @@ export const resetPasswordSchema = (t: _Translator) =>
       confirmPassword: passwordSchema(t),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      error: t("password_mismatch"),
+      error: t("password.mismatch"),
       path: ["confirmPassword"],
     });
 
@@ -138,118 +138,118 @@ export const resetPasswordSchema = (t: _Translator) =>
 export const roleUpdateSchema = (t: _Translator) =>
   z.object({
     userId: z.string().min(1),
-    newRole: z.enum(USER_ROLES, { error: t("invalid_role") }),
+    newRole: z.enum(USER_ROLES, { error: t("role.invalid") }),
   });
 
 // --- API Entity Schemas ---
 
-export const apiCountrySchema = (t: _Translator) =>
+export const apiCountrySchema = (t: _Translator, tApi: _Translator = t) =>
   z.object({
-    slug: slugSchema(t).optional(),
-    name_en: z.string().min(1, t("name_en_required")),
-    name_ar: z.string().min(1, t("name_ar_required")),
-    flag_url: z.union([z.url(t("invalid_url")), z.literal("")]).optional(),
+    slug: slugSchema(tApi).optional(),
+    name_en: z.string().min(1, t("nameEn.required")),
+    name_ar: z.string().min(1, t("nameAr.required")),
+    flag_url: z.union([z.url(t("url.invalid")), z.literal("")]).optional(),
     image_file: ImageSchema(t).optional(),
   });
 
 export const apiRegionSchema = (t: _Translator) =>
   z.object({
-    country_id: z.number().positive(t("country_id_required")),
-    label_name_en: z.string().min(1, t("label_name_en_required")),
-    label_name_ar: z.string().min(1, t("label_name_ar_required")),
-    account: z.string().min(1, t("account_required")),
-    labels: z.array(z.string()).min(1, t("labels_required")),
+    country_id: z.number().positive(t("countryId.required")),
+    label_name_en: z.string().min(1, t("labelNameEn.required")),
+    label_name_ar: z.string().min(1, t("labelNameAr.required")),
+    account: z.string().min(1, t("account.required")),
+    labels: z.array(z.string()).min(1, t("labels.required")),
   });
 
 export const regionFormSchema = (t: _Translator) =>
   z.object({
     country_id: z
-      .string({ error: t("country_id_required") })
-      .min(1, { error: t("country_id_required") }),
+      .string({ error: t("countryId.required") })
+      .min(1, { error: t("countryId.required") }),
     label_name_en: z
-      .string({ error: t("label_name_en_required") })
+      .string({ error: t("labelNameEn.required") })
       .trim()
-      .min(1, { error: t("label_name_en_required") })
-      .max(100, { error: t("name_too_long") }),
+      .min(1, { error: t("labelNameEn.required") })
+      .max(100, { error: t("name.tooLong") }),
     label_name_ar: z
-      .string({ error: t("label_name_ar_required") })
+      .string({ error: t("labelNameAr.required") })
       .trim()
-      .min(1, { error: t("label_name_ar_required") })
-      .max(100, { error: t("name_too_long") }),
+      .min(1, { error: t("labelNameAr.required") })
+      .max(100, { error: t("name.tooLong") }),
     account: z
-      .string({ error: t("account_required") })
+      .string({ error: t("account.required") })
       .trim()
-      .min(1, { error: t("account_required") })
-      .max(100, { error: t("name_too_long") }),
+      .min(1, { error: t("account.required") })
+      .max(100, { error: t("name.tooLong") }),
     labels: z
-      .string({ error: t("labels_required") })
+      .string({ error: t("labels.required") })
       .trim()
-      .min(1, { error: t("labels_required") })
-      .max(300, { error: t("name_too_long") }),
+      .min(1, { error: t("labels.required") })
+      .max(300, { error: t("name.tooLong") }),
   });
 
 export const apiCategorySchema = (t: _Translator) =>
   z.object({
-    name_en: z.string().min(1, t("name_en_required")),
-    name_ar: z.string().min(1, t("name_ar_required")),
+    name_en: z.string().min(1, t("nameEn.required")),
+    name_ar: z.string().min(1, t("nameAr.required")),
   });
 
 export const categoryFormSchema = (t: _Translator) =>
   z.object({
     name_en: z
-      .string({ error: t("name_en_required") })
+      .string({ error: t("nameEn.required") })
       .trim()
-      .min(1, { error: t("name_en_required") })
-      .max(100, { error: t("name_too_long") }),
+      .min(1, { error: t("nameEn.required") })
+      .max(100, { error: t("name.tooLong") }),
     name_ar: z
-      .string({ error: t("name_ar_required") })
+      .string({ error: t("nameAr.required") })
       .trim()
-      .min(1, { error: t("name_ar_required") })
-      .max(100, { error: t("name_too_long") }),
+      .min(1, { error: t("nameAr.required") })
+      .max(100, { error: t("name.tooLong") }),
   });
 
 export const apiCategoryReorderSchema = (t: _Translator) =>
   z.array(
     z.object({
-      id: z.number().positive({ error: t("category_id_required") }),
-      sort_order: z.number().int({ error: t("sort_order_invalid") }),
+      id: z.number().positive({ error: t("categoryId.required") }),
+      sort_order: z.number().int({ error: t("sortOrder.invalid") }),
     }),
   );
 
 export const apiPackingSchema = (t: _Translator) =>
   z.object({
-    region_id: z.number().positive(t("region_id_required")),
-    category_id: z.number().positive(t("category_id_required")),
-    title_en: z.string().min(1, t("title_en_required")),
-    title_ar: z.string().min(1, t("title_ar_required")),
+    region_id: z.number().positive(t("regionId.required")),
+    category_id: z.number().positive(t("categoryId.required")),
+    title_en: z.string().min(1, t("titleEn.required")),
+    title_ar: z.string().min(1, t("titleAr.required")),
     description_en: z
       .string()
-      .min(1, t("description_en_required"))
+      .min(1, t("descriptionEn.required"))
       .optional()
       .nullable(),
     description_ar: z
       .string()
-      .min(1, t("description_ar_required"))
+      .min(1, t("descriptionAr.required"))
       .optional()
       .nullable(),
-    image_url: z.url(t("invalid_url")).optional().nullable(),
+    image_url: z.url(t("url.invalid")).optional().nullable(),
   });
 
 export const packingWayFormSchema = (t: _Translator) =>
   z.object({
-    country_id: z.string().min(1, t("country_id_required")),
-    region_id: z.string().min(1, t("region_id_required")),
-    category_id: z.string().min(1, t("category_id_required")),
+    country_id: z.string().min(1, t("countryId.required")),
+    region_id: z.string().min(1, t("regionId.required")),
+    category_id: z.string().min(1, t("categoryId.required")),
     title_en: titleSchema(t),
     title_ar: titleSchema(t),
-    description_en: z.string().min(1, t("description_en_required")).optional(),
-    description_ar: z.string().min(1, t("description_ar_required")).optional(),
+    description_en: z.string().min(1, t("descriptionEn.required")).optional(),
+    description_ar: z.string().min(1, t("descriptionAr.required")).optional(),
     image: z.union([z.instanceof(File), z.undefined()]),
   });
 
 export const apiProfileSchema = (t: _Translator) =>
   z.object({
-    name: z.string().min(1, t("name_required")).optional(),
+    name: z.string().min(1, t("name.required")).optional(),
     image: z.url().optional().nullable(),
   });
 
@@ -257,20 +257,20 @@ export const apiBanUserSchema = (t: _Translator) =>
   z.object({
     reason: z
       .string()
-      .max(500, { error: t("ban_reason_too_long") })
+      .max(500, { error: t("banReason.tooLong") })
       .refine((reason) => reason !== USER_REMOVED_MARKER, {
-        error: t("invalid_ban_reason"),
+        error: t("banReason.invalid"),
       })
       .optional(),
     expiresIn: z
       .number()
       .int()
-      .positive({ error: t("ban_expires_in_invalid") })
+      .positive({ error: t("banExpiresIn.invalid") })
       .optional(),
   });
 
 export const slugSchema = (t: _Translator) =>
-  z.string().min(1, t("not_found")).trim();
+  z.string().min(1, t("notFound")).trim();
 
 export const countryParamsSchema = (t: _Translator) =>
   z.object({
@@ -289,7 +289,7 @@ export const regionsParamsSchema = (t: _Translator) =>
     currentPage: z.coerce
       .number()
       .int()
-      .positive({ error: t("page_invalid") })
+      .positive({ error: t("page.invalid") })
       .optional()
       .default(1),
   });

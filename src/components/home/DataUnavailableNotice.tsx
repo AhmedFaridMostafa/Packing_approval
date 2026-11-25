@@ -2,7 +2,7 @@ import { WifiOff } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 const DataUnavailableNotice = async () => {
-  const t = await getTranslations("HomePage.degraded");
+  const t = await getTranslations("public.home.degraded");
   return (
     <section className="border-border bg-surface-container-low border-y py-12 md:py-16">
       <div className="section-container flex flex-col items-center gap-3 text-center">

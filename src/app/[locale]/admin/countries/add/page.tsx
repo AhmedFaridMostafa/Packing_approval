@@ -3,7 +3,7 @@ import CountryForm from "@/components/admin/countries/CountryForm";
 import { Globe } from "lucide-react";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AddCountryPage.meta_data");
+  const t = await getTranslations("admin.countries.form.create.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -11,7 +11,7 @@ export async function generateMetadata() {
 }
 
 const AddCountryPage = async () => {
-  const t = await getTranslations("AddCountryPage");
+  const t = await getTranslations("admin.countries.form.create");
 
   return (
     <div className="flex flex-col gap-8">

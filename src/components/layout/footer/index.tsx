@@ -4,7 +4,7 @@ import { ROUTES } from "@/constants/routes";
 import Image from "next/image";
 
 const Footer = async () => {
-  const t = await getTranslations("Footer");
+  const t = await getTranslations("layout.footer");
 
   return (
     <footer className="border-border bg-surface-container-lowest mt-auto border-t py-12">

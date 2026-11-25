@@ -19,14 +19,17 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const resolvedParams = await params;
     if (auth.session?.user.id === resolvedParams.id)
-      throw new ApiError(403, t("cannot_change_own_role"));
+      throw new ApiError(403, tApi("cannotChangeOwnRole"));
 
     const body = await request.json();
 
@@ -43,7 +46,7 @@ export async function PUT(
 
     return apiSuccess(data);
   } catch (error: unknown) {
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
 
@@ -51,24 +54,27 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const t = await getTranslations("Validation");
+  const [tApi, tSuccess] = await Promise.all([
+    getTranslations("api.errors"),
+    getTranslations("api.success"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const resolvedParams = await params;
     if (auth.session?.user.id === resolvedParams.id)
-      throw new ApiError(403, t("cannot_remove_self"));
+      throw new ApiError(403, tApi("cannotRemoveSelf"));
 
     const target = await getUserById(request.headers, resolvedParams.id);
-    if (!target) return apiNotFound(t);
+    if (!target) return apiNotFound(tApi);
 
     if (target.banReason === USER_REMOVED_MARKER)
-      return apiSuccess({ message: t("user_removed") });
+      return apiSuccess({ message: tSuccess("userRemoved") });
 
     await removeUser(request.headers, resolvedParams.id);
-    return apiSuccess({ message: t("user_removed") });
+    return apiSuccess({ message: tSuccess("userRemoved") });
   } catch (error: unknown) {
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

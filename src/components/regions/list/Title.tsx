@@ -25,7 +25,7 @@ const Title = ({ t, totalItems, isAdmin }: TitleProps) => {
             {t("title")}
           </h1>
           <p className="text-caption text-primary mt-1 font-semibold tracking-wider uppercase">
-            {t("total_badge", { count: totalItems })}
+            {t("totalBadge", { count: totalItems })}
           </p>
         </div>
       </div>
@@ -40,7 +40,7 @@ const Title = ({ t, totalItems, isAdmin }: TitleProps) => {
             className="inline-flex items-center gap-2"
           >
             <Plus className="h-5 w-5" />
-            {t("add_region_cta")}
+            {t("actions.addRegion")}
           </Link>
         </Button>
       )}

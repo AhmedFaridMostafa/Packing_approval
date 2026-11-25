@@ -38,8 +38,8 @@ export type UserFormValues = z.output<UserFormSchema>;
 
 const UserFormCard = () => {
   const router = useRouter();
-  const validationT = useTranslations("Validation");
-  const t = useTranslations("AdminUsersPage.create");
+  const validationT = useTranslations("validation");
+  const t = useTranslations("admin.users.create");
 
   const form = useForm<UserFormInput, unknown, UserFormValues>({
     resolver: zodResolver(apiAdminCreateUserSchema(validationT)),
@@ -151,7 +151,7 @@ const UserFormCard = () => {
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 <FieldDescription className="text-on-surface-variant">
-                  {t("password_hint")}
+                  {t("passwordHint")}
                 </FieldDescription>
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -170,7 +170,7 @@ const UserFormCard = () => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("confirm_password")}
+                  {t("confirmPassword")}
                 </FieldLabel>
                 <Input
                   {...field}
@@ -214,10 +214,10 @@ const UserFormCard = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem className="p-3" value="user">
-                      {t("role_user")}
+                      {t("roleUser")}
                     </SelectItem>
                     <SelectItem className="p-3" value="admin">
-                      {t("role_admin")}
+                      {t("roleAdmin")}
                     </SelectItem>
                   </SelectContent>
                 </Select>

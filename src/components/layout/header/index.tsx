@@ -11,8 +11,8 @@ import { Spinner } from "@/components/ui/spinner";
 import { MobileMenu } from "./MobileMenu";
 
 const Header = async () => {
-  const t = await getTranslations("Header");
-  const links: LinkItem[] = t.raw("NavigationLinks");
+  const t = await getTranslations("layout.header");
+  const links: LinkItem[] = t.raw("navigationLinks");
 
   return (
     <header className="bg-surface-container-lowest border-b-border border-b px-4 py-4 sm:px-8">

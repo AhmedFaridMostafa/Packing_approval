@@ -3,7 +3,7 @@ import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const { searchParams } = new URL(request.url);
     const data = await getCountries({

@@ -21,17 +21,18 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ countrySlug?: string }> },
 ) {
-  const [t, { countrySlug }] = await Promise.all([
-    getTranslations("Validation"),
+  const [t, tApi, { countrySlug }] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
     params,
   ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const formData = await request.formData();
 
-    const validatedData = apiCountrySchema(t)
+    const validatedData = apiCountrySchema(t, tApi)
       .required({ slug: true })
       .parse({
         slug: countrySlug,
@@ -63,7 +64,7 @@ export async function PUT(
     return apiSuccess(data);
   } catch (error) {
     console.error(`Error in PUT ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
 
@@ -71,15 +72,15 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ countrySlug?: string }> },
 ) {
-  const [t, { countrySlug }] = await Promise.all([
-    getTranslations("Validation"),
+  const [tApi, { countrySlug }] = await Promise.all([
+    getTranslations("api.errors"),
     params,
   ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
-    const validation = countryParamsSchema(t).parse({ countrySlug });
+    const validation = countryParamsSchema(tApi).parse({ countrySlug });
 
     const deleted = await deleteCountry(validation.countrySlug);
 
@@ -89,6 +90,6 @@ export async function DELETE(
     return apiSuccess(deleted);
   } catch (error: unknown) {
     console.error(`Error in DELETE ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

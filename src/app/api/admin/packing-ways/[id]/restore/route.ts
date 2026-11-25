@@ -13,7 +13,7 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized || !auth.session?.user) return apiUnauthorized(t);

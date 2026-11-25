@@ -26,7 +26,7 @@ interface CountryFormCardProps {
 }
 const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
   const router = useRouter();
-  const t = useTranslations("CreateAndUpdateCountry");
+  const t = useTranslations("admin.countries.form");
 
   const onSubmit = async (data: CountryFormValues) => {
     try {
@@ -59,13 +59,13 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.name_en.label")}
+                  {t("fields.nameEn.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.name_en.placeholder")}
+                  placeholder={t("fields.nameEn.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 {fieldState.invalid && (
@@ -85,13 +85,13 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.name_ar.label")}
+                  {t("fields.nameAr.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.name_ar.placeholder")}
+                  placeholder={t("fields.nameAr.placeholder")}
                   dir="rtl"
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
@@ -112,7 +112,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.flag_url.label")}
+                  {t("fields.flagUrl.label")}
                 </FieldLabel>
                 <Input
                   {...field}
@@ -128,7 +128,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   id={field.name}
                   type="url"
                   aria-invalid={fieldState.invalid}
-                  placeholder={t("form.flag_url.placeholder")}
+                  placeholder={t("fields.flagUrl.placeholder")}
                   className="bg-surface-container-low border-border h-11 rounded-xl font-medium"
                 />
                 {fieldState.invalid && (
@@ -139,7 +139,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
           />
 
           <FieldSeparator className="my-2">
-            {t("form.or_separator")}
+            {t("fields.orSeparator")}
           </FieldSeparator>
 
           {/* Image File Upload */}
@@ -152,7 +152,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   htmlFor={field.name}
                   className="text-on-surface font-semibold"
                 >
-                  {t("form.image_file.label")}
+                  {t("fields.imageFile.label")}
                 </FieldLabel>
                 <FileUploader
                   id={field.name}
@@ -160,10 +160,10 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   disabled={field.disabled}
                   ariaInvalid={fieldState.invalid}
                   labels={{
-                    placeholder: t("form.image_file.placeholder"),
-                    uploadText: t("form.image_file.upload"),
-                    dropText: t("form.image_file.drop"),
-                    replaceText: t("form.image_file.replace"),
+                    placeholder: t("fields.imageFile.placeholder"),
+                    uploadText: t("fields.imageFile.upload"),
+                    dropText: t("fields.imageFile.drop"),
+                    replaceText: t("fields.imageFile.replace"),
                   }}
                   onChange={(file) => {
                     field.onChange(file);
@@ -177,7 +177,7 @@ const CountryFormCard = ({ form, mode }: CountryFormCardProps) => {
                   onDropRejected={(rejections) => {
                     const message =
                       rejections[0]?.errors[0]?.message ??
-                      t("form.image_file.invalid");
+                      t("fields.imageFile.invalid");
                     form.setError("image_file", {
                       type: "manual",
                       message,

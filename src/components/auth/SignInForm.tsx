@@ -33,8 +33,8 @@ import { getSession, signIn } from "@/lib/auth/auth-client";
 type AuthErrorBody = { status?: string; message?: string };
 
 const SignInForm = () => {
-  const tAuth = useTranslations("Auth");
-  const tValidation = useTranslations("Validation");
+  const tAuth = useTranslations("auth");
+  const tValidation = useTranslations("validation");
   const router = useRouter();
 
   const form = useForm({
@@ -47,7 +47,7 @@ const SignInForm = () => {
       { email: data.email, password: data.password },
       {
         onSuccess: async () => {
-          toast.success(tAuth("Sign_in.success"));
+          toast.success(tAuth("signIn.success"));
           // Role-based landing: admins go to the dashboard, users to home.
           const session = await getSession();
           router.push(
@@ -64,9 +64,9 @@ const SignInForm = () => {
             );
             router.refresh();
           } else if (context?.error?.status === 429) {
-            toast.error(tAuth("Arcjet.rate_limit"), { duration: 10000 });
+            toast.error(tAuth("arcjet.rateLimit"), { duration: 10000 });
           } else {
-            toast.error(body?.message || tAuth("Sign_in.global_error"));
+            toast.error(body?.message || tAuth("signIn.globalError"));
           }
         },
       },
@@ -114,7 +114,7 @@ const SignInForm = () => {
                   href={ROUTES.FORGET_PASSWORD}
                   className="text-primary text-sm font-medium hover:underline"
                 >
-                  {tAuth("Sign_in.forgot_password")}
+                  {tAuth("signIn.forgotPassword")}
                 </Link>
               </div>
               <Input
@@ -136,16 +136,16 @@ const SignInForm = () => {
         disabled={form.formState.isSubmitting}
         className="min-h-12 w-full px-4 py-3"
       >
-        {tAuth("Sign_in.submit")}
+        {tAuth("signIn.submit")}
         {form.formState.isSubmitting && <Spinner />}
       </Button>
 
       <p className="text-body-base text-on-surface-variant text-center">
-        {tAuth("Sign_in.footer_text")}
+        {tAuth("signIn.footerText")}
       </p>
 
       <p className="text-caption text-on-surface-variant text-center">
-        {tAuth("Sign_in.anonymous_hint")}
+        {tAuth("signIn.anonymousHint")}
       </p>
     </form>
   );

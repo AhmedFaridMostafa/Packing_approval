@@ -19,21 +19,24 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const resolvedParams = await params;
 
     if (auth.session?.user.id === resolvedParams.id)
-      throw new ApiError(403, t("cannot_ban_self"));
+      throw new ApiError(403, tApi("cannotBanSelf"));
 
     const target = await getUserById(request.headers, resolvedParams.id);
-    if (!target) return apiNotFound(t);
+    if (!target) return apiNotFound(tApi);
 
     if (target.banReason === USER_REMOVED_MARKER)
-      throw new ApiError(403, t("user_already_removed"));
+      throw new ApiError(403, tApi("userAlreadyRemoved"));
 
     const body = await request.json().catch(() => ({}));
     const validatedData = apiBanUserSchema(t).parse(body);
@@ -47,7 +50,7 @@ export async function POST(
 
     return apiSuccess(data);
   } catch (error: unknown) {
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
 
@@ -55,7 +58,7 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -63,13 +66,13 @@ export async function DELETE(
     const resolvedParams = await params;
 
     if (auth.session?.user.id === resolvedParams.id)
-      throw new ApiError(403, t("cannot_unban_self"));
+      throw new ApiError(403, t("cannotUnbanSelf"));
 
     const target = await getUserById(request.headers, resolvedParams.id);
     if (!target) return apiNotFound(t);
 
     if (target.banReason === USER_REMOVED_MARKER)
-      throw new ApiError(403, t("cannot_unban_removed"));
+      throw new ApiError(403, t("cannotUnbanRemoved"));
 
     const data = await unbanUser(request.headers, resolvedParams.id);
     return apiSuccess(data);

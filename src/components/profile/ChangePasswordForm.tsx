@@ -28,9 +28,9 @@ type ChangePasswordFormValues = z.infer<
 >;
 
 const ChangePasswordForm = () => {
-  const validationT = useTranslations("Validation");
-  const t = useTranslations("userSetting.changePassword");
-  const toastT = useTranslations("userSetting.toasts");
+  const validationT = useTranslations("validation");
+  const t = useTranslations("account.changePassword");
+  const toastT = useTranslations("account.toasts");
 
   const form = useForm<ChangePasswordFormValues>({
     resolver: zodResolver(confirmPasswordSchema(validationT)),
@@ -48,9 +48,9 @@ const ChangePasswordForm = () => {
       revokeOtherSessions: true,
     });
     if (error) {
-      toast.error(error.message || toastT("password_change_failed"));
+      toast.error(error.message || toastT("passwordChangeFailed"));
     } else {
-      toast.success(toastT("password_changed"));
+      toast.success(toastT("passwordChanged"));
       form.reset();
     }
   };

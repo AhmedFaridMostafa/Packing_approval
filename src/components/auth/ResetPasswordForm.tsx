@@ -24,8 +24,8 @@ import { ROUTES } from "@/constants/routes";
 import { resetPassword } from "@/lib/auth/auth-client";
 
 const ResetPasswordFormContent = () => {
-  const t = useTranslations("Auth.resetPassword");
-  const tValidation = useTranslations("Validation");
+  const t = useTranslations("auth.resetPassword");
+  const tValidation = useTranslations("validation");
 
   const schema = resetPasswordSchema(tValidation);
   const router = useRouter();
@@ -43,7 +43,7 @@ const ResetPasswordFormContent = () => {
 
   const handleSubmit = async (data: z.infer<typeof schema>) => {
     if (!token) {
-      toast.error(tValidation("token_required"));
+      toast.error(t("tokenRequired"));
       return;
     }
     await resetPassword(
@@ -53,12 +53,12 @@ const ResetPasswordFormContent = () => {
       },
       {
         onSuccess: () => {
-          toast.success(tValidation("password_reset_success"));
+          toast.success(t("success"));
           router.push(ROUTES.SIGN_IN);
         },
         onError: (ctx) => {
           toast.error(
-            ctx.error.message || tValidation("password_reset_failed"),
+            ctx.error.message || t("failed"),
           );
         },
       },
@@ -70,16 +70,16 @@ const ResetPasswordFormContent = () => {
       <div className="mt-10 flex flex-col items-center justify-center space-y-6 text-center">
         <div className="space-y-2">
           <h1 className="h2-bold text-red-500">
-            {tValidation("reset_token_invalid")}
+            {t("tokenInvalid")}
           </h1>
           <p className="paragraph-regular text-dark500_light400">
-            {error === "invalid_token" ? tValidation("token_required") : error}
+            {error === "invalid_token" ? t("tokenRequired") : error}
           </p>
         </div>
 
         <Button className="min-h-12 w-full px-4 py-3" asChild>
           <Link href={ROUTES.FORGET_PASSWORD}>
-            {tValidation("form_errors") ? "Try Again" : "Try Again"}
+            {tValidation("form.hasErrors") ? "Try Again" : "Try Again"}
           </Link>
         </Button>
       </div>

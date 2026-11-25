@@ -13,7 +13,7 @@ const AdminHistoryPage = async ({ searchParams }: RouteParams) => {
   const [params, requestHeaders, t, locale] = await Promise.all([
     searchParams,
     headers(),
-    getTranslations("AdminHistoryPage"),
+    getTranslations("admin.history"),
     getLocale(),
   ]);
 
@@ -53,15 +53,15 @@ const AdminHistoryPage = async ({ searchParams }: RouteParams) => {
       <Suspense fallback={<HistoryFilterBarSkeleton />}>
         <HistoryFilterBar
           requestHeaders={requestHeaders}
-          searchPlaceholder={t("search_placeholder")}
-          allActions={t("filters.all_actions")}
-          allCountries={t("filters.all_countries")}
-          allRegions={t("filters.all_regions")}
-          allCategories={t("filters.all_categories")}
+          searchPlaceholder={t("search.placeholder")}
+          allActions={t("filters.allActions")}
+          allCountries={t("filters.allCountries")}
+          allRegions={t("filters.allRegions")}
+          allCategories={t("filters.allCategories")}
           actionLabels={{
-            create: t("actions.CREATE"),
-            update: t("actions.UPDATE"),
-            delete: t("actions.DELETE"),
+            create: t("actionTypes.create"),
+            update: t("actionTypes.update"),
+            delete: t("actionTypes.delete"),
           }}
         />
       </Suspense>

@@ -15,7 +15,7 @@ import ErrorState from "@/components/shared/ErrorState";
 export const generateMetadata = async ({ params }: RouteParams) => {
   const [{ countrySlug, regionSlug, locale }, t] = await Promise.all([
     params,
-    getTranslations("RegionPackingWaysPage.meta_data"),
+    getTranslations("public.regionPackingWays.metadata"),
   ]);
 
   const result = await api.countries.getRegionPackingData(
@@ -50,7 +50,7 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
   const [{ countrySlug, regionSlug, locale }, t, requestHeaders] =
     await Promise.all([
       params,
-      getTranslations("RegionPackingWaysPage"),
+      getTranslations("public.regionPackingWays"),
       headers(),
     ]);
 
@@ -85,8 +85,8 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
       <section className="py-10 pb-0 sm:py-12">
         <div className="section-container">
           <Nav
-            homeNav={t("home_breadcrumb")}
-            countriesNav={t("countries_breadcrumb")}
+            homeNav={t("breadcrumb.home")}
+            countriesNav={t("breadcrumb.countries")}
             countrySlug={countrySlug}
             countryName={countryName}
             regionName={regionName}
@@ -95,10 +95,10 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
           <Header
             countryName={countryName}
             regionName={regionName}
-            guidelinesBadge={t("guidelines_badge", {
+            guidelinesBadge={t("guidelinesBadge", {
               count: totalGuidelines,
             })}
-            accountLabel={t("account_label")}
+            accountLabel={t("accountLabel")}
             region={region}
           />
         </div>
@@ -107,8 +107,8 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
       {/* Empty State or Grouped Guidelines */}
       {groupedPacking.length === 0 ? (
         <GuidelinesEmpty
-          title={t("empty_state_title")}
-          description={t("no_items_in_region")}
+          title={t("empty.title")}
+          description={t("noItemsInRegion")}
         />
       ) : (
         <Packing
@@ -117,8 +117,8 @@ const RegionPackingWaysPage = async ({ params }: RouteParams) => {
           region={region}
           isRTL={isRTL}
           isAdmin={isAdmin}
-          generatingPdf={t("generating_pdf")}
-          downloadPdfCta={t("download_pdf_cta")}
+          generatingPdf={t("generatingPdf")}
+          downloadPdfCta={t("actions.downloadPdf")}
         />
       )}
     </>

@@ -25,7 +25,7 @@ export function handleApiError(
   if (error instanceof ZodError) {
     const { fieldErrors, formErrors } = flattenError(error);
     return errorResponse(
-      formErrors[0] ?? (t ? t("validation_error") : "Validation failed."),
+      formErrors[0] ?? (t ? t("validationError") : "Validation failed."),
       400,
       fieldErrors,
     );
@@ -45,7 +45,7 @@ export function handleApiError(
   // Malformed JSON body (e.g. request.json() threw before Zod ever ran).
   if (error instanceof SyntaxError) {
     return errorResponse(
-      t ? t("invalid_json") : "Malformed request body.",
+      t ? t("invalidJson") : "Malformed request body.",
       400,
     );
   }
@@ -57,7 +57,7 @@ export function handleApiError(
     switch (dbError.code) {
       case "23505": // unique_violation
         return errorResponse(
-          t ? t("resource_exists") : "Resource already exists.",
+          t ? t("resourceExists") : "Resource already exists.",
           409,
         );
 
@@ -71,13 +71,13 @@ export function handleApiError(
         return isMissingReference
           ? errorResponse(
               t
-                ? t("invalid_reference")
+                ? t("invalidReference")
                 : "Referenced resource does not exist.",
               400,
             )
           : errorResponse(
               t
-                ? t("resource_referenced")
+                ? t("resourceReferenced")
                 : "Cannot delete resource because it is referenced by other records.",
               409,
             );
@@ -85,13 +85,13 @@ export function handleApiError(
 
       case "23502": // not_null_violation
         return errorResponse(
-          t ? t("missing_required_field") : "A required field is missing.",
+          t ? t("missingRequiredField") : "A required field is missing.",
           400,
         );
 
       case "22P02": // invalid_text_representation (bad UUID, bad enum, etc.)
         return errorResponse(
-          t ? t("invalid_input") : "Invalid input format.",
+          t ? t("invalidInput") : "Invalid input format.",
           400,
         );
     }
@@ -100,7 +100,7 @@ export function handleApiError(
   // Log the real error server-side; never leak it to the client.
   console.error("[handleApiError] Unhandled error:", error);
 
-  return errorResponse(t ? t("internal_error") : "Internal Server Error", 500);
+  return errorResponse(t ? t("internalError") : "Internal Server Error", 500);
 }
 
 export function apiSuccess<T = null>(
@@ -111,7 +111,7 @@ export function apiSuccess<T = null>(
 }
 
 export function apiNotFound(t: _Translator): APIErrorResponse {
-  return errorResponse(t("not_found"), 404);
+  return errorResponse(t("notFound"), 404);
 }
 
 export function apiUnauthorized(t: _Translator): APIErrorResponse {

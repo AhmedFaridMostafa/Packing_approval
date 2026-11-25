@@ -1,127 +1,228 @@
 {
-  "Header": {
-    "title": "Packing Approval",
-    "description": "Approved packing guidelines for every destination, with every change on record.",
-    "NavigationLinks": [
-      {
-        "href": "/countries",
-        "text": "Countries"
-      },
-      {
-        "href": "/regions",
-        "text": "Regions"
-      },
-      {
-        "href": "/contact",
-        "text": "Contact"
-      }
-    ]
-  },
-  "ContactPage": {
-    "meta_data": {
-      "title": "Contact",
-      "description": "Where to go for what in Packing Approval — approved guidelines, accounts, and administrator help."
+  "layout": {
+    "header": {
+      "title": "Packing Approval",
+      "description": "Approved packing guidelines for every destination, with every change on record.",
+      "navigationLinks": [
+        {
+          "href": "/countries",
+          "text": "Countries"
+        },
+        {
+          "href": "/regions",
+          "text": "Regions"
+        },
+        {
+          "href": "/contact",
+          "text": "Contact"
+        }
+      ]
     },
-    "title": "Contact",
-    "description": "A quick guide to the right next step: find an approved packing guideline, get an account, or reach your administrator.",
-    "cards": {
-      "guidelines": {
-        "title": "Find a packing guideline",
-        "description": "Browse the approved packing rules by country and region, and download the PDF for any region — no account required.",
-        "primary_cta": "Browse countries",
-        "secondary_cta": "All regions"
-      },
-      "account": {
-        "title": "Get an account",
-        "description": "Accounts are created by your administrator. Once you have one, sign in to manage your profile.",
-        "cta": "Sign in"
-      },
-      "report": {
-        "title": "Report a problem",
-        "description": "Found an incorrect or outdated guideline? Tell your administrator — admins keep the rules approved and every change on record.",
-        "cta_admin": "Open admin dashboard",
-        "cta_user": "Sign in"
+    "languageSwitcher": {
+      "label": "Language",
+      "switchedTo": "Language switched to",
+      "failed": "Failed to switch language",
+      "languageOptions": {
+        "en": "English",
+        "ar": "Arabic"
       }
     },
-    "direct": {
-      "title": "Reach us directly",
-      "description": "Questions about a destination or its approved packing guideline? Email or call us — we work in English and Arabic.",
-      "email_label": "Email",
-      "phone_label": "Phone"
+    "footer": {
+      "title": "Packing Approval",
+      "tagline": "Precision in every package.",
+      "copyright": "© {year} Packing Approval. All rights reserved.",
+      "legal": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "compliance": "Compliance",
+      "resources": "Resources",
+      "support": "Global Support",
+      "api": "API Documentation"
+    },
+    "modeToggle": {
+      "title": "Theme",
+      "light": "Light Mode",
+      "dark": "Dark Mode",
+      "system": "System Mode"
+    },
+    "userMenu": {
+      "signIn": "Sign In",
+      "adminPanel": "Admin Panel",
+      "profile": "Profile",
+      "signOut": "Sign Out",
+      "logoutError": "An error occurred while logging out. Please try again."
     }
   },
-  "HomePage": {
-    "hero": {
-      "tagline": "Approved Guidelines, On Record",
-      "title": "The Approved Packing Rule, <br>On Record for Every Destination</br>",
-      "description": "Packing Approval keeps the current approved packing guideline for every country and region — and every change to it on an immutable audit trail. Find your destination, trust the rule, download the PDF.",
-      "browse_cta": "Browse Countries",
-      "signin_cta": "Sign In"
+  "errors": {
+    "generic": {
+      "title": "Something Went Wrong",
+      "description": "An unexpected error occurred while processing your request. Please try again."
     },
-    "stats": {
-      "countries": "Countries",
-      "regions": "Regions",
-      "categories": "Categories",
-      "guidelines": "Guidelines"
+    "notFound": {
+      "title": "Resource Not Found",
+      "description": "The page or item you are looking for does not exist or may have been moved."
     },
-    "how_it_works": {
-      "title": "How It Works",
-      "subtitle": "Access compliance guidelines in three simple steps.",
-      "step1_title": "Find Region",
-      "step1_desc": "Select your operational country and specific region.",
-      "step2_title": "View Guidelines",
-      "step2_desc": "Browse categorized packing standards visually.",
-      "step3_title": "Download PDF",
-      "step3_desc": "Export localized guidelines for field teams offline."
+    "unauthorized": {
+      "title": "Access Restricted",
+      "description": "You do not have the required permissions to view this content or perform this action."
     },
-    "featured": {
-      "title": "Featured Countries",
-      "subtitle": "Quick access to high-volume operational regions.",
-      "view_all": "View All",
-      "regions_count": "{count} Regions",
-      "guidelines_count": "{count} Guidelines",
-      "empty": "No countries published yet — check back soon.",
-      "flag_alt": "Country flag"
+    "network": {
+      "title": "Connection Issue",
+      "description": "Unable to connect to the server. Please check your connection and try again."
     },
-    "degraded": {
-      "title": "Live data temporarily unavailable",
-      "description": "We couldn't load the current counts and featured countries just now. You can still browse countries and download the approved guidelines directly."
+    "retry": "Try Again",
+    "goHome": "Go to Homepage"
+  },
+  "api": {
+    "errors": {
+      "resourceExists": "Resource already exists.",
+      "resourceReferenced": "Cannot delete resource because it is referenced by other records.",
+      "internalError": "Internal Server Error",
+      "unauthorized": "Unauthorized",
+      "notFound": "Not found",
+      "invalidId": "Invalid ID",
+      "cannotBanSelf": "You cannot ban yourself",
+      "cannotUnbanSelf": "You cannot unban yourself",
+      "noFileProvided": "No file provided",
+      "http400": "Bad request. Please check your input.",
+      "http403": "You do not have permission to view this.",
+      "http429": "Too many requests. Please try again later.",
+      "cannotChangeOwnRole": "You cannot change your own role",
+      "cannotUnbanRemoved": "You cannot unban a removed user",
+      "cannotRemoveSelf": "You cannot remove yourself",
+      "userAlreadyRemoved": "This user has already been removed",
+      "validationError": "Validation failed.",
+      "invalidJson": "Malformed request body.",
+      "missingRequiredField": "A required field is missing.",
+      "invalidReference": "Referenced resource does not exist.",
+      "invalidInput": "Invalid input format."
     },
-    "capabilities": {
-      "title": "Why Packing Approval",
-      "subtitle": "Built for teams that need to know the current rule — and who changed it last.",
-      "bilingual_title": "Bilingual Support",
-      "bilingual_desc": "Native RTL (Arabic) and LTR (English) layouts with complete UI mirroring.",
-      "pdf_title": "PDF Export",
-      "pdf_desc": "Generate localized, print-ready PDF guidelines for offline field teams.",
-      "audit_title": "Audit Trail",
-      "audit_desc": "Complete traceability with snapshot diffs for every content change.",
-      "role_title": "Role Access",
-      "role_desc": "Granular permissions separating public viewing from admin content management."
+    "success": {
+      "userRemoved": "User removed successfully",
+      "passwordUpdated": "Password updated successfully"
     }
   },
-  "Navbar": {
-    "home": "Home",
-    "Add packing way": "Add packing way",
-    "App Settings": "App Settings",
-    "Add country": "Add country",
-    "login": "Login",
-    "register": "Register",
-    "signOut": "Sign Out",
-    "profile": "Profile",
-    "User": "User",
-    "add category": "Add Category",
-    "history": "History",
-    "Creating user": "Creating user",
-    "All users": "All users",
-    "Countries": "Countries"
+  "validation": {
+    "name": {
+      "required": "Name is required",
+      "tooShort": "Name must be at least 3 characters",
+      "tooLong": "Name must not exceed 50 characters",
+      "format": "Name can only contain letters, spaces, hyphens, and apostrophes"
+    },
+    "password": {
+      "required": "Password is required",
+      "tooShort": "Password must be at least 8 characters",
+      "tooLong": "Password must not exceed 64 characters",
+      "uppercase": "Password must contain at least one uppercase letter",
+      "lowercase": "Password must contain at least one lowercase letter",
+      "number": "Password must contain at least one number",
+      "mismatch": "Passwords don't match",
+      "currentRequired": "Current password is required",
+      "mustDiffer": "New password must be different from current password"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Please enter a valid email address",
+      "tooShort": "Email must be at least 5 characters",
+      "tooLong": "Email must not exceed 254 characters"
+    },
+    "image": {
+      "required": "Please upload an image",
+      "tooLarge": "File size must be less than 5MB",
+      "format": "File must be JPEG, PNG, or WEBP format",
+      "maxSize": "Max image size is 5MB",
+      "wrongType": "Only .jpg, .png and .webp are supported"
+    },
+    "title": {
+      "required": "Title is required",
+      "tooShort": "Title must be at least 5 characters",
+      "tooLong": "Title must not exceed 50 characters"
+    },
+    "description": {
+      "required": "Description is required",
+      "tooShort": "Description must be at least 10 characters",
+      "tooLong": "Description must not exceed 2000 characters"
+    },
+    "form": {
+      "hasErrors": "Please fix the errors in the form"
+    },
+    "country": {
+      "required": "Country is required"
+    },
+    "category": {
+      "required": "Category is required"
+    },
+    "labelName": {
+      "required": "Label name is required"
+    },
+    "account": {
+      "required": "Account is required"
+    },
+    "labels": {
+      "required": "Labels are required"
+    },
+    "countryName": {
+      "required": "Country name is required"
+    },
+    "nameEn": {
+      "required": "Name (English) is required"
+    },
+    "nameAr": {
+      "required": "Name (Arabic) is required"
+    },
+    "url": {
+      "invalid": "Please enter a valid URL"
+    },
+    "countryId": {
+      "required": "Country is required"
+    },
+    "labelNameEn": {
+      "required": "Label name (English) is required"
+    },
+    "labelNameAr": {
+      "required": "Label name (Arabic) is required"
+    },
+    "regionId": {
+      "required": "Region is required"
+    },
+    "categoryId": {
+      "required": "Category is required"
+    },
+    "titleEn": {
+      "required": "Title (English) is required"
+    },
+    "titleAr": {
+      "required": "Title (Arabic) is required"
+    },
+    "descriptionEn": {
+      "required": "Description (English) is required"
+    },
+    "descriptionAr": {
+      "required": "Description (Arabic) is required"
+    },
+    "sortOrder": {
+      "invalid": "Sort order must be a whole number"
+    },
+    "banReason": {
+      "tooLong": "Ban reason must not exceed 500 characters",
+      "invalid": "This ban reason is not allowed"
+    },
+    "banExpiresIn": {
+      "invalid": "Ban duration must be a positive whole number of seconds"
+    },
+    "page": {
+      "invalid": "Page number must be a positive whole number"
+    },
+    "role": {
+      "invalid": "Invalid role"
+    }
   },
-  "Auth": {
-    "Auth_layout": {
-      "header_title": "Packing Approval",
+  "auth": {
+    "authLayout": {
+      "headerTitle": "Packing Approval",
       "title": "Your Packing Approval account",
       "description": "Sign in to manage packing guidelines and approvals — or create an account to get started.",
-      "logo_alt": "Packing Approval Logo"
+      "logoAlt": "Packing Approval Logo"
     },
     "labels": {
       "email": "Email Address",
@@ -129,24 +230,17 @@
       "name": "Full Name",
       "username": "Username"
     },
-    "Sign_in": {
+    "signIn": {
       "submit": "Sign In",
       "success": "Signed in successfully",
-      "footer_text": "Don't have an account? Ask your administrator to create one for you.",
+      "footerText": "Don't have an account? Ask your administrator to create one for you.",
       "error": "Failed to sign in (Status: {status})",
-      "forgot_password": "Forgot password?",
-      "global_error": "Invalid credentials",
-      "anonymous_hint": "Browsing guidelines and downloading PDFs doesn't require an account.",
-      "dismiss_error": "Dismiss error"
+      "forgotPassword": "Forgot password?",
+      "globalError": "Invalid credentials",
+      "anonymousHint": "Browsing guidelines and downloading PDFs doesn't require an account.",
+      "dismissError": "Dismiss error"
     },
-    "Sign_up": {
-      "submit": "Sign Up",
-      "success": "Account created successfully",
-      "footer_text": "Already have an account? <link>Sign in</link>",
-      "error": "Failed to create account (Status: {status})",
-      "global_error": "Something went wrong"
-    },
-    "Verify_email": {
+    "verifyEmail": {
       "title": "Verify your email",
       "description": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
       "checkFolder": "If you don't see the email, check your spam or junk folder.",
@@ -158,7 +252,9 @@
       "title": "Forgot your password?",
       "description": "Enter your email address and we'll send you a link to reset your password.",
       "submit": "Send Reset Email",
-      "backToLogin": "Back to Login"
+      "backToLogin": "Back to Login",
+      "emailSent": "Password reset link has been sent to your email",
+      "checkYourEmail": "Please check your email"
     },
     "resetPassword": {
       "title": "Reset Password",
@@ -172,48 +268,44 @@
           "placeholder": "Re-enter new password"
         }
       },
-      "submit": "Reset Password"
+      "submit": "Reset Password",
+      "tokenInvalid": "Invalid or expired password reset link",
+      "success": "Password reset successfully",
+      "failed": "Failed to reset password",
+      "tokenRequired": "Invalid or expired reset link"
     },
-    "Arcjet": {
-      "rate_limit": "Too many requests. Please try again later.",
-      "email_invalid": "Email address format is invalid.",
-      "email_disposable": "Disposable email addresses are not allowed.",
-      "email_no_mx": "Email domain is not valid.",
-      "email_generic": "Invalid email.",
-      "access_denied": "Access denied."
+    "arcjet": {
+      "rateLimit": "Too many requests. Please try again later.",
+      "emailInvalid": "Email address format is invalid.",
+      "emailDisposable": "Disposable email addresses are not allowed.",
+      "emailNoMx": "Email domain is not valid.",
+      "emailGeneric": "Invalid email.",
+      "accessDenied": "Access denied."
     },
-    "SocialAuth": {
-      "or_divider": "or continue with",
-      "sign_in_with": "Sign in with {provider}",
-      "signing_in": "Signing in with {provider}...",
+    "socialAuth": {
+      "orDivider": "or continue with",
+      "signInWith": "Sign in with {provider}",
+      "signingIn": "Signing in with {provider}...",
       "success": "Sign-in Successful",
       "failed": "Sign-in Failed",
       "providers": {
         "google": "Google"
       },
-      "global_error": "An unexpected error occurred. Please try again."
+      "globalError": "An unexpected error occurred. Please try again."
     }
   },
-  "userSetting": {
+  "account": {
     "profile": {
       "title": "Profile",
       "subtitle": "Manage your personal information and preferences",
       "name": "Name",
       "email": "Email",
       "role": "Role",
-      "role_admin": "Admin",
-      "role_user": "User",
-      "meta_data": {
+      "roleAdmin": "Admin",
+      "roleUser": "User",
+      "metadata": {
         "title": "Profile",
         "description": "View and manage your profile"
-      }
-    },
-    "appSetting": {
-      "title": "App Settings",
-      "theme": {
-        "title": "Theme",
-        "light": "Light",
-        "dark": "Dark"
       }
     },
     "profileInformation": {
@@ -241,962 +333,860 @@
       "updateButton": "Update Password"
     },
     "toasts": {
-      "profile_updated": "Profile updated successfully",
-      "profile_update_failed": "Failed to update profile",
-      "password_changed": "Password changed successfully",
-      "password_change_failed": "Failed to change password"
+      "profileUpdated": "Profile updated successfully",
+      "profileUpdateFailed": "Failed to update profile",
+      "passwordChanged": "Password changed successfully",
+      "passwordChangeFailed": "Failed to change password"
     }
   },
-  "categories": {
-    "title": "Add Category",
-    "form": {
-      "category": {
-        "label": "Category:",
-        "placeholder": "Carton"
+  "public": {
+    "contact": {
+      "metadata": {
+        "title": "Contact",
+        "description": "Where to go for what in Packing Approval — approved guidelines, accounts, and administrator help."
       },
-      "category_ar": {
-        "label": "Category (Arabic):",
-        "placeholder": "كرتون"
+      "title": "Contact",
+      "description": "A quick guide to the right next step: find an approved packing guideline, get an account, or reach your administrator.",
+      "cards": {
+        "guidelines": {
+          "title": "Find a packing guideline",
+          "description": "Browse the approved packing rules by country and region, and download the PDF for any region — no account required.",
+          "primaryCta": "Browse countries",
+          "secondaryCta": "All regions"
+        },
+        "account": {
+          "title": "Get an account",
+          "description": "Accounts are created by your administrator. Once you have one, sign in to manage your profile.",
+          "cta": "Sign in"
+        },
+        "report": {
+          "title": "Report a problem",
+          "description": "Found an incorrect or outdated guideline? Tell your administrator — admins keep the rules approved and every change on record.",
+          "ctaAdmin": "Open admin dashboard",
+          "ctaUser": "Sign in"
+        }
+      },
+      "direct": {
+        "title": "Reach us directly",
+        "description": "Questions about a destination or its approved packing guideline? Email or call us — we work in English and Arabic.",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone"
       }
-    }
-  },
-  "cardOption": {
-    "delete_packing_way": "Delete Packing Way",
-    "delete_confirmation": "Are you sure you want to delete"
-  },
-  "packingHistory": {
-    "title": "Packing History",
-    "label": {
-      "country": "Country",
-      "action": "action",
-      "category": "category",
-      "action_by": "Action By",
-      "date": "Date",
-      "labels": "Labels",
-      "label_name": "Label Name",
-      "title": "Title",
-      "description": "Description",
-      "sort": "Ordering",
-      "sortOptions": {
-        "new": "New to Old",
-        "old": "Old to New"
+    },
+    "home": {
+      "hero": {
+        "tagline": "Approved Guidelines, On Record",
+        "title": "The Approved Packing Rule, <br>On Record for Every Destination</br>",
+        "description": "Packing Approval keeps the current approved packing guideline for every country and region — and every change to it on an immutable audit trail. Find your destination, trust the rule, download the PDF.",
+        "browseCta": "Browse Countries",
+        "signinCta": "Sign In"
+      },
+      "stats": {
+        "countries": "Countries",
+        "regions": "Regions",
+        "categories": "Categories",
+        "guidelines": "Guidelines"
+      },
+      "howItWorks": {
+        "title": "How It Works",
+        "subtitle": "Access compliance guidelines in three simple steps.",
+        "step1Title": "Find Region",
+        "step1Desc": "Select your operational country and specific region.",
+        "step2Title": "View Guidelines",
+        "step2Desc": "Browse categorized packing standards visually.",
+        "step3Title": "Download PDF",
+        "step3Desc": "Export localized guidelines for field teams offline."
+      },
+      "featured": {
+        "title": "Featured Countries",
+        "subtitle": "Quick access to high-volume operational regions.",
+        "viewAll": "View All",
+        "regionsCount": "{count} Regions",
+        "guidelinesCount": "{count} Guidelines",
+        "empty": "No countries published yet — check back soon.",
+        "flagAlt": "Country flag"
+      },
+      "degraded": {
+        "title": "Live data temporarily unavailable",
+        "description": "We couldn't load the current counts and featured countries just now. You can still browse countries and download the approved guidelines directly."
+      },
+      "capabilities": {
+        "title": "Why Packing Approval",
+        "subtitle": "Built for teams that need to know the current rule — and who changed it last.",
+        "bilingualTitle": "Bilingual Support",
+        "bilingualDesc": "Native RTL (Arabic) and LTR (English) layouts with complete UI mirroring.",
+        "pdfTitle": "PDF Export",
+        "pdfDesc": "Generate localized, print-ready PDF guidelines for offline field teams.",
+        "auditTitle": "Audit Trail",
+        "auditDesc": "Complete traceability with snapshot diffs for every content change.",
+        "roleTitle": "Role Access",
+        "roleDesc": "Granular permissions separating public viewing from admin content management."
       }
-    }
-  },
-  "packingWay": {
-    "addTitle": "Add Pacing way",
-    "editTitle": "Edit Packing Way",
-    "form": {
-      "title": {
-        "label": "Title:",
-        "placeholder": "title"
-      },
-      "description": {
-        "label": "Description:",
-        "placeholder": "Enter description..."
-      },
-      "title_ar": {
-        "label": "Title (Arabic):",
-        "placeholder": "title"
-      },
-      "description_ar": {
-        "label": "Description (Arabic):",
-        "placeholder": "Enter description..."
-      },
-      "country": {
-        "label": "Country:",
-        "placeholder": "select Country"
-      },
-      "category": {
-        "label": "Category:",
-        "placeholder": "select Category"
-      },
-      "image": {
-        "label": "Picture:"
-      },
-      "addSubmit": "Add Packing Way",
-      "editSubmit": "Edit Packing Way"
-    }
-  },
-  "country": {
-    "addTitle": "Add Country",
-    "form": {
-      "label_name": {
-        "label": "Label Name:",
-        "placeholder": "Enter label name (e.g., HBE EUROPE LEVIS)"
-      },
-      "account": {
-        "label": "Account:",
-        "placeholder": "Enter account ID (e.g., H494M)"
-      },
-      "labels": {
-        "label": "Labels:",
-        "placeholder": "Enter label codes (e.g., IP-NH-WH)"
-      },
-      "country": {
-        "label": "Country:",
-        "placeholder": "Select a country"
-      },
-      "country_name": {
-        "label": "Country Name (Optional):",
-        "placeholder": "Enter country name (e.g., United States)"
-      },
-      "country_name_ar": {
-        "label": "Country Name (Arabic) (Optional):",
-        "placeholder": "Enter Arabic country name (e.g., الولايات المتحدة)"
-      },
-      "image": {
-        "label": "Country Image:"
-      },
-      "addSubmit": "Add Country"
-    }
-  },
-  "packingMethods": {
-    "noMethodsAuth": {
-      "title": "No packing methods added yet.",
-      "message": "Start by adding a new packing method to guide others.",
-      "button": "Add Packing Way"
     },
-    "noMethodsNotAuth": {
-      "title": "No packing methods available yet.",
-      "message": "Please check back later for updates."
-    }
-  },
-  "save": "Save",
-  "edit": "Edit",
-  "delete": "Delete",
-  "add": "Add",
-  "confirm": "Confirm",
-  "cancel": "Cancel",
-  "create": "Create",
-  "languageSwitcher": {
-    "label": "Language",
-    "switchedTo": "Language switched to",
-    "failed": "Failed to switch language",
-    "languageOptions": {
-      "en": "English",
-      "ar": "Arabic"
-    }
-  },
-  "Validation": {
-    "name_required": "Name is required",
-    "name_too_short": "Name must be at least 3 characters",
-    "name_too_long": "Name must not exceed 50 characters",
-    "name_format": "Name can only contain letters, spaces, hyphens, and apostrophes",
-    "password_required": "Password is required",
-    "password_too_short": "Password must be at least 8 characters",
-    "password_too_long": "Password must not exceed 64 characters",
-    "password_uppercase": "Password must contain at least one uppercase letter",
-    "password_lowercase": "Password must contain at least one lowercase letter",
-    "password_number": "Password must contain at least one number",
-    "email_required": "Email is required",
-    "email_invalid": "Please enter a valid email address",
-    "email_too_short": "Email must be at least 5 characters",
-    "email_too_long": "Email must not exceed 254 characters",
-    "image_required": "Please upload an image",
-    "image_too_large": "File size must be less than 5MB",
-    "image_format": "File must be JPEG, PNG, or WEBP format",
-    "title_required": "Title is required",
-    "title_too_short": "Title must be at least 5 characters",
-    "title_too_long": "Title must not exceed 50 characters",
-    "description_required": "Description is required",
-    "description_too_short": "Description must be at least 10 characters",
-    "description_too_long": "Description must not exceed 2000 characters",
-    "password_mismatch": "Passwords don't match",
-    "current_password_required": "Current password is required",
-    "new_password_different": "New password must be different from current password",
-    "form_errors": "Please fix the errors in the form",
-    "country_required": "Country is required",
-    "category_required": "Category is required",
-    "label_name_required": "Label name is required",
-    "account_required": "Account is required",
-    "labels_required": "Labels are required",
-    "country_name_required": "Country name is required",
-    "reset_email_sent": "Password reset link has been sent to your email",
-    "reset_token_invalid": "Invalid or expired password reset link",
-    "password_reset_success": "Password reset successfully",
-    "password_reset_failed": "Failed to reset password",
-    "check_your_email": "Please check your email",
-    "token_required": "Invalid or expired reset link",
-    "too_large": "Max image size is 5MB",
-    "wrong_type": "Only .jpg, .png and .webp are supported",
-    "name_en_required": "Name (English) is required",
-    "name_ar_required": "Name (Arabic) is required",
-    "invalid_url": "Please enter a valid URL",
-    "country_id_required": "Country is required",
-    "label_name_en_required": "Label name (English) is required",
-    "label_name_ar_required": "Label name (Arabic) is required",
-    "region_id_required": "Region is required",
-    "category_id_required": "Category is required",
-    "title_en_required": "Title (English) is required",
-    "title_ar_required": "Title (Arabic) is required",
-    "description_en_required": "Description (English) is required",
-    "description_ar_required": "Description (Arabic) is required",
-    "resource_exists": "Resource already exists.",
-    "resource_referenced": "Cannot delete resource because it is referenced by other records.",
-    "internal_error": "Internal Server Error",
-    "unauthorized": "Unauthorized",
-    "not_found": "Not found",
-    "invalid_id": "Invalid ID",
-    "cannot_ban_self": "You cannot ban yourself",
-    "cannot_unban_self": "You cannot unban yourself",
-    "no_file_provided": "No file provided",
-    "http_400": "Bad request. Please check your input.",
-    "http_403": "You do not have permission to view this.",
-    "http_429": "Too many requests. Please try again later.",
-    "sort_order_invalid": "Sort order must be a whole number",
-    "ban_reason_too_long": "Ban reason must not exceed 500 characters",
-    "ban_expires_in_invalid": "Ban duration must be a positive whole number of seconds",
-    "page_invalid": "Page number must be a positive whole number",
-    "invalid_role": "Invalid role",
-    "user_removed": "User removed successfully",
-    "cannot_change_own_role": "You cannot change your own role",
-    "cannot_unban_removed": "You cannot unban a removed user",
-    "cannot_remove_self": "You cannot remove yourself",
-    "user_already_removed": "This user has already been removed",
-    "invalid_ban_reason": "This ban reason is not allowed",
-    "password_updated": "Password updated successfully",
-    "validation_error": "Validation failed.",
-    "invalid_json": "Malformed request body.",
-    "missing_required_field": "A required field is missing.",
-    "invalid_reference": "Referenced resource does not exist.",
-    "invalid_input": "Invalid input format."
-  },
-  "Footer": {
-    "title": "Packing Approval",
-    "tagline": "Precision in every package.",
-    "copyright": "© {year} Packing Approval. All rights reserved.",
-    "legal": "Legal",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "compliance": "Compliance",
-    "resources": "Resources",
-    "support": "Global Support",
-    "api": "API Documentation"
-  },
-  "ModeToggle": {
-    "title": "Theme",
-    "light": "Light Mode",
-    "dark": "Dark Mode",
-    "system": "System Mode"
-  },
-  "DropdownMenuAvatar": {
-    "signIn": "Sign In",
-    "adminPanel": "Admin Panel",
-    "profile": "Profile",
-    "signOut": "Sign Out",
-    "logoutError": "An error occurred while logging out. Please try again."
-  },
-  "NotFound": {
-    "title": "404 Not Found",
-    "message": "Whoops! That page doesn't exist.",
-    "goHome": "Go back home"
-  },
-  "ErrorState": {
-    "generic": {
-      "title": "Something Went Wrong",
-      "description": "An unexpected error occurred while processing your request. Please try again."
-    },
-    "not_found": {
-      "title": "Resource Not Found",
-      "description": "The page or item you are looking for does not exist or may have been moved."
-    },
-    "unauthorized": {
-      "title": "Access Restricted",
-      "description": "You do not have the required permissions to view this content or perform this action."
-    },
-    "network": {
-      "title": "Connection Issue",
-      "description": "Unable to connect to the server. Please check your connection and try again."
-    },
-    "retry": "Try Again",
-    "go_home": "Go to Homepage"
-  },
-  "CountriesPage": {
-    "meta_data": {
+    "countries": {
+      "metadata": {
+        "title": "Browse Countries",
+        "description": "Browse standardized packing guidelines and approval standards for each operational country."
+      },
       "title": "Browse Countries",
-      "description": "Browse standardized packing guidelines and approval standards for each operational country."
+      "description": "Select an operational country to view its regions and guidelines.",
+      "search": {
+        "placeholder": "Search countries...",
+        "clear": "Clear Search"
+      },
+      "empty": {
+        "title": "No countries found",
+        "description": "Try adjusting your search term."
+      },
+      "regionsBadge": "{count, plural, =1 {1 Region} other {# Regions}}",
+      "guidelinesBadge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+      "totalBadge": "{count} total"
     },
-    "title": "Browse Countries",
-    "description": "Select an operational country to view its regions and guidelines.",
-    "search_placeholder": "Search countries...",
-    "empty_state_title": "No countries found",
-    "empty_state_desc": "Try adjusting your search term.",
-    "clear_search": "Clear Search",
-    "regions_badge": "{count, plural, =1 {1 Region} other {# Regions}}",
-    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
-    "total_badge": "{count} total"
-  },
-  "CountryRegionsPage": {
-    "meta_data": {
-      "title": "Operational Regions - {Region}",
-      "description": "Browse operational regions and packing guidelines for {Region}"
+    "countryRegions": {
+      "metadata": {
+        "title": "Operational Regions - {Region}",
+        "description": "Browse operational regions and packing guidelines for {Region}"
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "countries": "Countries"
+      },
+      "empty": {
+        "title": "No regions found",
+        "description": "No operational regions have been configured for this country yet."
+      },
+      "actions": {
+        "addRegion": "Add Region"
+      },
+      "accountLabel": "Account",
+      "labelsLabel": "Labels",
+      "regionsGridTitle": "Operational Regions",
+      "guidelinesBadge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}"
     },
-    "home_breadcrumb": "Home",
-    "countries_breadcrumb": "Countries",
-    "empty_title": "No regions found",
-    "empty_desc": "No operational regions have been configured for this country yet.",
-    "add_region_cta": "Add Region",
-    "account_label": "Account",
-    "labels_label": "Labels",
-    "regions_grid_title": "Operational Regions",
-    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}"
-  },
-  "RegionPackingWaysPage": {
-    "meta_data": {
-      "title": "{regionName} - {countryName} | Packing Approval",
-      "description": "Browse packing guidelines for {regionName}, {countryName}"
+    "regionPackingWays": {
+      "metadata": {
+        "title": "{regionName} - {countryName} | Packing Approval",
+        "description": "Browse packing guidelines for {regionName}, {countryName}"
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "countries": "Countries"
+      },
+      "guidelinesBadge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+      "accountLabel": "Account",
+      "actions": {
+        "downloadPdf": "Download PDF",
+        "addGuideline": "Add Packing Way",
+        "readMore": "Read More",
+        "readLess": "Read Less"
+      },
+      "generatingPdf": "Generating...",
+      "empty": {
+        "title": "No guidelines configured",
+        "description": "No packing guidelines have been configured for this category yet."
+      },
+      "noItemsInRegion": "No guidelines configured for this region yet.",
+      "categoryLabel": "Category"
     },
-    "home_breadcrumb": "Home",
-    "countries_breadcrumb": "Countries",
-    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
-    "account_label": "Account",
-    "download_pdf_cta": "Download PDF",
-    "generating_pdf": "Generating...",
-    "empty_state_title": "No guidelines configured",
-    "empty_state_desc": "No packing guidelines have been configured for this category yet.",
-    "no_items_in_region": "No guidelines configured for this region yet.",
-    "add_guideline_cta": "Add Packing Way",
-    "category_label": "Category",
-    "read_more": "Read More",
-    "read_less": "Read Less"
+    "regions": {
+      "metadata": {
+        "title": "All Operational Regions | Packing Approval",
+        "description": "Browse all operational regions and their packing guidelines across every country."
+      },
+      "title": "Operational Regions",
+      "description": "Browse all active regions and their packing specifications across every country.",
+      "search": {
+        "placeholder": "Search by region, country or account...",
+        "clear": "Clear Search"
+      },
+      "empty": {
+        "title": "No regions found",
+        "description": "Try adjusting your search term."
+      },
+      "guidelinesBadge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
+      "accountLabel": "Account",
+      "labelsLabel": "Labels",
+      "actions": {
+        "addRegion": "Add Region"
+      },
+      "totalBadge": "{count} total"
+    }
   },
-  "RegionsPage": {
-    "meta_data": {
-      "title": "All Operational Regions | Packing Approval",
-      "description": "Browse all operational regions and their packing guidelines across every country."
-    },
-    "title": "Operational Regions",
-    "description": "Browse all active regions and their packing specifications across every country.",
-    "search_placeholder": "Search by region, country or account...",
-    "empty_state_title": "No regions found",
-    "empty_state_desc": "Try adjusting your search term.",
-    "clear_search": "Clear Search",
-    "guidelines_badge": "{count, plural, =1 {1 Guideline} other {# Guidelines}}",
-    "account_label": "Account",
-    "labels_label": "Labels",
-    "add_region_cta": "Add Region",
-    "total_badge": "{count} total"
-  },
-  "AdminLayout": {
-    "title": "Admin Portal",
-    "dashboard": "Dashboard",
-    "countries": "Countries",
-    "regions": "Regions",
-    "categories": "Categories",
-    "packingWays": "Packing Ways",
-    "history": "Audit Logs",
-    "users": "Users",
-    "home": "Public Site",
-    "signOut": "Sign Out",
-    "logoutError": "An error occurred while logging out. Please try again."
-  },
-  "AdminDashboard": {
-    "meta_data": {
-      "title": "Admin Dashboard | Packing Approval",
-      "description": "Administrative overview and operations dashboard for Packing Approval."
-    },
-    "welcome": "Welcome back",
-    "subtitle": "Here is what's happening across your global packing approval system today.",
-    "stats": {
-      "countries": "Active Countries",
-      "regions": "Operational Regions",
+  "admin": {
+    "layout": {
+      "title": "Admin Portal",
+      "dashboard": "Dashboard",
+      "countries": "Countries",
+      "regions": "Regions",
       "categories": "Categories",
-      "guidelines": "Packing Guidelines",
-      "users": "Registered Users"
+      "packingWays": "Packing Ways",
+      "history": "Audit Logs",
+      "users": "Users",
+      "home": "Public Site",
+      "signOut": "Sign Out",
+      "logoutError": "An error occurred while logging out. Please try again."
     },
-    "quickActions": {
-      "title": "Quick Actions",
-      "addCountry": "Add Country",
-      "addRegion": "Add Region",
-      "addCategory": "Add Category",
-      "addPackingWay": "Add Packing Way",
-      "reorderCategories": "Reorder Categories"
-    },
-    "recentHistory": {
-      "title": "Recent Audit Logs",
-      "subtitle": "Latest modification snapshots across guidelines.",
-      "viewAll": "View Full History",
-      "empty": "No audit records logged yet.",
-      "action": {
-        "CREATE": "Created",
-        "UPDATE": "Updated",
-        "DELETE": "Deleted"
+    "dashboard": {
+      "metadata": {
+        "title": "Admin Dashboard | Packing Approval",
+        "description": "Administrative overview and operations dashboard for Packing Approval."
+      },
+      "welcome": "Welcome back",
+      "subtitle": "Here is what's happening across your global packing approval system today.",
+      "stats": {
+        "countries": "Active Countries",
+        "regions": "Operational Regions",
+        "categories": "Categories",
+        "guidelines": "Packing Guidelines",
+        "users": "Registered Users"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "addCountry": "Add Country",
+        "addRegion": "Add Region",
+        "addCategory": "Add Category",
+        "addPackingWay": "Add Packing Way",
+        "reorderCategories": "Reorder Categories"
+      },
+      "recentHistory": {
+        "title": "Recent Audit Logs",
+        "subtitle": "Latest modification snapshots across guidelines.",
+        "viewAll": "View Full History",
+        "empty": "No audit records logged yet.",
+        "actionTypes": {
+          "create": "Created",
+          "update": "Updated",
+          "delete": "Deleted"
+        }
       }
-    }
-  },
-  "AddCountryPage": {
-    "meta_data": {
-      "title": "Add Country | Admin Panel",
-      "description": "Add a new operational country to the packing approval platform."
     },
-    "title": "Add New Country",
-    "subtitle": "Create a new country record with English & Arabic names and flag image URL."
-  },
-  "EditCountryPage": {
-    "meta_data": {
-      "title": "Edit Country | Admin Panel",
-      "description": "Edit operational country details and flag image."
-    },
-    "title": "Edit Country",
-    "subtitle": "Update country details, English & Arabic names and flag image."
-  },
-  "DeleteCountryPage": {
-    "meta_data": {
-      "title": "Delete Country | Admin Panel",
-      "description": "Confirm deletion of operational country and review affected regions and guidelines."
-    },
-    "title": "Delete Country",
-    "subtitle": "Review operational impact and confirm soft deletion of country record.",
-    "warning_title": "Warning: Irreversible Operational Impact",
-    "warning_desc": "Soft-deleting this country will disable access to all associated operational regions and packing guidelines across field applications.",
-    "impact_summary": "Impact Analysis",
-    "regions_count_label": "Operational Regions Affected",
-    "guidelines_count_label": "Packing Guidelines Affected",
-    "confirm_label": "Type country name '{name}' to enable deletion:",
-    "confirm_placeholder": "Type exact country name",
-    "submit_button": "Delete Country Permanently",
-    "submitting": "Deleting Country...",
-    "cancel_button": "Cancel & Return",
-    "success": "Country deleted successfully",
-    "error": "Failed to delete country",
-    "back_to_list": "Back to Countries List"
-  },
-  "CreateAndUpdateCountry": {
-    "form": {
-      "name_en": {
-        "label": "Country Name (English)",
-        "placeholder": "e.g., Egypt"
+    "countries": {
+      "form": {
+        "create": {
+          "metadata": {
+            "title": "Add Country | Admin Panel",
+            "description": "Add a new operational country to the packing approval platform."
+          },
+          "title": "Add New Country",
+          "subtitle": "Create a new country record with English & Arabic names and flag image URL.",
+          "submit": "Create Country",
+          "submitting": "Creating...",
+          "success": "Country created successfully!",
+          "error": "Failed to create country"
+        },
+        "edit": {
+          "metadata": {
+            "title": "Edit Country | Admin Panel",
+            "description": "Edit operational country details and flag image."
+          },
+          "title": "Edit Country",
+          "subtitle": "Update country details, English & Arabic names and flag image.",
+          "submit": "Save Changes",
+          "submitting": "Saving...",
+          "success": "Country updated successfully!",
+          "error": "Failed to update country"
+        },
+        "fields": {
+          "nameEn": {
+            "label": "Country Name (English)",
+            "placeholder": "e.g., Egypt"
+          },
+          "nameAr": {
+            "label": "Country Name (Arabic)",
+            "placeholder": "e.g., مصر"
+          },
+          "flagUrl": {
+            "label": "Flag Image URL",
+            "placeholder": "https://flagcdn.com/w320/eg.png"
+          },
+          "imageFile": {
+            "label": "Flag Image File Upload",
+            "placeholder": "Upload a flag image file (PNG, JPG, SVG)",
+            "upload": "Click to upload",
+            "drop": "or drag and drop",
+            "replace": "Click or drag another image to replace",
+            "invalid": "Please select a valid image file."
+          },
+          "orSeparator": "OR"
+        },
+        "preview": {
+          "title": "Live Preview",
+          "badgeSubtitle": "Country Badge Preview",
+          "description": "See how the country card will appear across the platform.",
+          "flagAlt": "Country flag preview",
+          "nameEnPlaceholder": "Country Name (EN)",
+          "nameArPlaceholder": "Country Name (Arabic)",
+          "operationalRegions": "{count, plural, =0 {0 Operational Regions} =1 {1 Operational Region} other {# Operational Regions}}",
+          "status": {
+            "active": "Active"
+          }
+        }
       },
-      "name_ar": {
-        "label": "Country Name (Arabic)",
-        "placeholder": "e.g., مصر"
+      "list": {
+        "metadata": {
+          "title": "Countries Management | Admin Panel",
+          "description": "Manage active countries, view stats, edit, and create new operational countries."
+        },
+        "title": "Countries Management",
+        "subtitle": "Overview of all operational countries, region counts, and management actions.",
+        "actions": {
+          "add": "Add Country",
+          "viewDeleted": "Deleted Archive",
+          "view": "View Regions",
+          "edit": "Edit",
+          "delete": "Delete Country",
+          "cancel": "Cancel Delete"
+        },
+        "search": {
+          "placeholder": "Search by country name..."
+        },
+        "table": {
+          "columns": {
+            "country": "Country",
+            "slug": "Slug",
+            "regionsCount": "Regions",
+            "guidelinesCount": "Guidelines",
+            "actions": "Actions"
+          }
+        },
+        "dialogs": {
+          "delete": {
+            "title": "Delete Country",
+            "description": "Are you sure you want to delete {name}? This will soft-delete the country."
+          }
+        },
+        "toasts": {
+          "deleteSuccess": "Country deleted successfully",
+          "deleteError": "Failed to delete country"
+        },
+        "empty": {
+          "title": "No countries found",
+          "description": "Try adjusting your search query or add a new country."
+        }
       },
-      "flag_url": {
-        "label": "Flag Image URL",
-        "placeholder": "https://flagcdn.com/w320/eg.png"
-      },
-      "image_file": {
-        "label": "Flag Image File Upload",
-        "placeholder": "Upload a flag image file (PNG, JPG, SVG)",
-        "upload": "Click to upload",
-        "drop": "or drag and drop",
-        "replace": "Click or drag another image to replace",
-        "invalid": "Please select a valid image file."
-      },
-      "or_separator": "OR"
-    },
-    "create": {
-      "submit": "Create Country",
-      "submitting": "Creating...",
-      "success": "Country created successfully!",
-      "error": "Failed to create country"
-    },
-    "edit": {
-      "submit": "Save Changes",
-      "submitting": "Saving...",
-      "success": "Country updated successfully!",
-      "error": "Failed to update country"
-    },
-    "preview": {
-      "title": "Live Preview",
-      "badge_subtitle": "Country Badge Preview",
-      "description": "See how the country card will appear across the platform.",
-      "flag_alt": "Country flag preview",
-      "name_en_placeholder": "Country Name (EN)",
-      "name_ar_placeholder": "Country Name (Arabic)",
-      "operational_regions": "{count, plural, =0 {0 Operational Regions} =1 {1 Operational Region} other {# Operational Regions}}",
-      "status": {
-        "active": "Active"
+      "deleted": {
+        "metadata": {
+          "title": "Deleted Countries Archive | Admin Panel",
+          "description": "View previously soft-deleted countries and restore them."
+        },
+        "title": "Deleted Countries Archive",
+        "subtitle": "Overview of soft-deleted country records with option to restore.",
+        "actions": {
+          "viewActive": "Active Countries",
+          "restore": "Restore"
+        },
+        "search": {
+          "placeholder": "Search deleted countries..."
+        },
+        "table": {
+          "columns": {
+            "country": "Country",
+            "slug": "Slug",
+            "deletedAt": "Deleted At",
+            "regionsCount": "Regions",
+            "guidelinesCount": "Guidelines",
+            "actions": "Actions"
+          }
+        },
+        "toasts": {
+          "restoreSuccess": "Country restored successfully!",
+          "restoreError": "Failed to restore country"
+        },
+        "empty": {
+          "title": "No deleted countries",
+          "description": "There are no soft-deleted countries in the archive."
+        }
       }
-    }
-  },
-  "AdminCountriesPage": {
-    "meta_data": {
-      "title": "Countries Management | Admin Panel",
-      "description": "Manage active countries, view stats, edit, and create new operational countries."
     },
-    "title": "Countries Management",
-    "subtitle": "Overview of all operational countries, region counts, and management actions.",
-    "add_country": "Add Country",
-    "deleted_countries": "Deleted Archive",
-    "search_placeholder": "Search by country name...",
-    "table": {
-      "country": "Country",
-      "slug": "Slug",
-      "regions_count": "Regions",
-      "guidelines_count": "Guidelines",
-      "actions": "Actions"
+    "regions": {
+      "list": {
+        "metadata": {
+          "title": "Regions Management | Admin Panel",
+          "description": "Manage packing regions across all countries, view guideline counts, edit, and create new regions."
+        },
+        "title": "Regions Management",
+        "subtitle": "Overview of all regions across countries with guideline counts and management actions.",
+        "actions": {
+          "add": "Add Region",
+          "viewDeleted": "Deleted Regions",
+          "view": "View Guidelines",
+          "edit": "Edit",
+          "delete": "Delete Region",
+          "cancel": "Cancel Delete"
+        },
+        "search": {
+          "placeholder": "Search by region, account or country..."
+        },
+        "table": {
+          "columns": {
+            "region": "Region",
+            "country": "Country",
+            "account": "Account",
+            "labels": "Labels",
+            "guidelinesCount": "Guidelines",
+            "actions": "Actions"
+          }
+        },
+        "dialogs": {
+          "delete": {
+            "title": "Delete Region",
+            "description": "Are you sure you want to delete {name}? This will soft-delete the region."
+          }
+        },
+        "toasts": {
+          "deleteSuccess": "Region deleted successfully",
+          "deleteError": "Failed to delete region"
+        },
+        "empty": {
+          "title": "No regions found",
+          "description": "Try adjusting your search query or add a new region."
+        }
+      },
+      "deleted": {
+        "metadata": {
+          "title": "Deleted Regions Archive | Admin Panel",
+          "description": "View previously soft-deleted regions and restore them."
+        },
+        "title": "Deleted Regions Archive",
+        "subtitle": "Overview of soft-deleted region records with option to restore.",
+        "actions": {
+          "viewActive": "Active Regions",
+          "restore": "Restore"
+        },
+        "search": {
+          "placeholder": "Search deleted regions..."
+        },
+        "table": {
+          "columns": {
+            "region": "Region",
+            "country": "Country",
+            "account": "Account",
+            "labels": "Labels",
+            "guidelinesCount": "Guidelines",
+            "deletedAt": "Deleted At",
+            "actions": "Actions"
+          }
+        },
+        "toasts": {
+          "restoreSuccess": "Region restored successfully!",
+          "restoreError": "Failed to restore region"
+        },
+        "empty": {
+          "title": "No deleted regions",
+          "description": "There are no soft-deleted regions in the archive."
+        }
+      },
+      "form": {
+        "create": {
+          "metadata": {
+            "title": "Add Region | Admin Panel",
+            "description": "Create a new packing region under a country with bilingual labels."
+          },
+          "title": "Add New Region",
+          "subtitle": "Define a new region with bilingual labels, an account identifier, and packaging labels.",
+          "submit": "Create Region",
+          "submitting": "Creating...",
+          "success": "Region created successfully",
+          "error": "Failed to create region"
+        },
+        "edit": {
+          "metadata": {
+            "title": "Edit Region | Admin Panel",
+            "description": "Update region details, bilingual labels, and account information."
+          },
+          "title": "Edit Region",
+          "subtitle": "Update the region's bilingual labels, account identifier, and packaging labels.",
+          "submit": "Save Changes",
+          "submitting": "Saving...",
+          "success": "Region updated successfully",
+          "error": "Failed to update region"
+        },
+        "fields": {
+          "countryId": {
+            "label": "Country",
+            "placeholder": "Select a country"
+          },
+          "labelNameEn": {
+            "label": "Label Name (English)",
+            "placeholder": "e.g. Cairo Region"
+          },
+          "labelNameAr": {
+            "label": "Label Name (Arabic)",
+            "placeholder": "e.g. منطقة القاهرة"
+          },
+          "account": {
+            "label": "Account",
+            "placeholder": "e.g. cairo-region"
+          },
+          "labels": {
+            "label": "Labels",
+            "placeholder": "e.g. Fragile, Handle with care",
+            "hint": "Separate multiple labels with commas"
+          }
+        }
+      }
     },
-    "actions": {
-      "view": "View Regions",
-      "edit": "Edit",
-      "delete": "Delete Country",
-      "cancel": "Cancel Delete",
-      "delete_confirm_title": "Delete Country",
-      "delete_confirm_desc": "Are you sure you want to delete {name}? This will soft-delete the country.",
-      "delete_success": "Country deleted successfully",
-      "delete_error": "Failed to delete country"
+    "categories": {
+      "metadata": {
+        "title": "Category Management | Admin Panel",
+        "description": "Manage packing guideline categories, update bilingual names, and control their display order."
+      },
+      "title": "Categories",
+      "itemsCount": "{count} Categories",
+      "actions": {
+        "add": "Add Category",
+        "reorder": "Reorder Categories",
+        "edit": "Edit Category"
+      },
+      "table": {
+        "columns": {
+          "nameEn": "Name (English)",
+          "nameAr": "Name (Arabic)",
+          "sortOrder": "Sort Order",
+          "guidelinesCount": "Packing Ways",
+          "actions": "Actions"
+        }
+      },
+      "reorder": {
+        "title": "Category Order",
+        "subtitle": "Drag and drop categories to set their display order on the public packing guidelines pages.",
+        "listHeader": "Category (EN / AR)",
+        "rankHeader": "Rank",
+        "discard": "Discard",
+        "saveChanges": "Save Changes",
+        "unsavedBanner": "You have unsaved order changes.",
+        "dragHandle": "Drag {name}"
+      },
+      "toasts": {
+        "reorderSuccess": "Category order updated successfully!",
+        "reorderError": "Failed to update category order",
+        "createSuccess": "Category created successfully!",
+        "createError": "Failed to create category",
+        "editSuccess": "Category updated successfully!",
+        "editError": "Failed to update category"
+      },
+      "dialogs": {
+        "create": {
+          "title": "Add Category",
+          "description": "Create a new display category with English and Arabic names.",
+          "submit": "Create"
+        },
+        "edit": {
+          "title": "Edit Category",
+          "description": "Update the category's English and Arabic names.",
+          "submit": "Save Changes"
+        },
+        "cancel": "Cancel",
+        "nameEn": "Name (English)",
+        "nameAr": "Name (Arabic)",
+        "nameEnPlaceholder": "e.g. Electronics",
+        "nameArPlaceholder": "e.g. الإلكترونيات"
+      },
+      "empty": {
+        "title": "No categories found",
+        "description": "Create your first category to start grouping packing guidelines."
+      }
     },
-    "empty": {
-      "title": "No countries found",
-      "description": "Try adjusting your search query or add a new country."
-    }
-  },
-  "DeletedCountriesPage": {
-    "meta_data": {
-      "title": "Deleted Countries Archive | Admin Panel",
-      "description": "View previously soft-deleted countries and restore them."
+    "packingWays": {
+      "list": {
+        "title": "Packing Ways",
+        "subtitle": "Manage packing guidelines across countries and regions.",
+        "actions": {
+          "add": "Add Packing Way",
+          "viewDeleted": "Deleted Archive",
+          "view": "View",
+          "edit": "Edit",
+          "delete": "Delete",
+          "cancel": "Cancel"
+        },
+        "search": {
+          "placeholder": "Search packing ways, countries or regions..."
+        },
+        "filters": {
+          "allCountries": "All countries",
+          "allCategories": "All categories"
+        },
+        "unknown": "Unknown",
+        "table": {
+          "columns": {
+            "packingWay": "Packing Way",
+            "category": "Category",
+            "region": "Region",
+            "country": "Country",
+            "updatedAt": "Last Updated",
+            "actions": "Actions"
+          }
+        },
+        "dialogs": {
+          "delete": {
+            "title": "Delete packing way?",
+            "description": "This will soft-delete the packing way and preserve its audit history."
+          }
+        },
+        "toasts": {
+          "deleteSuccess": "Packing way deleted",
+          "deleteError": "Could not delete packing way"
+        },
+        "empty": {
+          "title": "No packing ways found",
+          "description": "Try a different search or add a packing way."
+        }
+      },
+      "deleted": {
+        "title": "Deleted Packing Ways",
+        "subtitle": "Restore soft-deleted packing guidelines from the archive.",
+        "actions": {
+          "viewActive": "Active Packing Ways",
+          "restore": "Restore"
+        },
+        "search": {
+          "placeholder": "Search deleted packing ways..."
+        },
+        "table": {
+          "columns": {
+            "packingWay": "Packing Way",
+            "category": "Category",
+            "country": "Country",
+            "deletedAt": "Deleted",
+            "actions": "Actions"
+          }
+        },
+        "toasts": {
+          "restoreSuccess": "Packing way restored",
+          "restoreError": "Could not restore packing way"
+        },
+        "empty": {
+          "title": "No deleted packing ways in the archive."
+        }
+      },
+      "form": {
+        "create": {
+          "title": "Add Packing Way",
+          "subtitle": "Create a bilingual packing guideline for a region.",
+          "submit": "Create Packing Way",
+          "success": "Packing way created",
+          "error": "Could not create packing way"
+        },
+        "edit": {
+          "title": "Edit Packing Way",
+          "subtitle": "Update the packing guideline and its image.",
+          "loadError": "Could not load the packing way.",
+          "submit": "Save Changes",
+          "success": "Packing way updated",
+          "error": "Could not update packing way"
+        },
+        "fields": {
+          "country": {
+            "label": "Country",
+            "placeholder": "Select a country"
+          },
+          "region": {
+            "label": "Region",
+            "placeholder": "Select a region"
+          },
+          "category": {
+            "label": "Category",
+            "placeholder": "Select a category"
+          },
+          "titleEn": {
+            "label": "Title (English)",
+            "placeholder": "e.g. Seal the carton"
+          },
+          "titleAr": {
+            "label": "Title (Arabic)",
+            "placeholder": "أدخل العنوان بالعربية"
+          },
+          "descriptionEn": {
+            "label": "Description (English)",
+            "placeholder": "Describe the packing instruction"
+          },
+          "descriptionAr": {
+            "label": "Description (Arabic)",
+            "placeholder": "أدخل وصف التعليمات بالعربية"
+          },
+          "image": {
+            "label": "Image",
+            "upload": "Upload an image",
+            "drop": "or drag and drop",
+            "replace": "Replace image",
+            "hint": "JPG, PNG or WEBP up to 5MB",
+            "current": "The existing image will be kept unless you choose a replacement.",
+            "usingCurrent": "A saved image is currently active. Upload a new file only if you wish to replace it.",
+            "undoReplacement": "Keep saved image",
+            "newSelected": "New replacement image selected (pending save)"
+          }
+        },
+        "preview": {
+          "title": "Preview Panel",
+          "savedTitle": "Current Saved Version",
+          "savedDesc": "Baseline record currently in the database.",
+          "draftTitle": "Live Preview (Draft)",
+          "draftDesc": "Real-time preview of changes before saving.",
+          "badgeSaved": "Saved in DB",
+          "badgeDraft": "Live Draft",
+          "noImage": "No image attached",
+          "usingSavedImage": "Using saved image",
+          "newReplacementImage": "New replacement image staged",
+          "lastUpdated": "Last updated",
+          "byUser": "by {name}"
+        }
+      }
     },
-    "title": "Deleted Countries Archive",
-    "subtitle": "Overview of soft-deleted country records with option to restore.",
-    "active_countries": "Active Countries",
-    "search_placeholder": "Search deleted countries...",
-    "table": {
-      "country": "Country",
-      "slug": "Slug",
-      "deleted_at": "Deleted At",
-      "regions_count": "Regions",
-      "guidelines_count": "Guidelines",
-      "actions": "Actions"
+    "history": {
+      "title": "Audit Logs",
+      "subtitle": "Track every change made to packing ways.",
+      "search": {
+        "placeholder": "Search by title or admin name/email..."
+      },
+      "filters": {
+        "allActions": "All actions",
+        "allCountries": "All countries",
+        "allRegions": "All regions",
+        "allCategories": "All categories"
+      },
+      "actionTypes": {
+        "create": "Created",
+        "update": "Updated",
+        "delete": "Deleted"
+      },
+      "actions": {
+        "view": "View details"
+      },
+      "table": {
+        "columns": {
+          "packingWay": "Packing Way",
+          "action": "Action",
+          "category": "Category",
+          "region": "Region",
+          "country": "Country",
+          "changedBy": "Changed By",
+          "date": "Date",
+          "details": "Details"
+        }
+      },
+      "empty": {
+        "title": "No audit records found",
+        "description": "Try different filters or search terms."
+      },
+      "details": {
+        "before": "Before",
+        "after": "After",
+        "noDescription": "No description",
+        "field": {
+          "titleEn": "Title (EN)",
+          "titleAr": "Title (AR)",
+          "descriptionEn": "Description (EN)",
+          "descriptionAr": "Description (AR)",
+          "image": "Image"
+        }
+      }
     },
-    "actions": {
-      "restore": "Restore",
-      "restore_success": "Country restored successfully!",
-      "restore_error": "Failed to restore country"
-    },
-    "empty": {
-      "title": "No deleted countries",
-      "description": "There are no soft-deleted countries in the archive."
-    }
-  },
-  "AdminRegionsPage": {
-    "meta_data": {
-      "title": "Regions Management | Admin Panel",
-      "description": "Manage packing regions across all countries, view guideline counts, edit, and create new regions."
-    },
-    "title": "Regions Management",
-    "subtitle": "Overview of all regions across countries with guideline counts and management actions.",
-    "add_region": "Add Region",
-    "deleted_regions": "Deleted Regions",
-    "search_placeholder": "Search by region, account or country...",
-    "table": {
-      "region": "Region",
-      "country": "Country",
-      "account": "Account",
-      "labels": "Labels",
-      "guidelines_count": "Guidelines",
-      "actions": "Actions"
-    },
-    "actions": {
-      "view": "View Guidelines",
-      "edit": "Edit",
-      "delete": "Delete Region",
-      "cancel": "Cancel Delete",
-      "delete_confirm_title": "Delete Region",
-      "delete_confirm_desc": "Are you sure you want to delete {name}? This will soft-delete the region.",
-      "delete_success": "Region deleted successfully",
-      "delete_error": "Failed to delete region"
-    },
-    "empty": {
-      "title": "No regions found",
-      "description": "Try adjusting your search query or add a new region."
-    }
-  },
-  "DeletedRegionsPage": {
-    "meta_data": {
-      "title": "Deleted Regions Archive | Admin Panel",
-      "description": "View previously soft-deleted regions and restore them."
-    },
-    "title": "Deleted Regions Archive",
-    "subtitle": "Overview of soft-deleted region records with option to restore.",
-    "active_regions": "Active Regions",
-    "search_placeholder": "Search deleted regions...",
-    "table": {
-      "region": "Region",
-      "country": "Country",
-      "account": "Account",
-      "labels": "Labels",
-      "guidelines_count": "Guidelines",
-      "deleted_at": "Deleted At",
-      "actions": "Actions"
-    },
-    "actions": {
-      "restore": "Restore",
-      "restore_success": "Region restored successfully!",
-      "restore_error": "Failed to restore region"
-    },
-    "empty": {
-      "title": "No deleted regions",
-      "description": "There are no soft-deleted regions in the archive."
-    }
-  },
-  "AdminCategoriesPage": {
-    "meta_data": {
-      "title": "Category Management | Admin Panel",
-      "description": "Manage packing guideline categories, update bilingual names, and control their display order."
-    },
-    "title": "Categories",
-    "items_count": "{count} Categories",
-    "add_category": "Add Category",
-    "reorder_categories": "Reorder Categories",
-    "edit_category": "Edit Category",
-    "table": {
-      "name_en": "Name (English)",
-      "name_ar": "Name (Arabic)",
-      "sort_order": "Sort Order",
-      "guidelines_count": "Packing Ways",
-      "actions": "Actions"
-    },
-    "reorder": {
-      "title": "Category Order",
-      "subtitle": "Drag and drop categories to set their display order on the public packing guidelines pages.",
-      "list_header": "Category (EN / AR)",
-      "rank_header": "Rank",
-      "discard": "Discard",
-      "save_changes": "Save Changes",
-      "unsaved_banner": "You have unsaved order changes.",
-      "save_success": "Category order updated successfully!",
-      "save_error": "Failed to update category order",
-      "drag_handle": "Drag {name}"
-    },
-    "dialog": {
+    "users": {
+      "list": {
+        "metadata": {
+          "title": "Users Management",
+          "description": "View and manage all registered users"
+        },
+        "title": "Users Management",
+        "subtitle": "View and manage all registered users.",
+        "actions": {
+          "add": "Add User",
+          "changeRole": "Change Role",
+          "ban": "Ban User",
+          "unban": "Unban User",
+          "remove": "Remove User",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "search": {
+          "placeholder": "Search by email..."
+        },
+        "shownCount": "{count} shown",
+        "youBadge": "You",
+        "emailVerified": "Email verified",
+        "emailNotVerified": "Email not verified",
+        "table": {
+          "columns": {
+            "user": "User",
+            "role": "Role",
+            "status": "Status",
+            "joinedAt": "Joined",
+            "actions": "Actions"
+          }
+        },
+        "status": {
+          "active": "Active",
+          "banned": "Banned",
+          "removed": "Removed",
+          "bannedReason": "Reason: {reason}",
+          "bannedUntil": "Until: {date}"
+        },
+        "roles": {
+          "admin": "Admin",
+          "user": "User"
+        },
+        "dialogs": {
+          "roleChange": {
+            "title": "Change User Role",
+            "description": "Select a new role for {name}. Current role: {current}.",
+            "warning": "Granting admin access gives full control over the platform."
+          },
+          "ban": {
+            "title": "Ban User",
+            "description": "Are you sure you want to ban {name}?",
+            "reasonLabel": "Reason (optional, up to 500 characters)",
+            "reasonPlaceholder": "Enter ban reason...",
+            "expiryLabel": "Ban Duration",
+            "expiryPermanent": "Permanent",
+            "expiry1day": "1 Day",
+            "expiry7days": "7 Days",
+            "expiry30days": "30 Days"
+          },
+          "unban": {
+            "title": "Unban User",
+            "description": "Are you sure you want to unban {name}?"
+          },
+          "remove": {
+            "title": "Remove User",
+            "description": "Are you sure you want to remove {name}?",
+            "warning": "{name} will no longer be able to sign in. Their record and activity history are preserved. This cannot be undone."
+          }
+        },
+        "toasts": {
+          "roleChangeSuccess": "Role updated successfully",
+          "roleChangeError": "Failed to update role",
+          "banSuccess": "User banned successfully",
+          "banError": "Failed to ban user",
+          "unbanSuccess": "User unbanned successfully",
+          "unbanError": "Failed to unban user",
+          "removeSuccess": "User removed successfully",
+          "removeError": "Failed to remove user"
+        },
+        "empty": {
+          "title": "No users found",
+          "description": "No users match your search criteria."
+        }
+      },
       "create": {
-        "title": "Add Category",
-        "description": "Create a new display category with English and Arabic names.",
-        "submit": "Create"
-      },
-      "edit": {
-        "title": "Edit Category",
-        "description": "Update the category's English and Arabic names.",
-        "submit": "Save Changes"
-      },
-      "cancel": "Cancel",
-      "name_en": "Name (English)",
-      "name_ar": "Name (Arabic)",
-      "name_en_placeholder": "e.g. Electronics",
-      "name_ar_placeholder": "e.g. الإلكترونيات",
-      "create_success": "Category created successfully!",
-      "create_error": "Failed to create category",
-      "edit_success": "Category updated successfully!",
-      "edit_error": "Failed to update category"
-    },
-    "empty": {
-      "title": "No categories found",
-      "description": "Create your first category to start grouping packing guidelines."
-    }
-  },
-  "AddRegionPage": {
-    "meta_data": {
-      "title": "Add Region | Admin Panel",
-      "description": "Create a new packing region under a country with bilingual labels."
-    },
-    "title": "Add New Region",
-    "subtitle": "Define a new region with bilingual labels, an account identifier, and packaging labels."
-  },
-  "EditRegionPage": {
-    "meta_data": {
-      "title": "Edit Region | Admin Panel",
-      "description": "Update region details, bilingual labels, and account information."
-    },
-    "title": "Edit Region",
-    "subtitle": "Update the region's bilingual labels, account identifier, and packaging labels."
-  },
-  "CreateAndUpdateRegion": {
-    "form": {
-      "country_id": {
-        "label": "Country",
-        "placeholder": "Select a country"
-      },
-      "label_name_en": {
-        "label": "Label Name (English)",
-        "placeholder": "e.g. Cairo Region"
-      },
-      "label_name_ar": {
-        "label": "Label Name (Arabic)",
-        "placeholder": "e.g. منطقة القاهرة"
-      },
-      "account": {
-        "label": "Account",
-        "placeholder": "e.g. cairo-region"
-      },
-      "labels": {
-        "label": "Labels",
-        "placeholder": "e.g. Fragile, Handle with care",
-        "hint": "Separate multiple labels with commas"
-      }
-    },
-    "create": {
-      "submit": "Create Region",
-      "submitting": "Creating...",
-      "success": "Region created successfully",
-      "error": "Failed to create region"
-    },
-    "edit": {
-      "submit": "Save Changes",
-      "submitting": "Saving...",
-      "success": "Region updated successfully",
-      "error": "Failed to update region"
-    }
-  },
-  "AdminPackingWaysPage": {
-    "title": "Packing Ways",
-    "subtitle": "Manage packing guidelines across countries and regions.",
-    "add": "Add Packing Way",
-    "deleted": "Deleted Archive",
-    "search_placeholder": "Search packing ways, countries or regions...",
-    "filters": {
-      "all_countries": "All countries",
-      "all_categories": "All categories"
-    },
-    "unknown": "Unknown",
-    "table": {
-      "packing_way": "Packing Way",
-      "category": "Category",
-      "region": "Region",
-      "country": "Country",
-      "updated": "Last Updated",
-      "actions": "Actions"
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete",
-      "cancel": "Cancel",
-      "delete_title": "Delete packing way?",
-      "delete_description": "This will soft-delete the packing way and preserve its audit history.",
-      "delete_success": "Packing way deleted",
-      "delete_error": "Could not delete packing way"
-    },
-    "empty": {
-      "title": "No packing ways found",
-      "description": "Try a different search or add a packing way."
-    }
-  },
-  "DeletedPackingWaysPage": {
-    "title": "Deleted Packing Ways",
-    "subtitle": "Restore soft-deleted packing guidelines from the archive.",
-    "active": "Active Packing Ways",
-    "search_placeholder": "Search deleted packing ways...",
-    "table": {
-      "packing_way": "Packing Way",
-      "category": "Category",
-      "country": "Country",
-      "deleted": "Deleted",
-      "actions": "Actions"
-    },
-    "actions": {
-      "restore": "Restore",
-      "restore_success": "Packing way restored",
-      "restore_error": "Could not restore packing way"
-    },
-    "empty": "No deleted packing ways in the archive."
-  },
-  "AdminHistoryPage": {
-    "title": "Audit Logs",
-    "subtitle": "Track every change made to packing ways.",
-    "search_placeholder": "Search by title or admin name/email...",
-    "filters": {
-      "all_actions": "All actions",
-      "all_countries": "All countries",
-      "all_regions": "All regions",
-      "all_categories": "All categories"
-    },
-    "actions": {
-      "CREATE": "Created",
-      "UPDATE": "Updated",
-      "DELETE": "Deleted",
-      "view": "View details"
-    },
-    "table": {
-      "packing_way": "Packing Way",
-      "action": "Action",
-      "category": "Category",
-      "region": "Region",
-      "country": "Country",
-      "changed_by": "Changed By",
-      "date": "Date",
-      "details": "Details"
-    },
-    "empty": {
-      "title": "No audit records found",
-      "description": "Try different filters or search terms."
-    },
-    "details": {
-      "before": "Before",
-      "after": "After",
-      "no_description": "No description",
-      "field": {
-        "title_en": "Title (EN)",
-        "title_ar": "Title (AR)",
-        "description_en": "Description (EN)",
-        "description_ar": "Description (AR)",
-        "image": "Image"
-      }
-    }
-  },
-  "AdminUsersPage": {
-    "meta_data": {
-      "title": "Users Management",
-      "description": "View and manage all registered users"
-    },
-    "title": "Users Management",
-    "subtitle": "View and manage all registered users.",
-    "add_user": "Add User",
-    "search_placeholder": "Search by email...",
-    "shown_count": "{count} shown",
-    "you_badge": "You",
-    "email_verified": "Email verified",
-    "email_not_verified": "Email not verified",
-    "table": {
-      "user": "User",
-      "role": "Role",
-      "status": "Status",
-      "joined": "Joined",
-      "actions": "Actions"
-    },
-    "status": {
-      "active": "Active",
-      "banned": "Banned",
-      "removed": "Removed",
-      "banned_reason": "Reason: {reason}",
-      "banned_until": "Until: {date}"
-    },
-    "roles": {
-      "admin": "Admin",
-      "user": "User"
-    },
-    "actions": {
-      "change_role": "Change Role",
-      "ban": "Ban User",
-      "unban": "Unban User",
-      "remove": "Remove User",
-      "cancel": "Cancel",
-      "confirm": "Confirm"
-    },
-    "role_change": {
-      "title": "Change User Role",
-      "description": "Select a new role for {name}. Current role: {current}.",
-      "warning": "Granting admin access gives full control over the platform.",
-      "success": "Role updated successfully",
-      "error": "Failed to update role"
-    },
-    "ban": {
-      "title": "Ban User",
-      "description": "Are you sure you want to ban {name}?",
-      "reason_label": "Reason (optional, up to 500 characters)",
-      "reason_placeholder": "Enter ban reason...",
-      "expiry_label": "Ban Duration",
-      "expiry_permanent": "Permanent",
-      "expiry_1day": "1 Day",
-      "expiry_7days": "7 Days",
-      "expiry_30days": "30 Days",
-      "success": "User banned successfully",
-      "error": "Failed to ban user"
-    },
-    "unban": {
-      "title": "Unban User",
-      "description": "Are you sure you want to unban {name}?",
-      "success": "User unbanned successfully",
-      "error": "Failed to unban user"
-    },
-    "remove": {
-      "title": "Remove User",
-      "description": "Are you sure you want to remove {name}?",
-      "warning": "{name} will no longer be able to sign in. Their record and activity history are preserved. This cannot be undone.",
-      "success": "User removed successfully",
-      "error": "Failed to remove user"
-    },
-    "empty": {
-      "title": "No users found",
-      "description": "No users match your search criteria."
-    },
-    "create": {
-      "meta_data": {
+        "metaData": {
+          "title": "Add User",
+          "description": "Create a new user and send them a verification email"
+        },
         "title": "Add User",
-        "description": "Create a new user and send them a verification email"
-      },
-      "title": "Add User",
-      "subtitle": "Create a new user. They will receive a verification email before they can sign in.",
-      "name": "Name",
-      "email": "Email",
-      "password": "Password",
-      "confirm_password": "Confirm Password",
-      "role": "Role",
-      "role_user": "User",
-      "role_admin": "Admin",
-      "password_hint": "At least 8 characters with an uppercase letter, a lowercase letter, and a number.",
-      "submit": "Create User",
-      "submitting": "Creating...",
-      "success": "User created successfully. A verification email has been sent.",
-      "error": "Could not create user"
-    }
-  },
-  "AddPackingWayPage": {
-    "title": "Add Packing Way",
-    "subtitle": "Create a bilingual packing guideline for a region."
-  },
-  "EditPackingWayPage": {
-    "title": "Edit Packing Way",
-    "subtitle": "Update the packing guideline and its image.",
-    "load_error": "Could not load the packing way."
-  },
-  "CreateAndUpdatePackingWay": {
-    "form": {
-      "country": { "label": "Country", "placeholder": "Select a country" },
-      "region": { "label": "Region", "placeholder": "Select a region" },
-      "category": { "label": "Category", "placeholder": "Select a category" },
-      "title_en": {
-        "label": "Title (English)",
-        "placeholder": "e.g. Seal the carton"
-      },
-      "title_ar": {
-        "label": "Title (Arabic)",
-        "placeholder": "أدخل العنوان بالعربية"
-      },
-      "description_en": {
-        "label": "Description (English)",
-        "placeholder": "Describe the packing instruction"
-      },
-      "description_ar": {
-        "label": "Description (Arabic)",
-        "placeholder": "أدخل وصف التعليمات بالعربية"
-      },
-      "image": {
-        "label": "Image",
-        "upload": "Upload an image",
-        "drop": "or drag and drop",
-        "replace": "Replace image",
-        "hint": "JPG, PNG or WEBP up to 5MB",
-        "current": "The existing image will be kept unless you choose a replacement.",
-        "using_current": "A saved image is currently active. Upload a new file only if you wish to replace it.",
-        "undo_replacement": "Keep saved image",
-        "new_selected": "New replacement image selected (pending save)"
+        "subtitle": "Create a new user. They will receive a verification email before they can sign in.",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "role": "Role",
+        "roleUser": "User",
+        "roleAdmin": "Admin",
+        "passwordHint": "At least 8 characters with an uppercase letter, a lowercase letter, and a number.",
+        "submit": "Create User",
+        "submitting": "Creating...",
+        "success": "User created successfully. A verification email has been sent.",
+        "error": "Could not create user"
       }
-    },
-    "create": {
-      "submit": "Create Packing Way",
-      "success": "Packing way created",
-      "error": "Could not create packing way"
-    },
-    "edit": {
-      "submit": "Save Changes",
-      "success": "Packing way updated",
-      "error": "Could not update packing way"
-    },
-    "preview": {
-      "title": "Preview Panel",
-      "saved_title": "Current Saved Version",
-      "saved_desc": "Baseline record currently in the database.",
-      "draft_title": "Live Preview (Draft)",
-      "draft_desc": "Real-time preview of changes before saving.",
-      "badge_saved": "Saved in DB",
-      "badge_draft": "Live Draft",
-      "no_image": "No image attached",
-      "using_saved_image": "Using saved image",
-      "new_replacement_image": "New replacement image staged",
-      "last_updated": "Last updated",
-      "by_user": "by {name}"
     }
   }
 }

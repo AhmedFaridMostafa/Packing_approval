@@ -10,10 +10,13 @@ import { getTranslations } from "next-intl/server";
 import { revalidateTag } from "next/cache";
 
 export async function PUT(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const body = await request.json();
     const validatedData = apiCategoryReorderSchema(t).parse(body);
@@ -25,6 +28,6 @@ export async function PUT(request: Request) {
     return apiSuccess(null, 201);
   } catch (error: unknown) {
     console.error(`Error in PUT ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

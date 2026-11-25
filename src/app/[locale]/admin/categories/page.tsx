@@ -13,7 +13,7 @@ import CategoriesReorder from "@/components/admin/categories/CategoriesReorder";
 import CategoryFormDialog from "@/components/admin/categories/CategoryFormDialog";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminCategoriesPage.meta_data");
+  const t = await getTranslations("admin.categories.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -26,7 +26,7 @@ const AdminCategoriesPage = async ({ searchParams }: RouteParams) => {
   const [result, { view, dialog, id }, t] = await Promise.all([
     api.categories.getAdminCategories(requestHeaders),
     searchParams,
-    getTranslations("AdminCategoriesPage"),
+    getTranslations("admin.categories"),
   ]);
 
   if (!result.success)
@@ -55,12 +55,12 @@ const AdminCategoriesPage = async ({ searchParams }: RouteParams) => {
   }
 
   const tableLabels = {
-    nameEn: t("table.name_en"),
-    nameAr: t("table.name_ar"),
-    sortOrder: t("table.sort_order"),
-    guidelinesCount: t("table.guidelines_count"),
-    actions: t("table.actions"),
-    edit: t("edit_category"),
+    nameEn: t("table.columns.nameEn"),
+    nameAr: t("table.columns.nameAr"),
+    sortOrder: t("table.columns.sortOrder"),
+    guidelinesCount: t("table.columns.guidelinesCount"),
+    actions: t("table.columns.actions"),
+    edit: t("actions.edit"),
   };
 
   return (
@@ -73,9 +73,9 @@ const AdminCategoriesPage = async ({ searchParams }: RouteParams) => {
             count={categories.length}
             labels={{
               title: t("title"),
-              itemsCount: t("items_count", { count: categories.length }),
-              addCategory: t("add_category"),
-              reorderCategories: t("reorder_categories"),
+              itemsCount: t("itemsCount", { count: categories.length }),
+              addCategory: t("actions.add"),
+              reorderCategories: t("actions.reorder"),
             }}
           />
 
@@ -84,7 +84,7 @@ const AdminCategoriesPage = async ({ searchParams }: RouteParams) => {
               labels={{
                 title: t("empty.title"),
                 description: t("empty.description"),
-                addCategory: t("add_category"),
+                addCategory: t("actions.add"),
               }}
             />
           ) : (

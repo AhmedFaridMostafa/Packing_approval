@@ -6,7 +6,7 @@ import {
 } from "@/server/services/home.service";
 
 export async function GET() {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const [stats, featuredCountries] = await Promise.all([
       getHomeStats(),

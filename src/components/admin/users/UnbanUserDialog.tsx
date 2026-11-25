@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const UnbanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
-  const t = useTranslations("AdminUsersPage");
+  const t = useTranslations("admin.users.list");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -32,14 +32,14 @@ const UnbanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
       try {
         const response = await apiClient.users.unbanUser(user.id);
         if (response.success) {
-          toast.success(t("unban.success"));
+          toast.success(t("toasts.unbanSuccess"));
           onOpenChange(false);
           router.refresh();
         } else {
-          toast.error(response.error?.message ?? t("unban.error"));
+          toast.error(response.error?.message ?? t("toasts.unbanError"));
         }
       } catch {
-        toast.error(t("unban.error"));
+        toast.error(t("toasts.unbanError"));
       }
     });
   };
@@ -48,9 +48,9 @@ const UnbanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{t("unban.title")}</AlertDialogTitle>
+          <AlertDialogTitle>{t("dialogs.unban.title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            {t("unban.description", { name: user.name })}
+            {t("dialogs.unban.description", { name: user.name })}
           </AlertDialogDescription>
         </AlertDialogHeader>
 

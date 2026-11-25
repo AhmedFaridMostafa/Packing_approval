@@ -3,33 +3,33 @@ import { getTranslations } from "next-intl/server";
 
 const capabilities = [
   {
-    titleKey: "audit_title" as const,
-    descKey: "audit_desc" as const,
+    titleKey: "auditTitle" as const,
+    descKey: "auditDesc" as const,
     blobColor: "bg-primary/10",
     icon: <History />,
   },
   {
-    titleKey: "pdf_title" as const,
-    descKey: "pdf_desc" as const,
+    titleKey: "pdfTitle" as const,
+    descKey: "pdfDesc" as const,
     blobColor: "bg-success/10",
     icon: <FileText />,
   },
   {
-    titleKey: "bilingual_title" as const,
-    descKey: "bilingual_desc" as const,
+    titleKey: "bilingualTitle" as const,
+    descKey: "bilingualDesc" as const,
     blobColor: "bg-tertiary/10",
     icon: <Languages />,
   },
   {
-    titleKey: "role_title" as const,
-    descKey: "role_desc" as const,
+    titleKey: "roleTitle" as const,
+    descKey: "roleDesc" as const,
     blobColor: "bg-warning/10",
     icon: <LockKeyhole />,
   },
 ];
 
 const FeaturesShowcase = async () => {
-  const t = await getTranslations("HomePage.capabilities");
+  const t = await getTranslations("public.home.capabilities");
   return (
     <section className="bg-surface-container-lowest py-20 md:py-28">
       <div className="section-container">

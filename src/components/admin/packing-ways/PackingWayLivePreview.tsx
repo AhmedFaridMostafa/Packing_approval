@@ -21,7 +21,7 @@ const PackingWayLivePreview = ({
   formData,
   savedImageUrl,
 }: PackingWayLivePreviewProps) => {
-  const t = useTranslations("CreateAndUpdatePackingWay");
+  const t = useTranslations("admin.packingWays.form");
   const isRTL = useLocale() === "ar";
 
   const {
@@ -72,16 +72,16 @@ const PackingWayLivePreview = ({
           </div>
           <div>
             <h3 className="font-heading text-on-surface text-base font-bold">
-              {t("preview.draft_title")}
+              {t("preview.draftTitle")}
             </h3>
             <p className="text-caption text-on-surface-variant/80">
-              {t("preview.draft_desc")}
+              {t("preview.draftDesc")}
             </p>
           </div>
         </div>
         <Badge className="bg-primary/10 text-primary border-primary/20 shrink-0 gap-1 text-xs">
           <Sparkles className="size-3" />
-          {t("preview.badge_draft")}
+          {t("preview.badgeDraft")}
         </Badge>
       </div>
 
@@ -115,7 +115,7 @@ const PackingWayLivePreview = ({
             <div className="text-on-surface-variant/40 flex h-full w-full flex-col items-center justify-center gap-1.5 p-4 text-center">
               <Package className="size-8" />
               <span className="text-caption font-medium">
-                {t("preview.no_image")}
+                {t("preview.noImage")}
               </span>
             </div>
           )}
@@ -133,7 +133,7 @@ const PackingWayLivePreview = ({
                 variant="outline"
                 className="text-caption text-muted-foreground"
               >
-                {t("form.category.placeholder")}
+                {t("fields.category.placeholder")}
               </Badge>
             )}
 
@@ -162,23 +162,23 @@ const PackingWayLivePreview = ({
           {/* Live Titles */}
           <h4 className="font-heading text-on-surface line-clamp-1 text-base font-bold">
             {isRTL
-              ? titleAr || t("form.title_ar.placeholder")
-              : titleEn || t("form.title_en.placeholder")}
+              ? titleAr || t("fields.titleAr.placeholder")
+              : titleEn || t("fields.titleEn.placeholder")}
           </h4>
           <p
             className="text-caption text-on-surface-variant/80 line-clamp-1 font-medium"
             dir={isRTL ? "ltr" : "rtl"}
           >
             {isRTL
-              ? titleEn || t("form.title_en.placeholder")
-              : titleAr || t("form.title_ar.placeholder")}
+              ? titleEn || t("fields.titleEn.placeholder")
+              : titleAr || t("fields.titleAr.placeholder")}
           </p>
 
           {/* Live Description */}
           <p className="text-caption text-on-surface-variant mt-2 line-clamp-3 leading-relaxed">
             {isRTL
-              ? descriptionAr || t("form.description_ar.placeholder")
-              : descriptionEn || t("form.description_en.placeholder")}
+              ? descriptionAr || t("fields.descriptionAr.placeholder")
+              : descriptionEn || t("fields.descriptionEn.placeholder")}
           </p>
         </div>
       </div>

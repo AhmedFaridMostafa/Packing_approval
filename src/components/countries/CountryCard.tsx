@@ -11,7 +11,7 @@ interface CountryCardProps {
   locale: string;
 }
 
-export function CountryCard({ country, translate, locale }: CountryCardProps) {
+const CountryCard = ({ country, translate, locale }: CountryCardProps) => {
   const isRTL = locale === "ar";
   const name = isRTL ? country.name_ar : country.name_en;
 
@@ -51,14 +51,16 @@ export function CountryCard({ country, translate, locale }: CountryCardProps) {
       <div className="border-border/60 relative mt-4 flex flex-wrap gap-2 border-t pt-2">
         <span className="bg-accent text-caption text-primary inline-flex items-center gap-1 rounded-full px-3 py-1 font-medium">
           <MapPin className="size-5" />
-          {translate("regions_badge", { count: country.region_count })}
+          {translate("regionsBadge", { count: country.region_count })}
         </span>
 
         <span className="bg-surface-container-high text-caption text-on-surface-variant inline-flex items-center gap-1 rounded-full px-3 py-1 font-medium">
           <File className="size-5" />
-          {translate("guidelines_badge", { count: country.guidelines_count })}
+          {translate("guidelinesBadge", { count: country.guidelines_count })}
         </span>
       </div>
     </Link>
   );
-}
+};
+
+export default CountryCard;

@@ -23,7 +23,7 @@ export async function GET(
   request: Request,
   { params }: AdminRegionRouteParams,
 ) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -31,7 +31,7 @@ export async function GET(
     const id = parseInt((await params).id);
     if (isNaN(id))
       return NextResponse.json(
-        { success: false, status: 400, error: { message: t("invalid_id") } },
+        { success: false, status: 400, error: { message: t("invalidId") } },
         { status: 400 },
       );
 
@@ -49,20 +49,23 @@ export async function PUT(
   request: Request,
   { params }: AdminRegionRouteParams,
 ) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const id = parseInt((await params).id);
     if (isNaN(id))
       return NextResponse.json(
-        { success: false, status: 400, error: { message: t("invalid_id") } },
+        { success: false, status: 400, error: { message: tApi("invalidId") } },
         { status: 400 },
       );
 
     const existing = await getRegionWithCountryById(id);
-    if (!existing) return apiNotFound(t);
+    if (!existing) return apiNotFound(tApi);
 
     const body = await request.json();
     const validatedData = apiRegionSchema(t).partial().parse(body);
@@ -75,7 +78,7 @@ export async function PUT(
     return apiSuccess(data);
   } catch (error: unknown) {
     console.error(`Error in PUT ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
 
@@ -83,7 +86,7 @@ export async function DELETE(
   request: Request,
   { params }: AdminRegionRouteParams,
 ) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -91,7 +94,7 @@ export async function DELETE(
     const id = parseInt((await params).id);
     if (isNaN(id))
       return NextResponse.json(
-        { success: false, status: 400, error: { message: t("invalid_id") } },
+        { success: false, status: 400, error: { message: t("invalidId") } },
         { status: 400 },
       );
 

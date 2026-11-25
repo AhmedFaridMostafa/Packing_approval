@@ -17,7 +17,7 @@ import { getTranslations } from "next-intl/server";
 import { revalidateTag } from "next/cache";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -30,10 +30,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const formData = await request.formData();
     const validatedData = apiCountrySchema(t).parse({
@@ -64,6 +67,6 @@ export async function POST(request: Request) {
     return apiSuccess(data, 201);
   } catch (error: unknown) {
     console.error(`Error in POST ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

@@ -26,7 +26,7 @@ import { sendVerificationEmail } from "@/lib/auth/auth-client";
 import { MailCheck } from "lucide-react";
 
 const VerifyEmailPage = () => {
-  const t = useTranslations("Auth.Verify_email");
+  const t = useTranslations("auth.verifyEmail");
   const searchParams = useSearchParams();
   const email = useMemo(() => searchParams.get("email"), [searchParams]);
   const [isResending, startTransition] = useTransition();

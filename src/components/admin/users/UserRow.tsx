@@ -59,7 +59,7 @@ interface UserRowProps {
 }
 
 const UserRow = ({ user, isSelf }: UserRowProps) => {
-  const t = useTranslations("AdminUsersPage");
+  const t = useTranslations("admin.users.list");
   const format = useFormatter();
   const [action, setAction] = useState<MenuAction | null>(null);
 
@@ -72,16 +72,16 @@ const UserRow = ({ user, isSelf }: UserRowProps) => {
     format.dateTime(new Date(date), { dateStyle: "medium" });
 
   const verifiedLabel = user.emailVerified
-    ? t("email_verified")
-    : t("email_not_verified");
+    ? t("emailVerified")
+    : t("emailNotVerified");
 
   const banTooltip =
     status === "banned"
       ? [
           user.banReason &&
-            t("status.banned_reason", { reason: user.banReason }),
+            t("status.bannedReason", { reason: user.banReason }),
           user.banExpires &&
-            t("status.banned_until", { date: formatDate(user.banExpires) }),
+            t("status.bannedUntil", { date: formatDate(user.banExpires) }),
         ]
           .filter(Boolean)
           .join(" · ") || undefined
@@ -98,7 +98,7 @@ const UserRow = ({ user, isSelf }: UserRowProps) => {
               <span className="truncate font-bold">{user.name}</span>
               {isSelf && (
                 <Badge className="border-primary/20 bg-primary/10 text-primary font-semibold">
-                  {t("you_badge")}
+                  {t("youBadge")}
                 </Badge>
               )}
               <span title={verifiedLabel} role="img" aria-label={verifiedLabel}>
@@ -155,7 +155,7 @@ const UserRow = ({ user, isSelf }: UserRowProps) => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  aria-label={t("table.actions")}
+                  aria-label={t("table.columns.actions")}
                 >
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
@@ -164,7 +164,7 @@ const UserRow = ({ user, isSelf }: UserRowProps) => {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onSelect={() => setAction("role")}>
                   <ShieldCheck className="h-4 w-4" />
-                  {t("actions.change_role")}
+                  {t("actions.changeRole")}
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator />

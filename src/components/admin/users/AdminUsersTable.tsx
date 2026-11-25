@@ -25,16 +25,16 @@ const AdminUsersTable = ({ t, users, currentUserId }: AdminUsersTableProps) => {
           <TableHeader className="bg-surface-container-low/60">
             <TableRow className="border-border">
               <TableHead className="w-75 font-bold">
-                {t("table.user")}
+                {t("table.columns.user")}
               </TableHead>
 
-              <TableHead>{t("table.role")}</TableHead>
+              <TableHead>{t("table.columns.role")}</TableHead>
 
-              <TableHead>{t("table.status")}</TableHead>
+              <TableHead>{t("table.columns.status")}</TableHead>
 
-              <TableHead>{t("table.joined")}</TableHead>
+              <TableHead>{t("table.columns.joinedAt")}</TableHead>
 
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead className="text-end">{t("table.columns.actions")}</TableHead>
             </TableRow>
           </TableHeader>
 

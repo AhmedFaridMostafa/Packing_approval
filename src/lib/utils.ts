@@ -88,3 +88,6 @@ export const truncateFileName = (name: string, maxLength = 20) => {
   const availableLength = Math.max(1, maxLength - extension.length - 3);
   return `${baseName.slice(0, availableLength)}...${extension}`;
 };
+
+export const numberParam = (value: string | null) =>
+  value ? Number(value) : undefined;

@@ -15,23 +15,23 @@ const CountryPreview = ({
   effectiveFlagUrl,
   regionsCounts,
 }: CountryPreviewProps) => {
-  const t = useTranslations("CreateAndUpdateCountry");
+  const t = useTranslations("admin.countries.form.preview");
   return (
     <Card className="border-border bg-card sticky top-24 rounded-2xl p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Eye className="text-primary h-5 w-5" />
           <h2 className="font-heading text-on-surface text-lg font-bold">
-            {t("preview.title")}
+            {t("title")}
           </h2>
         </div>
         <span className="bg-primary/10 text-primary text-caption rounded-full px-3 py-1 font-semibold">
-          {t("preview.badge_subtitle")}
+          {t("badgeSubtitle")}
         </span>
       </div>
 
       <p className="text-caption text-on-surface-variant/80 mb-6 font-medium">
-        {t("preview.description")}
+        {t("description")}
       </p>
 
       {/* Country Card Preview Container */}
@@ -56,10 +56,10 @@ const CountryPreview = ({
           {/* Names */}
           <div className="flex flex-col">
             <h3 className="font-heading text-on-surface text-xl font-bold">
-              {nameEn || t("preview.name_en_placeholder")}
+              {nameEn || t("nameEnPlaceholder")}
             </h3>
             <p className="text-body-base text-primary font-semibold" dir="rtl">
-              {nameAr || t("preview.name_ar_placeholder")}
+              {nameAr || t("nameArPlaceholder")}
             </p>
           </div>
         </div>
@@ -68,12 +68,12 @@ const CountryPreview = ({
         <div className="border-border/60 mt-6 flex items-center justify-between border-t pt-4">
           <span className="text-caption text-on-surface-variant flex items-center gap-1 font-medium">
             <Sparkles className="h-4 w-4 text-emerald-500" />
-            {t("preview.operational_regions", {
+            {t("operationalRegions", {
               count: regionsCounts ?? 0,
             })}
           </span>
           <span className="bg-accent text-primary text-caption rounded-md px-2.5 py-1 font-bold">
-            {t("preview.status.active")}
+            {t("status.active")}
           </span>
         </div>
       </div>

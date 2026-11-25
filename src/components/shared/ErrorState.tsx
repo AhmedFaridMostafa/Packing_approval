@@ -34,7 +34,7 @@ const genericConfig: ErrorStateConfig = {
 const notFoundConfig: ErrorStateConfig = {
   icon: FileQuestion,
   badgeClass: "bg-primary/10 text-primary border-primary/20",
-  translationKey: "not_found",
+  translationKey: "notFound",
   isError: true,
   retryByDefault: false,
 };
@@ -99,7 +99,7 @@ export default function ErrorState({
   showHomeButton,
   className,
 }: ErrorStateProps) {
-  const t = useTranslations("ErrorState");
+  const t = useTranslations("errors");
   const config = getConfig(status, configOverride);
   const Icon = config.icon;
 
@@ -208,7 +208,7 @@ export default function ErrorState({
               >
                 <Link href={ROUTES.HOME}>
                   <Home className="h-4 w-4" />
-                  {t("go_home")}
+                  {t("goHome")}
                 </Link>
               </Button>
             )}
@@ -261,7 +261,7 @@ export default function ErrorState({
             >
               <Link href={ROUTES.HOME}>
                 <Home className="h-4 w-4" />
-                {t("go_home")}
+                {t("goHome")}
               </Link>
             </Button>
           )}

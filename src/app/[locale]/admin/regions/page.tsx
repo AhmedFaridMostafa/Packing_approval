@@ -10,7 +10,7 @@ import ErrorState from "@/components/shared/ErrorState";
 import AdminRegionsTable from "@/components/admin/regions/AdminRegionsTable";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminRegionsPage.meta_data");
+  const t = await getTranslations("admin.regions.list.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -20,7 +20,7 @@ export async function generateMetadata() {
 const AdminRegionsPage = async ({ searchParams }: RouteParams) => {
   const [{ search_query, page }, t, locale] = await Promise.all([
     searchParams,
-    getTranslations("AdminRegionsPage"),
+    getTranslations("admin.regions.list"),
     getLocale(),
   ]);
 
@@ -69,7 +69,7 @@ const AdminRegionsPage = async ({ searchParams }: RouteParams) => {
           >
             <Link href={ROUTES.ADMIN_REGIONS_DELETED}>
               <Archive className="h-4 w-4" />
-              {t("deleted_regions")}
+              {t("actions.viewDeleted")}
             </Link>
           </Button>
 
@@ -79,7 +79,7 @@ const AdminRegionsPage = async ({ searchParams }: RouteParams) => {
           >
             <Link href={ROUTES.ADMIN_REGIONS_ADD}>
               <Plus className="h-5 w-5" />
-              {t("add_region")}
+              {t("actions.add")}
             </Link>
           </Button>
         </div>
@@ -87,7 +87,7 @@ const AdminRegionsPage = async ({ searchParams }: RouteParams) => {
 
       {/* Search Bar */}
       <div className="flex items-center gap-4">
-        <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+        <GlobalSearch searchPlaceholder={t("search.placeholder")} />
         <span className="text-on-surface-variant text-caption font-medium">
           {regions.length > 0 && `${regions.length} shown`}
         </span>

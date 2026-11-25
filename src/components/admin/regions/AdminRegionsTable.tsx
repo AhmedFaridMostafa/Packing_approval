@@ -29,20 +29,22 @@ const AdminRegionsTable = ({
           <TableHeader className="bg-surface-container-low/60">
             <TableRow className="border-border">
               <TableHead className="w-60 font-bold">
-                {t("table.region")}
+                {t("table.columns.region")}
               </TableHead>
 
-              <TableHead>{t("table.country")}</TableHead>
+              <TableHead>{t("table.columns.country")}</TableHead>
 
-              <TableHead>{t("table.account")}</TableHead>
+              <TableHead>{t("table.columns.account")}</TableHead>
 
-              <TableHead>{t("table.labels")}</TableHead>
+              <TableHead>{t("table.columns.labels")}</TableHead>
 
               <TableHead className="text-center">
-                {t("table.guidelines_count")}
+                {t("table.columns.guidelinesCount")}
               </TableHead>
 
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead className="text-end">
+                {t("table.columns.actions")}
+              </TableHead>
             </TableRow>
           </TableHeader>
 
@@ -57,12 +59,12 @@ const AdminRegionsTable = ({
                   edit: t("actions.edit"),
                   delete: t("actions.delete"),
                   cancel: t("actions.cancel"),
-                  confirmTitle: t("actions.delete_confirm_title"),
-                  confirmDescription: t("actions.delete_confirm_desc", {
+                  confirmTitle: t("dialogs.delete.title"),
+                  confirmDescription: t("dialogs.delete.description", {
                     name: isRTL ? region.label_name_ar : region.label_name_en,
                   }),
-                  success: t("actions.delete_success"),
-                  error: t("actions.delete_error"),
+                  success: t("toasts.deleteSuccess"),
+                  error: t("toasts.deleteError"),
                 }}
               />
             ))}

@@ -11,7 +11,7 @@ import { headers } from "next/headers";
 import ErrorState from "@/components/shared/ErrorState";
 
 export async function generateMetadata() {
-  const t = await getTranslations("DeletedCountriesPage.meta_data");
+  const t = await getTranslations("admin.countries.deleted.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -22,7 +22,7 @@ const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
   const [{ search_query, page }, t, locale, requestHeaders] = await Promise.all(
     [
       searchParams,
-      getTranslations("DeletedCountriesPage"),
+      getTranslations("admin.countries.deleted"),
       getLocale(),
       headers(),
     ],
@@ -72,14 +72,14 @@ const DeletedCountriesPage = async ({ searchParams }: RouteParams) => {
         >
           <Link href={ROUTES.ADMIN_COUNTRIES}>
             <ArrowLeft className="rtl-flip h-4 w-4" />
-            {t("active_countries")}
+            {t("actions.viewActive")}
           </Link>
         </Button>
       </div>
 
       {/* Search Bar */}
       <div className="flex items-center gap-4">
-        <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+        <GlobalSearch searchPlaceholder={t("search.placeholder")} />
         <span className="text-on-surface-variant text-caption font-medium">
           {countries.length > 0 && `${countries.length} shown`}
         </span>

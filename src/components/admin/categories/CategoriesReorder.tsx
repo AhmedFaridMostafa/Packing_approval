@@ -20,7 +20,7 @@ interface CategoriesReorderProps {
 
 const CategoriesReorder = ({ categories }: CategoriesReorderProps) => {
   const router = useRouter();
-  const t = useTranslations("AdminCategoriesPage");
+  const t = useTranslations("admin.categories");
 
   const [items, setItems] = useState<CategoryWithCount[]>(categories);
   const [isSaving, startSaving] = useTransition();
@@ -42,14 +42,14 @@ const CategoriesReorder = ({ categories }: CategoriesReorderProps) => {
         const response = await apiClient.categories.reorderCategories(payload);
 
         if (response.success) {
-          toast.success(t("reorder.save_success"));
+          toast.success(t("toasts.reorderSuccess"));
           router.push(ROUTES.ADMIN_CATEGORIES);
           router.refresh();
         } else {
-          toast.error(response.error?.message ?? t("reorder.save_error"));
+          toast.error(response.error?.message ?? t("toasts.reorderError"));
         }
       } catch {
-        toast.error(t("reorder.save_error"));
+        toast.error(t("toasts.reorderError"));
       }
     });
   };
@@ -87,7 +87,7 @@ const CategoriesReorder = ({ categories }: CategoriesReorderProps) => {
             className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 items-center gap-2 rounded-xl font-semibold shadow-xs"
           >
             {isSaving ? <Spinner className="h-4 w-4" /> : null}
-            {t("reorder.save_changes")}
+            {t("reorder.saveChanges")}
           </Button>
         </div>
       </div>

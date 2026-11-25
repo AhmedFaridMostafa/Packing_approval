@@ -29,7 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { EXPIRY_BAN_OPTIONS } from "@/constants";
 
 const BanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
-  const t = useTranslations("AdminUsersPage");
+  const t = useTranslations("admin.users.list");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [reason, setReason] = useState("");
@@ -48,14 +48,14 @@ const BanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
         });
 
         if (response.success) {
-          toast.success(t("ban.success"));
+          toast.success(t("toasts.banSuccess"));
           onOpenChange(false);
           router.refresh();
         } else {
-          toast.error(response.error?.message ?? t("ban.error"));
+          toast.error(response.error?.message ?? t("toasts.banError"));
         }
       } catch {
-        toast.error(t("ban.error"));
+        toast.error(t("toasts.banError"));
       }
     });
   };
@@ -64,22 +64,22 @@ const BanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t("ban.title")}</DialogTitle>
+          <DialogTitle>{t("dialogs.ban.title")}</DialogTitle>
           <DialogDescription>
-            {t("ban.description", { name: user.name })}
+            {t("dialogs.ban.description", { name: user.name })}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="ban-reason" className="text-sm font-medium">
-              {t("ban.reason_label")}
+              {t("dialogs.ban.reasonLabel")}
             </label>
             <Textarea
               id="ban-reason"
               value={reason}
               maxLength={500}
-              placeholder={t("ban.reason_placeholder")}
+              placeholder={t("dialogs.ban.reasonPlaceholder")}
               onChange={(event) => setReason(event.target.value)}
               className="min-h-20"
             />
@@ -87,7 +87,7 @@ const BanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
 
           <div className="space-y-2">
             <label htmlFor="ban-expiry" className="text-sm font-medium">
-              {t("ban.expiry_label")}
+              {t("dialogs.ban.expiryLabel")}
             </label>
             <Select value={expiry} onValueChange={setExpiry}>
               <SelectTrigger id="ban-expiry" className="w-full">
@@ -96,7 +96,7 @@ const BanUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
               <SelectContent>
                 {EXPIRY_BAN_OPTIONS.map(({ value, labelKey }) => (
                   <SelectItem key={value} value={value}>
-                    {t(`ban.${labelKey}`)}
+                    {t(`dialogs.ban.${labelKey}`)}
                   </SelectItem>
                 ))}
               </SelectContent>

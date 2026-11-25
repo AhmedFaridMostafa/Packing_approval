@@ -29,20 +29,22 @@ const AdminCountriesTable = ({
           <TableHeader className="bg-surface-container-low/60">
             <TableRow className="border-border">
               <TableHead className="w-75 font-bold">
-                {t("table.country")}
+                {t("table.columns.country")}
               </TableHead>
 
-              <TableHead>{t("table.slug")}</TableHead>
+              <TableHead>{t("table.columns.slug")}</TableHead>
 
               <TableHead className="text-center">
-                {t("table.regions_count")}
+                {t("table.columns.regionsCount")}
               </TableHead>
 
               <TableHead className="text-center">
-                {t("table.guidelines_count")}
+                {t("table.columns.guidelinesCount")}
               </TableHead>
 
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead className="text-end">
+                {t("table.columns.actions")}
+              </TableHead>
             </TableRow>
           </TableHeader>
 
@@ -57,12 +59,12 @@ const AdminCountriesTable = ({
                   edit: t("actions.edit"),
                   delete: t("actions.delete"),
                   cancel: t("actions.cancel"),
-                  confirmTitle: t("actions.delete_confirm_title"),
-                  confirmDescription: t("actions.delete_confirm_desc", {
+                  confirmTitle: t("dialogs.delete.title"),
+                  confirmDescription: t("dialogs.delete.description", {
                     name: isRTL ? country.name_ar : country.name_en,
                   }),
-                  success: t("actions.delete_success"),
-                  error: t("actions.delete_error"),
+                  success: t("toasts.deleteSuccess"),
+                  error: t("toasts.deleteError"),
                 }}
               />
             ))}

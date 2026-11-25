@@ -15,7 +15,7 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
 
   if (session?.user) redirect("/");
 
-  const t = await getTranslations("Auth.Auth_layout");
+  const t = await getTranslations("auth.authLayout");
 
   return (
     <main className="flex min-h-screen items-center justify-center px-4 py-10">
@@ -25,13 +25,13 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
           <div className="flex items-center gap-2.5">
             <Image
               src="/site-logo.png"
-              alt={t("logo_alt")}
+              alt={t("logoAlt")}
               width={36}
               height={36}
               className="object-contain"
             />
             <span className="font-heading text-primary text-2xl font-bold">
-              {t("header_title")}
+              {t("headerTitle")}
             </span>
           </div>
           <LanguageButton />

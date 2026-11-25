@@ -12,7 +12,7 @@ import ErrorState from "@/components/shared/ErrorState";
 export const generateMetadata = async ({ params }: RouteParams) => {
   const [{ countrySlug, locale }, t] = await Promise.all([
     params,
-    getTranslations("CountryRegionsPage.meta_data"),
+    getTranslations("public.countryRegions.metadata"),
   ]);
 
   const result = await api.countries.getCountryWithRegions(countrySlug);
@@ -33,7 +33,7 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
     params,
     headers(),
 
-    getTranslations("CountryRegionsPage"),
+    getTranslations("public.countryRegions"),
   ]);
 
   const [session, result] = await Promise.all([
@@ -61,8 +61,8 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
     <section className="py-10 sm:py-16">
       <div className="section-container">
         <CountryNav
-          homeNav={t("home_breadcrumb")}
-          countriesNav={t("countries_breadcrumb")}
+          homeNav={t("breadcrumb.home")}
+          countriesNav={t("breadcrumb.countries")}
           countryName={countryName}
         />
 
@@ -70,11 +70,11 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
           isRTL={isRTL}
           country={country}
           isAdmin={isAdmin}
-          guidelinesBadge={t("guidelines_badge", { count: totalGuidelines })}
-          addRegionCta={t("add_region_cta")}
+          guidelinesBadge={t("guidelinesBadge", { count: totalGuidelines })}
+          addRegionCta={t("actions.addRegion")}
         />
         <h2 className="font-heading text-on-surface-variant mb-6 text-sm font-semibold tracking-wider uppercase">
-          {t("regions_grid_title")}
+          {t("regionsGridTitle")}
         </h2>
         {regions.length > 0 ? (
           <List
@@ -86,8 +86,8 @@ const CountryRegionsPage = async ({ params }: RouteParams) => {
         ) : (
           <Empty
             IconTitle={Info}
-            title={t("empty_title")}
-            description={t("empty_desc")}
+            title={t("empty.title")}
+            description={t("empty.description")}
           />
         )}
       </div>

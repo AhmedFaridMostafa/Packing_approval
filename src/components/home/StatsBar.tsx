@@ -14,7 +14,7 @@ const StatsBar = async ({
   categories,
   guidelines,
 }: StatsBarProps) => {
-  const t = await getTranslations("HomePage.stats");
+  const t = await getTranslations("public.home.stats");
 
   const stats = [
     { value: countries, label: t("countries"), Icon: Earth },

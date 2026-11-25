@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { getInitials } from "@/lib/utils";
 
 const ProfileSummaryCard = ({ user }: { user: ProfileSource }) => {
-  const t = useTranslations("userSetting.profile");
+  const t = useTranslations("account.profile");
 
   return (
     <Card className="border-border bg-card rounded-2xl p-6 shadow-sm sm:p-8">
@@ -39,7 +39,7 @@ const ProfileSummaryCard = ({ user }: { user: ProfileSource }) => {
                   : "bg-surface-container-high text-on-surface-variant"
               }
             >
-              {user.role === "admin" ? t("role_admin") : t("role_user")}
+              {user.role === "admin" ? t("roleAdmin") : t("roleUser")}
             </Badge>
           </div>
         </div>
@@ -73,7 +73,7 @@ const ProfileSummaryCard = ({ user }: { user: ProfileSource }) => {
             {t("role")}
           </dt>
           <dd className="text-on-surface text-sm font-semibold">
-            {user.role === "admin" ? t("role_admin") : t("role_user")}
+            {user.role === "admin" ? t("roleAdmin") : t("roleUser")}
           </dd>
         </div>
       </dl>

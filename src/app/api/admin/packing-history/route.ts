@@ -7,12 +7,10 @@ import {
 } from "@/lib/api-response";
 import { getPackingHistoryPaginated } from "@/server/services/history.service";
 import { ACTIONS } from "@/constants";
-
-const numberParam = (value: string | null) =>
-  value ? Number(value) : undefined;
+import { numberParam } from "@/lib/utils";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -22,7 +20,7 @@ export async function GET(request: Request) {
       (key) => {
         const value = numberParam(params.get(key));
         if (!Number.isInteger(value) && value !== undefined)
-          throw new Error(t("invalid_id"));
+          throw new Error(t("invalidId"));
         return value;
       },
     );

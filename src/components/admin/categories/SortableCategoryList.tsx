@@ -31,7 +31,7 @@ const SortableCategoryItem = ({
   category,
   index,
 }: SortableCategoryItemProps) => {
-  const t = useTranslations("AdminCategoriesPage.reorder");
+  const t = useTranslations("admin.categories.reorder");
   const {
     attributes,
     listeners,
@@ -56,7 +56,7 @@ const SortableCategoryItem = ({
         type="button"
         {...attributes}
         {...listeners}
-        aria-label={t("drag_handle", { name: category.name_en })}
+        aria-label={t("dragHandle", { name: category.name_en })}
         className={cn(
           "text-outline-variant hover:text-primary flex w-10 shrink-0 cursor-grab touch-none transition-colors active:cursor-grabbing",
           isDragging && "text-primary",
@@ -99,7 +99,7 @@ const SortableCategoryList = ({
   items,
   onItemsChange,
 }: SortableCategoryListProps) => {
-  const t = useTranslations("AdminCategoriesPage.reorder");
+  const t = useTranslations("admin.categories.reorder");
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -132,11 +132,11 @@ const SortableCategoryList = ({
         {/* List Header (Utility) */}
         <div className="text-on-surface-variant border-border bg-surface-muted text-caption flex items-center border-b px-4 py-3 font-medium tracking-wider uppercase">
           <div className="w-10" />
-          <div className="flex-1">{t("list_header")}</div>
-          <div className="w-20 shrink-0 text-center">{t("rank_header")}</div>
+          <div className="flex-1">{t("listHeader")}</div>
+          <div className="w-20 shrink-0 text-center">{t("rankHeader")}</div>
         </div>
 
-        <ul className="flex flex-col" aria-label={t("list_header")}>
+        <ul className="flex flex-col" aria-label={t("listHeader")}>
           {items.map((category, index) => (
             <SortableCategoryItem
               key={category.id}

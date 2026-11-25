@@ -39,8 +39,9 @@ const CategoryFormDialog = ({
   category,
 }: CategoryFormDialogProps) => {
   const router = useRouter();
-  const validationT = useTranslations("Validation");
-  const t = useTranslations("AdminCategoriesPage.dialog");
+  const validationT = useTranslations("validation");
+  const t = useTranslations("admin.categories.dialogs");
+  const tToasts = useTranslations("admin.categories.toasts");
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categoryFormSchema(validationT)),
@@ -64,14 +65,14 @@ const CategoryFormDialog = ({
           : await apiClient.categories.updateCategory(category!.id, data);
 
       if (response.success) {
-        toast.success(t(`${mode}_success`));
+        toast.success(tToasts(`${mode}Success`));
         router.push(ROUTES.ADMIN_CATEGORIES);
         router.refresh();
       } else {
-        toast.error(response.error?.message || t(`${mode}_error`));
+        toast.error(response.error?.message || tToasts(`${mode}Error`));
       }
     } catch {
-      toast.error(t(`${mode}_error`));
+      toast.error(tToasts(`${mode}Error`));
     }
   };
 
@@ -98,11 +99,11 @@ const CategoryFormDialog = ({
                     htmlFor={field.name}
                     className="text-on-surface font-semibold"
                   >
-                    {t("name_en")}
+                    {t("nameEn")}
                   </FieldLabel>
                   <Input
                     id={field.name}
-                    placeholder={t("name_en_placeholder")}
+                    placeholder={t("nameEnPlaceholder")}
                     aria-invalid={fieldState.invalid}
                     className="bg-surface-container-low! border-border! focus-visible:ring-primary! h-11! rounded-xl!"
                     {...field}
@@ -123,12 +124,12 @@ const CategoryFormDialog = ({
                     htmlFor={field.name}
                     className="text-on-surface font-semibold"
                   >
-                    {t("name_ar")}
+                    {t("nameAr")}
                   </FieldLabel>
                   <Input
                     id={field.name}
                     dir="rtl"
-                    placeholder={t("name_ar_placeholder")}
+                    placeholder={t("nameArPlaceholder")}
                     aria-invalid={fieldState.invalid}
                     className="bg-surface-container-low! border-border! focus-visible:ring-primary! h-11! rounded-xl!"
                     {...field}

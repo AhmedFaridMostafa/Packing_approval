@@ -6,7 +6,7 @@ import ErrorState from "@/components/shared/ErrorState";
 import { headers } from "next/headers";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AddRegionPage.meta_data");
+  const t = await getTranslations("admin.regions.form.create.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -16,7 +16,7 @@ export async function generateMetadata() {
 const AddRegionPage = async () => {
   const [requestHeaders, t] = await Promise.all([
     headers(),
-    getTranslations("AddRegionPage"),
+    getTranslations("admin.regions.form.create"),
   ]);
 
   const result = await api.countries.getAllActiveCountries(requestHeaders);

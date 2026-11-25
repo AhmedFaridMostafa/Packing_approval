@@ -10,7 +10,7 @@ interface FeaturedCountriesProps {
 
 const FeaturedCountries = async ({ countries }: FeaturedCountriesProps) => {
   const [t, locale] = await Promise.all([
-    getTranslations("HomePage.featured"),
+    getTranslations("public.home.featured"),
     getLocale(),
   ]);
   const isRTL = locale === "ar";
@@ -32,7 +32,7 @@ const FeaturedCountries = async ({ countries }: FeaturedCountriesProps) => {
             href={ROUTES.COUNTRIES}
             className="text-primary hover:text-brand-hover inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-200"
           >
-            {t("view_all")}
+            {t("viewAll")}
             <ArrowRight className="rtl-flip" />
           </Link>
         </div>
@@ -59,7 +59,7 @@ const FeaturedCountries = async ({ countries }: FeaturedCountriesProps) => {
                     <div className="ring-border relative h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm ring-1">
                       <Image
                         src={c.flag_url}
-                        alt={`${isRTL ? c.name_ar : c.name_en} ${t("flag_alt")}`}
+                        alt={`${isRTL ? c.name_ar : c.name_en} ${t("flagAlt")}`}
                         fill
                         sizes="40px"
                         className="object-cover"
@@ -79,11 +79,11 @@ const FeaturedCountries = async ({ countries }: FeaturedCountriesProps) => {
                 <div className="relative flex flex-wrap gap-2">
                   <span className="bg-accent text-caption text-primary inline-flex items-center gap-1 rounded-full px-3 py-1 font-medium">
                     <MapPin className="size-5" />
-                    {t("regions_count", { count: c.region_count })}
+                    {t("regionsCount", { count: c.region_count })}
                   </span>
                   <span className="bg-surface-container-high text-caption text-on-surface-variant inline-flex items-center gap-1 rounded-full px-3 py-1 font-medium">
                     <File className="size-5" />
-                    {t("guidelines_count", { count: c.guidelines_count })}
+                    {t("guidelinesCount", { count: c.guidelines_count })}
                   </span>
                 </div>
               </Link>

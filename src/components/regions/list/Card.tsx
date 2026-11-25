@@ -70,7 +70,7 @@ const Card = ({
         {/* Account */}
         <div className="text-table-cell text-on-surface-variant mb-3 flex items-center gap-2">
           <span className="text-caption text-on-surface-variant/70 font-medium tracking-wider uppercase">
-            {t("account_label")}:
+            {t("accountLabel")}:
           </span>
           <code className="bg-surface-container-high border-border text-on-surface rounded-md border px-2 py-0.5 font-mono text-xs font-semibold">
             {account}
@@ -81,7 +81,7 @@ const Card = ({
         {labels.length > 0 && (
           <div className="mb-6 flex flex-wrap items-center gap-1.5">
             <span className="text-caption text-on-surface-variant/70 mr-1 font-medium tracking-wider uppercase rtl:mr-0 rtl:ml-1">
-              {t("labels_label")}:
+              {t("labelsLabel")}:
             </span>
             {labels.map((lbl) => (
               <span
@@ -99,7 +99,7 @@ const Card = ({
       <div className="border-border/50 relative mt-2 flex items-center justify-between border-t pt-4">
         <span className="text-caption text-primary inline-flex items-center gap-1 font-bold">
           <FileText className="h-3 w-3" aria-hidden="true" />
-          {t("guidelines_badge", { count: guidelines_count })}
+          {t("guidelinesBadge", { count: guidelines_count })}
         </span>
         <ArrowRight className="text-primary rtl-flip h-5 w-5 opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 rtl:group-hover:-translate-x-1" />
       </div>

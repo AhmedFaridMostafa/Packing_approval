@@ -12,12 +12,10 @@ import {
   getPackingWaysPaginated,
 } from "@/server/services/packing.service";
 import { uploadImage } from "@/server/services/upload.service";
-
-const numberParam = (value: string | null) =>
-  value ? Number(value) : undefined;
+import { numberParam } from "@/lib/utils";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -26,7 +24,7 @@ export async function GET(request: Request) {
     const values = ["country_id", "region_id", "category_id"].map((key) => {
       const value = numberParam(params.get(key));
       if (!Number.isInteger(value) && value !== undefined)
-        throw new Error(t("invalid_id"));
+        throw new Error(t("invalidId"));
       return numberParam(params.get(key));
     });
 
@@ -46,10 +44,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized || !auth.session?.user) return apiUnauthorized(t);
+    if (!auth.authorized || !auth.session?.user) return apiUnauthorized(tApi);
 
     const formData = await request.formData();
 
@@ -78,6 +79,6 @@ export async function POST(request: Request) {
     return apiSuccess(result, 201);
   } catch (error) {
     console.error(`Error in POST ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

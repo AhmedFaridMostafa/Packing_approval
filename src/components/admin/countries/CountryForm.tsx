@@ -21,7 +21,7 @@ interface CountryFormProps {
 }
 
 const CountryForm = ({ mode, country, regionsCounts }: CountryFormProps) => {
-  const validationT = useTranslations("Validation");
+  const validationT = useTranslations("validation");
 
   const form = useForm<CountryFormValues>({
     resolver: zodResolver(apiCountrySchema(validationT)),

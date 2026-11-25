@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const RemoveUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
-  const t = useTranslations("AdminUsersPage");
+  const t = useTranslations("admin.users.list");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -35,14 +35,14 @@ const RemoveUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
         const response = await apiClient.users.removeUser(user.id);
 
         if (response.success) {
-          toast.success(t("remove.success"));
+          toast.success(t("toasts.removeSuccess"));
           onOpenChange(false);
           router.refresh();
         } else {
-          toast.error(response.error?.message ?? t("remove.error"));
+          toast.error(response.error?.message ?? t("toasts.removeError"));
         }
       } catch {
-        toast.error(t("remove.error"));
+        toast.error(t("toasts.removeError"));
       }
     });
   };
@@ -51,16 +51,16 @@ const RemoveUserDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{t("remove.title")}</AlertDialogTitle>
+          <AlertDialogTitle>{t("dialogs.remove.title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            {t("remove.description", { name: user.name })}
+            {t("dialogs.remove.description", { name: user.name })}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <div className="text-destructive bg-destructive/10 flex items-start gap-2 rounded-lg p-3">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
           <p className="text-body-sm">
-            {t("remove.warning", { name: user.name })}
+            {t("dialogs.remove.warning", { name: user.name })}
           </p>
         </div>
 

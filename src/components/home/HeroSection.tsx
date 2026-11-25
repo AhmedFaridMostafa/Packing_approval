@@ -4,7 +4,7 @@ import { ROUTES } from "@/constants/routes";
 import { ArrowRight } from "lucide-react";
 
 const HeroSection = async () => {
-  const t = await getTranslations("HomePage.hero");
+  const t = await getTranslations("public.home.hero");
 
   return (
     <section className="hero-gradient relative overflow-hidden py-24 md:py-32 lg:py-36">
@@ -40,7 +40,7 @@ const HeroSection = async () => {
             href={ROUTES.COUNTRIES}
             className="bg-primary text-primary-foreground hover:bg-brand-hover inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
           >
-            {t("browse_cta")}
+            {t("browseCta")}
             <ArrowRight className="rtl-flip" />
           </Link>
 
@@ -48,7 +48,7 @@ const HeroSection = async () => {
             href={ROUTES.SIGN_IN}
             className="border-border bg-card text-on-surface hover:bg-accent hover:text-primary inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 text-sm font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
           >
-            {t("signin_cta")}
+            {t("signinCta")}
           </Link>
         </div>
       </div>

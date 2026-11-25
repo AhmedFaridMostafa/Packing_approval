@@ -18,21 +18,21 @@ interface AdminHistoryTableProps {
 
 const AdminHistoryTable = ({ history, t, isRTL }: AdminHistoryTableProps) => {
   const labels: HistoryRowLabels = {
-    create: t("actions.CREATE"),
-    update: t("actions.UPDATE"),
-    delete: t("actions.DELETE"),
+    create: t("actionTypes.create"),
+    update: t("actionTypes.update"),
+    delete: t("actionTypes.delete"),
     view: t("actions.view"),
     before: t("details.before"),
     after: t("details.after"),
-    region: t("table.region"),
-    category: t("table.category"),
-    changed_by: t("table.changed_by"),
-    date: t("table.date"),
-    no_description: t("details.no_description"),
-    field_title_en: t("details.field.title_en"),
-    field_title_ar: t("details.field.title_ar"),
-    field_description_en: t("details.field.description_en"),
-    field_description_ar: t("details.field.description_ar"),
+    region: t("table.columns.region"),
+    category: t("table.columns.category"),
+    changed_by: t("table.columns.changedBy"),
+    date: t("table.columns.date"),
+    no_description: t("details.noDescription"),
+    field_title_en: t("details.field.titleEn"),
+    field_title_ar: t("details.field.titleAr"),
+    field_description_en: t("details.field.descriptionEn"),
+    field_description_ar: t("details.field.descriptionAr"),
     field_image: t("details.field.image"),
   };
 
@@ -42,14 +42,14 @@ const AdminHistoryTable = ({ history, t, isRTL }: AdminHistoryTableProps) => {
         <Table>
           <TableHeader className="bg-surface-container-low/60">
             <TableRow>
-              <TableHead>{t("table.packing_way")}</TableHead>
-              <TableHead>{t("table.action")}</TableHead>
-              <TableHead>{t("table.category")}</TableHead>
-              <TableHead>{t("table.region")}</TableHead>
-              <TableHead>{t("table.country")}</TableHead>
-              <TableHead>{t("table.changed_by")}</TableHead>
-              <TableHead>{t("table.date")}</TableHead>
-              <TableHead className="text-end">{t("table.details")}</TableHead>
+              <TableHead>{t("table.columns.packingWay")}</TableHead>
+              <TableHead>{t("table.columns.action")}</TableHead>
+              <TableHead>{t("table.columns.category")}</TableHead>
+              <TableHead>{t("table.columns.region")}</TableHead>
+              <TableHead>{t("table.columns.country")}</TableHead>
+              <TableHead>{t("table.columns.changedBy")}</TableHead>
+              <TableHead>{t("table.columns.date")}</TableHead>
+              <TableHead className="text-end">{t("table.columns.details")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

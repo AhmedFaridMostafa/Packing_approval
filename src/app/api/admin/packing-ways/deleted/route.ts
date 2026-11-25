@@ -8,7 +8,7 @@ import {
 import { getDeletedPackingWays } from "@/server/services/packing.service";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);

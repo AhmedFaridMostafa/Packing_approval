@@ -16,7 +16,7 @@ const AdminPackingWaysPage = async ({ searchParams }: RouteParams) => {
   const [params, requestHeaders, t, locale] = await Promise.all([
     searchParams,
     headers(),
-    getTranslations("AdminPackingWaysPage"),
+    getTranslations("admin.packingWays.list"),
     getLocale(),
   ]);
 
@@ -54,13 +54,13 @@ const AdminPackingWaysPage = async ({ searchParams }: RouteParams) => {
           <Button variant="outline" asChild>
             <Link href={ROUTES.ADMIN_PACKING_WAYS_DELETED}>
               <Archive className="me-2 size-4" />
-              {t("deleted")}
+              {t("actions.viewDeleted")}
             </Link>
           </Button>
           <Button asChild>
             <Link href={ROUTES.ADMIN_PACKING_WAYS_ADD}>
               <Plus className="me-2 size-4" />
-              {t("add")}
+              {t("actions.add")}
             </Link>
           </Button>
         </div>
@@ -68,9 +68,9 @@ const AdminPackingWaysPage = async ({ searchParams }: RouteParams) => {
       <Suspense fallback={<PackingWaysFilterBarSkeleton />}>
         <PackingWaysFilterBar
           requestHeaders={requestHeaders}
-          searchPlaceholder={t("search_placeholder")}
-          allCountries={t("filters.all_countries")}
-          allCategories={t("filters.all_categories")}
+          searchPlaceholder={t("search.placeholder")}
+          allCountries={t("filters.allCountries")}
+          allCategories={t("filters.allCategories")}
         />
       </Suspense>
       {packingWays.length ? (

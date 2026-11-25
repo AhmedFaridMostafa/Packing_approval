@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 
 const SocialAuthForm = () => {
-  const t = useTranslations("Auth.SocialAuth");
+  const t = useTranslations("auth.socialAuth");
 
   const [pendingProvider, setPendingProvider] = useState<OAuthProvider | null>(
     null,
@@ -43,14 +43,14 @@ const SocialAuthForm = () => {
           },
           onError: (ctx) => {
             toast.error(t("failed"), {
-              description: ctx.error.message || t("global_error"),
+              description: ctx.error.message || t("globalError"),
             });
           },
         },
       );
     } catch (error) {
       toast.error(t("failed"), {
-        description: error instanceof Error ? error.message : t("global_error"),
+        description: error instanceof Error ? error.message : t("globalError"),
       });
     } finally {
       setPendingProvider(null);
@@ -61,7 +61,7 @@ const SocialAuthForm = () => {
     <>
       <div className="border-border mt-10 flex items-center gap-3 border-t pt-6">
         <span className="text-caption text-on-surface-variant w-full text-center">
-          {t("or_divider")}
+          {t("orDivider")}
         </span>
       </div>
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
@@ -77,8 +77,8 @@ const SocialAuthForm = () => {
           >
             <provider.icon className="size-5" />
             {isPending
-              ? t("signing_in", { provider: localizedProviderName })
-              : t("sign_in_with", { provider: localizedProviderName })}
+              ? t("signingIn", { provider: localizedProviderName })
+              : t("signInWith", { provider: localizedProviderName })}
           </Button>
         );
       })}

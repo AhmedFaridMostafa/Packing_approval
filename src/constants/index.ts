@@ -48,8 +48,8 @@ export const ITEMS_PER_PAGE = 8;
 export const ACTIONS = ["CREATE", "UPDATE", "DELETE"] as const;
 
 export const EXPIRY_BAN_OPTIONS = [
-  { value: "permanent", labelKey: "expiry_permanent", seconds: undefined },
-  { value: "1d", labelKey: "expiry_1day", seconds: 86_400 },
-  { value: "7d", labelKey: "expiry_7days", seconds: 604_800 },
-  { value: "30d", labelKey: "expiry_30days", seconds: 2_592_000 },
+  { value: "permanent", labelKey: "expiryPermanent", seconds: undefined },
+  { value: "1d", labelKey: "expiry1day", seconds: 86_400 },
+  { value: "7d", labelKey: "expiry7days", seconds: 604_800 },
+  { value: "30d", labelKey: "expiry30days", seconds: 2_592_000 },
 ] as const;

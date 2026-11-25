@@ -4,7 +4,10 @@ import { apiSuccess, handleApiError } from "@/lib/api-response";
 import { getTranslations } from "next-intl/server";
 
 export async function GET(request: Request) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const { searchParams } = new URL(request.url);
 
@@ -21,6 +24,6 @@ export async function GET(request: Request) {
     return apiSuccess(data);
   } catch (error: unknown) {
     console.error(`Error in GET ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }

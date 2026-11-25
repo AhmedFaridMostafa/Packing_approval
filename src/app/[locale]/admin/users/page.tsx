@@ -15,7 +15,7 @@ import ErrorState from "@/components/shared/ErrorState";
 import AdminUsersTable from "@/components/admin/users/AdminUsersTable";
 
 export async function generateMetadata() {
-  const t = await getTranslations("AdminUsersPage.meta_data");
+  const t = await getTranslations("admin.users.list.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -30,7 +30,7 @@ const AdminUsersPage = async ({ searchParams }: AdminUsersPageProps) => {
   const [{ search_query, page }, requestHeaders, t] = await Promise.all([
     searchParams,
     headers(),
-    getTranslations("AdminUsersPage"),
+    getTranslations("admin.users.list"),
   ]);
 
   const session = await getApiAuthSession(requestHeaders);
@@ -79,16 +79,16 @@ const AdminUsersPage = async ({ searchParams }: AdminUsersPageProps) => {
         >
           <Link href={ROUTES.ADMIN_USERS_CREATE}>
             <Plus className="h-5 w-5" />
-            {t("add_user")}
+            {t("actions.add")}
           </Link>
         </Button>
       </div>
 
       {/* Search Bar */}
       <div className="flex items-center gap-4">
-        <GlobalSearch searchPlaceholder={t("search_placeholder")} />
+        <GlobalSearch searchPlaceholder={t("search.placeholder")} />
         <span className="text-on-surface-variant text-caption font-medium">
-          {users.length > 0 && t("shown_count", { count: users.length })}
+          {users.length > 0 && t("shownCount", { count: users.length })}
         </span>
       </div>
 

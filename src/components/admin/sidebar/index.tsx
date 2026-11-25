@@ -11,7 +11,7 @@ interface SidebarAdminProps {
 const SidebarAdmin = async ({ children }: SidebarAdminProps) => {
   const [locale, t] = await Promise.all([
     getLocale(),
-    getTranslations("AdminLayout"),
+    getTranslations("admin.layout"),
   ]);
   const isRtl = locale === "ar";
 

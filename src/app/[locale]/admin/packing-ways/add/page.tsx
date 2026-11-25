@@ -10,7 +10,7 @@ export default async function AddPackingWayPage() {
 
   const [formData, t] = await Promise.all([
     api.packingWays.getFormData(requestHeaders),
-    getTranslations("AddPackingWayPage"),
+    getTranslations("admin.packingWays.form.create"),
   ]);
 
   if (!formData.success)

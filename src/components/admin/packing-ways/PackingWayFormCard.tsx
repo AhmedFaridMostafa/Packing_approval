@@ -49,7 +49,7 @@ const PackingWayFormCard = ({
   const { countries, regionsByCountry, categories } = formData;
 
   const router = useRouter();
-  const t = useTranslations("CreateAndUpdatePackingWay");
+  const t = useTranslations("admin.packingWays.form");
 
   const countryId = form.watch("country_id");
   const regions = countryId ? (regionsByCountry[Number(countryId)] ?? []) : [];
@@ -92,11 +92,11 @@ const PackingWayFormCard = ({
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.country.label")}
+                  {t("fields.country.label")}
                 </FieldLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <SelectTrigger aria-invalid={fieldState.invalid}>
-                    <SelectValue placeholder={t("form.country.placeholder")} />
+                    <SelectValue placeholder={t("fields.country.placeholder")} />
                   </SelectTrigger>
                   <SelectContent>
                     {countries.map((item) => (
@@ -120,7 +120,7 @@ const PackingWayFormCard = ({
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.region.label")}
+                  {t("fields.region.label")}
                 </FieldLabel>
                 <Select
                   value={field.value}
@@ -128,7 +128,7 @@ const PackingWayFormCard = ({
                   disabled={!countryId || regions.length === 0}
                 >
                   <SelectTrigger aria-invalid={fieldState.invalid}>
-                    <SelectValue placeholder={t("form.region.placeholder")} />
+                    <SelectValue placeholder={t("fields.region.placeholder")} />
                   </SelectTrigger>
                   <SelectContent>
                     {regions.map((item) => (
@@ -155,11 +155,11 @@ const PackingWayFormCard = ({
                 className="md:col-span-2"
               >
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.category.label")}
+                  {t("fields.category.label")}
                 </FieldLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <SelectTrigger aria-invalid={fieldState.invalid}>
-                    <SelectValue placeholder={t("form.category.placeholder")} />
+                    <SelectValue placeholder={t("fields.category.placeholder")} />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((item) => (
@@ -183,11 +183,11 @@ const PackingWayFormCard = ({
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.title_en.label")}
+                  {t("fields.titleEn.label")}
                 </FieldLabel>
                 <Input
                   {...field}
-                  placeholder={t("form.title_en.placeholder")}
+                  placeholder={t("fields.titleEn.placeholder")}
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -204,12 +204,12 @@ const PackingWayFormCard = ({
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.title_ar.label")}
+                  {t("fields.titleAr.label")}
                 </FieldLabel>
                 <Input
                   {...field}
                   dir="rtl"
-                  placeholder={t("form.title_ar.placeholder")}
+                  placeholder={t("fields.titleAr.placeholder")}
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -229,11 +229,11 @@ const PackingWayFormCard = ({
                 data-invalid={fieldState.invalid}
               >
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.description_en.label")}
+                  {t("fields.descriptionEn.label")}
                 </FieldLabel>
                 <Textarea
                   {...field}
-                  placeholder={t("form.description_en.placeholder")}
+                  placeholder={t("fields.descriptionEn.placeholder")}
                   aria-invalid={fieldState.invalid}
                   rows={4}
                 />
@@ -254,12 +254,12 @@ const PackingWayFormCard = ({
                 data-invalid={fieldState.invalid}
               >
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.description_ar.label")}
+                  {t("fields.descriptionAr.label")}
                 </FieldLabel>
                 <Textarea
                   {...field}
                   dir="rtl"
-                  placeholder={t("form.description_ar.placeholder")}
+                  placeholder={t("fields.descriptionAr.placeholder")}
                   aria-invalid={fieldState.invalid}
                   rows={4}
                 />
@@ -280,7 +280,7 @@ const PackingWayFormCard = ({
                 data-invalid={fieldState.invalid}
               >
                 <FieldLabel className="text-on-surface font-semibold">
-                  {t("form.image.label")}
+                  {t("fields.image.label")}
                 </FieldLabel>
 
                 <FileUploader
@@ -288,10 +288,10 @@ const PackingWayFormCard = ({
                   onChange={field.onChange}
                   ariaInvalid={fieldState.invalid}
                   labels={{
-                    uploadText: t("form.image.upload"),
-                    dropText: t("form.image.drop"),
-                    replaceText: t("form.image.replace"),
-                    placeholder: t("form.image.hint"),
+                    uploadText: t("fields.image.upload"),
+                    dropText: t("fields.image.drop"),
+                    replaceText: t("fields.image.replace"),
+                    placeholder: t("fields.image.hint"),
                   }}
                 />
                 {fieldState.invalid && (

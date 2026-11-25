@@ -28,24 +28,26 @@ const DeletedRegionsTable = ({
           <TableHeader className="bg-surface-container-low/60">
             <TableRow className="border-border">
               <TableHead className="w-60 font-bold">
-                {t("table.region")}
+                {t("table.columns.region")}
               </TableHead>
 
-              <TableHead>{t("table.country")}</TableHead>
+              <TableHead>{t("table.columns.country")}</TableHead>
 
-              <TableHead>{t("table.account")}</TableHead>
+              <TableHead>{t("table.columns.account")}</TableHead>
 
-              <TableHead>{t("table.labels")}</TableHead>
+              <TableHead>{t("table.columns.labels")}</TableHead>
 
               <TableHead className="text-center">
-                {t("table.guidelines_count")}
+                {t("table.columns.guidelinesCount")}
               </TableHead>
 
               <TableHead className="text-center">
-                {t("table.deleted_at")}
+                {t("table.columns.deletedAt")}
               </TableHead>
 
-              <TableHead className="text-end">{t("table.actions")}</TableHead>
+              <TableHead className="text-end">
+                {t("table.columns.actions")}
+              </TableHead>
             </TableRow>
           </TableHeader>
 
@@ -57,8 +59,8 @@ const DeletedRegionsTable = ({
                 isRTL={isRTL}
                 labels={{
                   restore: t("actions.restore"),
-                  success: t("actions.restore_success"),
-                  error: t("actions.restore_error"),
+                  success: t("toasts.restoreSuccess"),
+                  error: t("toasts.restoreError"),
                 }}
               />
             ))}

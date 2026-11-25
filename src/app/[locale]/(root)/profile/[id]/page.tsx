@@ -11,7 +11,7 @@ import ProfileInformationForm from "@/components/profile/ProfileInformationForm"
 import ProfileSummaryCard from "@/components/profile/ProfileSummaryCard";
 
 export async function generateMetadata() {
-  const t = await getTranslations("userSetting.profile.meta_data");
+  const t = await getTranslations("account.profile.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -22,7 +22,7 @@ const ProfilePage = async ({ params }: RouteParams) => {
   const [{ id }, requestHeaders, t] = await Promise.all([
     params,
     headers(),
-    getTranslations("userSetting.profile"),
+    getTranslations("account.profile"),
   ]);
 
   const authCheck = await checkApiAuth(requestHeaders);

@@ -18,7 +18,7 @@ export async function POST(
   request: Request,
   { params }: AdminRegionRestoreRouteParams,
 ) {
-  const t = await getTranslations("Validation");
+  const t = await getTranslations("api.errors");
   try {
     const auth = await checkApiAdmin(request.headers);
     if (!auth.authorized) return apiUnauthorized(t);
@@ -26,7 +26,7 @@ export async function POST(
     const id = parseInt((await params).id);
     if (isNaN(id))
       return NextResponse.json(
-        { success: false, status: 400, error: { message: t("invalid_id") } },
+        { success: false, status: 400, error: { message: t("invalidId") } },
         { status: 400 },
       );
 

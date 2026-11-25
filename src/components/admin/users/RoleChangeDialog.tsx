@@ -29,7 +29,7 @@ import {
 import { USER_ROLES } from "@/constants";
 
 const RoleChangeDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
-  const t = useTranslations("AdminUsersPage");
+  const t = useTranslations("admin.users.list");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -42,14 +42,14 @@ const RoleChangeDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
         const response = await apiClient.users.updateRole(user.id, role);
 
         if (response.success) {
-          toast.success(t("role_change.success"));
+          toast.success(t("toasts.roleChangeSuccess"));
           onOpenChange(false);
           router.refresh();
         } else {
-          toast.error(response.error?.message ?? t("role_change.error"));
+          toast.error(response.error?.message ?? t("toasts.roleChangeError"));
         }
       } catch {
-        toast.error(t("role_change.error"));
+        toast.error(t("toasts.roleChangeError"));
       }
     });
   };
@@ -58,9 +58,9 @@ const RoleChangeDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t("role_change.title")}</DialogTitle>
+          <DialogTitle>{t("dialogs.roleChange.title")}</DialogTitle>
           <DialogDescription>
-            {t("role_change.description", {
+            {t("dialogs.roleChange.description", {
               name: user.name,
               current: t(`roles.${currentRole}`),
             })}
@@ -87,7 +87,7 @@ const RoleChangeDialog = ({ open, onOpenChange, user }: UserDialogProps) => {
           {role === "admin" && (
             <p className="text-destructive text-caption flex items-center gap-1.5">
               <TriangleAlert className="h-3.5 w-3.5" />
-              {t("role_change.warning")}
+              {t("dialogs.roleChange.warning")}
             </p>
           )}
         </div>

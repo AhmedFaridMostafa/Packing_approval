@@ -71,7 +71,7 @@ const RecentHistoryList = ({ history, t, isRTL }: RecentHistoryListProps) => {
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center gap-2">
                     <ActionBadge action={item.action}>
-                      {t(`recentHistory.action.${item.action}`)}
+                      {t(`recentHistory.actionTypes.${item.action.toLowerCase()}`)}
                     </ActionBadge>
                     <span className="font-heading text-on-surface font-semibold">
                       {title || categoryName}

@@ -7,7 +7,7 @@ import ErrorState from "@/components/shared/ErrorState";
 import RegionForm from "@/components/admin/regions/RegionForm";
 
 export async function generateMetadata() {
-  const t = await getTranslations("EditRegionPage.meta_data");
+  const t = await getTranslations("admin.regions.form.edit.metadata");
   return {
     title: t("title"),
     description: t("description"),
@@ -32,7 +32,7 @@ const EditRegionPage = async ({ params }: RouteParams) => {
     );
   }
 
-  const t = await getTranslations("EditRegionPage");
+  const t = await getTranslations("admin.regions.form.edit");
 
   return (
     <div className="flex flex-col gap-8">

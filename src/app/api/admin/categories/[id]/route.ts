@@ -19,15 +19,19 @@ export async function PUT(
   request: Request,
   { params }: AdminCategoryRouteParams,
 ) {
-  const t = await getTranslations("Validation");
+  const [t, tApi] = await Promise.all([
+    getTranslations("validation"),
+    getTranslations("api.errors"),
+  ]);
   try {
     const auth = await checkApiAdmin(request.headers);
-    if (!auth.authorized) return apiUnauthorized(t);
+
+    if (!auth.authorized) return apiUnauthorized(tApi);
 
     const id = parseInt((await params).id);
     if (isNaN(id))
       return NextResponse.json(
-        { success: false, status: 400, error: { message: t("invalid_id") } },
+        { success: false, status: 400, error: { message: tApi("invalidId") } },
         { status: 400 },
       );
 
@@ -35,13 +39,13 @@ export async function PUT(
     const validatedData = apiCategorySchema(t).partial().parse(body);
 
     const data = await updateCategory(id, validatedData);
-    if (!data) return apiNotFound(t);
+    if (!data) return apiNotFound(tApi);
 
     revalidateTag("regions-detail", { expire: 0 });
 
     return apiSuccess(data);
   } catch (error: unknown) {
     console.error(`Error in PUT ${request.url}:`, error);
-    return handleApiError(error, t);
+    return handleApiError(error, tApi);
   }
 }
